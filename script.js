@@ -247,6 +247,7 @@ const estSessions = [
     }
 ];
 
+
 const toeflSections = [
     {
         id: "reading",
@@ -276,18 +277,6 @@ const toeflSections = [
         ]
     },
     {
-        id: "speaking",
-        title: "Speaking",
-        icon: "🎙️",
-        description: "Practise accurate repetition and clear spoken responses.",
-        items: 11,
-        baseTime: "~8 minutes",
-        tasks: [
-            "Listen and Repeat",
-            "Take an Interview"
-        ]
-    },
-    {
         id: "writing",
         title: "Writing",
         icon: "✍️",
@@ -299,8 +288,21 @@ const toeflSections = [
             "Write an Email",
             "Write for an Academic Discussion"
         ]
+    },
+    {
+        id: "speaking",
+        title: "Speaking",
+        icon: "🎙️",
+        description: "Improve pronunciation, fluency, and spoken responses.",
+        items: 11,
+        baseTime: "~8 minutes",
+        tasks: [
+            "Listen and Repeat",
+            "Take an Interview"
+        ]
     }
 ];
+
 
 function displayCourses() {
     const container = document.getElementById("courses-container");
@@ -354,6 +356,7 @@ function displayCourses() {
     });
 }
 
+
 function displayTOEFLSections() {
 
     const container = document.getElementById("toefl-sections-container");
@@ -365,7 +368,7 @@ function displayTOEFLSections() {
         const card = document.createElement("div");
         card.className = "toefl-section-card";
 
-        const taskItems = section.tasks
+        const tasksHTML = section.tasks
             .map(task => `<li>${task}</li>`)
             .join("");
 
@@ -376,12 +379,13 @@ function displayTOEFLSections() {
 
             <p>${section.description}</p>
 
-            <p class="toefl-section-meta">
-                ${section.items} items · ${section.baseTime} base time
-            </p>
+            <div class="toefl-section-meta">
+                <span>${section.items} items</span>
+                <span>${section.baseTime} base time</span>
+            </div>
 
             <ul class="toefl-task-list">
-                ${taskItems}
+                ${tasksHTML}
             </ul>
         `;
 
