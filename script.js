@@ -246,34 +246,42 @@ const estSessions = [
         available: false
     }
 ];
+
 const toeflSections = [
     {
         id: "reading",
         title: "Reading",
         icon: "📖",
-        description: "Build reading accuracy, vocabulary, and comprehension.",
+        description: "Develop vocabulary and understand everyday and academic texts.",
+        items: 50,
+        baseTime: "~30 minutes",
         tasks: [
             "Complete the Words",
             "Read in Daily Life",
-            "Academic Reading"
+            "Read an Academic Passage"
         ]
     },
     {
         id: "listening",
         title: "Listening",
         icon: "🎧",
-        description: "Develop listening comprehension and rapid responses.",
+        description: "Understand spoken responses, conversations, announcements, and academic talks.",
+        items: 47,
+        baseTime: "~29 minutes",
         tasks: [
             "Listen and Choose a Response",
-            "Conversation & Announcement",
-            "Academic Talk"
+            "Listen to a Conversation",
+            "Listen to an Announcement",
+            "Listen to an Academic Talk"
         ]
     },
     {
         id: "speaking",
         title: "Speaking",
         icon: "🎙️",
-        description: "Improve pronunciation, fluency, and spoken responses.",
+        description: "Practise accurate repetition and clear spoken responses.",
+        items: 11,
+        baseTime: "~8 minutes",
         tasks: [
             "Listen and Repeat",
             "Take an Interview"
@@ -283,14 +291,17 @@ const toeflSections = [
         id: "writing",
         title: "Writing",
         icon: "✍️",
-        description: "Build sentence accuracy and effective written responses.",
+        description: "Build accurate sentences and communicate effectively in writing.",
+        items: 12,
+        baseTime: "~23 minutes",
         tasks: [
             "Build a Sentence",
             "Write an Email",
-            "Academic Discussion"
+            "Write for an Academic Discussion"
         ]
     }
 ];
+
 function displayCourses() {
     const container = document.getElementById("courses-container");
 
@@ -342,6 +353,7 @@ function displayCourses() {
         container.appendChild(card);
     });
 }
+
 function displayTOEFLSections() {
 
     const container = document.getElementById("toefl-sections-container");
@@ -354,7 +366,7 @@ function displayTOEFLSections() {
         card.className = "toefl-section-card";
 
         const taskItems = section.tasks
-            .map(task => "<li>" + task + "</li>")
+            .map(task => `<li>${task}</li>`)
             .join("");
 
         card.innerHTML = `
@@ -363,6 +375,10 @@ function displayTOEFLSections() {
             <h3>${section.title}</h3>
 
             <p>${section.description}</p>
+
+            <p class="toefl-section-meta">
+                ${section.items} items · ${section.baseTime} base time
+            </p>
 
             <ul class="toefl-task-list">
                 ${taskItems}
@@ -374,6 +390,7 @@ function displayTOEFLSections() {
     });
 
 }
+
 
 
 function showTOEFLCourse() {
