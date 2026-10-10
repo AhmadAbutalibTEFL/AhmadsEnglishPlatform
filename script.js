@@ -28,12 +28,12 @@ const courses = [
         available: false
     },
     {
-        id: "toefl",
-        title: "TOEFL",
-        icon: "🎓",
-        description: "TOEFL preparation covering Reading, Listening, Speaking, and Writing.",
-        available: false
-    },
+    id: "toefl",
+    title: "TOEFL",
+    icon: "🎓",
+    description: "TOEFL preparation covering Reading, Listening, Speaking, and Writing.",
+    available: true
+},
     {
         id: "general-english",
         title: "General English",
@@ -246,7 +246,51 @@ const estSessions = [
         available: false
     }
 ];
-
+const toeflSections = [
+    {
+        id: "reading",
+        title: "Reading",
+        icon: "📖",
+        description: "Build reading accuracy, vocabulary, and comprehension.",
+        tasks: [
+            "Complete the Words",
+            "Read in Daily Life",
+            "Academic Reading"
+        ]
+    },
+    {
+        id: "listening",
+        title: "Listening",
+        icon: "🎧",
+        description: "Develop listening comprehension and rapid responses.",
+        tasks: [
+            "Listen and Choose a Response",
+            "Conversation & Announcement",
+            "Academic Talk"
+        ]
+    },
+    {
+        id: "speaking",
+        title: "Speaking",
+        icon: "🎙️",
+        description: "Improve pronunciation, fluency, and spoken responses.",
+        tasks: [
+            "Listen and Repeat",
+            "Take an Interview"
+        ]
+    },
+    {
+        id: "writing",
+        title: "Writing",
+        icon: "✍️",
+        description: "Build sentence accuracy and effective written responses.",
+        tasks: [
+            "Build a Sentence",
+            "Write an Email",
+            "Academic Discussion"
+        ]
+    }
+];
 function displayCourses() {
     const container = document.getElementById("courses-container");
 
@@ -281,18 +325,71 @@ function displayCourses() {
 
         const button = card.querySelector("button");
 
-        button.onclick = function () {
-            if (course.available) {
-                showESTCourse();
-            } else {
-                showComingSoon(course.title);
-            }
-        };
+ button.onclick = function () {
+
+    if (course.id === "est") {
+        showESTCourse();
+
+    } else if (course.id === "toefl") {
+        showTOEFLCourse();
+
+    } else {
+        showComingSoon(course.title);
+    }
+
+};
 
         container.appendChild(card);
     });
 }
+function displayTOEFLSections() {
 
+    const container = document.getElementById("toefl-sections-container");
+
+    container.innerHTML = "";
+
+    toeflSections.forEach(section => {
+
+        const card = document.createElement("div");
+        card.className = "toefl-section-card";
+
+        const taskItems = section.tasks
+            .map(task => "<li>" + task + "</li>")
+            .join("");
+
+        card.innerHTML = `
+            <div class="toefl-section-icon">${section.icon}</div>
+
+            <h3>${section.title}</h3>
+
+            <p>${section.description}</p>
+
+            <ul class="toefl-task-list">
+                ${taskItems}
+            </ul>
+        `;
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+function showTOEFLCourse() {
+
+    hideAllScreens();
+
+    document.getElementById("toefl-course-screen").style.display = "block";
+
+    displayTOEFLSections();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
 function displayESTSessions() {
     const container = document.getElementById("est-sessions-container");
 
