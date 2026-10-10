@@ -15,6 +15,14 @@ const toeflReadingTasks = {
         title: "Complete the Words",
         icon: "🔤",
         shortDescription: "Rebuild partly shown words in an academic paragraph using grammar, connectors, and context.",
+        facts: {
+            items: [
+                { value: "10 words", label: "Partly shown words per paragraph", note: "The beginning of each word is printed; you type only the missing letters." },
+                { value: "About 70–90 words", label: "Typical paragraph length", note: "Based on published practice material. The ETS specification gives no exact length for this task." },
+                { value: "50 items · ~30 min", label: "Whole Reading section (ETS)", note: "Complete the Words, Read in Daily Life, and Read an Academic Passage share this section." }
+            ],
+            note: "How many paragraphs you see depends on how the adaptive section routes you, and sources differ: some prep sites report two paragraphs, while the ETS blueprint lists a target of 30 Complete the Words items across the section. Check the official ETS practice materials for the current number."
+        },
         explanation: "You read a short academic-style paragraph in which several words are only partly shown. The beginning of each word is printed, and each missing letter has its own slot. You type only the missing letters. The task rewards careful reading, because the missing words are usually recoverable from grammar, from the relationship between ideas, and from the exact number of missing letters.",
         strategy: [
             "Read the whole paragraph once before typing anything.",
@@ -38,7 +46,7 @@ const toeflReadingTasks = {
                     "The number of slots is information. If a word begins with ‘con’ and has four slots, your answer must have seven letters in total.",
                     "Spelling counts. A word with the right meaning but one wrong, missing, or doubled letter is not an exact match.",
                     "You do not need specialist knowledge. The paragraph supplies the topic, and grammar plus connectors supply most of the rest.",
-                    "Official details such as the number of paragraphs, the number of gaps, and timing can change. Check the current format on the ETS website before test day; use this lab to build the skill, not to memorise a format."
+                    "Format facts: practice paragraphs usually run about 70–90 words with 10 gaps. The Reading section as a whole has 50 items and about 30 minutes of base time (ETS). The number of paragraphs you meet depends on the adaptive route, so check the current ETS practice materials."
                 ]
             },
             {
@@ -230,6 +238,14 @@ const toeflReadingTasks = {
         title: "Read in Daily Life",
         icon: "📩",
         shortDescription: "Read notices, emails, and messages and answer questions about purpose, details, conditions, and inference.",
+        facts: {
+            items: [
+                { value: "2 or 3 questions", label: "Per text", note: "ETS describes Read in Daily Life as 2-item and 3-item sets." },
+                { value: "15–50 words and longer", label: "Text length", note: "ETS says easier reading texts are typically 15–50 words and harder ones can reach about 200. Prep sites report Daily Life texts of roughly 40–140 words." },
+                { value: "Signs, menus, emails, posts", label: "Typical formats", note: "ETS names signs, menus, emails, and social media posts as examples of everyday stimuli." }
+            ],
+            note: "The text stays on screen while you answer. ETS lists 5–15 scored items for this task type across the Reading section, and the exact number depends on the adaptive route."
+        },
         explanation: "These are short practical texts of the kind people meet every day: notices, emails, messages, and announcements. The questions test purpose, specific details, conditions and instructions, and simple inferences. The evidence is always in the text, so your job is to find the right detail and notice the small words that change its meaning.",
         strategy: [
             "Identify the text type and why it was written.",
@@ -306,44 +322,85 @@ const toeflReadingTasks = {
                     "Question: Can every student collect items until 6:00? No. The permission applies only to students who booked a locker.",
                     "Method: match the question to the exact line, then check the condition attached to that line."
                 ]
+            },
+            {
+                heading: "7. Short texts and longer texts",
+                intro: "Everyday stimuli range from a few lines on a sign to a full email. The method is the same, but the pressure points are different.",
+                bullets: [
+                    "Short texts (signs, menu cards, posts of roughly 15–50 words): every line may matter. Read all of it, then check any limit words such as only, until, or not included.",
+                    "Longer texts (emails and notices of about 80–200 words): decide the purpose first, then use the question to find the right paragraph or line.",
+                    "Texts are often shown in a realistic layout with a heading, times, or a price list. Use that layout as a map for scanning.",
+                    "Sets contain two or three questions. Questions on the same text often test different skills: one for purpose or detail, another for a condition or an inference."
+                ]
             }
         ],
         sets: [
             {
                 type: "mcq",
-                title: "Practice 1 · Library Workshop Notice",
-                materialTitle: "RESEARCH SMART: FREE LIBRARY WORKSHOP",
-                material: "Thursday, 4:00–5:15 p.m. · Learning Centre, Room 204\nLearn how to search the library catalogue, evaluate online sources, and record references. Bring a laptop if you have one. The workshop is free, but places are limited to 20 students. Register through the student portal by Wednesday at 6:00 p.m. Students who register will receive a confirmation email.",
-                instruction: "Read the notice and answer each question.",
+                title: "Practice 1 · Café Door Sign (short text)",
+                materialTitle: "SIGN · HARBOUR CAFÉ",
+                material: "HARBOUR CAFÉ\nOpen 7:00 a.m.–3:00 p.m., Monday to Saturday\nKitchen closes at 2:30 p.m.\nClosed on Sundays and public holidays\nDogs welcome on the terrace only",
+                instruction: "Short texts such as signs are read quickly but completely. Answer both questions using only the sign.",
                 questions: [
-                    { question: "What is the main purpose of the notice?", choices: ["To announce a change in library opening hours", "To ask students to return laptops", "To invite students to a research workshop", "To advertise a paid online course"], answer: 2, explanation: "The notice describes a free workshop and tells students when it takes place, where it is, and how to register." },
-                    { question: "What must a student do to reserve a place?", choices: ["Register through the student portal by Wednesday evening", "Pay a fee at the Learning Centre", "Email the workshop teacher after Thursday", "Bring a laptop to Room 204"], answer: 0, explanation: "The notice says to register through the student portal by Wednesday at 6:00 p.m. There is no fee, and a laptop is optional." },
-                    { question: "Which statement about laptops is supported by the notice?", choices: ["Every student must borrow one from the library", "Only students with laptops can register", "The workshop takes place in a computer shop", "Students should bring one if they have one"], answer: 3, explanation: "‘Bring a laptop if you have one’ is advice, not a requirement, so the other options add rules the notice does not state." },
-                    { question: "Why would it be sensible to register early?", choices: ["The workshop lasts all day", "The student portal closes for the month", "The number of places is limited", "The workshop fee increases on Thursday"], answer: 2, explanation: "Places are limited to 20 students, so late registration could mean there is no space. The notice mentions no fee and no portal closing." }
+                    { question: "What can be learned from the sign?", choices: ["Food can be ordered until 3:00 p.m.", "The café is open on Sundays", "The kitchen closes half an hour before the café does", "Dogs are welcome inside the café"], answer: 2, explanation: "The café closes at 3:00 p.m. but the kitchen closes at 2:30 p.m., which is thirty minutes earlier. The sign also says the café is closed on Sundays and limits dogs to the terrace." },
+                    { question: "Where may customers bring a dog?", choices: ["Anywhere in the café", "Only on the terrace", "Only before the café opens", "Nowhere on the premises"], answer: 1, explanation: "The last line says dogs are welcome on the terrace only. The word ‘only’ rules out the main room." }
                 ]
             },
             {
                 type: "mcq",
-                title: "Practice 2 · Email from a Course Tutor",
+                title: "Practice 2 · Text Message (short text)",
+                materialTitle: "TEXT MESSAGE · FROM DANA",
+                material: "Hi Sam! Change of plan: the study group is moving from the library to my place because the library’s group rooms are fully booked. Come at 6:30 instead of 6:00 so I have time to set up. Could you bring the printed notes? I’ll order pizza, so no need to eat first.",
+                instruction: "Read the message and answer both questions.",
+                questions: [
+                    { question: "Why has the location of the study group changed?", choices: ["Dana would rather host", "The library’s group rooms are fully booked", "The library closes early", "Sam asked to change it"], answer: 1, explanation: "Dana gives the reason directly: the group rooms at the library are fully booked." },
+                    { question: "What does Dana ask Sam to do?", choices: ["Order the pizza", "Arrive at 6:00", "Bring the printed notes", "Book another room"], answer: 2, explanation: "The question ‘Could you bring the printed notes?’ is the request. Dana will order the pizza, and the new arrival time is 6:30." }
+                ]
+            },
+            {
+                type: "mcq",
+                title: "Practice 3 · Lunch Menu Card",
+                materialTitle: "MENU CARD · LUNCH SPECIAL",
+                material: "Lunch special: soup and a sandwich, $9. Served 11:30 a.m.–2:00 p.m., weekdays only. Choose tomato or lentil soup. Sandwiches: cheese, egg, or chicken (chicken adds $1.50). Drinks are not included.",
+                instruction: "Use the menu card to answer the three questions. Watch for extra charges and limits.",
+                questions: [
+                    { question: "When is the lunch special available?", choices: ["Every day from 11:30 a.m.", "On weekends only", "From 2:00 p.m. on weekdays", "On weekdays from 11:30 a.m. to 2:00 p.m."], answer: 3, explanation: "The card says the special is served 11:30 a.m.–2:00 p.m. and weekdays only." },
+                    { question: "How much is the special with a chicken sandwich (no drink)?", choices: ["$10.50", "$9.00", "$7.50", "$12.00"], answer: 0, explanation: "The base price is $9, and chicken adds $1.50, so the total is $10.50." },
+                    { question: "What is not included in the special price?", choices: ["The soup", "The sandwich", "A drink", "A choice of filling"], answer: 2, explanation: "The last sentence says drinks are not included. The soup and sandwich are part of the $9 price, and the customer chooses the filling." }
+                ]
+            },
+            {
+                type: "mcq",
+                title: "Practice 4 · Library Workshop Notice",
+                materialTitle: "RESEARCH SMART: FREE LIBRARY WORKSHOP",
+                material: "Thursday, 4:00–5:15 p.m. · Learning Centre, Room 204\nLearn how to search the library catalogue, evaluate online sources, and record references. Bring a laptop if you have one. The workshop is free, but places are limited to 20 students. Register through the student portal by Wednesday at 6:00 p.m. Students who register will receive a confirmation email.",
+                instruction: "Read the notice and answer the three questions.",
+                questions: [
+                    { question: "What is the main purpose of the notice?", choices: ["To announce a change in library opening hours", "To ask students to return laptops", "To invite students to a research workshop", "To advertise a paid online course"], answer: 2, explanation: "The notice describes a free workshop and tells students when it takes place, where it is, and how to register." },
+                    { question: "What must a student do to reserve a place?", choices: ["Register through the student portal by Wednesday evening", "Pay a fee at the Learning Centre", "Email the workshop teacher after Thursday", "Bring a laptop to Room 204"], answer: 0, explanation: "The notice says to register through the student portal by Wednesday at 6:00 p.m. There is no fee, and a laptop is optional." },
+                    { question: "Which statement about laptops is supported by the notice?", choices: ["Every student must borrow one from the library", "Only students with laptops can register", "The workshop takes place in a computer shop", "Students should bring one if they have one"], answer: 3, explanation: "‘Bring a laptop if you have one’ is advice, not a requirement, so the other options add rules the notice does not state." }
+                ]
+            },
+            {
+                type: "mcq",
+                title: "Practice 5 · Email from a Course Tutor",
                 materialTitle: "EMAIL · FIELD TRIP UPDATE",
                 material: "Subject: Friday's visit to the science museum\n\nHi everyone,\n\nThe museum visit will still take place on Friday, but our bus will leave school at 8:15 a.m. instead of 8:45. Please arrive by 8:00 so we can check attendance. The museum has asked us not to bring food into the exhibition rooms; you may eat your packed lunch in the outdoor picnic area. If it rains, we will use the covered seating area beside the main entrance.\n\nPlease reply to this email by Thursday afternoon if you can no longer attend.\n\nBest,\nMs Patel",
-                instruction: "Use the email to answer the questions. Pay close attention to the changes and conditions.",
+                instruction: "Use the email to answer the three questions. Pay close attention to the changes and conditions.",
                 questions: [
-                    { question: "What has changed about the trip?", choices: ["The destination", "The day of the visit", "The lunch arrangement", "The bus departure time"], answer: 3, explanation: "The bus now leaves at 8:15 a.m. rather than 8:45 a.m. The visit is still on Friday, and lunch rules are an additional note." },
-                    { question: "Why should students arrive by 8:00 a.m.?", choices: ["To buy breakfast", "To choose museum groups", "To meet the museum director", "So attendance can be checked before departure"], answer: 3, explanation: "Ms Patel says early arrival gives the group time to check attendance." },
+                    { question: "What has changed about the trip?", choices: ["The destination", "The day of the visit", "The lunch arrangement", "The bus departure time"], answer: 3, explanation: "The bus now leaves at 8:15 a.m. rather than 8:45 a.m. The visit is still on Friday, and the lunch rule is an additional note." },
                     { question: "Where may students eat their packed lunch?", choices: ["Inside every exhibition room", "In the outdoor picnic area", "On the bus only", "At the school cafeteria"], answer: 1, explanation: "Food is not allowed in the exhibition rooms, but the email says students may use the outdoor picnic area." },
                     { question: "What should a student do if they can no longer attend?", choices: ["Call the museum on Friday", "Wait until the bus arrives", "Reply to the email by Thursday afternoon", "Ask another student to register them"], answer: 2, explanation: "The final paragraph asks students who cannot attend to reply by Thursday afternoon." }
                 ]
             },
             {
                 type: "mcq",
-                title: "Practice 3 · Building Water Notice",
+                title: "Practice 6 · Building Water Notice",
                 materialTitle: "NOTICE TO RESIDENTS · WATER MAINTENANCE",
                 material: "Tuesday, 9:00 a.m.–1:00 p.m. · Building B only\nThe water supply to Building B will be turned off while engineers replace a pipe. Residents of Building A will not be affected. Please store water for cooking and washing before 9:00 a.m. Drinking water will be available from a temporary tank in the car park, next to the bicycle racks. When the supply returns, water may look cloudy for a short time; run the cold tap for two minutes before using it. If the work finishes early, a notice will be posted in the lobby.",
                 instruction: "Read the notice and choose the best answer. The answer is always supported by the text.",
                 questions: [
                     { question: "Which residents will be without water on Tuesday?", choices: ["Everyone in the complex", "Residents of Building A", "Residents of Building B", "Only residents on the top floors"], answer: 2, explanation: "The heading and the first sentences say Building B only, and Building A will not be affected." },
-                    { question: "What does the notice advise residents to do before 9:00 a.m.?", choices: ["Store water for cooking and washing", "Collect drinking water from the car park", "Move their bicycles", "Turn off the cold tap"], answer: 0, explanation: "The notice says to store water for cooking and washing before the supply is turned off. The car-park tank is for drinking water during the shut-off." },
                     { question: "What should a resident do if the water looks cloudy afterwards?", choices: ["Contact the engineers immediately", "Boil it before drinking", "Wait until the next day", "Run the cold tap for two minutes"], answer: 3, explanation: "The notice says cloudiness is expected for a short time and advises running the cold tap for two minutes before using the water." },
                     { question: "Where can residents get drinking water during the shut-off?", choices: ["At the lobby desk", "From a temporary tank in the car park", "From the engineers at the pipe", "From the taps in Building A"], answer: 1, explanation: "The notice states that drinking water will be available from a temporary tank in the car park, next to the bicycle racks." }
                 ]
@@ -359,10 +416,18 @@ const toeflReadingTasks = {
         title: "Read an Academic Passage",
         icon: "🔬",
         shortDescription: "Understand main ideas, details, vocabulary, inference, and purpose in university-style passages.",
+        facts: {
+            items: [
+                { value: "5 questions", label: "Per passage", note: "Prep sources report one passage with five multiple-choice questions. ETS lists 5–15 items for this task type." },
+                { value: "Up to about 200 words", label: "Passage length", note: "ETS says extended academic texts may reach about 200 words. Earlier TOEFL passages were much longer, roughly 700 words." },
+                { value: "Five skills", label: "What is tested", note: "Main ideas, key details, inferred meanings, idea relationships, and rhetorical structure (ETS wording, summarised)." }
+            ],
+            note: "The passage stays visible while you answer, and a question may refer to any part of it, so build the habit of finding evidence rather than relying on memory."
+        },
         explanation: "A short university-style passage explains a topic, process, finding, or relationship. Questions test the central point, supporting details, vocabulary in context, reasonable inferences, and why the author included a sentence or example. Use the passage, not outside knowledge, as your evidence.",
         strategy: [
             "Read for the topic, the author’s main point, and the way the paragraphs are organised.",
-            "For a detail question, return to the sentence that discusses the topic.",
+            "For a detail question, search the whole passage for the sentence that discusses the topic; do not expect the question to name a paragraph.",
             "For vocabulary, test each option in the sentence and check the meaning.",
             "For an inference, combine passage clues without adding an unsupported assumption.",
             "For a purpose question, ask why the sentence or example is there."
@@ -451,13 +516,13 @@ const toeflReadingTasks = {
                 type: "mcq",
                 title: "Practice 1 · Mangrove Forests",
                 materialTitle: "WHY MANGROVES MATTER",
-                material: "Mangrove forests grow along tropical and subtropical coastlines, where salt-tolerant trees thrive in tidal water. Their tangled roots slow moving water and trap sediment, helping protect shorelines from erosion. The roots also create sheltered habitats for young fish, crabs, and other small animals. Many species use these areas as nurseries before moving into deeper water.\n\nMangroves can also store large amounts of carbon in their trunks, roots, and the soil beneath them. When forests are cleared, some of this stored carbon may be released into the atmosphere. Yet mangroves face pressure from coastal development, pollution, and the conversion of wetlands into other land uses. Protecting these forests therefore supports both coastal communities and wildlife.",
-                instruction: "Read the passage. Choose the best answer for each question.",
+                material: "Mangrove forests grow along tropical and subtropical coastlines, where salt-tolerant trees thrive in tidal water. Their tangled roots slow moving water and trap sediment, helping protect shorelines from erosion. The roots also create sheltered habitats for young fish, crabs, and other small animals. Many species use these areas as nurseries before moving into deeper water.\n\nMangroves can also store large amounts of carbon in their trunks, roots, and the soil beneath them. When forests are cleared, some of this stored carbon may be released into the atmosphere. Yet mangroves face pressure from coastal development, pollution, and the conversion of wetlands into other land uses. Protecting these forests therefore supports both coastal communities and wildlife.\n\nRestoration can help, but it is slow. Planting young trees in suitable tidal areas can bring back part of the lost habitat. However, a newly planted forest may need decades before it stores as much carbon or shelters as many animals as an older one. Restoration also depends on repairing the natural flow of tidal water to the site; without it, many seedlings fail to survive.",
+                instruction: "Read the passage. Choose the best answer for each question. A question can refer to any part of the passage.",
                 questions: [
-                    { question: "What is the passage mainly about?", choices: ["How tropical trees are used to produce timber", "The history of coastal cities in tropical regions", "Why most fish avoid shallow coastal water", "The ecological value of mangroves and the threats they face"], answer: 3, explanation: "Both paragraphs describe benefits of mangroves and pressures that threaten them. The other options are unrelated or far too narrow." },
+                    { question: "What is the passage mainly about?", choices: ["How tropical trees are used to produce timber", "The history of coastal cities in tropical regions", "Why most fish avoid shallow coastal water", "The benefits of mangroves, the pressures on them, and the challenges of restoring them"], answer: 3, explanation: "The three paragraphs cover what mangroves provide, what threatens them, and why restoration is slow. The other options are unrelated or far too narrow." },
                     { question: "According to the passage, how do mangrove roots help protect shorelines?", choices: ["They increase the speed of tidal water", "They slow water and trap sediment", "They remove all salt from seawater", "They prevent coastal development"], answer: 1, explanation: "The first paragraph states that tangled roots slow moving water and trap sediment, which reduces erosion." },
                     { question: "The word ‘sheltered’ in the first paragraph is closest in meaning to:", choices: ["protected", "distant", "crowded", "temporary"], answer: 0, explanation: "The roots create places where young animals have protection from danger and strong water movement." },
-                    { question: "What can be inferred about young fish that use mangrove habitats?", choices: ["They remain in the same place throughout life", "They can survive only in freshwater", "They may move to other waters as they develop", "They destroy the roots that protect them"], answer: 2, explanation: "The passage says many species use the areas as nurseries before moving into deeper water, so young fish may leave later." },
+                    { question: "What can be inferred about a newly planted mangrove forest?", choices: ["It will quickly match the benefits of an older forest", "It does not need the natural flow of tidal water", "It may take a long time to provide the same benefits as an older forest", "It cannot store any carbon"], answer: 2, explanation: "The third paragraph says a newly planted forest may need decades before it stores as much carbon or shelters as many animals as an older one." },
                     { question: "Why does the author mention carbon stored in mangrove soil?", choices: ["To show that mangroves have no effect on climate", "To explain another benefit of mangroves and a consequence of clearing them", "To argue that all soils contain the same amount of carbon", "To describe how fish obtain food"], answer: 1, explanation: "The carbon detail adds another environmental benefit and explains why clearing forests can release carbon back into the atmosphere." }
                 ]
             },
@@ -465,11 +530,11 @@ const toeflReadingTasks = {
                 type: "mcq",
                 title: "Practice 2 · Sleep and Memory",
                 materialTitle: "SLEEP AND LEARNING",
-                material: "Learning does not end when a person closes a book. During sleep, the brain continues to process some of the information gathered during the day. Researchers have found evidence that sleep helps stabilize certain memories, making them easier to retrieve later. This process does not mean that every detail is stored perfectly; rather, some information becomes more durable over time.\n\nThe relationship between sleep and learning is one reason that regular rest is often recommended during periods of study. Staying awake longer may create extra time for practice, but fatigue can reduce attention and make new information harder to understand. The most useful study schedule therefore balances focused practice with sufficient sleep, rather than treating sleep as time that can always be sacrificed.",
+                material: "Learning does not end when a person closes a book. During sleep, the brain continues to process some of the information gathered during the day. Researchers have found evidence that sleep helps stabilize certain memories, making them easier to retrieve later. This process does not mean that every detail is stored perfectly; rather, some information becomes more durable over time.\n\nThe relationship between sleep and learning is one reason that regular rest is often recommended during periods of study. Staying awake longer may create extra time for practice, but fatigue can reduce attention and make new information harder to understand. The most useful study schedule therefore balances focused practice with sufficient sleep, rather than treating sleep as time that can always be sacrificed.\n\nTiming may matter as well. Some studies suggest that reviewing material shortly before sleep can help, because the information is fresh when the brain begins processing it. Even so, a short review is not a substitute for understanding the material in the first place. A learner who has not grasped an idea during the day has little to stabilize at night.",
                 instruction: "Read the passage and answer the questions. Use the author’s exact claims as evidence.",
                 questions: [
                     { question: "What is the main point of the passage?", choices: ["People should stop studying during the day", "Every memory becomes permanent after one night", "Sleep can support memory, so study plans should include enough rest", "Researchers have proved that practice is unnecessary"], answer: 2, explanation: "The passage explains that sleep can stabilize some memories and recommends balancing study with rest." },
-                    { question: "According to the passage, what may happen to some memories during sleep?", choices: ["They become easier to retrieve later", "They are all deleted", "They are changed into new facts", "They stop being processed by the brain"], answer: 0, explanation: "The first paragraph says sleep helps stabilize certain memories, making them easier to retrieve later." },
+                    { question: "According to the passage, why might reviewing material shortly before sleep help?", choices: ["The information is still fresh when the brain begins processing it", "Sleep removes the need to understand the material", "The brain stops processing information during review", "Fatigue improves attention"], answer: 0, explanation: "The third paragraph says the information is fresh when the brain begins processing it. It also warns that review cannot replace understanding." },
                     { question: "The word ‘durable’ in the first paragraph is closest in meaning to:", choices: ["confusing", "immediate", "unimportant", "long-lasting"], answer: 3, explanation: "Here ‘durable’ describes information that stays stable over time, which means long-lasting." },
                     { question: "What can be inferred about studying while very tired?", choices: ["It always produces higher scores", "It may be less effective because attention can decrease", "It removes the need to review information", "It improves every type of memory equally"], answer: 1, explanation: "The passage says fatigue can reduce attention and make new information harder to understand." },
                     { question: "Why does the author contrast extra study time with fatigue?", choices: ["To argue that all studying should happen at night", "To suggest that students should never practise", "To show that more study time is not always better if it reduces rest and attention", "To show that sleep and memory are unrelated"], answer: 2, explanation: "The contrast supports the conclusion that a useful schedule balances focused practice with sufficient sleep." }
@@ -479,13 +544,13 @@ const toeflReadingTasks = {
                 type: "mcq",
                 title: "Practice 3 · Why Cities Feel Hotter",
                 materialTitle: "THE URBAN HEAT ISLAND",
-                material: "Cities often feel warmer than the surrounding countryside, a pattern known as the urban heat island effect. Dark roofs and pavements absorb sunlight during the day and release it slowly after sunset, so temperatures fall less at night in built-up areas. Buildings also block wind, which reduces natural cooling. In addition, there are fewer plants to shade the ground or release moisture into the air.\n\nPlanners have tested several responses. Painting roofs in light colours reflects more sunlight, and planting trees along streets provides shade. Yet these measures work best when applied widely; a single green roof may lower temperatures inside one building without noticeably changing the surrounding neighbourhood.",
+                material: "Cities often feel warmer than the surrounding countryside, a pattern known as the urban heat island effect. Dark roofs and pavements absorb sunlight during the day and release it slowly after sunset, so temperatures fall less at night in built-up areas. Buildings also block wind, which reduces natural cooling. In addition, there are fewer plants to shade the ground or release moisture into the air.\n\nPlanners have tested several responses. Painting roofs in light colours reflects more sunlight, and planting trees along streets provides shade. Yet these measures work best when applied widely; a single green roof may lower temperatures inside one building without noticeably changing the surrounding neighbourhood.\n\nThe effect matters for more than comfort. Warm nights give people less chance to recover from daytime heat, and they increase the demand for air conditioning. That demand raises electricity use, which in turn can add to the heat released into city streets. Reducing the effect can therefore improve health and lower energy costs at the same time. Cities that plan for the effect early can often avoid the most expensive solutions later.",
                 instruction: "Read the passage and choose the best answer. Base every answer on the text.",
                 questions: [
-                    { question: "What is the passage mainly about?", choices: ["Why dark roofs are cheaper than light roofs", "Why cities tend to be warmer than the countryside and how planners respond", "How wind creates moisture in the air", "Why rural areas have no buildings"], answer: 1, explanation: "The first paragraph explains causes of the heat island effect, and the second describes planners’ responses." },
+                    { question: "What is the passage mainly about?", choices: ["Why dark roofs are cheaper than light roofs", "Why cities are warmer than the countryside, why this matters, and how planners respond", "How wind creates moisture in the air", "Why rural areas have no buildings"], answer: 1, explanation: "The first paragraph explains causes, the second describes planners’ responses, and the third explains why the effect matters." },
                     { question: "According to the passage, why do built-up areas cool less at night?", choices: ["Trees release heat after sunset", "Buildings produce moisture", "Wind speeds are higher in cities", "Dark surfaces release absorbed heat slowly"], answer: 3, explanation: "The passage says dark roofs and pavements absorb sunlight and release it slowly after sunset." },
                     { question: "The word ‘measures’ in the second paragraph is closest in meaning to:", choices: ["calculations", "rules", "actions", "sizes"], answer: 2, explanation: "Painting roofs and planting trees are steps planners take, so ‘measures’ means actions." },
-                    { question: "What can be inferred about a single green roof?", choices: ["It may help one building more than the surrounding area", "It will cool an entire neighbourhood", "It makes the building warmer at night", "It has no effect on the building beneath it"], answer: 0, explanation: "The passage says a green roof may lower temperatures inside one building without noticeably changing the neighbourhood." },
+                    { question: "What can be inferred about heavy air-conditioning use in a warm city?", choices: ["It may make the heat problem worse", "It removes the urban heat island effect", "It is used only in the countryside", "It lowers electricity use"], answer: 0, explanation: "The third paragraph says air-conditioning demand raises electricity use, which can add to the heat released into the streets." },
                     { question: "Why does the author include the example of a single green roof?", choices: ["To argue that green roofs should be banned", "To show why measures need to be applied widely to affect a whole area", "To explain how sunlight is absorbed", "To compare roofs in different countries"], answer: 1, explanation: "The example supports the point that measures work best when applied widely, since one roof has a limited local effect." }
                 ]
             }
@@ -591,6 +656,14 @@ function renderTOEFLReadingActivity() {
 </article>`;
     }).join("");
 
+    const facts = task.facts;
+    const factsHTML = facts ? `
+<section class="toefl-reading-facts" aria-label="Key facts about this task">
+<p class="course-label">KEY FACTS</p>
+<div class="toefl-reading-targets">${facts.items.map(item => `<div class="toefl-reading-target"><strong>${escapeTOEFLReadingHTML(item.value)}</strong><span><b>${escapeTOEFLReadingHTML(item.label)}.</b> ${escapeTOEFLReadingHTML(item.note)}</span></div>`).join("")}</div>
+<p class="toefl-reading-instruction">${escapeTOEFLReadingHTML(facts.note)} <em>Checked against the ETS TOEFL iBT 2026 test specification, which ETS says may receive minor revisions.</em></p>
+</section>` : "";
+
     const practiceHTML = practice.type === "cloze"
         ? renderTOEFLReadingCloze(practice)
         : renderTOEFLReadingMCQ(practice);
@@ -604,6 +677,8 @@ function renderTOEFLReadingActivity() {
 <button type="button" class="secondary-button" onclick="backToTOEFLReadingHome()">← Reading tasks</button>
 <span class="toefl-reading-set-label">${setLabel}</span>
 </div>
+
+${factsHTML}
 
 <div class="toefl-reading-lesson-grid">
 <section class="toefl-reading-explainer">
