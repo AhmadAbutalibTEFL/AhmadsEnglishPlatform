@@ -6,6 +6,7 @@
 
 <title>Ahmad's English Platform</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="toefl-reading.css">
 </head>
 
 <body>
@@ -213,7 +214,7 @@
             through an original interactive reading activity.
         </p>
 
-        <span class="course-status">Coming next</span>
+        <button class="start-button" onclick="showTOEFLReading()">Start Reading Pass →</button>
 
     </div>
 
@@ -221,6 +222,44 @@
         ← Back to Courses
     </button>
 
+</section>
+
+<section class="hero" id="toefl-reading-screen" style="display: none;">
+    <div class="course-header">
+        <p class="course-label">TOEFL iBT · READING</p>
+        <h2>Reading Skills Lab</h2>
+        <p>Learn the task, use a clear strategy, and practise with original questions and explanations.</p>
+    </div>
+
+    <div class="toefl-reading-shell">
+        <div class="toefl-reading-back-row">
+            <button type="button" class="secondary-button" onclick="showTOEFLCourse()">← Back to TOEFL</button>
+        </div>
+
+        <div id="toefl-reading-home">
+            <div class="toefl-reading-intro">
+                <h3>What are you practising?</h3>
+                <p>The TOEFL Reading section uses short, practical texts and academic passages. You need to understand meaning, locate details, and use context—not just recognise individual words.</p>
+                <p>Work through the three task types below. Each includes a task explanation, a strategy, common mistakes, and two original practice sets with feedback.</p>
+            </div>
+
+            <div class="toefl-reading-targets">
+                <div class="toefl-reading-target"><strong>🔤 Complete the Words</strong><span>Context clues, vocabulary, word forms, and grammar.</span></div>
+                <div class="toefl-reading-target"><strong>📩 Read in Daily Life</strong><span>Notices, messages, schedules, and everyday purposes.</span></div>
+                <div class="toefl-reading-target"><strong>🔬 Read an Academic Passage</strong><span>Main idea, details, vocabulary, inference, and purpose.</span></div>
+            </div>
+
+            <div class="toefl-reading-progress-wrap">
+                <div class="toefl-reading-progress-caption"><strong>Your Reading progress</strong><span id="toefl-reading-overall-progress">0 of 3 task types completed</span></div>
+                <div class="toefl-reading-progress-track"><div class="toefl-reading-progress-bar" id="toefl-reading-overall-bar"></div></div>
+            </div>
+
+            <h3 class="toefl-overview-heading">Choose a task type</h3>
+            <div id="toefl-reading-task-grid" class="toefl-reading-task-grid"></div>
+        </div>
+
+        <div id="toefl-reading-activity" style="display: none;"></div>
+    </div>
 </section>
 
 
@@ -413,6 +452,6 @@
 
 
     <script src="script.js"></script>
-
+<script src="toefl-reading.js"></script>
 </body>
 </html>
