@@ -9,7 +9,7 @@ const toeflReadingTasks = {
         title: "Complete the Words",
         icon: "🔤",
         shortDescription: "Use grammar, word forms, and context to complete missing parts of words.",
-        explanation: "You read a short passage. Some words are incomplete, and you supply the missing letters. The surrounding sentence gives clues about meaning and grammar.",
+        explanation: "You complete partially shown words inside a short academic-style passage. The printed beginning, exact number of missing letters, sentence grammar, spelling, and the relationship between ideas all help you identify the missing ending.",
         strategy: [
             "Read the full sentence before completing a word.",
             "Use the sentence meaning to predict the whole word.",
@@ -21,52 +21,126 @@ const toeflReadingTasks = {
             "Writing a word with the right meaning but the wrong grammatical form.",
             "Entering the whole word when the box asks for the missing letters only."
         ],
+        lessonModules: [
+            {
+                heading: "1. What you see and what is scored",
+                intro: "You read a short academic-style paragraph with ten incomplete words in this practice set. The beginning of each target word is printed. Every empty letter slot represents one letter you must supply. Type only the missing letters: do not repeat the printed beginning.",
+                bullets: [
+                    "Read the whole paragraph once before typing. The topic and the complete sentences give clues to words that seem uncertain in isolation.",
+                    "Use the visible beginning and the number of slots together. The same beginning can lead to several words, but the required length rules out many of them.",
+                    "Spelling is part of the task. A word that makes perfect sense but has a missing, doubled, or misplaced letter is not an exact match.",
+                    "The passage gives you the information you need. You do not need specialist knowledge of the topic to recover a word from its grammar and context."
+                ]
+            },
+            {
+                heading: "2. A four-step routine for every gap",
+                intro: "Use the same order each time. It reduces random guessing and makes your reasoning repeatable under time pressure.",
+                bullets: [
+                    "Read for meaning first: finish the sentence and understand how it connects to the paragraph. Do not stop at the first unfamiliar blank.",
+                    "Name the job of the missing word: noun, main verb, adjective, adverb, connector, preposition, or part of a fixed phrase. The words around the gap often reveal this.",
+                    "Generate a likely word, then test its beginning and length. Check the spelling letter by letter before you enter it.",
+                    "Reread the complete sentence with the word restored. It must fit grammar, meaning, and the relationship between ideas—not just one of those clues.",
+                    "If no answer is emerging, leave the gap temporarily and solve an easier one. Later sentences may reveal the contrast, cause, or topic that unlocks it."
+                ]
+            },
+            {
+                heading: "3. Let grammar narrow the possibilities",
+                intro: "Before searching your vocabulary, decide what kind of word can fit in the sentence. This usually reduces the number of realistic choices.",
+                bullets: [
+                    "A determiner such as ‘the’ or ‘these’ is often followed by a noun or noun phrase: check whether the noun should be singular or plural.",
+                    "After a modal verb such as ‘can’ or ‘may’, the next verb is normally in its base form. Do not add -s, -ed, or -ing unless the structure calls for it.",
+                    "An adjective commonly appears before a noun; an adverb can modify a verb or an adjective. Look at the word immediately after the gap as well as the word before it.",
+                    "Possessives and quantity words provide number clues. ‘People’s ___’ can require a noun such as ‘awareness’; ‘these ___’ often points to a plural noun.",
+                    "Do not rely on grammar alone when two forms are possible. Meaning, collocation, the visible letters, and the slot count must agree too."
+                ]
+            },
+            {
+                heading: "4. High-value language patterns",
+                intro: "Many gaps test the language that holds academic sentences together, not rare subject terminology.",
+                bullets: [
+                    "Connectors: first decide the relationship. A contrast calls for a contrast marker; an added point calls for an additive connector; a result calls for a result connector. The sentence before the gap is often essential.",
+                    "Fixed phrases: academic English repeatedly uses combinations such as ‘as a result of’, ‘in contrast to’, ‘play a role in’, and ‘contribute to’. Learn the complete phrase, not only one word from it.",
+                    "Word-family endings: -tion and -ment often form nouns; -ity can form nouns; -ive, -ous, and -ical often form adjectives; -ly often forms adverbs. These are clues, not absolute rules.",
+                    "Inflections change a word to fit its sentence: plural -s, third-person -s, past -ed, comparative -er, and -ing forms. Check the sentence structure before choosing the ending.",
+                    "Spelling patterns deserve attention too: double consonants, silent letters, and endings such as -ence/-ance can make a familiar word difficult to reconstruct accurately."
+                ]
+            },
+            {
+                heading: "5. Worked examples: explain the answer, do not just guess",
+                intro: "Read each example as a sequence of clues. In the live practice, the missing letters are represented by separate slots so you can count them visually.",
+                bullets: [
+                    "‘increase people’s aware____ of the issue’: the possessive phrase needs a noun. ‘Awareness’ names knowledge or understanding, and it fits the meaning; the four missing letters are n-e-s-s.",
+                    "‘the results can be reward___’: after ‘can be’, an adjective can describe the experience. ‘Rewarding’ means satisfying or worthwhile; the missing ending is i-n-g.",
+                    "‘city planners may design green__ spaces’: ‘spaces’ is a noun, so an adjective fits before it. If the sentence compares these spaces with existing ones, ‘greener’ expresses that comparison; the missing ending is e-r.",
+                    "When two words both fit the grammar, use the rest of the evidence. A noun and an -ing form can sometimes occupy a similar position, so visible letters and the number of slots become decisive."
+                ]
+            },
+            {
+                heading: "6. Common errors and how to repair them",
+                intro: "Use this checklist when an answer is close but does not fit.",
+                bullets: [
+                    "Meaning-only guessing: ask what grammatical job the word must do, then reread the whole sentence.",
+                    "Ignoring the slot count: count the missing letters before committing to a candidate.",
+                    "Entering the whole word: the beginning is already printed, so enter only the letters that are absent.",
+                    "Spelling by sound: verify the written form, including double letters and the final suffix.",
+                    "Spending too long on one blank: move on, collect clues from the rest of the paragraph, and return. A sensible second pass is often more productive than repeated guessing."
+                ]
+            }
+        ],
         sets: [
             {
                 type: "cloze",
                 title: "Practice 1 · Community Gardens",
-                instruction: "Type the missing letters only. Use the sentence to help you decide which word form fits.",
+                instruction: "Read the whole paragraph first. Complete each word by entering one letter in each slot; the printed beginning is already supplied.",
                 parts: [
                     "Community gardens can ",
-                    { prefix: "transfor", suffix: "m", word: "transform", explanation: "The sentence needs a verb meaning to change something." },
+                    { prefix: "transfor", suffix: "m", word: "transform", explanation: "The modal verb ‘can’ is followed by a base-form verb. ‘Transform’ means change something or turn it into something different." },
                     " unused land into spaces for ",
-                    { prefix: "grow", suffix: "ing", word: "growing", explanation: "After ‘for’ here, the -ing form describes the activity the spaces support." },
+                    { prefix: "grow", suffix: "ing", word: "growing", explanation: "Here, ‘for’ introduces the activity the spaces support, so the -ing form ‘growing’ fits the phrase ‘spaces for growing food’." },
                     " food. They encourage ",
-                    { prefix: "neighbo", suffix: "rs", word: "neighbors", explanation: "The sentence needs a plural noun for the people in a local area." },
+                    { prefix: "neighbo", suffix: "rs", word: "neighbors", explanation: "The sentence refers to the people who live nearby. A plural noun is needed because the gardens bring multiple people together." },
                     " to work together and develop a ",
-                    { prefix: "stron", suffix: "g", word: "strong", explanation: "An adjective is needed before the noun ‘sense’." },
+                    { prefix: "stron", suffix: "g", word: "strong", explanation: "An adjective describes the noun ‘sense’. ‘Strong sense of community’ is a natural collocation." },
                     " sense of community. The gardens also provide a ",
-                    { prefix: "practi", suffix: "cal", word: "practical", explanation: "An adjective is needed before the noun ‘way’. The complete word is ‘practical’." },
+                    { prefix: "practi", suffix: "cal", word: "practical", explanation: "The word comes before the noun ‘way’, so an adjective is required. ‘Practical’ means useful in real situations." },
                     " way to learn about soil and seasons. This experience can increase people's ",
-                    { prefix: "aware", suffix: "ness", word: "awareness", explanation: "The phrase ‘increase people's…’ needs a noun. ‘Awareness’ means knowledge or understanding." },
-                    " of the importance of fresh food. Although maintaining a garden requires ",
-                    { prefix: "regula", suffix: "r", word: "regular", explanation: "An adjective is needed before the noun ‘effort’. ‘Regular’ means happening often or consistently." },
+                    { prefix: "aware", suffix: "ness", word: "awareness", explanation: "The phrase ‘increase people’s…’ needs a noun. ‘Awareness’ means knowledge or understanding; the missing ending is -ness." },
+                    " of the importance of fresh food. Gardeners may grow ",
+                    { prefix: "season", suffix: "al", word: "seasonal", explanation: "The word describes ‘vegetables’, so an adjective is needed. ‘Seasonal’ means available or appropriate in a particular season." },
+                    " vegetables that are fresh and ",
+                    { prefix: "afforda", suffix: "ble", word: "affordable", explanation: "The adjective describes vegetables that people can buy without spending too much. The suffix -able helps form adjectives meaning ‘can be…’." },
+                    ". Volunteers often plan planting days together and share their harvest with nearby families. Although maintaining a garden requires ",
+                    { prefix: "regula", suffix: "r", word: "regular", explanation: "The adjective ‘regular’ describes the noun ‘effort’. It means steady or happening repeatedly." },
                     " effort, the results can be ",
-                    { prefix: "reward", suffix: "ing", word: "rewarding", explanation: "After ‘can be’, an adjective describing the experience is needed. ‘Rewarding’ means satisfying or valuable." },
+                    { prefix: "reward", suffix: "ing", word: "rewarding", explanation: "After ‘can be’, an adjective can describe the experience. ‘Rewarding’ means satisfying or worthwhile." },
                     "."
                 ]
             },
             {
                 type: "cloze",
                 title: "Practice 2 · Urban Birds",
-                instruction: "Complete each word by typing the missing letters in its box.",
+                instruction: "Read the paragraph for meaning, then complete each word. Every letter slot represents one missing letter.",
                 parts: [
-                    "Many birds have adapted to life in cities. Some species build nests on buildings, where they can find ",
-                    { prefix: "protect", suffix: "ion", word: "protection", explanation: "After ‘find’, the sentence needs a noun meaning safety from harm." },
-                    " from some predators. Food is also often ",
-                    { prefix: "readi", suffix: "ly", word: "readily", explanation: "An adverb modifies ‘available’ and means easily or quickly." },
+                    "City birds often build nests on buildings, where they find ",
+                    { prefix: "protect", suffix: "ion", word: "protection", explanation: "After ‘find’, the sentence needs a noun meaning safety from harm. The ending -ion forms the noun ‘protection’." },
+                    " from predators. Food is ",
+                    { prefix: "readi", suffix: "ly", word: "readily", explanation: "The word modifies ‘available’, so an adverb is needed. ‘Readily’ means easily or without difficulty." },
                     " available near people. However, city life brings challenges. Bright lights can ",
-                    { prefix: "disrup", suffix: "t", word: "disrupt", explanation: "After ‘can’, use the base form of a verb. ‘Disrupt’ means interrupt or disturb." },
-                    " normal patterns of activity, and traffic creates ",
-                    { prefix: "danger", suffix: "s", word: "dangers", explanation: "The sentence needs a plural noun because it refers to more than one possible risk." },
+                    { prefix: "disrup", suffix: "t", word: "disrupt", explanation: "After the modal ‘can’, use the base form of a verb. ‘Disrupt’ means interrupt or disturb a normal process." },
+                    " normal activity patterns, and traffic creates ",
+                    { prefix: "danger", suffix: "s", word: "dangers", explanation: "The sentence refers to several risks, so the plural noun ‘dangers’ fits." },
                     ". Researchers study how birds respond to these ",
-                    { prefix: "change", suffix: "s", word: "changes", explanation: "The demonstrative ‘these’ is followed here by a plural noun." },
-                    ". Their findings may help city planners design ",
-                    { prefix: "green", suffix: "er", word: "greener", explanation: "The comparison with current city design requires the comparative adjective ‘greener’." },
-                    " spaces. Adding trees and planting local flowers can support ",
-                    { prefix: "biolog", suffix: "ical", word: "biological", explanation: "The adjective ‘biological’ describes the noun ‘diversity’ in the phrase ‘biological diversity’." },
-                    " diversity. These changes may benefit birds as well as the people who share their ",
-                    { prefix: "environ", suffix: "ment", word: "environment", explanation: "The phrase ‘share their…’ needs a noun naming the surroundings in which they live." },
+                    { prefix: "change", suffix: "s", word: "changes", explanation: "The determiner ‘these’ points to more than one change, so the plural form is required." },
+                    ". Findings may help planners design ",
+                    { prefix: "green", suffix: "er", word: "greener", explanation: "The comparison is with current city spaces. The comparative adjective ‘greener’ fits before the noun ‘spaces’." },
+                    " spaces. Planting local flowers and trees can support ",
+                    { prefix: "biolog", suffix: "ical", word: "biological", explanation: "The adjective ‘biological’ modifies ‘diversity’ in the phrase ‘biological diversity’. The ending -ical often forms adjectives." },
+                    " diversity. These habitats are more ",
+                    { prefix: "suita", suffix: "ble", word: "suitable", explanation: "After ‘more’, an adjective is needed. ‘Suitable’ means right or appropriate for a purpose." },
+                    " for wildlife when planners choose ",
+                    { prefix: "nat", suffix: "ive", word: "native", explanation: "The adjective ‘native’ describes plants that naturally belong to an area. The surrounding phrase identifies the kind of plants being chosen." },
+                    " plants. Such changes may benefit birds and people who share their ",
+                    { prefix: "environ", suffix: "ment", word: "environment", explanation: "The possessive ‘their’ is followed by a noun. ‘Environment’ means the surroundings in which a person or animal lives." },
                     "."
                 ]
             }
@@ -77,7 +151,7 @@ const toeflReadingTasks = {
         title: "Read in Daily Life",
         icon: "📩",
         shortDescription: "Read practical texts such as notices, schedules, messages, and emails.",
-        explanation: "These texts are written for a real-world purpose: to inform, request, invite, explain, or give instructions. You need to locate key details and understand what the reader should do.",
+        explanation: "These are short practical texts such as notices, emails, messages, schedules, and instructions. The task checks purpose, important details, restrictions, deadlines, and implied meaning. The text itself contains the evidence needed for the answer.",
         strategy: [
             "Identify the text type and its purpose first.",
             "Scan for names, dates, times, locations, conditions, and actions.",
@@ -88,6 +162,55 @@ const toeflReadingTasks = {
             "Reading every word slowly before checking what the question asks.",
             "Missing conditions such as ‘only’, ‘by Friday’, or ‘if space is available’.",
             "Choosing an answer that adds information not stated in the text."
+        ],
+        lessonModules: [
+            {
+                heading: "1. Start with the writer’s purpose",
+                intro: "Daily-life texts include notices, emails, messages, instructions, schedules, and short information texts. Ask what the writer wants the reader to know or do before you focus on small details.",
+                bullets: [
+                    "Identify the text type and audience. A notice may announce an event; an email may update a plan; instructions may explain what is required.",
+                    "Use the heading, subject line, opening sentence, and final request as fast clues to the purpose.",
+                    "Separate the main purpose from a single detail. A message about a trip may mention lunch, transport, and attendance, but only one of those may be the reason it was written."
+                ]
+            },
+            {
+                heading: "2. Scan with the question in mind",
+                intro: "You do not need to reread every line at the same speed. Let the question tell you which detail to find.",
+                bullets: [
+                    "For a time or deadline, scan for days, dates, clock times, and words such as ‘by’, ‘before’, ‘until’, and ‘instead of’.",
+                    "For a place, scan for building names, room numbers, entrances, online portals, or named areas.",
+                    "For an action, look for imperative verbs and obligation language such as ‘please bring’, ‘must register’, ‘may use’, or ‘reply by’.",
+                    "After you find the relevant line, read the whole sentence. Conditions and exceptions are often nearby."
+                ]
+            },
+            {
+                heading: "3. Treat conditions and changes carefully",
+                intro: "Small words can change what an answer means. Exams often test whether you notice the difference between what is required, optional, allowed, or prohibited.",
+                bullets: [
+                    "‘Bring a laptop if you have one’ is not the same as ‘You must bring a laptop’. Distinguish advice from a requirement.",
+                    "‘The bus leaves at 8:15 instead of 8:45’ gives a change to the departure time; it does not necessarily change the day or destination.",
+                    "‘Food is not allowed in the exhibition rooms, but it may be eaten outside’ contains both a restriction and an exception.",
+                    "A deadline usually limits when an action must happen. Do not choose an answer that confuses the registration deadline with the event date."
+                ]
+            },
+            {
+                heading: "4. Explicit facts versus inference",
+                intro: "A detail answer is stated directly. An inference is not copied word for word, but it must follow from the information in the text.",
+                bullets: [
+                    "For a detail, locate the exact words that answer the question and check that no condition changes them.",
+                    "For an inference, combine one or two clear clues. Do not invent a reason, policy, or outcome that the writer never supports.",
+                    "Eliminate options that are too broad, contradict a stated condition, or include an attractive detail that does not answer the question."
+                ]
+            },
+            {
+                heading: "5. A quick worked example",
+                intro: "Message: ‘The lab closes at 4:00 on Friday. Return borrowed equipment by 3:30. Students who have booked a desk may stay until closing.’",
+                bullets: [
+                    "Question: ‘When must equipment be returned?’ Find the exact action phrase ‘Return borrowed equipment by 3:30.’ The answer is 3:30, not the 4:00 closing time.",
+                    "Question: ‘Can every student stay until 4:00?’ No. The permission applies only to students who have booked a desk.",
+                    "The method is to match the question to the relevant detail, then check the condition that goes with it."
+                ]
+            }
         ],
         sets: [
             {
@@ -123,7 +246,7 @@ const toeflReadingTasks = {
         title: "Read an Academic Passage",
         icon: "🔬",
         shortDescription: "Understand the main idea, supporting details, vocabulary, and implied meaning in academic texts.",
-        explanation: "Academic passages explain a topic, process, or finding. Questions may ask for the main idea, a stated detail, an inference, the meaning of a word in context, or the purpose of a sentence.",
+        explanation: "A short university-style passage explains a topic, process, finding, or relationship. Questions test the central point, supporting details, vocabulary in context, inferences, and why the author included a sentence or example. Use the passage—not outside knowledge—as your evidence.",
         strategy: [
             "Read the passage to understand its topic and overall point.",
             "For a detail question, return to the part of the passage that discusses the topic.",
@@ -135,6 +258,58 @@ const toeflReadingTasks = {
             "Selecting an option that repeats a word from the passage but changes the idea.",
             "Confusing the topic with the author's main point about the topic.",
             "Treating a possible explanation as a fact when the passage does not support it."
+        ],
+        lessonModules: [
+            {
+                heading: "1. Build a simple map of the passage",
+                intro: "Academic passages explain a process, concept, study, or relationship. You do not need outside knowledge; your job is to understand what this passage says and how its ideas connect.",
+                bullets: [
+                    "Read the opening carefully to identify the topic and the main point the author makes about it.",
+                    "Notice each paragraph’s job: introduce a concept, describe a process, provide evidence, compare explanations, or discuss a consequence.",
+                    "Track signal words such as ‘however’, ‘because’, ‘for example’, ‘as a result’, and ‘in contrast’. They show how claims and evidence fit together.",
+                    "Keep a short mental map rather than memorising every sentence. You can return to the passage when a detail question asks for evidence."
+                ]
+            },
+            {
+                heading: "2. Match the question type to the right method",
+                intro: "Different questions require different reading moves. First identify what the question is asking for.",
+                bullets: [
+                    "Main idea: choose the option that covers the passage’s central point and scope. An interesting detail is too narrow; a sweeping claim is too broad.",
+                    "Stated detail: return to the relevant sentence and compare its exact meaning with the options. Watch for changed quantities, causes, or conditions.",
+                    "Vocabulary in context: read the word with its sentence and neighbouring ideas. Try a possible substitute and check whether the sentence still means the same thing.",
+                    "Inference: combine clues that the author actually provides. The answer should be a reasonable conclusion, not a new fact or an outside opinion.",
+                    "Author purpose: ask why the sentence, example, contrast, or study result appears there. It may illustrate a claim, explain a cause, or show a limitation."
+                ]
+            },
+            {
+                heading: "3. Use evidence to eliminate distractors",
+                intro: "An option may repeat words from the passage but still be wrong. Judge the relationship between the option and the author’s claim, not just shared vocabulary.",
+                bullets: [
+                    "Find the sentence or pair of sentences that supports the option. If you cannot point to evidence, be cautious.",
+                    "Check for reversals: an option can say that a cause is an effect, that a risk is a benefit, or that a possibility is certain.",
+                    "Check scope: ‘some species’ does not mean ‘all species’; ‘may help’ does not mean ‘always prevents’.",
+                    "Watch extreme words such as ‘only’, ‘always’, ‘never’, and ‘completely’. They are wrong when the passage makes a qualified claim.",
+                    "Prefer the option that answers the exact question, even if another option contains a true fact from a different part of the passage."
+                ]
+            },
+            {
+                heading: "4. Work through vocabulary and inference",
+                intro: "The surrounding idea is often more useful than the word in isolation.",
+                bullets: [
+                    "For an unfamiliar word, ask whether it expresses a positive or negative idea, an action or a quality, and a relationship such as cause or contrast.",
+                    "Read the sentence before and after the word. Definitions, examples, contrasts, and results may explain it indirectly.",
+                    "For inference, write the chain in simple form: passage clue A + passage clue B → likely conclusion. If the conclusion needs a third, unsupported assumption, it is probably too far."
+                ]
+            },
+            {
+                heading: "5. A quick worked example",
+                intro: "Passage idea: ‘Some coastal plants survive in salty soil. Their leaves limit water loss, while their roots help anchor loose sediment.’",
+                bullets: [
+                    "A question asking for the main idea should cover adaptations to coastal conditions, not only the leaves or only the roots.",
+                    "A detail question about sediment should be answered from the root sentence, not from what you know about plants in general.",
+                    "An inference might be that these roots can help stabilise a shoreline. It is not justified to claim that they stop every form of erosion."
+                ]
+            }
         ],
         sets: [
             {
@@ -229,8 +404,17 @@ function renderTOEFLReadingActivity() {
     const task = toeflReadingTasks[toeflReadingCurrentTask];
     const practice = task.sets[toeflReadingSetIndex];
     const container = document.getElementById("toefl-reading-activity");
-    let lessonHTML = task.strategy.map((item, index) => `<li><span>${index + 1}</span><p>${item}</p></li>`).join("");
-    let mistakesHTML = task.mistakes.map(item => `<li>${item}</li>`).join("");
+    let lessonHTML = task.strategy.map((item, index) => `<li><span>${index + 1}</span><p>${escapeTOEFLReadingHTML(item)}</p></li>`).join("");
+    let mistakesHTML = task.mistakes.map(item => `<li>${escapeTOEFLReadingHTML(item)}</li>`).join("");
+    const detailedLessonHTML = (task.lessonModules || []).map((module, index) => {
+        const bullets = (module.bullets || []).map(item => `<li>${escapeTOEFLReadingHTML(item)}</li>`).join("");
+        return `
+            <article class="toefl-reading-deep-module">
+                <h4>${escapeTOEFLReadingHTML(module.heading)}</h4>
+                <p>${escapeTOEFLReadingHTML(module.intro)}</p>
+                <ul>${bullets}</ul>
+            </article>`;
+    }).join("");
 
     let practiceHTML = "";
     if (practice.type === "cloze") {
@@ -248,24 +432,32 @@ function renderTOEFLReadingActivity() {
         <div class="toefl-reading-lesson-grid">
             <section class="toefl-reading-explainer">
                 <p class="course-label">TASK EXPLANATION</p>
-                <h3>${task.icon} ${task.title}</h3>
-                <p>${task.explanation}</p>
+                <h3>${task.icon} ${escapeTOEFLReadingHTML(task.title)}</h3>
+                <p>${escapeTOEFLReadingHTML(task.explanation)}</p>
             </section>
             <section class="toefl-reading-strategy">
-                <h3>Strategy to use</h3>
+                <h3>Quick strategy</h3>
                 <ol class="toefl-reading-strategy-list">${lessonHTML}</ol>
             </section>
         </div>
+        <section class="toefl-reading-deep-lesson" aria-label="Detailed lesson">
+            <div class="toefl-reading-deep-lesson-heading">
+                <p class="course-label">LEARN THE METHOD</p>
+                <h3>Understand the task before you practise</h3>
+                <p>Work through the explanations, notice the clues, and use the same reasoning in the practice below.</p>
+            </div>
+            <div class="toefl-reading-deep-grid">${detailedLessonHTML}</div>
+        </section>
         <details class="toefl-reading-mistakes">
             <summary>Common mistakes to avoid</summary>
             <ul>${mistakesHTML}</ul>
         </details>
         <section class="toefl-reading-practice-panel">
             <div class="toefl-reading-practice-heading">
-                <div><p class="course-label">INTERACTIVE PRACTICE</p><h3>${practice.title}</h3></div>
+                <div><p class="course-label">INTERACTIVE PRACTICE</p><h3>${escapeTOEFLReadingHTML(practice.title)}</h3></div>
                 <span class="toefl-reading-progress-pill" id="toefl-reading-set-progress">${practice.type === "cloze" ? `${practice.parts.filter(p => typeof p === "object").length} word gaps` : `${practice.questions.length} questions`}</span>
             </div>
-            <p class="toefl-reading-instruction">${practice.instruction}</p>
+            <p class="toefl-reading-instruction">${escapeTOEFLReadingHTML(practice.instruction)}</p>
             ${practiceHTML}
             <div class="toefl-reading-set-result" id="toefl-reading-set-result" aria-live="polite"></div>
             <button type="button" class="start-button toefl-reading-continue" id="toefl-reading-continue" style="display:none" onclick="nextTOEFLReadingSet()">Continue →</button>
@@ -280,9 +472,26 @@ function renderTOEFLReadingCloze(practice) {
         if (typeof part === "string") {
             html += escapeTOEFLReadingHTML(part);
         } else {
+            const missing = String(part.word).slice(String(part.prefix).length);
+            const slots = Array.from({ length: missing.length }, (_, letterIndex) => `
+                <input
+                    type="text"
+                    class="toefl-cloze-letter"
+                    maxlength="1"
+                    inputmode="text"
+                    autocomplete="off"
+                    autocapitalize="none"
+                    spellcheck="false"
+                    aria-label="Missing letter ${letterIndex + 1} of ${missing.length} for word ${blankIndex + 1}"
+                    data-cloze-input="${blankIndex}"
+                    data-cloze-letter-index="${letterIndex}"
+                    oninput="handleTOEFLReadingClozeInput(event)"
+                    onkeydown="handleTOEFLReadingClozeKeydown(event)"
+                    onpaste="handleTOEFLReadingClozePaste(event)"
+                >`).join("");
             html += `
-                <span class="toefl-cloze-item" data-cloze-index="${blankIndex}">
-                    <span class="toefl-cloze-prefix">${escapeTOEFLReadingHTML(part.prefix)}</span><input type="text" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Missing letters for word ${blankIndex + 1}" data-cloze-input="${blankIndex}" placeholder="letters" />
+                <span class="toefl-cloze-item" data-cloze-index="${blankIndex}" data-cloze-length="${missing.length}">
+                    <span class="toefl-cloze-prefix">${escapeTOEFLReadingHTML(part.prefix)}</span><span class="toefl-cloze-slots" aria-label="${missing.length} missing letters">${slots}</span>
                     <span class="toefl-cloze-feedback" data-cloze-feedback="${blankIndex}" aria-live="polite"></span>
                 </span>`;
             blankIndex++;
@@ -290,6 +499,59 @@ function renderTOEFLReadingCloze(practice) {
     });
     html += "</p></div><div class='toefl-reading-actions'><button type='button' class='start-button' id='toefl-reading-check-cloze' onclick='checkTOEFLReadingCloze()'>Check answers</button><button type='button' class='secondary-button' onclick='resetTOEFLReadingPractice()'>Reset answers</button></div>";
     return html;
+}
+
+function handleTOEFLReadingClozeInput(event) {
+    const input = event.target;
+    if (!input.matches("[data-cloze-input]")) return;
+    input.value = input.value.replace(/[^a-z]/gi, "").slice(-1).toLowerCase();
+    const groupIndex = Number(input.dataset.clozeInput);
+    const letters = Array.from(document.querySelectorAll(`[data-cloze-input="${groupIndex}"]`));
+    const current = Number(input.dataset.clozeLetterIndex);
+    if (!input.value) return;
+    if (letters[current + 1]) {
+        letters[current + 1].focus();
+        return;
+    }
+    // After the final missing letter in a word, move to the next word's first slot.
+    const nextWordFirstSlot = document.querySelector(`[data-cloze-input="${groupIndex + 1}"][data-cloze-letter-index="0"]`);
+    if (nextWordFirstSlot) nextWordFirstSlot.focus();
+}
+
+function handleTOEFLReadingClozeKeydown(event) {
+    const input = event.target;
+    if (!input.matches("[data-cloze-input]")) return;
+    const groupIndex = input.dataset.clozeInput;
+    const letters = Array.from(document.querySelectorAll(`[data-cloze-input="${groupIndex}"]`));
+    const current = Number(input.dataset.clozeLetterIndex);
+    if (event.key === "Backspace" && !input.value && letters[current - 1]) {
+        event.preventDefault();
+        letters[current - 1].focus();
+        letters[current - 1].value = "";
+    } else if (event.key === "ArrowLeft" && letters[current - 1]) {
+        event.preventDefault();
+        letters[current - 1].focus();
+    } else if (event.key === "ArrowRight" && letters[current + 1]) {
+        event.preventDefault();
+        letters[current + 1].focus();
+    }
+}
+
+function handleTOEFLReadingClozePaste(event) {
+    const input = event.target;
+    if (!input.matches("[data-cloze-input]")) return;
+    const clipboard = event.clipboardData || window.clipboardData;
+    const pasted = clipboard ? clipboard.getData("text").replace(/[^a-z]/gi, "").toLowerCase() : "";
+    if (pasted.length <= 1) return;
+    event.preventDefault();
+    const groupIndex = input.dataset.clozeInput;
+    const letters = Array.from(document.querySelectorAll(`[data-cloze-input="${groupIndex}"]`));
+    const start = Number(input.dataset.clozeLetterIndex);
+    Array.from(pasted).slice(0, letters.length - start).forEach((letter, offset) => {
+        letters[start + offset].value = letter;
+    });
+    const nextIndex = Math.min(start + pasted.length, letters.length - 1);
+    if (letters[nextIndex]) letters[nextIndex].focus();
 }
 
 function renderTOEFLReadingMCQ(practice) {
@@ -348,21 +610,25 @@ function checkTOEFLReadingCloze() {
     const blanks = practice.parts.filter(part => typeof part === "object");
     let correctCount = 0;
     blanks.forEach((blank, index) => {
-        const input = document.querySelector(`[data-cloze-input="${index}"]`);
-        const feedback = document.querySelector(`[data-cloze-feedback="${index}"]`);
-        const value = input.value.trim().replace(/\s+/g, "");
-        const correct = value.toLowerCase() === blank.suffix.toLowerCase();
+        const inputs = Array.from(document.querySelectorAll(`[data-cloze-input="${index}"]`));
+        const inputValue = inputs.map(input => input.value.trim()).join("");
+        const correct = inputValue.toLowerCase() === blank.suffix.toLowerCase();
         if (correct) correctCount++;
-        input.disabled = true;
-        input.classList.add(correct ? "is-correct" : "is-incorrect");
+        inputs.forEach(input => {
+            input.disabled = true;
+            input.classList.add(correct ? "is-correct" : "is-incorrect");
+        });
+        const item = document.querySelector(`[data-cloze-index="${index}"]`);
+        if (item) item.classList.add(correct ? "is-correct" : "is-incorrect");
+        const feedback = document.querySelector(`[data-cloze-feedback="${index}"]`);
         feedback.className = `toefl-cloze-feedback ${correct ? "feedback-correct" : "feedback-incorrect"}`;
-        feedback.innerHTML = `${correct ? "✓ Correct" : `Correct ending: <strong>${escapeTOEFLReadingHTML(blank.suffix)}</strong>`}<br><span>${escapeTOEFLReadingHTML(blank.word)} — ${escapeTOEFLReadingHTML(blank.explanation)}</span>`;
+        feedback.innerHTML = `${correct ? "✓ Correct" : `Missing letters: <strong>${escapeTOEFLReadingHTML(blank.suffix)}</strong>`}<br><span><strong>${escapeTOEFLReadingHTML(blank.word)}</strong> — ${escapeTOEFLReadingHTML(blank.explanation)}</span>`;
     });
     toeflReadingClozeChecked = true;
     const checkButton = document.getElementById("toefl-reading-check-cloze");
     if (checkButton) checkButton.disabled = true;
     const result = document.getElementById("toefl-reading-set-result");
-    result.innerHTML = `<strong>Your result: ${correctCount} / ${blanks.length}</strong><p>Read each completed word in context. Notice how grammar and meaning helped you choose its form.</p>`;
+    result.innerHTML = `<strong>Your result: ${correctCount} / ${blanks.length}</strong><p>Each word is checked for an exact missing-letter match. Review the reasoning under each gap, then retry the passage to practise again.</p>`;
     const progress = document.getElementById("toefl-reading-set-progress");
     if (progress) progress.textContent = `${correctCount}/${blanks.length} correct`;
     document.getElementById("toefl-reading-continue").style.display = "inline-flex";

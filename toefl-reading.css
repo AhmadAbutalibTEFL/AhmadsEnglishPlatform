@@ -92,3 +92,98 @@
 }
 .toefl-section-start { width:100%; margin-top:15px; }
 .toefl-reading-shell { text-align:left; }
+
+
+/* Pass 1 revision: detailed teaching notes and one-slot-per-letter cloze inputs */
+.toefl-reading-deep-lesson {
+    margin: 22px 0;
+    padding: 22px;
+    border: 1px solid #dfe5ee;
+    border-radius: 16px;
+    background: #f8fafc;
+}
+.toefl-reading-deep-lesson-heading { max-width: 850px; margin-bottom: 18px; }
+.toefl-reading-deep-lesson-heading h3 { margin: 4px 0 8px; color: #172b4d; font-size: 23px; line-height: 1.3; }
+.toefl-reading-deep-lesson-heading > p:last-child { color: #475569; line-height: 1.7; margin-bottom: 0; }
+.toefl-reading-deep-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.toefl-reading-deep-module { min-width: 0; padding: 18px; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; }
+.toefl-reading-deep-module h4 { margin: 0 0 9px; color: #1d3557; font-size: 17px; line-height: 1.45; }
+.toefl-reading-deep-module p { margin: 0 0 10px; color: #334155; line-height: 1.7; }
+.toefl-reading-deep-module ul { margin: 0; padding-left: 20px; }
+.toefl-reading-deep-module li { margin: 0 0 9px; color: #374151; line-height: 1.65; }
+.toefl-reading-deep-module li:last-child { margin-bottom: 0; }
+.toefl-reading-cloze-passage p { line-height: 2.45; }
+.toefl-cloze-item { display: inline; white-space: normal; }
+.toefl-cloze-prefix { font-weight: 700; color: #111827; }
+.toefl-cloze-slots { display: inline-flex; align-items: baseline; gap: 4px; margin: 0 3px 1px 1px; vertical-align: baseline; white-space: nowrap; }
+.toefl-cloze-letter {
+    box-sizing: border-box;
+    width: 23px;
+    min-width: 23px;
+    height: 31px;
+    padding: 0 1px 2px;
+    border: 0;
+    border-bottom: 2px solid #64748b;
+    border-radius: 0;
+    background: transparent;
+    color: #111827;
+    font: inherit;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+    text-transform: lowercase;
+    outline-offset: 2px;
+}
+.toefl-cloze-letter:focus { outline: 2px solid #93c5fd; border-bottom-color: #2563eb; background: #eff6ff; }
+.toefl-cloze-letter.is-correct { border-bottom-color: #16a34a; color: #166534; background: #f0fdf4; }
+.toefl-cloze-letter.is-incorrect { border-bottom-color: #dc2626; color: #991b1b; background: #fef2f2; }
+.toefl-cloze-item.is-incorrect .toefl-cloze-prefix { color: #991b1b; }
+.toefl-cloze-item.is-correct .toefl-cloze-prefix { color: #166534; }
+.toefl-cloze-feedback { display: block; max-width: min(620px, 90vw); margin: 3px 0 7px; font-size: 12px; line-height: 1.5; white-space: normal; }
+.toefl-reading-cloze-passage .toefl-cloze-item { display: inline; }
+.toefl-reading-cloze-passage .toefl-cloze-item .toefl-cloze-feedback { display: block; }
+@media (max-width: 850px) {
+    .toefl-reading-deep-grid { grid-template-columns: 1fr; }
+    .toefl-reading-deep-lesson { padding: 16px; }
+    .toefl-reading-deep-module { padding: 15px; }
+}
+@media (max-width: 600px) {
+    .toefl-cloze-slots { gap: 3px; }
+    .toefl-cloze-letter { width: 20px; min-width: 20px; height: 29px; font-size: 16px; }
+    .toefl-reading-cloze-passage p { line-height: 2.65; }
+}
+/* Higher-specificity overrides so the legacy single-box styling cannot affect letter slots. */
+.toefl-reading-cloze-passage .toefl-cloze-item input.toefl-cloze-letter {
+    box-sizing: border-box;
+    width: 23px;
+    min-width: 23px;
+    max-width: 23px;
+    height: 31px;
+    padding: 0 1px 2px;
+    margin: 0;
+    border: 0;
+    border-bottom: 2px solid #64748b;
+    border-radius: 0;
+    background: transparent;
+    font: inherit;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+}
+.toefl-reading-cloze-passage .toefl-cloze-item input.toefl-cloze-letter:focus { outline: 2px solid #93c5fd; outline-offset: 1px; border-bottom-color: #2563eb; background: #eff6ff; }
+.toefl-reading-cloze-passage .toefl-cloze-item input.toefl-cloze-letter.is-correct { border-bottom-color: #16a34a; color: #166534; background: #f0fdf4; }
+.toefl-reading-cloze-passage .toefl-cloze-item input.toefl-cloze-letter.is-incorrect { border-bottom-color: #dc2626; color: #991b1b; background: #fef2f2; }
+@media (max-width: 600px) {
+    .toefl-reading-cloze-passage .toefl-cloze-item input.toefl-cloze-letter { width: 20px; min-width: 20px; max-width: 20px; height: 29px; font-size: 16px; }
+}
+
+/* Keep each printed word beginning attached to its missing-letter slots when text wraps. */
+.toefl-reading-cloze-passage .toefl-cloze-item { white-space: nowrap; }
+/* Keep the letter underlines on the same visual baseline as their printed prefix. */
+.toefl-reading-cloze-passage .toefl-cloze-slots { align-items: center; vertical-align: middle; line-height: 1; }
+.toefl-reading-cloze-passage .toefl-cloze-item input.toefl-cloze-letter { vertical-align: middle; height: 24px; padding-bottom: 0; }
+@media (max-width: 600px) {
+    .toefl-reading-cloze-passage .toefl-cloze-item input.toefl-cloze-letter { height: 23px; }
+}
