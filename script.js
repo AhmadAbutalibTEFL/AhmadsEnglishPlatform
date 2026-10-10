@@ -358,41 +358,36 @@ function displayCourses() {
 
 
 function displayTOEFLSections() {
-
     const container = document.getElementById("toefl-sections-container");
-
     container.innerHTML = "";
 
     toeflSections.forEach(section => {
-
         const card = document.createElement("div");
         card.className = "toefl-section-card";
 
-        const tasksHTML = section.tasks
-            .map(task => `<li>${task}</li>`)
-            .join("");
-
+        const tasksHTML = section.tasks.map(task => `<li>${task}</li>`).join("");
         card.innerHTML = `
             <div class="toefl-section-icon">${section.icon}</div>
-
             <h3>${section.title}</h3>
-
             <p>${section.description}</p>
-
             <div class="toefl-section-meta">
                 <span>${section.items} items</span>
                 <span>${section.baseTime} base time</span>
             </div>
-
-            <ul class="toefl-task-list">
-                ${tasksHTML}
-            </ul>
+            <ul class="toefl-task-list">${tasksHTML}</ul>
         `;
 
+        if (section.id === "reading") {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "start-button toefl-section-start";
+            button.textContent = "Start Reading Pass →";
+            button.addEventListener("click", showTOEFLReading);
+            card.appendChild(button);
+        }
+
         container.appendChild(card);
-
     });
-
 }
 
 
