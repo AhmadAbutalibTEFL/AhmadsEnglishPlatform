@@ -644,3 +644,98 @@ body {
     }
 
 }
+
+/* =========================
+   TOEFL COURSE OVERVIEW
+   ========================= */
+
+.toefl-sections-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.toefl-section-card {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: left;
+}
+
+.toefl-section-icon {
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+.toefl-section-card h3 {
+    margin: 0 0 10px;
+    font-size: 24px;
+}
+
+.toefl-section-card p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.toefl-task-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0;
+}
+
+.toefl-task-list li {
+    border-top: 1px solid #e5e7eb;
+    padding: 12px 0 12px 25px;
+    position: relative;
+    line-height: 1.45;
+}
+
+.toefl-task-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 2px;
+    color: #2563eb;
+    font-weight: bold;
+}
+
+.toefl-next-up {
+    margin: 15px 0 30px;
+    padding: 24px;
+    background: #eff6ff;
+    border-left: 4px solid #2563eb;
+    border-radius: 12px;
+    text-align: left;
+}
+
+.toefl-next-up .course-label {
+    margin-bottom: 8px;
+}
+
+.toefl-next-up h3 {
+    margin: 0 0 10px;
+    font-size: 22px;
+}
+
+.toefl-next-up p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.toefl-next-up .course-status {
+    margin-bottom: 0;
+}
+
+@media (max-width: 700px) {
+
+    .toefl-sections-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .toefl-section-card,
+    .toefl-next-up {
+        padding: 20px;
+    }
+
+}
