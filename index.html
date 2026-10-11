@@ -263,6 +263,44 @@
 </section>
 
 
+<section class="hero" id="toefl-writing-screen" style="display: none;">
+    <div class="course-header">
+        <p class="course-label">TOEFL iBT · WRITING</p>
+        <h2>Writing Skills Lab</h2>
+        <p>Learn each task, use a clear strategy, then practise with original prompts, checklists, and model responses.</p>
+    </div>
+
+    <div class="toefl-reading-shell">
+        <div class="toefl-reading-back-row">
+            <button type="button" class="secondary-button" onclick="showTOEFLCourse()">← Back to TOEFL</button>
+        </div>
+
+        <div id="toefl-writing-home">
+            <div class="toefl-reading-intro">
+                <h3>What are you practising?</h3>
+                <p>The TOEFL Writing section checks whether you can build accurate sentences and communicate clearly in practical and academic situations. Grammar, organisation, and appropriateness all matter.</p>
+                <p>Work through the three task types below. Each has a Learn page with explanations and guided practice, and a separate Practice page with a larger bank and saved progress.</p>
+            </div>
+
+            <div class="toefl-reading-targets">
+                <div class="toefl-reading-target"><strong>🧩 Build a Sentence</strong><span>Word order, questions, clauses, and verb forms.</span></div>
+                <div class="toefl-reading-target"><strong>✉️ Write an Email</strong><span>Purpose, tone, required points, and organisation.</span></div>
+                <div class="toefl-reading-target"><strong>💬 Write for an Academic Discussion</strong><span>Position, support, and replying to classmates.</span></div>
+            </div>
+
+            <div class="toefl-reading-progress-wrap">
+                <div class="toefl-reading-progress-caption"><strong>Your Writing progress</strong><span id="toefl-writing-overall-progress">0 of 3 lessons completed</span></div>
+                <div class="toefl-reading-progress-track"><div class="toefl-reading-progress-bar" id="toefl-writing-overall-bar"></div></div>
+            </div>
+
+            <h3 class="toefl-overview-heading">Choose a task type</h3>
+            <div id="toefl-writing-task-grid" class="toefl-reading-task-grid"></div>
+        </div>
+
+        <div id="toefl-writing-activity" style="display: none;"></div>
+    </div>
+</section>
+
 <!-- Learn Screen -->
 
 <section class="hero" id="learn-screen" style="display: none;">
@@ -454,5 +492,7 @@
     <script src="script.js"></script>
 <script src="toefl-reading-practice.js?v=1"></script>
 <script src="toefl-reading.js?v=4"></script>
+<script src="toefl-writing-practice.js?v=1"></script>
+<script src="toefl-writing.js?v=1"></script>
 </body>
 </html>
