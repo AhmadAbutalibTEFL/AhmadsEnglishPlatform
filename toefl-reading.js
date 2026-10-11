@@ -1,7 +1,7 @@
 /* =========================================================
    TOEFL iBT READING — original interactive learning section
    Static-site friendly: no libraries, APIs, or back end.
-   Pass 1 (expanded): deeper lessons, more practice sets.
+   Pass 1: Learn (lessons + guided sets) and Practice (separate bank, loaded from toefl-reading-practice.js).
    All passages, questions, and explanations are original.
    ========================================================= */
 
@@ -559,6 +559,109 @@ const toeflReadingTasks = {
 };
 
 /* =========================================================
+   SETTINGS, LABELS, AND SAVED PROGRESS
+   ========================================================= */
+
+const TOEFL_READING_STORAGE_KEY = "toeflReadingProgress.v1";
+const toeflReadingMastery = { pct: 80, goals: { complete: 8, daily: 10, academic: 6 } };
+
+const toeflReadingSkillLabels = {
+    complete: { link: "Connectors and linking words", form: "Word forms and endings", verb: "Verb forms and agreement", phrase: "Phrases and collocations", vocab: "Meaning in context" },
+    daily: { purpose: "Purpose", detail: "Specific detail", condition: "Conditions and limits", inference: "Inference" },
+    academic: { main: "Main idea", detail: "Stated detail", vocab: "Vocabulary in context", inference: "Inference", purpose: "Author purpose" }
+};
+const toeflReadingLevelNames = { 1: "Level 1 · Foundation", 2: "Level 2 · Core", 3: "Level 3 · Advanced" };
+
+function loadTOEFLReadingProgress() {
+    try {
+        const raw = window.localStorage.getItem(TOEFL_READING_STORAGE_KEY);
+        if (raw) {
+            const parsed = JSON.parse(raw);
+            if (parsed && typeof parsed === "object") return { sets: parsed.sets || {}, skills: parsed.skills || {} };
+        }
+    } catch (error) { /* storage unavailable: progress lasts for this visit only */ }
+    return { sets: {}, skills: {} };
+}
+
+function saveTOEFLReadingProgress() {
+    try { window.localStorage.setItem(TOEFL_READING_STORAGE_KEY, JSON.stringify(toeflReadingProgress)); } catch (error) { /* ignore */ }
+}
+
+let toeflReadingProgress = loadTOEFLReadingProgress();
+
+function getTOEFLReadingBankSets(taskId) {
+    const bank = window.toeflReadingBank;
+    return bank && Array.isArray(bank[taskId]) ? bank[taskId] : [];
+}
+
+function isTOEFLReadingSetMastered(setId) {
+    const entry = toeflReadingProgress.sets[setId];
+    return !!entry && entry.best >= toeflReadingMastery.pct;
+}
+
+function getTOEFLReadingMasteredCount(taskId) {
+    return getTOEFLReadingBankSets(taskId).filter(set => isTOEFLReadingSetMastered(set.id)).length;
+}
+
+function injectTOEFLReadingStyles() {
+    if (document.getElementById("toefl-reading-extra-css")) return;
+    const style = document.createElement("style");
+    style.id = "toefl-reading-extra-css";
+    style.textContent = `
+.toefl-reading-card-actions{display:grid;gap:8px;margin-top:auto;width:100%}
+.toefl-reading-task-card .toefl-reading-card-actions button{margin-top:0;width:100%}
+.toefl-reading-card-progress{margin:0 0 12px;font-size:13px;font-weight:700;color:#4b5563}
+.toefl-reading-card-progress.is-done{color:#047857}
+.toefl-reading-practice-hub{display:grid;gap:18px}
+.toefl-reading-hub-head h3{margin:4px 0 6px}
+.toefl-reading-hub-head p{margin:0;color:#4b5563;line-height:1.6}
+.toefl-reading-mastery,.toefl-reading-skill-panel,.toefl-reading-level{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:18px}
+.toefl-reading-mastery h4,.toefl-reading-skill-panel h4,.toefl-reading-level h4{margin:0 0 8px}
+.toefl-reading-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.toefl-reading-stat{background:#f8fafc;border-radius:12px;padding:10px;text-align:center}
+.toefl-reading-stat strong{display:block;font-size:20px}
+.toefl-reading-stat span{font-size:12px;color:#4b5563}
+.toefl-reading-skill-row{display:grid;grid-template-columns:minmax(120px,1.2fr) 2fr 56px;gap:10px;align-items:center;margin:8px 0;font-size:14px}
+.toefl-reading-skill-bar{height:10px;border-radius:999px;background:#e5e7eb;overflow:hidden}
+.toefl-reading-skill-bar span{display:block;height:100%;background:#2563eb;border-radius:999px}
+.toefl-reading-skill-bar.is-weak span{background:#d97706}
+.toefl-reading-skill-bar.is-strong span{background:#059669}
+.toefl-reading-skill-note{font-size:12px;color:#6b7280}
+.toefl-reading-set-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:10px}
+.toefl-reading-set-tile{border:1px solid #e5e7eb;border-radius:14px;padding:14px;background:#f9fafb;display:flex;flex-direction:column;gap:6px}
+.toefl-reading-set-tile.is-mastered{background:#ecfdf5;border-color:#a7f3d0}
+.toefl-reading-set-tile h5{margin:0;font-size:15px}
+.toefl-reading-set-meta{font-size:12px;color:#6b7280}
+.toefl-reading-badge{display:inline-block;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:#e5e7eb;color:#374151;width:fit-content}
+.toefl-reading-badge.is-mastered{background:#d1fae5;color:#065f46}
+.toefl-reading-badge.is-progress{background:#fef3c7;color:#92400e}
+.toefl-reading-set-tile button{margin-top:6px;width:100%}
+.toefl-reading-hub-actions{display:flex;flex-wrap:wrap;gap:10px}
+.toefl-reading-timer{font-variant-numeric:tabular-nums;font-weight:700;font-size:13px;background:#eef2ff;color:#3730a3;padding:5px 10px;border-radius:999px}
+.toefl-reading-heading-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.toefl-reading-mode-toggle{display:flex;gap:8px;align-items:center;font-size:14px;color:#374151;margin:0 0 14px}
+.toefl-reading-result-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.toefl-reading-option.is-selected{border-color:#2563eb;background:#eff6ff}
+.toefl-cloze-review{margin-top:18px;display:none}
+.toefl-cloze-review.is-visible{display:block}
+.toefl-cloze-review h4{margin:0 0 10px}
+.toefl-cloze-review ol{margin:0;padding-left:22px;display:grid;gap:8px}
+.toefl-cloze-review li{padding:10px 12px;border-radius:12px;background:#f9fafb;border:1px solid #e5e7eb;line-height:1.5}
+.toefl-cloze-review li.is-correct{background:#ecfdf5;border-color:#a7f3d0}
+.toefl-cloze-review li.is-incorrect{background:#fef2f2;border-color:#fecaca}
+.toefl-cloze-review .toefl-review-yours{display:block;font-size:13px;color:#6b7280;margin-top:2px}
+.toefl-reading-cloze-passage p{text-align:left}
+.toefl-reading-cloze-passage .toefl-cloze-item{display:inline;white-space:nowrap}
+@media (max-width:600px){
+.toefl-reading-stat-row{grid-template-columns:1fr}
+.toefl-reading-skill-row{grid-template-columns:1fr 56px}
+.toefl-reading-skill-row .toefl-reading-skill-bar{grid-column:1 / -1;order:3}
+}
+`;
+    document.head.appendChild(style);
+}
+
+/* =========================================================
    SESSION STATE
    ========================================================= */
 
@@ -568,11 +671,65 @@ let toeflReadingSetIndex = 0;
 let toeflReadingAnswers = {};
 let toeflReadingClozeChecked = false;
 
+let toeflReadingMode = "learn";          // "learn" or "practice"
+let toeflReadingActiveSet = null;        // the practice set being attempted
+let toeflReadingExamMode = false;        // multiple-choice: reveal answers only after submit
+let toeflReadingMcqSubmitted = false;
+let toeflReadingTimerId = null;
+let toeflReadingStartedAt = 0;
+
+function getActiveTOEFLReadingPractice() {
+    if (toeflReadingMode === "practice" && toeflReadingActiveSet) return toeflReadingActiveSet;
+    const task = toeflReadingTasks[toeflReadingCurrentTask];
+    return task.sets[toeflReadingSetIndex];
+}
+
+function stopTOEFLReadingTimer() {
+    if (toeflReadingTimerId) { clearInterval(toeflReadingTimerId); toeflReadingTimerId = null; }
+}
+
+function formatTOEFLReadingTime(milliseconds) {
+    const total = Math.max(0, Math.round(milliseconds / 1000));
+    return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, "0")}`;
+}
+
+function startTOEFLReadingTimer() {
+    stopTOEFLReadingTimer();
+    toeflReadingStartedAt = Date.now();
+    toeflReadingTimerId = setInterval(() => {
+        const el = document.getElementById("toefl-reading-timer");
+        if (!el) { stopTOEFLReadingTimer(); return; }
+        el.textContent = formatTOEFLReadingTime(Date.now() - toeflReadingStartedAt);
+    }, 1000);
+}
+
+function shuffleTOEFLReadingArray(list) {
+    const copy = list.slice();
+    for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+}
+
+// Practice sets shuffle the answer options on every attempt so positions cannot be memorised.
+function buildTOEFLReadingAttempt(set) {
+    if (!set.questions) return set;
+    const questions = set.questions.map(question => {
+        const correctText = question.choices[question.answer];
+        const choices = shuffleTOEFLReadingArray(question.choices);
+        return Object.assign({}, question, { choices, answer: choices.indexOf(correctText) });
+    });
+    return Object.assign({}, set, { questions });
+}
+
 /* =========================================================
    NAVIGATION
    ========================================================= */
 
 function showTOEFLReading() {
+    injectTOEFLReadingStyles();
+    stopTOEFLReadingTimer();
     if (typeof hideAllScreens === "function") hideAllScreens();
     const screen = document.getElementById("toefl-reading-screen");
     if (!screen) return;
@@ -590,29 +747,43 @@ function renderTOEFLReadingTaskCards() {
 
     Object.values(toeflReadingTasks).forEach(task => {
         const completed = toeflReadingCompletedTasks.has(task.id);
+        const total = getTOEFLReadingBankSets(task.id).length;
+        const goal = Math.min(toeflReadingMastery.goals[task.id] || total, total || 1);
+        const mastered = getTOEFLReadingMasteredCount(task.id);
+        const goalReached = total > 0 && mastered >= goal;
         const card = document.createElement("article");
         card.className = "toefl-reading-task-card";
         card.innerHTML = `
 <div class="toefl-reading-task-icon" aria-hidden="true">${task.icon}</div>
-<div class="toefl-reading-card-status ${completed ? "is-complete" : ""}">${completed ? "✓ Completed" : `${task.sets.length} practice sets`}</div>
+<div class="toefl-reading-card-status ${completed ? "is-complete" : ""}">${completed ? "✓ Lesson completed" : `${task.sets.length} guided sets`}</div>
 <h3>${escapeTOEFLReadingHTML(task.title)}</h3>
 <p>${escapeTOEFLReadingHTML(task.shortDescription)}</p>
-<button type="button" class="start-button">${completed ? "Practise Again →" : "Learn & Practise →"}</button>
+<p class="toefl-reading-card-progress ${goalReached ? "is-done" : ""}">${total ? `Practice: ${mastered} of ${goal} mastery sets ${goalReached ? "✓" : ""}` : "Practice bank not loaded"}</p>
+<div class="toefl-reading-card-actions">
+<button type="button" class="secondary-button" data-action="learn">📘 Learn</button>
+<button type="button" class="start-button" data-action="practice">🎯 Practice</button>
+</div>
 `;
-        card.querySelector("button").addEventListener("click", () => openTOEFLReadingTask(task.id));
+        card.querySelector('[data-action="learn"]').addEventListener("click", () => openTOEFLReadingTask(task.id));
+        card.querySelector('[data-action="practice"]').addEventListener("click", () => openTOEFLReadingPractice(task.id));
         container.appendChild(card);
     });
 
     const count = toeflReadingCompletedTasks.size;
-    const total = Object.keys(toeflReadingTasks).length;
+    const totalTasks = Object.keys(toeflReadingTasks).length;
     const progress = document.getElementById("toefl-reading-overall-progress");
-    if (progress) progress.textContent = `${count} of ${total} task types completed`;
+    if (progress) progress.textContent = `${count} of ${totalTasks} lessons completed`;
     const bar = document.getElementById("toefl-reading-overall-bar");
-    if (bar) bar.style.width = `${(count / total) * 100}%`;
+    if (bar) bar.style.width = `${(count / totalTasks) * 100}%`;
 }
 
+// LEARN: the lesson and the guided practice sets
 function openTOEFLReadingTask(taskId) {
     if (!toeflReadingTasks[taskId]) return;
+    injectTOEFLReadingStyles();
+    stopTOEFLReadingTimer();
+    toeflReadingMode = "learn";
+    toeflReadingActiveSet = null;
     toeflReadingCurrentTask = taskId;
     toeflReadingSetIndex = 0;
     toeflReadingAnswers = {};
@@ -624,6 +795,7 @@ function openTOEFLReadingTask(taskId) {
 }
 
 function backToTOEFLReadingHome() {
+    stopTOEFLReadingTimer();
     const home = document.getElementById("toefl-reading-home");
     const activity = document.getElementById("toefl-reading-activity");
     if (!home || !activity) return;
@@ -634,7 +806,7 @@ function backToTOEFLReadingHome() {
 }
 
 /* =========================================================
-   ACTIVITY RENDERING
+   LEARN PAGE
    ========================================================= */
 
 function renderTOEFLReadingActivity() {
@@ -668,14 +840,16 @@ function renderTOEFLReadingActivity() {
         ? renderTOEFLReadingCloze(practice)
         : renderTOEFLReadingMCQ(practice);
 
-    const setLabel = `Practice ${toeflReadingSetIndex + 1} of ${task.sets.length}`;
+    const setLabel = `Guided practice ${toeflReadingSetIndex + 1} of ${task.sets.length}`;
     const gapCount = practice.type === "cloze" ? practice.parts.filter(p => typeof p === "object").length : 0;
     const pillText = practice.type === "cloze" ? `${gapCount} word gaps` : `${practice.questions.length} questions`;
+    const hasBank = getTOEFLReadingBankSets(task.id).length > 0;
 
     container.innerHTML = `
 <div class="toefl-reading-activity-topbar">
 <button type="button" class="secondary-button" onclick="backToTOEFLReadingHome()">← Reading tasks</button>
-<span class="toefl-reading-set-label">${setLabel}</span>
+<span class="toefl-reading-set-label">LEARN · ${setLabel}</span>
+${hasBank ? `<button type="button" class="start-button" onclick="openTOEFLReadingPractice('${task.id}')">Go to Practice →</button>` : ""}
 </div>
 
 ${factsHTML}
@@ -696,7 +870,7 @@ ${factsHTML}
 <div class="toefl-reading-deep-lesson-heading">
 <p class="course-label">LEARN THE METHOD</p>
 <h3>Understand the task before you practise</h3>
-<p>Work through the explanations, notice the clues, and use the same reasoning in the practice below.</p>
+<p>Work through the explanations, notice the clues, and use the same reasoning in the guided practice below. When you are ready for much more practice, use the Practice page.</p>
 </div>
 <div class="toefl-reading-deep-grid">${detailedLessonHTML}</div>
 </section>
@@ -708,7 +882,7 @@ ${factsHTML}
 
 <section class="toefl-reading-practice-panel">
 <div class="toefl-reading-practice-heading">
-<div><p class="course-label">INTERACTIVE PRACTICE</p><h3>${escapeTOEFLReadingHTML(practice.title)}</h3></div>
+<div><p class="course-label">GUIDED PRACTICE</p><h3>${escapeTOEFLReadingHTML(practice.title)}</h3></div>
 <span class="toefl-reading-progress-pill" id="toefl-reading-set-progress">${pillText}</span>
 </div>
 <p class="toefl-reading-instruction">${escapeTOEFLReadingHTML(practice.instruction)}</p>
@@ -719,8 +893,288 @@ ${practiceHTML}
 `;
 }
 
+function nextTOEFLReadingSet() {
+    const task = toeflReadingTasks[toeflReadingCurrentTask];
+    if (toeflReadingSetIndex < task.sets.length - 1) {
+        toeflReadingSetIndex++;
+        toeflReadingAnswers = {};
+        toeflReadingClozeChecked = false;
+        renderTOEFLReadingActivity();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+        toeflReadingCompletedTasks.add(task.id);
+        backToTOEFLReadingHome();
+    }
+}
+
 /* =========================================================
-   COMPLETE THE WORDS
+   PRACTICE HUB
+   ========================================================= */
+
+function openTOEFLReadingPractice(taskId) {
+    if (!toeflReadingTasks[taskId]) return;
+    injectTOEFLReadingStyles();
+    stopTOEFLReadingTimer();
+    toeflReadingMode = "practice";
+    toeflReadingActiveSet = null;
+    toeflReadingCurrentTask = taskId;
+    document.getElementById("toefl-reading-home").style.display = "none";
+    document.getElementById("toefl-reading-activity").style.display = "block";
+    renderTOEFLReadingPracticeHub(taskId);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function describeTOEFLReadingSet(taskId, set) {
+    if (taskId === "complete") {
+        const gaps = set.parts.filter(part => typeof part === "object").length;
+        const words = set.parts.map(part => typeof part === "string" ? part : part.word).join("").trim().split(/\s+/).length;
+        return `${gaps} gaps · ${words} words`;
+    }
+    const words = set.material.replace(/\n/g, " ").trim().split(/\s+/).length;
+    return `${set.questions.length} questions · ${words} words`;
+}
+
+function renderTOEFLReadingPracticeHub(taskId) {
+    const task = toeflReadingTasks[taskId];
+    const sets = getTOEFLReadingBankSets(taskId);
+    const container = document.getElementById("toefl-reading-activity");
+
+    if (!sets.length) {
+        container.innerHTML = `
+<div class="toefl-reading-activity-topbar"><button type="button" class="secondary-button" onclick="backToTOEFLReadingHome()">← Reading tasks</button></div>
+<p class="toefl-reading-instruction">The practice bank could not be loaded. Check that <strong>toefl-reading-practice.js</strong> is in the repository and linked in index.html.</p>`;
+        return;
+    }
+
+    const pct = toeflReadingMastery.pct;
+    const goal = Math.min(toeflReadingMastery.goals[taskId] || sets.length, sets.length);
+    const mastered = getTOEFLReadingMasteredCount(taskId);
+    const attemptedSets = sets.filter(set => toeflReadingProgress.sets[set.id]);
+    const averageBest = attemptedSets.length
+        ? Math.round(attemptedSets.reduce((sum, set) => sum + toeflReadingProgress.sets[set.id].best, 0) / attemptedSets.length)
+        : 0;
+    const totalAttempts = attemptedSets.reduce((sum, set) => sum + toeflReadingProgress.sets[set.id].attempts, 0);
+    const goalReached = mastered >= goal;
+
+    const labels = toeflReadingSkillLabels[taskId];
+    const skillRows = Object.keys(labels).map(key => {
+        const stat = toeflReadingProgress.skills[`${taskId}:${key}`];
+        if (!stat || !stat.t) {
+            return `<div class="toefl-reading-skill-row"><span>${escapeTOEFLReadingHTML(labels[key])}</span><div class="toefl-reading-skill-bar"><span style="width:0%"></span></div><span class="toefl-reading-skill-note">–</span></div>`;
+        }
+        const value = Math.round((stat.c / stat.t) * 100);
+        const tone = value >= pct ? "is-strong" : (value < 70 && stat.t >= 4 ? "is-weak" : "");
+        return `<div class="toefl-reading-skill-row"><span>${escapeTOEFLReadingHTML(labels[key])}</span><div class="toefl-reading-skill-bar ${tone}"><span style="width:${value}%"></span></div><span>${value}%</span></div>`;
+    }).join("");
+
+    const nextSet = sets.find(set => !isTOEFLReadingSetMastered(set.id));
+    const lowestSet = sets.slice().sort((a, b) => ((toeflReadingProgress.sets[a.id] || { best: 0 }).best) - ((toeflReadingProgress.sets[b.id] || { best: 0 }).best))[0];
+    const startSet = nextSet || lowestSet;
+    const startLabel = !attemptedSets.length ? "Start with the first set →" : (nextSet ? "Continue with the next set →" : "Review your weakest set →");
+
+    const levelsHTML = [1, 2, 3].map(level => {
+        const levelSets = sets.filter(set => set.level === level);
+        if (!levelSets.length) return "";
+        const tiles = levelSets.map(set => {
+            const entry = toeflReadingProgress.sets[set.id];
+            const isMastered = isTOEFLReadingSetMastered(set.id);
+            const badge = !entry
+                ? `<span class="toefl-reading-badge">Not started</span>`
+                : (isMastered
+                    ? `<span class="toefl-reading-badge is-mastered">✓ Mastered · best ${entry.best}%</span>`
+                    : `<span class="toefl-reading-badge is-progress">Best ${entry.best}% · try again</span>`);
+            return `
+<div class="toefl-reading-set-tile ${isMastered ? "is-mastered" : ""}">
+<h5>${escapeTOEFLReadingHTML(set.title)}</h5>
+<span class="toefl-reading-set-meta">${escapeTOEFLReadingHTML(describeTOEFLReadingSet(taskId, set))}${entry ? ` · ${entry.attempts} attempt${entry.attempts === 1 ? "" : "s"}` : ""}</span>
+${badge}
+<button type="button" class="${entry ? "secondary-button" : "start-button"}" onclick="openTOEFLReadingPracticeSet('${taskId}','${set.id}')">${entry ? "Practise again" : "Start"}</button>
+</div>`;
+        }).join("");
+        return `<section class="toefl-reading-level"><h4>${toeflReadingLevelNames[level]}</h4><div class="toefl-reading-set-grid">${tiles}</div></section>`;
+    }).join("");
+
+    container.innerHTML = `
+<div class="toefl-reading-activity-topbar">
+<button type="button" class="secondary-button" onclick="backToTOEFLReadingHome()">← Reading tasks</button>
+<span class="toefl-reading-set-label">PRACTICE</span>
+<button type="button" class="secondary-button" onclick="openTOEFLReadingTask('${taskId}')">📘 Review the lesson</button>
+</div>
+
+<div class="toefl-reading-practice-hub">
+<div class="toefl-reading-hub-head">
+<p class="course-label">PRACTICE</p>
+<h3>${task.icon} ${escapeTOEFLReadingHTML(task.title)}</h3>
+<p>Apply what you learned. Work from Level 1 to Level 3. Answer options are shuffled on every attempt, and your scores are saved on this device.</p>
+</div>
+
+<section class="toefl-reading-mastery">
+<h4>${goalReached ? "🏆 Mastery goal reached" : "Your mastery goal"}</h4>
+<p class="toefl-reading-skill-note">Score ${pct}% or higher on ${goal} different sets. The target is a practical benchmark for this lab, not an official score.</p>
+<div class="toefl-reading-progress-track"><div class="toefl-reading-progress-bar" style="width:${Math.min(100, Math.round((mastered / goal) * 100))}%"></div></div>
+<div class="toefl-reading-stat-row">
+<div class="toefl-reading-stat"><strong>${mastered} / ${goal}</strong><span>Sets mastered</span></div>
+<div class="toefl-reading-stat"><strong>${attemptedSets.length} / ${sets.length}</strong><span>Sets tried</span></div>
+<div class="toefl-reading-stat"><strong>${attemptedSets.length ? averageBest + "%" : "–"}</strong><span>Average best score</span></div>
+</div>
+<div class="toefl-reading-hub-actions">
+<button type="button" class="start-button" onclick="openTOEFLReadingPracticeSet('${taskId}','${startSet.id}')">${startLabel}</button>
+${totalAttempts ? `<button type="button" class="secondary-button" onclick="resetTOEFLReadingProgress('${taskId}')">Reset this progress</button>` : ""}
+</div>
+</section>
+
+<section class="toefl-reading-skill-panel">
+<h4>Skill breakdown</h4>
+<p class="toefl-reading-skill-note">Accuracy across all your practice attempts. Orange means more practice would help.</p>
+${skillRows}
+</section>
+
+${levelsHTML}
+</div>
+`;
+}
+
+function resetTOEFLReadingProgress(taskId) {
+    if (!window.confirm("Reset your saved practice progress for this task on this device?")) return;
+    getTOEFLReadingBankSets(taskId).forEach(set => { delete toeflReadingProgress.sets[set.id]; });
+    Object.keys(toeflReadingSkillLabels[taskId]).forEach(key => { delete toeflReadingProgress.skills[`${taskId}:${key}`]; });
+    saveTOEFLReadingProgress();
+    renderTOEFLReadingPracticeHub(taskId);
+}
+
+/* =========================================================
+   PRACTICE SET PAGE
+   ========================================================= */
+
+function openTOEFLReadingPracticeSet(taskId, setId) {
+    const sets = getTOEFLReadingBankSets(taskId);
+    const original = sets.find(set => set.id === setId);
+    if (!original) return;
+    injectTOEFLReadingStyles();
+    toeflReadingMode = "practice";
+    toeflReadingCurrentTask = taskId;
+    toeflReadingActiveSet = buildTOEFLReadingAttempt(original);
+    toeflReadingAnswers = {};
+    toeflReadingClozeChecked = false;
+    toeflReadingMcqSubmitted = false;
+    document.getElementById("toefl-reading-home").style.display = "none";
+    document.getElementById("toefl-reading-activity").style.display = "block";
+    renderTOEFLReadingPracticeSet(taskId, original);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function renderTOEFLReadingPracticeSet(taskId, original) {
+    const task = toeflReadingTasks[taskId];
+    const sets = getTOEFLReadingBankSets(taskId);
+    const index = sets.findIndex(set => set.id === original.id);
+    const practice = toeflReadingActiveSet;
+    const isCloze = taskId === "complete";
+    const container = document.getElementById("toefl-reading-activity");
+    const pillText = isCloze ? `${practice.parts.filter(p => typeof p === "object").length} word gaps` : `${practice.questions.length} questions`;
+
+    const examToggle = isCloze ? "" : `
+<label class="toefl-reading-mode-toggle">
+<input type="checkbox" id="toefl-reading-exam-toggle" ${toeflReadingExamMode ? "checked" : ""} onchange="toggleTOEFLReadingExamMode(this.checked)">
+<span><strong>Exam mode:</strong> show answers and explanations only after I submit. (Changing this restarts the set.)</span>
+</label>`;
+
+    container.innerHTML = `
+<div class="toefl-reading-activity-topbar">
+<button type="button" class="secondary-button" onclick="openTOEFLReadingPractice('${taskId}')">← Practice hub</button>
+<span class="toefl-reading-set-label">${toeflReadingLevelNames[original.level]} · Set ${index + 1} of ${sets.length}</span>
+</div>
+
+<section class="toefl-reading-practice-panel">
+<div class="toefl-reading-practice-heading">
+<div><p class="course-label">PRACTICE · ${escapeTOEFLReadingHTML(task.title.toUpperCase())}</p><h3>${escapeTOEFLReadingHTML(original.title)}</h3></div>
+<div class="toefl-reading-heading-right">
+<span class="toefl-reading-timer" id="toefl-reading-timer" aria-label="Elapsed time">0:00</span>
+<span class="toefl-reading-progress-pill" id="toefl-reading-set-progress">${pillText}</span>
+</div>
+</div>
+<p class="toefl-reading-instruction">${escapeTOEFLReadingHTML(original.instruction)}</p>
+${examToggle}
+${isCloze ? renderTOEFLReadingCloze(practice) : renderTOEFLReadingMCQ(practice)}
+<div class="toefl-reading-set-result" id="toefl-reading-set-result" aria-live="polite"></div>
+</section>
+`;
+    startTOEFLReadingTimer();
+}
+
+function toggleTOEFLReadingExamMode(enabled) {
+    toeflReadingExamMode = !!enabled;
+    if (toeflReadingActiveSet) openTOEFLReadingPracticeSet(toeflReadingCurrentTask, toeflReadingActiveSet.id);
+}
+
+function retryTOEFLReadingPracticeSet() {
+    if (toeflReadingActiveSet) openTOEFLReadingPracticeSet(toeflReadingCurrentTask, toeflReadingActiveSet.id);
+}
+
+function nextTOEFLReadingPracticeSet() {
+    const sets = getTOEFLReadingBankSets(toeflReadingCurrentTask);
+    const index = sets.findIndex(set => toeflReadingActiveSet && set.id === toeflReadingActiveSet.id);
+    const next = sets[index + 1];
+    if (next) openTOEFLReadingPracticeSet(toeflReadingCurrentTask, next.id);
+    else openTOEFLReadingPractice(toeflReadingCurrentTask);
+}
+
+function finishTOEFLReadingPractice(items) {
+    stopTOEFLReadingTimer();
+    const taskId = toeflReadingCurrentTask;
+    const set = toeflReadingActiveSet;
+    const elapsed = Date.now() - toeflReadingStartedAt;
+    const total = items.length;
+    const correct = items.filter(item => item.correct).length;
+    const percent = Math.round((correct / total) * 100);
+
+    const entry = toeflReadingProgress.sets[set.id] || { best: 0, attempts: 0 };
+    entry.attempts += 1;
+    entry.best = Math.max(entry.best, percent);
+    entry.last = percent;
+    entry.date = Date.now();
+    toeflReadingProgress.sets[set.id] = entry;
+
+    items.forEach(item => {
+        const key = `${taskId}:${item.skill}`;
+        const stat = toeflReadingProgress.skills[key] || { c: 0, t: 0 };
+        stat.t += 1;
+        if (item.correct) stat.c += 1;
+        toeflReadingProgress.skills[key] = stat;
+    });
+    saveTOEFLReadingProgress();
+
+    const labels = toeflReadingSkillLabels[taskId];
+    const missed = {};
+    items.filter(item => !item.correct).forEach(item => { missed[item.skill] = (missed[item.skill] || 0) + 1; });
+    const missedText = Object.keys(missed)
+        .sort((a, b) => missed[b] - missed[a])
+        .map(key => `${labels[key] || key} (${missed[key]})`)
+        .join(", ");
+
+    const sets = getTOEFLReadingBankSets(taskId);
+    const goal = Math.min(toeflReadingMastery.goals[taskId] || sets.length, sets.length);
+    const masteredCount = getTOEFLReadingMasteredCount(taskId);
+    const reached = percent >= toeflReadingMastery.pct;
+    const message = reached
+        ? `Mastery score reached on this set. You have mastered ${masteredCount} of ${goal} sets needed for this task.`
+        : `Below the ${toeflReadingMastery.pct}% mastery line. Read every explanation, then try the set again; the options will be shuffled.`;
+
+    const hasNext = sets.findIndex(s => s.id === set.id) < sets.length - 1;
+    const result = document.getElementById("toefl-reading-set-result");
+    result.innerHTML = `
+<strong>Result: ${correct} / ${total} (${percent}%) · Time ${formatTOEFLReadingTime(elapsed)}</strong>
+<p>${escapeTOEFLReadingHTML(message)}</p>
+${missedText ? `<p><strong>Review these skills:</strong> ${escapeTOEFLReadingHTML(missedText)}</p>` : ""}
+<div class="toefl-reading-result-actions">
+<button type="button" class="secondary-button" onclick="retryTOEFLReadingPracticeSet()">Try again</button>
+<button type="button" class="start-button" onclick="nextTOEFLReadingPracticeSet()">${hasNext ? "Next set →" : "Back to practice hub"}</button>
+<button type="button" class="secondary-button" onclick="openTOEFLReadingPractice('${taskId}')">Practice hub</button>
+</div>`;
+    result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+/* =========================================================
+   COMPLETE THE WORDS — one continuous exam-style paragraph
    ========================================================= */
 
 function renderTOEFLReadingCloze(practice) {
@@ -732,33 +1186,14 @@ function renderTOEFLReadingCloze(practice) {
             html += escapeTOEFLReadingHTML(part);
         } else {
             const missing = String(part.word).slice(String(part.prefix).length);
-            const slots = Array.from({ length: missing.length }, (_, letterIndex) => `
-<input
-type="text"
-class="toefl-cloze-letter"
-maxlength="1"
-inputmode="text"
-autocomplete="off"
-autocapitalize="none"
-spellcheck="false"
-aria-label="Missing letter ${letterIndex + 1} of ${missing.length} for word ${blankIndex + 1}"
-data-cloze-input="${blankIndex}"
-data-cloze-letter-index="${letterIndex}"
-oninput="handleTOEFLReadingClozeInput(event)"
-onkeydown="handleTOEFLReadingClozeKeydown(event)"
-onpaste="handleTOEFLReadingClozePaste(event)"
->`).join("");
+            const slots = Array.from({ length: missing.length }, (_, letterIndex) => `<input type="text" class="toefl-cloze-letter" maxlength="1" inputmode="text" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Missing letter ${letterIndex + 1} of ${missing.length} for word ${blankIndex + 1}" data-cloze-input="${blankIndex}" data-cloze-letter-index="${letterIndex}" oninput="handleTOEFLReadingClozeInput(event)" onkeydown="handleTOEFLReadingClozeKeydown(event)" onpaste="handleTOEFLReadingClozePaste(event)">`).join("");
 
-            html += `
-<span class="toefl-cloze-item" data-cloze-index="${blankIndex}" data-cloze-length="${missing.length}">
-<span class="toefl-cloze-prefix">${escapeTOEFLReadingHTML(part.prefix)}</span><span class="toefl-cloze-slots" aria-label="${missing.length} missing letters">${slots}</span>
-<span class="toefl-cloze-feedback" data-cloze-feedback="${blankIndex}" aria-live="polite"></span>
-</span>`;
+            html += `<span class="toefl-cloze-item" data-cloze-index="${blankIndex}" data-cloze-length="${missing.length}"><span class="toefl-cloze-prefix">${escapeTOEFLReadingHTML(part.prefix)}</span><span class="toefl-cloze-slots" aria-label="${missing.length} missing letters">${slots}</span></span>`;
             blankIndex++;
         }
     });
 
-    html += "</p></div><div class='toefl-reading-actions'><button type='button' class='start-button' id='toefl-reading-check-cloze' onclick='checkTOEFLReadingCloze()'>Check answers</button><button type='button' class='secondary-button' onclick='resetTOEFLReadingPractice()'>Reset answers</button></div>";
+    html += "</p></div><div class='toefl-reading-actions'><button type='button' class='start-button' id='toefl-reading-check-cloze' onclick='checkTOEFLReadingCloze()'>Check answers</button><button type='button' class='secondary-button' onclick='resetTOEFLReadingPractice()'>Reset answers</button></div><div class='toefl-cloze-review' id='toefl-cloze-review' aria-live='polite'></div>";
     return html;
 }
 
@@ -820,16 +1255,16 @@ function handleTOEFLReadingClozePaste(event) {
 
 function checkTOEFLReadingCloze() {
     if (toeflReadingClozeChecked) return;
-    const task = toeflReadingTasks[toeflReadingCurrentTask];
-    const practice = task.sets[toeflReadingSetIndex];
+    const practice = getActiveTOEFLReadingPractice();
     const blanks = practice.parts.filter(part => typeof part === "object");
-    let correctCount = 0;
+    const items = [];
+    let reviewHTML = "";
 
     blanks.forEach((blank, index) => {
         const inputs = Array.from(document.querySelectorAll(`[data-cloze-input="${index}"]`));
-        const inputValue = inputs.map(input => input.value.trim()).join("");
-        const correct = inputValue.toLowerCase() === blank.suffix.toLowerCase();
-        if (correct) correctCount++;
+        const typed = inputs.map(input => input.value.trim()).join("");
+        const correct = typed.toLowerCase() === blank.suffix.toLowerCase();
+        items.push({ skill: blank.kind || "vocab", correct });
 
         inputs.forEach(input => {
             input.disabled = true;
@@ -838,20 +1273,31 @@ function checkTOEFLReadingCloze() {
         const item = document.querySelector(`[data-cloze-index="${index}"]`);
         if (item) item.classList.add(correct ? "is-correct" : "is-incorrect");
 
-        const feedback = document.querySelector(`[data-cloze-feedback="${index}"]`);
-        feedback.className = `toefl-cloze-feedback ${correct ? "feedback-correct" : "feedback-incorrect"}`;
-        feedback.innerHTML = `${correct ? "✓ Correct" : `Missing letters: <strong>${escapeTOEFLReadingHTML(blank.suffix)}</strong>`}<br><span><strong>${escapeTOEFLReadingHTML(blank.word)}</strong> — ${escapeTOEFLReadingHTML(blank.explanation)}</span>`;
+        const yours = correct ? "" : `<span class="toefl-review-yours">${typed ? `You typed: ${escapeTOEFLReadingHTML(typed)}` : "You left this blank."} · Missing letters: <strong>${escapeTOEFLReadingHTML(blank.suffix)}</strong></span>`;
+        reviewHTML += `<li class="${correct ? "is-correct" : "is-incorrect"}"><strong>${correct ? "✓" : "✗"} ${escapeTOEFLReadingHTML(blank.word)}</strong> — ${escapeTOEFLReadingHTML(blank.explanation)}${yours}</li>`;
     });
 
     toeflReadingClozeChecked = true;
     const checkButton = document.getElementById("toefl-reading-check-cloze");
     if (checkButton) checkButton.disabled = true;
 
-    const result = document.getElementById("toefl-reading-set-result");
-    result.innerHTML = `<strong>Your result: ${correctCount} / ${blanks.length}</strong><p>Each word is checked for an exact missing-letter match. Read the reasoning under every gap, including the ones you got right, then reset the passage to try it again.</p>`;
+    const review = document.getElementById("toefl-cloze-review");
+    if (review) {
+        review.innerHTML = `<h4>Answer review</h4><ol>${reviewHTML}</ol>`;
+        review.classList.add("is-visible");
+    }
+
+    const correctCount = items.filter(item => item.correct).length;
     const progress = document.getElementById("toefl-reading-set-progress");
     if (progress) progress.textContent = `${correctCount}/${blanks.length} correct`;
-    document.getElementById("toefl-reading-continue").style.display = "inline-flex";
+
+    if (toeflReadingMode === "practice") {
+        finishTOEFLReadingPractice(items);
+    } else {
+        const result = document.getElementById("toefl-reading-set-result");
+        result.innerHTML = `<strong>Your result: ${correctCount} / ${blanks.length}</strong><p>Each word is checked for an exact missing-letter match. Read the reasoning for every gap, including the ones you got right, then reset the passage to try it again.</p>`;
+        document.getElementById("toefl-reading-continue").style.display = "inline-flex";
+    }
 }
 
 /* =========================================================
@@ -878,63 +1324,98 @@ function renderTOEFLReadingMCQ(practice) {
     });
 
     html += "</div>";
+    if (toeflReadingMode === "practice" && toeflReadingExamMode) {
+        html += `<div class="toefl-reading-actions"><button type="button" class="start-button" id="toefl-reading-submit-mcq" disabled onclick="submitTOEFLReadingMCQ()">Submit answers</button></div>`;
+    }
     return html;
 }
 
-function selectTOEFLReadingAnswer(questionIndex, choiceIndex) {
-    if (Object.prototype.hasOwnProperty.call(toeflReadingAnswers, questionIndex)) return;
-    const task = toeflReadingTasks[toeflReadingCurrentTask];
-    const practice = task.sets[toeflReadingSetIndex];
+function revealTOEFLReadingQuestion(questionIndex, choiceIndex, practice) {
     const question = practice.questions[questionIndex];
-    toeflReadingAnswers[questionIndex] = choiceIndex;
-
     document.querySelectorAll(`[data-reading-question="${questionIndex}"]`).forEach(button => {
         button.disabled = true;
+        button.classList.remove("is-selected");
         const optionIndex = Number(button.dataset.readingChoice);
         if (optionIndex === question.answer) button.classList.add("is-correct");
         if (optionIndex === choiceIndex && choiceIndex !== question.answer) button.classList.add("is-incorrect");
     });
-
     const feedback = document.getElementById(`toefl-reading-feedback-${questionIndex}`);
     const correct = choiceIndex === question.answer;
     feedback.className = `toefl-reading-answer-feedback ${correct ? "feedback-correct" : "feedback-incorrect"}`;
     feedback.innerHTML = `<strong>${correct ? "Correct." : `Not quite. The correct answer is ${String.fromCharCode(65 + question.answer)}.`}</strong> ${escapeTOEFLReadingHTML(question.explanation)}`;
+}
 
-    const answered = Object.keys(toeflReadingAnswers).length;
-    const correctCount = Object.entries(toeflReadingAnswers).filter(([index, selected]) => practice.questions[Number(index)].answer === selected).length;
+function completeTOEFLReadingMCQ(practice) {
+    const items = practice.questions.map((question, index) => ({
+        skill: question.skill || "detail",
+        correct: toeflReadingAnswers[index] === question.answer
+    }));
+    const correctCount = items.filter(item => item.correct).length;
     const progress = document.getElementById("toefl-reading-set-progress");
-    if (progress) progress.textContent = `${answered}/${practice.questions.length} answered · ${correctCount} correct`;
+    if (progress) progress.textContent = `${practice.questions.length}/${practice.questions.length} answered · ${correctCount} correct`;
 
-    if (answered === practice.questions.length) {
+    if (toeflReadingMode === "practice") {
+        finishTOEFLReadingPractice(items);
+    } else {
         const result = document.getElementById("toefl-reading-set-result");
         result.innerHTML = `<strong>Practice result: ${correctCount} / ${practice.questions.length}</strong><p>Review the explanations above, especially for any question you missed.</p>`;
         document.getElementById("toefl-reading-continue").style.display = "inline-flex";
     }
 }
 
+function selectTOEFLReadingAnswer(questionIndex, choiceIndex) {
+    const practice = getActiveTOEFLReadingPractice();
+
+    if (toeflReadingMode === "practice" && toeflReadingExamMode) {
+        if (toeflReadingMcqSubmitted) return;
+        toeflReadingAnswers[questionIndex] = choiceIndex;
+        document.querySelectorAll(`[data-reading-question="${questionIndex}"]`).forEach(button => {
+            button.classList.toggle("is-selected", Number(button.dataset.readingChoice) === choiceIndex);
+        });
+        const answered = Object.keys(toeflReadingAnswers).length;
+        const progress = document.getElementById("toefl-reading-set-progress");
+        if (progress) progress.textContent = `${answered}/${practice.questions.length} answered`;
+        const submit = document.getElementById("toefl-reading-submit-mcq");
+        if (submit) submit.disabled = answered < practice.questions.length;
+        return;
+    }
+
+    if (Object.prototype.hasOwnProperty.call(toeflReadingAnswers, questionIndex)) return;
+    toeflReadingAnswers[questionIndex] = choiceIndex;
+    revealTOEFLReadingQuestion(questionIndex, choiceIndex, practice);
+
+    const answered = Object.keys(toeflReadingAnswers).length;
+    const correctCount = Object.entries(toeflReadingAnswers).filter(([index, selected]) => practice.questions[Number(index)].answer === selected).length;
+    const progress = document.getElementById("toefl-reading-set-progress");
+    if (progress) progress.textContent = `${answered}/${practice.questions.length} answered · ${correctCount} correct`;
+
+    if (answered === practice.questions.length) completeTOEFLReadingMCQ(practice);
+}
+
+function submitTOEFLReadingMCQ() {
+    if (toeflReadingMcqSubmitted) return;
+    const practice = getActiveTOEFLReadingPractice();
+    if (Object.keys(toeflReadingAnswers).length < practice.questions.length) return;
+    toeflReadingMcqSubmitted = true;
+    practice.questions.forEach((question, index) => revealTOEFLReadingQuestion(index, toeflReadingAnswers[index], practice));
+    const submit = document.getElementById("toefl-reading-submit-mcq");
+    if (submit) submit.disabled = true;
+    completeTOEFLReadingMCQ(practice);
+}
+
 /* =========================================================
-   SET FLOW
+   SHARED HELPERS
    ========================================================= */
 
 function resetTOEFLReadingPractice() {
+    if (toeflReadingMode === "practice" && toeflReadingActiveSet) {
+        openTOEFLReadingPracticeSet(toeflReadingCurrentTask, toeflReadingActiveSet.id);
+        return;
+    }
     toeflReadingAnswers = {};
     toeflReadingClozeChecked = false;
     renderTOEFLReadingActivity();
     window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-function nextTOEFLReadingSet() {
-    const task = toeflReadingTasks[toeflReadingCurrentTask];
-    if (toeflReadingSetIndex < task.sets.length - 1) {
-        toeflReadingSetIndex++;
-        toeflReadingAnswers = {};
-        toeflReadingClozeChecked = false;
-        renderTOEFLReadingActivity();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-        toeflReadingCompletedTasks.add(task.id);
-        backToTOEFLReadingHome();
-    }
 }
 
 function escapeTOEFLReadingHTML(value) {
