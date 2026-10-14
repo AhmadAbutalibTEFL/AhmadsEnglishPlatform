@@ -377,12 +377,19 @@ function displayTOEFLSections() {
             <ul class="toefl-task-list">${tasksHTML}</ul>
         `;
 
-        if (section.id === "reading") {
+        const sectionStarts = {
+            reading:   { label: "Start Reading Pass →",   fn: "showTOEFLReading" },
+            listening: { label: "Start Listening Pass →", fn: "showTOEFLListening" },
+            writing:   { label: "Start Writing Pass →",   fn: "showTOEFLWriting" },
+            speaking:  { label: "Start Speaking Pass →",  fn: "showTOEFLSpeaking" }
+        };
+        const start = sectionStarts[section.id];
+        if (start && typeof window[start.fn] === "function") {
             const button = document.createElement("button");
             button.type = "button";
             button.className = "start-button toefl-section-start";
-            button.textContent = "Start Reading Pass →";
-            button.addEventListener("click", showTOEFLReading);
+            button.textContent = start.label;
+            button.addEventListener("click", window[start.fn]);
             card.appendChild(button);
         }
 
