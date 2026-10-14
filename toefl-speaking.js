@@ -130,9 +130,9 @@ const toeflSpeakingTasks = {
             { value: "45 seconds", label: "Per response", note: "ETS allows about 45 seconds to answer each question." },
             { value: "About 8 minutes", label: "Whole Speaking section", note: "ETS gives roughly 8 minutes for all Speaking tasks together." }
         ],
-        explanation: "An interviewer asks you a question about everyday life, opinions, or experiences. You respond in about 45 seconds. A strong answer responds directly, develops an idea with a reason and an example, flows in a clear order, and uses accurate, varied language. There is no time to prepare, so you need a reliable answer structure ready in your head.",
+        explanation: "A recorded interviewer asks four questions on one topic about your experiences and opinions. You hear each question only once, with no replay and no preparation time, and you respond in about 45 seconds. A strong answer responds directly, develops an idea with a reason and an example, flows in a clear order, and uses accurate, varied language. There is no time to prepare, so you need a reliable answer structure ready in your head.",
         strategy: [
-            "Answer the question in your first sentence; do not repeat it or delay.",
+            "Listen for the key words (each question is heard only once), then answer in your first sentence without delay.",
             "Give one clear reason, using ‘because’ or ‘one reason is that’.",
             "Add a specific example from real life (‘For example, last semester…’).",
             "Finish with a short closing sentence that links back to the question.",
@@ -143,14 +143,15 @@ const toeflSpeakingTasks = {
             "Giving only an opinion with no reason or example.",
             "Memorising a script that does not fit the question.",
             "Speaking too fast, which makes pronunciation and grammar unclear.",
-            "Stopping early and leaving most of the 45 seconds unused."
+            "Stopping early and leaving most of the 45 seconds unused.",
+            "Waiting for the question to be repeated; there is no replay, so catch the key words the first time."
         ],
         lessonModules: [
             {
                 heading: "1. What the task asks you to do",
                 intro: "You answer questions as if you were in a real interview, with no preparation time before each one.",
                 bullets: [
-                    "Questions are personal or familiar: study habits, free time, technology, community, work.",
+                    "Questions are audio only: you hear each one once, with no replay and nothing written on screen. Topics are familiar: study habits, free time, technology, community.",
                     "A good answer is on topic, developed, and easy to follow.",
                     "Delivery counts too: clear pronunciation, natural pace, and confident intonation.",
                     "In this lab a 45-second timer runs while you record; press Stop early if you finish."
@@ -181,7 +182,7 @@ const toeflSpeakingTasks = {
         sets: [
             {
                 id: "g1", title: "Guided set 1 · Study and free time",
-                instruction: "Press Record and answer in about 45 seconds. Press Check to compare your answer with a model and review the useful phrases.",
+                instruction: "Press Hear the question, then Record and answer in about 45 seconds. The question text stays hidden until you press Check to compare your answer with a model and review the useful phrases.",
                 items: [
                     SI("Study habits", "Do you prefer to study alone or with other people? Explain why.",
                         "I prefer studying with other people. The main reason is that explaining ideas to friends helps me understand them better. For example, before my last biology exam, three classmates and I met in the library and quizzed each other. When someone made a mistake, we corrected it together, and I remembered the answers much more easily. Studying alone can be quiet, but it is also easy to get distracted. That is why I choose group study whenever I can.",
@@ -462,7 +463,7 @@ function renderTOEFLSpeakingPracticeHub(taskId) {
     <span class="toefl-reading-set-label">${spEsc(task.title)} · Practice</span>
 </div>
 <div class="toefl-reading-intro"><h3>${spEsc(task.title)} practice</h3>
-<p>Self-review scores are saved on this device. Reach ${toeflSpeakingMastery.pct}% on a set to master it. Progress: <strong>${mastered} of ${goal}</strong> mastery sets.${taskId === "repeat" ? " In practice sets each sentence plays only once, like the real test." : ""}</p></div>
+<p>Self-review scores are saved on this device. Reach ${toeflSpeakingMastery.pct}% on a set to master it. Progress: <strong>${mastered} of ${goal}</strong> mastery sets.${taskId === "repeat" ? " In practice sets each sentence plays only once, like the real test." : " In practice sets each question plays only once and is not shown on screen, like the real test."}</p></div>
 ${body}
 ${sets.length ? `<button type="button" class="secondary-button" onclick="resetTOEFLSpeakingProgress('${taskId}')">Reset ${spEsc(task.title)} progress</button>` : ""}`);
 }
@@ -499,16 +500,16 @@ function spItemHTML(taskId, item, i, strict) {
         `<label class="sp-check"><input type="checkbox" data-sp-check="${i}" value="${k}"><span>${spEsc(c)}</span></label>`).join("");
     const prompt = isRepeat
         ? `<p class="sp-scenario">Item ${i + 1} · ${spEsc(item.scenario)}</p><p class="sp-hidden-note">The sentence is hidden, as in the real test. Listen, then repeat it.</p>`
-        : `<p class="sp-scenario">Question ${i + 1} · ${spEsc(item.topic)}</p><h4 class="sp-question">${spEsc(item.question)}</h4>`;
+        : `<p class="sp-scenario">Question ${i + 1} · ${spEsc(item.topic)}</p><p class="sp-hidden-note">The interviewer’s question is audio only, as in the real test. Listen carefully, then answer straight away.</p>`;
     const timer = isRepeat ? "" : `<div class="sp-timer"><div class="sp-timer-bar" id="sp-bar-${i}"></div></div>`;
     const reveal = isRepeat
         ? `<p><strong>Sentence:</strong> ${spEsc(item.text)}</p><p><strong>Focus:</strong> ${spEsc(item.focus)}</p><p><strong>Tip:</strong> ${spEsc(item.tip)}</p>`
-        : `<p><strong>Model answer:</strong> ${spEsc(item.model)}</p><p><strong>Useful phrases:</strong></p><ul>${item.phrases.map(p => `<li>${spEsc(p)}</li>`).join("")}</ul>${item.tip ? `<p><strong>Tip:</strong> ${spEsc(item.tip)}</p>` : ""}`;
+        : `<p><strong>Question:</strong> ${spEsc([item.intro, item.question].filter(Boolean).join(" "))}</p><p><strong>Model answer:</strong> ${spEsc(item.model)}</p><p><strong>Useful phrases:</strong></p><ul>${item.phrases.map(p => `<li>${spEsc(p)}</li>`).join("")}</ul>${item.tip ? `<p><strong>Tip:</strong> ${spEsc(item.tip)}</p>` : ""}`;
     return `
 <div class="sp-item" id="sp-item-${i}">
     ${prompt}
     <div class="sp-controls">
-        <button type="button" class="secondary-button" data-sp-listen="${i}">🔊 ${isRepeat ? (strict ? "Listen (once)" : "Listen") : "Hear the question"}</button>
+        <button type="button" class="secondary-button" data-sp-listen="${i}">🔊 ${isRepeat ? (strict ? "Listen (once)" : "Listen") : (strict ? "Hear the question (once)" : "Hear the question")}</button>
         <button type="button" class="start-button sp-rec" data-sp-rec="${i}">⏺ Record</button>
         ${timer}<span class="sp-time" id="sp-time-${i}">${isRepeat ? "" : "0:45"}</span>
     </div>
@@ -520,7 +521,7 @@ function spItemHTML(taskId, item, i, strict) {
 }
 
 function renderSpeakingSet(task, set, practice, area) {
-    const strict = practice && task.id === "repeat";
+    const strict = practice;
     spState = { taskId: task.id, set, practice, strict, checked: false, items: set.items.map(() => ({ played: 0, recorded: false })) };
     area.innerHTML = `
 <div class="toefl-reading-practice-heading"><h3>${spEsc(set.title)}</h3><span class="toefl-reading-progress-pill">${set.items.length} items</span></div>
@@ -560,7 +561,7 @@ function spListen(i, btn) {
     const state = spState.items[i];
     const msg = document.getElementById(`sp-msg-${i}`);
     if (spState.strict && state.played >= 1) return;
-    const text = spState.taskId === "repeat" ? item.text : item.question;
+    const text = spState.taskId === "repeat" ? item.text : [item.intro, item.question].filter(Boolean).join(" ");
     if (!spSpeak(text, spState.taskId === "repeat" ? 0.92 : 0.95)) {
         msg.textContent = "Your browser cannot play the model voice. Try Chrome, Edge, or Safari.";
         return;
