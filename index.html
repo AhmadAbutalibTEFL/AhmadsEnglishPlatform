@@ -301,6 +301,43 @@
     </div>
 </section>
 
+        <section class="hero" id="toefl-speaking-screen" style="display: none;">
+    <div class="course-header">
+        <p class="course-label">TOEFL iBT · SPEAKING</p>
+        <h2>Speaking Skills Lab</h2>
+        <p>Learn each task, record yourself, and review your answers against models and checklists.</p>
+    </div>
+
+    <div class="toefl-reading-shell">
+        <div class="toefl-reading-back-row">
+            <button type="button" class="secondary-button" onclick="showTOEFLCourse()">← Back to TOEFL</button>
+        </div>
+
+        <div id="toefl-speaking-home">
+            <div class="toefl-reading-intro">
+                <h3>What are you practising?</h3>
+                <p>The TOEFL Speaking section checks whether you can repeat language accurately and answer questions clearly. Pronunciation, fluency, organisation, and grammar all matter.</p>
+                <p>Each task has a Learn page with guided practice and a separate Practice page with a larger bank and saved progress. Use Chrome or Edge, and allow the microphone when asked.</p>
+            </div>
+
+            <div class="toefl-reading-targets">
+                <div class="toefl-reading-target"><strong>🔊 Listen and Repeat</strong><span>Memory, accuracy, stress, and rhythm.</span></div>
+                <div class="toefl-reading-target"><strong>🎤 Take an Interview</strong><span>Direct answers, reasons, examples, and fluency.</span></div>
+            </div>
+
+            <div class="toefl-reading-progress-wrap">
+                <div class="toefl-reading-progress-caption"><strong>Your Speaking progress</strong><span id="toefl-speaking-overall-progress">0 of 2 lessons completed</span></div>
+                <div class="toefl-reading-progress-track"><div class="toefl-reading-progress-bar" id="toefl-speaking-overall-bar"></div></div>
+            </div>
+
+            <h3 class="toefl-overview-heading">Choose a task type</h3>
+            <div id="toefl-speaking-task-grid" class="toefl-reading-task-grid"></div>
+        </div>
+
+        <div id="toefl-speaking-activity" style="display: none;"></div>
+    </div>
+</section>
+        
 <!-- Learn Screen -->
 
 <section class="hero" id="learn-screen" style="display: none;">
@@ -494,5 +531,6 @@
 <script src="toefl-reading.js?v=4"></script>
 <script src="toefl-writing-practice.js?v=1"></script>
 <script src="toefl-writing.js?v=1"></script>
+<script src="toefl-speaking.js?v=1"></script>
 </body>
 </html>
