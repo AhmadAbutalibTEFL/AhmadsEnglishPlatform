@@ -337,6 +337,45 @@
         <div id="toefl-speaking-activity" style="display: none;"></div>
     </div>
 </section>
+
+<section class="hero" id="toefl-listening-screen" style="display: none;">
+    <div class="course-header">
+        <p class="course-label">TOEFL iBT · LISTENING</p>
+        <h2>Listening Skills Lab</h2>
+        <p>Learn each task, use a clear strategy, then practise with original audio, questions, and explanations.</p>
+    </div>
+
+    <div class="toefl-reading-shell">
+        <div class="toefl-reading-back-row">
+            <button type="button" class="secondary-button" onclick="showTOEFLCourse()">← Back to TOEFL</button>
+        </div>
+
+        <div id="toefl-listening-home">
+            <div class="toefl-reading-intro">
+                <h3>What are you practising?</h3>
+                <p>The TOEFL Listening section checks whether you can follow spoken English in everyday and academic situations. In the real test each audio plays only once, so practise listening for purpose, main ideas, and key details.</p>
+                <p>Each task has a Learn page with a strategy and guided sets, and a Practice page with a larger bank and saved progress.</p>
+            </div>
+
+            <div class="toefl-reading-targets">
+                <div class="toefl-reading-target"><strong>💬 Choose a Response</strong><span>Purpose, tone, and natural replies.</span></div>
+                <div class="toefl-reading-target"><strong>🗣️ Conversation</strong><span>Problem, reasons, and next steps.</span></div>
+                <div class="toefl-reading-target"><strong>📢 Announcement</strong><span>Changes, details, and listener actions.</span></div>
+                <div class="toefl-reading-target"><strong>🎓 Academic Talk</strong><span>Main idea, examples, and inference.</span></div>
+            </div>
+
+            <div class="toefl-reading-progress-wrap">
+                <div class="toefl-reading-progress-caption"><strong>Your Listening progress</strong><span id="toefl-listening-overall-progress">0 of 4 lessons completed</span></div>
+                <div class="toefl-reading-progress-track"><div class="toefl-reading-progress-bar" id="toefl-listening-overall-bar"></div></div>
+            </div>
+
+            <h3 class="toefl-overview-heading">Choose a task type</h3>
+            <div id="toefl-listening-task-grid" class="toefl-reading-task-grid"></div>
+        </div>
+
+        <div id="toefl-listening-activity" style="display: none;"></div>
+    </div>
+</section>
         
 <!-- Learn Screen -->
 
@@ -533,5 +572,7 @@
 <script src="toefl-writing.js?v=1"></script>
 <script src="toefl-speaking-practice.js?v=1"></script>
 <script src="toefl-speaking.js?v=2"></script>
+<script src="toefl-listening-practice.js?v=1"></script>
+<script src="toefl-listening.js?v=1"></script>
 </body>
 </html>
