@@ -1,0 +1,617 @@
+[
+ {
+  "id": "lc-g1-01",
+  "ctx": "A classmate is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "politely",
+    "text": "Do you mind if I borrow your charger for a few minutes?"
+   }
+  ]
+ },
+ {
+  "id": "lc-g1-02",
+  "ctx": "You are at a bus stop.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "curious",
+    "text": "Excuse me, does this bus go to the main library?"
+   }
+  ]
+ },
+ {
+  "id": "lc-g1-03",
+  "ctx": "A friend is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "worried",
+    "text": "I'm thinking about dropping my chemistry class. What do you think?"
+   }
+  ]
+ },
+ {
+  "id": "lc-g1-04",
+  "ctx": "A classmate is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "friendly",
+    "text": "Would you rather meet at the café or at the library?"
+   }
+  ]
+ },
+ {
+  "id": "lc-g1-05",
+  "ctx": "A classmate is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "apologetic",
+    "text": "I'm sorry, I missed the last part. Could you repeat the deadline?"
+   }
+  ]
+ },
+ {
+  "id": "lc-g2-01",
+  "ctx": "A friend is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "interested",
+    "text": "How did your presentation go this morning?"
+   }
+  ]
+ },
+ {
+  "id": "lc-g2-02",
+  "ctx": "A teammate is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "suggesting",
+    "text": "Why don't we start the project outline tonight?"
+   }
+  ]
+ },
+ {
+  "id": "lc-g2-03",
+  "ctx": "A classmate is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "puzzled",
+    "text": "I haven't received the schedule for next week. Have you?"
+   }
+  ]
+ },
+ {
+  "id": "lc-g2-04",
+  "ctx": "A new student is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "hesitant",
+    "text": "Could you tell me where the registration office is?"
+   }
+  ]
+ },
+ {
+  "id": "lc-g2-05",
+  "ctx": "A classmate is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "frustrated",
+    "text": "That lecture was so confusing. Did you understand it?"
+   }
+  ]
+ },
+ {
+  "id": "lc-p1-01",
+  "ctx": "A classmate is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "polite",
+    "text": "Excuse me, is anyone sitting here?"
+   }
+  ]
+ },
+ {
+  "id": "lc-p1-02",
+  "ctx": "A student is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "curious",
+    "text": "What time does the bookstore close?"
+   }
+  ]
+ },
+ {
+  "id": "lc-p1-03",
+  "ctx": "A staff member is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "hopeful",
+    "text": "Could you help me carry these boxes to the office?"
+   }
+  ]
+ },
+ {
+  "id": "lc-p1-04",
+  "ctx": "A classmate is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "casual",
+    "text": "Have you finished the reading for tomorrow?"
+   }
+  ]
+ },
+ {
+  "id": "lc-p1-05",
+  "ctx": "A friend is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "stressed",
+    "text": "I can't find my student ID. Where should I look?"
+   }
+  ]
+ },
+ {
+  "id": "lc-p2-01",
+  "ctx": "A friend is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "frustrated",
+    "text": "I was going to study at the café, but it's packed. Any other ideas?"
+   }
+  ]
+ },
+ {
+  "id": "lc-p2-02",
+  "ctx": "A classmate is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "warm",
+    "text": "I really enjoyed your presentation. The examples were great."
+   }
+  ]
+ },
+ {
+  "id": "lc-p2-03",
+  "ctx": "A classmate is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "unsure",
+    "text": "Wasn't the exam supposed to be on Friday?"
+   }
+  ]
+ },
+ {
+  "id": "lc-p2-04",
+  "ctx": "A classmate is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "nervous",
+    "text": "Would it be okay if I turned in my essay a day late?"
+   }
+  ]
+ },
+ {
+  "id": "lc-p2-05",
+  "ctx": "A friend is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "uncertain",
+    "text": "I'm having trouble choosing between two majors. Any advice?"
+   }
+  ]
+ },
+ {
+  "id": "lc-p3-01",
+  "ctx": "A classmate is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "reluctant",
+    "text": "I'd go to the review session if it weren't so early."
+   }
+  ]
+ },
+ {
+  "id": "lc-p3-02",
+  "ctx": "A classmate is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "polite",
+    "text": "Do you happen to know whether the lab is open on weekends?"
+   }
+  ]
+ },
+ {
+  "id": "lc-p3-03",
+  "ctx": "A student is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "surprised",
+    "text": "I'm surprised the professor didn't mention the quiz in class."
+   }
+  ]
+ },
+ {
+  "id": "lc-p3-04",
+  "ctx": "A classmate is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "hopeful",
+    "text": "If you're free later, would you mind proofreading my paper?"
+   }
+  ]
+ },
+ {
+  "id": "lc-p3-05",
+  "ctx": "A classmate is speaking to you.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "confused",
+    "text": "We were supposed to meet at two. Did I get the time wrong?"
+   }
+  ]
+ },
+ {
+  "id": "lv-g1-01",
+  "ctx": "A student speaks with her academic advisor.",
+  "lines": [
+   {
+    "sp": "Maya",
+    "cue": "friendly",
+    "text": "Hi, Mr. Evans. Thanks for seeing me. I wanted to ask about my schedule for next semester."
+   },
+   {
+    "sp": "Mr. Evans",
+    "cue": "warm",
+    "text": "Of course. What seems to be the problem?"
+   },
+   {
+    "sp": "Maya",
+    "cue": "concerned",
+    "text": "I'm registered for biology and statistics, but both are on Tuesday and Thursday mornings, and the labs overlap by thirty minutes."
+   },
+   {
+    "sp": "Mr. Evans",
+    "cue": "thoughtful",
+    "text": "Ah, that happens sometimes. Have you checked whether another section of statistics is open?"
+   },
+   {
+    "sp": "Maya",
+    "cue": "disappointed",
+    "text": "I did. There's an evening section, but I work at the library until six on those days."
+   },
+   {
+    "sp": "Mr. Evans",
+    "cue": "helpful",
+    "text": "I see. Well, biology has a Friday lab section as well. If you switch to that, there's no overlap, and your work hours stay the same."
+   },
+   {
+    "sp": "Maya",
+    "cue": "surprised",
+    "text": "Oh, I didn't know about the Friday lab. Is there still space?"
+   },
+   {
+    "sp": "Mr. Evans",
+    "cue": "serious",
+    "text": "I think so, but it fills up fast. I'd register today if I were you."
+   },
+   {
+    "sp": "Maya",
+    "cue": "relieved",
+    "text": "Great. I'll do it right after this meeting. Thanks!"
+   }
+  ]
+ },
+ {
+  "id": "lv-g2-01",
+  "ctx": "Two students talk about a group presentation.",
+  "lines": [
+   {
+    "sp": "Lena",
+    "cue": "worried",
+    "text": "Omar, did you see the email from Professor Hart? She moved our group presentation up to next Wednesday."
+   },
+   {
+    "sp": "Omar",
+    "cue": "shocked",
+    "text": "What? That's a whole week earlier. We haven't even picked our case study yet."
+   },
+   {
+    "sp": "Lena",
+    "cue": "thinking",
+    "text": "I know. I was thinking we could use the coffee-farming example from class. There's plenty of data online."
+   },
+   {
+    "sp": "Omar",
+    "cue": "hesitant",
+    "text": "That works, but I'm worried about the survey part. Last time, collecting responses took forever."
+   },
+   {
+    "sp": "Lena",
+    "cue": "confident",
+    "text": "Then let's skip a new survey and use the public data instead. We can compare two regions."
+   },
+   {
+    "sp": "Omar",
+    "cue": "pleased",
+    "text": "Smart. Then I'll build the slides and you can write the script?"
+   },
+   {
+    "sp": "Lena",
+    "cue": "cheerful",
+    "text": "Deal. Let's meet in the study room tomorrow after lunch to split the sections."
+   }
+  ]
+ },
+ {
+  "id": "lv-p1-01",
+  "ctx": "A student speaks with a resident advisor.",
+  "lines": [
+   {
+    "sp": "Sam",
+    "cue": "tired",
+    "text": "Hi, Ms. Torres. Do you have a minute? My heater has been making a loud noise at night, and I can't sleep."
+   },
+   {
+    "sp": "Ms. Torres",
+    "cue": "sympathetic",
+    "text": "I'm sorry to hear that. How long has it been going on?"
+   },
+   {
+    "sp": "Sam",
+    "cue": "frustrated",
+    "text": "About three days. I already told the front desk, but nobody came."
+   },
+   {
+    "sp": "Ms. Torres",
+    "cue": "helpful",
+    "text": "Okay. Let's submit an official maintenance request. Those are usually handled within twenty-four hours."
+   },
+   {
+    "sp": "Sam",
+    "cue": "hopeful",
+    "text": "Can I do that online?"
+   },
+   {
+    "sp": "Ms. Torres",
+    "cue": "clear",
+    "text": "Yes, through the housing portal. Include your room number and describe the noise. I'll also email the maintenance office so they know it's urgent."
+   },
+   {
+    "sp": "Sam",
+    "cue": "grateful",
+    "text": "Thanks so much. Should I do anything in the meantime?"
+   },
+   {
+    "sp": "Ms. Torres",
+    "cue": "kind",
+    "text": "If you want, you can sleep in the study lounge tonight. It's quiet and open all night."
+   }
+  ]
+ },
+ {
+  "id": "lv-p2-01",
+  "ctx": "A student speaks with a librarian.",
+  "lines": [
+   {
+    "sp": "Nora",
+    "cue": "overwhelmed",
+    "text": "Hi, I'm working on a paper about social media, but I'm finding thousands of articles, and I don't know where to begin."
+   },
+   {
+    "sp": "Mr. Park",
+    "cue": "understanding",
+    "text": "That's a common problem. Your topic is probably too broad. What's the paper for?"
+   },
+   {
+    "sp": "Nora",
+    "cue": "explaining",
+    "text": "It's for my sociology class. We need to analyze one specific effect."
+   },
+   {
+    "sp": "Mr. Park",
+    "cue": "encouraging",
+    "text": "Then narrow it. For example, you could look at how social media affects the way teenagers sleep."
+   },
+   {
+    "sp": "Nora",
+    "cue": "curious",
+    "text": "Hmm, that's interesting. But would there be enough sources?"
+   },
+   {
+    "sp": "Mr. Park",
+    "cue": "confident",
+    "text": "Plenty. Try our database of psychology journals, and use the filter to limit results to the last five years."
+   },
+   {
+    "sp": "Nora",
+    "cue": "pleased",
+    "text": "I never noticed that filter. I'll try it today."
+   },
+   {
+    "sp": "Mr. Park",
+    "cue": "friendly",
+    "text": "And if you get stuck, book a research appointment. I can sit with you for thirty minutes."
+   }
+  ]
+ },
+ {
+  "id": "lv-p3-01",
+  "ctx": "A student speaks with a professor.",
+  "lines": [
+   {
+    "sp": "Kai",
+    "cue": "worried",
+    "text": "Professor Adams, I wanted to ask about the lab report due Friday. I'm afraid I won't finish."
+   },
+   {
+    "sp": "Professor Adams",
+    "cue": "calm",
+    "text": "What's holding you up?"
+   },
+   {
+    "sp": "Kai",
+    "cue": "embarrassed",
+    "text": "I had a family event over the weekend, and then the data from my second experiment turned out to be unusable."
+   },
+   {
+    "sp": "Professor Adams",
+    "cue": "firm but kind",
+    "text": "I see. Unfortunately, I can't extend the deadline for the whole class, and it wouldn't be fair to the others."
+   },
+   {
+    "sp": "Kai",
+    "cue": "quiet",
+    "text": "I understand."
+   },
+   {
+    "sp": "Professor Adams",
+    "cue": "helpful",
+    "text": "However, you could submit the sections you've finished by Friday, and I'll accept the revised data analysis on Monday. You'd lose a few points on that section, but not the whole grade."
+   },
+   {
+    "sp": "Kai",
+    "cue": "relieved",
+    "text": "That sounds reasonable. Would it help if I came to your office hours tomorrow to check my analysis?"
+   },
+   {
+    "sp": "Professor Adams",
+    "cue": "approving",
+    "text": "Definitely. Bring your raw data, and we'll go through it together."
+   }
+  ]
+ },
+ {
+  "id": "la-g1-01",
+  "ctx": "A library staff member makes an announcement.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "clear and friendly",
+    "text": "Attention, students. This is an update from the university library. Starting next Monday, the main library will stay open until midnight on weeknights, two hours later than usual, to support students during final exams. The quiet study floors on levels three and four will remain silent zones, but the first floor will have group study tables where conversation is allowed. Please note that the café will close at nine, so bring snacks if you plan to stay late. Finally, library cards must be shown at the entrance after ten p.m. Thank you, and good luck with your exams."
+   }
+  ]
+ },
+ {
+  "id": "la-g2-01",
+  "ctx": "A transportation office makes an announcement.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "calm and informative",
+    "text": "Good afternoon, everyone. Due to construction on North Road, the campus shuttle will use a different route starting Thursday. The shuttle will no longer stop at the engineering building. Instead, riders should get off at the new stop beside the science library, which is about a five-minute walk. Shuttles will still run every fifteen minutes. A map of the new route is posted on the student portal. If you have trouble walking long distances, please call the transportation office for a special pickup."
+   }
+  ]
+ },
+ {
+  "id": "la-p1-01",
+  "ctx": "A health center staff member makes an announcement.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "friendly and clear",
+    "text": "Good morning. This is a reminder from the student health center. Starting this week, the clinic will open at eight instead of nine, so students can visit before their first classes. Flu vaccines are available free of charge for all students with a valid ID, with no appointment needed, on Tuesdays and Thursdays. Please remember that the clinic is closed on weekends, but a nurse hotline is available at all hours. Thank you."
+   }
+  ]
+ },
+ {
+  "id": "la-p2-01",
+  "ctx": "A campus office makes an announcement.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "professional and clear",
+    "text": "Attention, commuter students. The east parking lot will be closed for repaving from Monday through Wednesday of next week. During this time, drivers may use the north lot or the parking garage on University Avenue. Garage parking will cost the same as the east lot, and your permit will be accepted. Because the north lot fills quickly, we recommend arriving at least fifteen minutes earlier than usual. If you carpool, please use the signs near the entrance to find reserved spaces. Thank you for your patience."
+   }
+  ]
+ },
+ {
+  "id": "la-p3-01",
+  "ctx": "A career fair organizer makes an announcement.",
+  "lines": [
+   {
+    "sp": "Speaker",
+    "cue": "welcoming and organized",
+    "text": "Welcome, everyone, and thank you for visiting the spring career fair. Before you begin, a few reminders. Employers are located by field: technology on the first floor, healthcare and education on the second. Many companies will collect résumés digitally, so please scan the code on your badge instead of printing copies. However, two employers, the city museum and the regional hospital, will accept only paper résumés. Workshops on interview skills begin at one o'clock in room two-oh-four, but space is limited, so reservations are strongly recommended. The fair ends at four."
+   }
+  ]
+ },
+ {
+  "id": "lt-g1-01",
+  "ctx": "A biology professor gives a short lecture.",
+  "lines": [
+   {
+    "sp": "Professor",
+    "cue": "engaging and clear",
+    "text": "Let's begin with a simple question: what happens to an ecosystem if one animal disappears? Sometimes, very little. But for a small group of animals, called keystone species, the effects are huge. The sea otter is a classic example. Sea otters eat sea urchins, and sea urchins eat kelp. When hunters nearly wiped out sea otters along the Pacific coast, the urchin population exploded. The urchins grazed down the kelp forests until only bare rock remained. And remember, kelp forests are not just plants. They shelter fish, crabs, and many other species. So, losing the otters meant losing the habitat for dozens of animals. Interestingly, when conservation programs brought the otters back, the kelp began to recover. Notice that sea otters are not the most numerous animals in this ecosystem. A keystone species matters because of what it does, not because of how many there are. For next class, think of another ecosystem where one species might play this role."
+   }
+  ]
+ },
+ {
+  "id": "lt-g2-01",
+  "ctx": "A psychology professor gives a short lecture.",
+  "lines": [
+   {
+    "sp": "Professor",
+    "cue": "lively and confident",
+    "text": "Many students believe the best way to prepare for an exam is to study one subject for hours the night before. Psychologists call this massed practice, and it feels productive, because the material seems familiar. But research on memory has shown a better method, called the spacing effect. In one classic experiment, two groups learned the same list of vocabulary words. One group studied for three hours in a single day. The other studied for one hour on three separate days. A week later, the second group remembered significantly more words. Why? Researchers suggest that when you return to material after a break, you have to work to recall it, and that effort strengthens the memory. So cramming may help you pass tomorrow's quiz, but it doesn't help you remember the material next month. That said, spacing takes planning. You can't start the day before the exam. So, if you have a test in two weeks, start now and review in short sessions."
+   }
+  ]
+ },
+ {
+  "id": "lt-p1-01",
+  "ctx": "An environmental science professor gives a short lecture.",
+  "lines": [
+   {
+    "sp": "Professor",
+    "cue": "clear and engaging",
+    "text": "Have you ever noticed that a city can feel several degrees hotter than the countryside around it? Scientists call this the urban heat island effect. It happens mainly for two reasons. First, materials like asphalt and concrete absorb heat during the day and release it slowly at night, so cities don't cool down as quickly. Second, cities have fewer trees and less open ground, and plants help cool the air by releasing water vapor. In some large cities, nighttime temperatures can be as much as five degrees higher than in nearby rural areas. This is more than a comfort issue. Higher temperatures increase electricity use for air conditioning and can be dangerous for older people. So planners are experimenting with solutions, such as painting roofs white to reflect sunlight and planting trees along streets. Next time, we'll look at how well these solutions actually work."
+   }
+  ]
+ },
+ {
+  "id": "lt-p2-01",
+  "ctx": "A history professor gives a short lecture.",
+  "lines": [
+   {
+    "sp": "Professor",
+    "cue": "thoughtful and lively",
+    "text": "Before the fifteenth century, every book in Europe was copied by hand, usually by monks. A single book could take months to produce, so books were rare and expensive. Then Johannes Gutenberg introduced a printing press with movable metal letters. The key idea was simple: letters could be rearranged and reused for different pages. Printing became faster and cheaper, and the number of books increased dramatically. What's interesting is the effect this had on ideas. When more people could read the same text, new ideas could spread across countries within years rather than decades. Scholars could also compare printed copies and notice errors, which helped knowledge become more reliable. Of course, this didn't happen overnight. Literacy rates grew slowly, and many people still couldn't afford books. But the press set a pattern we recognize today: when information becomes cheaper to share, society changes."
+   }
+  ]
+ },
+ {
+  "id": "lt-p3-01",
+  "ctx": "A psychology professor gives a short lecture.",
+  "lines": [
+   {
+    "sp": "Professor",
+    "cue": "clear and persuasive",
+    "text": "Imagine you're shopping for a jacket, and the first price you see is three hundred dollars. Later you find a similar jacket for one hundred fifty. Suddenly, the second jacket looks like a bargain, even if one hundred fifty is more than you'd normally pay. This is called anchoring: our judgments are strongly influenced by the first piece of information we receive, even when that information is irrelevant. In a well-known study, participants watched a wheel spin to a random number, then estimated the percentage of African countries in the United Nations. Those who saw a high number gave higher estimates than those who saw a low number, though the wheel had nothing to do with the question. Notice that participants knew the number was random. Even so, it shaped their answers. Marketers use this all the time. A high original price crossed out beside a sale price creates an anchor. The lesson isn't that we should distrust every number. It's that we should ask ourselves where our first impression came from before we decide."
+   }
+  ]
+ }
+]
