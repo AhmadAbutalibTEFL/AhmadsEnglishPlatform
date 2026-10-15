@@ -1,0 +1,866 @@
+[
+  {
+    "id": "sp-repeat-g1-01",
+    "task": "repeat",
+    "set": "g1",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "The library is open until ten o’clock on weekdays."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-g1-02",
+    "task": "repeat",
+    "set": "g1",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "The registration office moved to the second floor last week."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-g1-03",
+    "task": "repeat",
+    "set": "g1",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Students who finish early may leave the room quietly."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-g2-01",
+    "task": "repeat",
+    "set": "g2",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Although the lecture was long, most students took careful notes."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-g2-02",
+    "task": "repeat",
+    "set": "g2",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "If you need help with your schedule, please visit the advising center."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-g2-03",
+    "task": "repeat",
+    "set": "g2",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "The museum offers free admission to visitors under the age of twelve."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r1-01",
+    "task": "repeat",
+    "set": "r1",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "The café opens at eight."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r1-02",
+    "task": "repeat",
+    "set": "r1",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "I would like a small coffee, please."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r1-03",
+    "task": "repeat",
+    "set": "r1",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "The line is shorter after the morning classes."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r1-04",
+    "task": "repeat",
+    "set": "r1",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "You can pay with your student card at the counter."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r1-05",
+    "task": "repeat",
+    "set": "r1",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "My friend usually sits by the window and reads."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r1-06",
+    "task": "repeat",
+    "set": "r1",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Please remember to return your tray when you finish."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r1-07",
+    "task": "repeat",
+    "set": "r1",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "The café offers a discount to students who bring their own cups."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r2-01",
+    "task": "repeat",
+    "set": "r2",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "The library is quiet today."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r2-02",
+    "task": "repeat",
+    "set": "r2",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Please turn off your phone."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r2-03",
+    "task": "repeat",
+    "set": "r2",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "You can borrow five books at a time."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r2-04",
+    "task": "repeat",
+    "set": "r2",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "The computers are available on the first floor."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r2-05",
+    "task": "repeat",
+    "set": "r2",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Students must return their books before the end of the month."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r2-06",
+    "task": "repeat",
+    "set": "r2",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "The librarian can help you find articles for your research paper."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r2-07",
+    "task": "repeat",
+    "set": "r2",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "If you cannot find a book, ask the staff to check another branch."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r3-01",
+    "task": "repeat",
+    "set": "r3",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "The laundry room is downstairs."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r3-02",
+    "task": "repeat",
+    "set": "r3",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Residents should keep the hallway clear at all times."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r3-03",
+    "task": "repeat",
+    "set": "r3",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "The maintenance team will repair the heater tomorrow morning."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r3-04",
+    "task": "repeat",
+    "set": "r3",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Please let your roommate know before you invite guests."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r3-05",
+    "task": "repeat",
+    "set": "r3",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Because the building is old, some rooms get cold in winter."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r3-06",
+    "task": "repeat",
+    "set": "r3",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Students who lose their keys must report it to the front desk immediately."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r3-07",
+    "task": "repeat",
+    "set": "r3",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Although the dormitory is quiet, a few residents like to practice music in the evening."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r4-01",
+    "task": "repeat",
+    "set": "r4",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Please wear your safety glasses."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r4-02",
+    "task": "repeat",
+    "set": "r4",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "The experiment will begin in five minutes."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r4-03",
+    "task": "repeat",
+    "set": "r4",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Each group should record its results in the notebook."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r4-04",
+    "task": "repeat",
+    "set": "r4",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Do not touch the equipment until the instructor gives permission."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r4-05",
+    "task": "repeat",
+    "set": "r4",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "After the samples are heated, they need to cool for ten minutes."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r4-06",
+    "task": "repeat",
+    "set": "r4",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "If the temperature rises too quickly, stop the machine and call your instructor."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r4-07",
+    "task": "repeat",
+    "set": "r4",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Students who complete the experiment early may help others review their data."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r5-01",
+    "task": "repeat",
+    "set": "r5",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "The professor posted the reading list online."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r5-02",
+    "task": "repeat",
+    "set": "r5",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Today’s lecture focuses on how cities have changed over time."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r5-03",
+    "task": "repeat",
+    "set": "r5",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Students are expected to submit their proposals before the deadline."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r5-04",
+    "task": "repeat",
+    "set": "r5",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Although the results were surprising, the research team decided to repeat the study."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r5-05",
+    "task": "repeat",
+    "set": "r5",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "The department will announce the winners of the scholarship at the end of the semester."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r5-06",
+    "task": "repeat",
+    "set": "r5",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Researchers who work with large data sets often need several months to organize their findings."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r5-07",
+    "task": "repeat",
+    "set": "r5",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Unless the committee receives your application by Friday, it cannot be considered for this year’s program."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r6-01",
+    "task": "repeat",
+    "set": "r6",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Many clubs are recruiting new members today."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r6-02",
+    "task": "repeat",
+    "set": "r6",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "The photography club meets every Thursday in the media building."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r6-03",
+    "task": "repeat",
+    "set": "r6",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "If you sign up now, you will receive a free membership card."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r6-04",
+    "task": "repeat",
+    "set": "r6",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "The volunteer program gives students a chance to work with local organizations."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r6-05",
+    "task": "repeat",
+    "set": "r6",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Because space is limited, interested students should register before the event fills up."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r6-06",
+    "task": "repeat",
+    "set": "r6",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Members of the debate team travel to several universities each year to compete."
+      }
+    ]
+  },
+  {
+    "id": "sp-repeat-r6-07",
+    "task": "repeat",
+    "set": "r6",
+    "kind": "repeat",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "Students who are curious about leadership opportunities should speak with one of the organizers after the presentation."
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-g1-01",
+    "task": "interview",
+    "set": "g1",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Do you prefer to study alone or with other people? Explain why."
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-g1-02",
+    "task": "interview",
+    "set": "g1",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "What is a hobby you would recommend to a new student, and why?"
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-g2-01",
+    "task": "interview",
+    "set": "g2",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "How has technology changed the way people learn?"
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-g2-02",
+    "task": "interview",
+    "set": "g2",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Is it better to live close to your school or farther away? Why?"
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i1-01",
+    "task": "interview",
+    "set": "i1",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Let’s talk about how you study. Where do you usually study, and why do you prefer that place?"
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i1-02",
+    "task": "interview",
+    "set": "i1",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Some students study in the morning and others study at night. When do you study best, and why?"
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i1-03",
+    "task": "interview",
+    "set": "i1",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Students take notes in different ways. Do you take notes by hand or on a device? Explain your choice."
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i1-04",
+    "task": "interview",
+    "set": "i1",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Now, imagine a new student is starting at your university. What advice would you give about studying, and why?"
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i2-01",
+    "task": "interview",
+    "set": "i2",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Let’s talk about life on campus. What is your favorite place on campus, and why do you like it?"
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i2-02",
+    "task": "interview",
+    "set": "i2",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Many students join clubs and student groups. Would you recommend joining a club? Why or why not?"
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i2-03",
+    "task": "interview",
+    "set": "i2",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Some students live on campus, while others live at home. Which do you prefer, and why?"
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i2-04",
+    "task": "interview",
+    "set": "i2",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Universities are always looking for ways to improve. What is one thing you would change about your university, and why?"
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i3-01",
+    "task": "interview",
+    "set": "i3",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Let’s discuss technology in education. How do you use technology to help you learn, and why is it useful?"
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i3-02",
+    "task": "interview",
+    "set": "i3",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Some classes are taught online, while others are in person. Which do you think is better, and why?"
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i3-03",
+    "task": "interview",
+    "set": "i3",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "People often say that phones are changing student life. Do you think students depend too much on their phones? Explain your opinion."
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i3-04",
+    "task": "interview",
+    "set": "i3",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Now, think about the future. How do you think technology will change universities, and why?"
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i4-01",
+    "task": "interview",
+    "set": "i4",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Let’s talk about managing your time. What do you do to avoid wasting time during a busy week, and why does it work for you?"
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i4-02",
+    "task": "interview",
+    "set": "i4",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "People manage deadlines in different ways. Do you usually finish work early, or do you wait until the deadline? Why?"
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i4-03",
+    "task": "interview",
+    "set": "i4",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Students often debate how long they should study at one time. Is it better to study for a long time at once or in short sessions? Explain why."
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i4-04",
+    "task": "interview",
+    "set": "i4",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Sometimes everything seems to be due at the same time. What should students do when they have too many tasks, and why?"
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i5-01",
+    "task": "interview",
+    "set": "i5",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Let’s discuss environmental responsibility. What can universities do to become more environmentally friendly, and why would that matter?"
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i5-02",
+    "task": "interview",
+    "set": "i5",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Some people think individual actions can protect the environment, while others believe only governments can make a difference. What is your view, and why?"
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i5-03",
+    "task": "interview",
+    "set": "i5",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Many eco-friendly products cost more than ordinary ones. Would you be willing to pay more for products that are better for the environment? Explain your reasoning."
+      }
+    ]
+  },
+  {
+    "id": "sp-interview-i5-04",
+    "task": "interview",
+    "set": "i5",
+    "kind": "interview",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Finally, think about children and nature. How can schools encourage younger children to care about nature, and why is it important to start early?"
+      }
+    ]
+  }
+]

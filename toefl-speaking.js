@@ -3,7 +3,8 @@
    Static-site friendly: no libraries, APIs, or back end.
    Learn (lesson + guided sets) and Practice (separate bank,
    loaded from toefl-speaking-practice.js).
-   Audio: browser speech synthesis for model audio, MediaRecorder
+   Audio: pre-generated Edge TTS files (audio/speaking/*.mp3) for model audio,
+   with browser speech synthesis as a fallback; MediaRecorder
    for the learner's own recording. Scoring is self-review only.
    ========================================================= */
 
@@ -555,6 +556,43 @@ function spSpeak(text, rate) {
     return true;
 }
 
+/* Model audio: audio/speaking/<id>.mp3 (then .wav), falling back to browser TTS.
+   id = sp-<task>-<setId>-<NN>, e.g. sp-repeat-g1-01, sp-interview-i3-02 */
+let spModelAudio = null;
+
+function spAudioId(i) {
+    return `sp-${spState.taskId}-${spState.set.id}-${String(i + 1).padStart(2, "0")}`;
+}
+
+function spStopModel() {
+    if (spModelAudio) {
+        spModelAudio.onerror = null;
+        try { spModelAudio.pause(); } catch (e) { /* ignore */ }
+        spModelAudio = null;
+    }
+    if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+}
+
+function spPlayModel(id, text, rate, onFail) {
+    spStopModel();
+    const sources = [`audio/speaking/${id}.mp3`, `audio/speaking/${id}.wav`];
+    const tryNext = () => {
+        const src = sources.shift();
+        if (!src) {
+            if (!spSpeak(text, rate)) onFail();
+            return;
+        }
+        const audio = new Audio(src);
+        spModelAudio = audio;
+        audio.onerror = () => { if (spModelAudio === audio) tryNext(); };
+        const started = audio.play();
+        if (started && started.catch) {
+            started.catch(() => { if (spModelAudio === audio && audio.error) tryNext(); });
+        }
+    };
+    tryNext();
+}
+
 function spListen(i, btn) {
     if (!spState) return;
     const item = spState.set.items[i];
@@ -562,11 +600,10 @@ function spListen(i, btn) {
     const msg = document.getElementById(`sp-msg-${i}`);
     if (spState.strict && state.played >= 1) return;
     const text = spState.taskId === "repeat" ? item.text : [item.intro, item.question].filter(Boolean).join(" ");
-    if (!spSpeak(text, spState.taskId === "repeat" ? 0.92 : 0.95)) {
-        msg.textContent = "Your browser cannot play the model voice. Try Chrome, Edge, or Safari.";
-        return;
-    }
     msg.textContent = "";
+    spPlayModel(spAudioId(i), text, spState.taskId === "repeat" ? 0.92 : 0.95, () => {
+        msg.textContent = "The model audio could not be played. Check your connection or try Chrome, Edge, or Safari.";
+    });
     state.played++;
     if (spState.strict) { btn.disabled = true; btn.textContent = "🔊 Played"; }
 }
@@ -590,7 +627,7 @@ function spStopRecording() {
 async function spToggleRecord(i) {
     if (spRecIndex === i) { spStopRecording(); return; }
     spStopRecording();
-    if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+    spStopModel();
     const msg = document.getElementById(`sp-msg-${i}`);
     if (!navigator.mediaDevices || !window.MediaRecorder) {
         msg.textContent = "Recording is not supported in this browser. Practise aloud, then use the self-review checklist.";
@@ -637,7 +674,7 @@ async function spToggleRecord(i) {
 function spCleanup() {
     spStopRecording();
     if (spStream) { spStream.getTracks().forEach(t => t.stop()); spStream = null; }
-    if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+    spStopModel();
     spUrls.forEach(url => URL.revokeObjectURL(url));
     spUrls = [];
 }
