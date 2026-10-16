@@ -49,12 +49,16 @@ The following are the main files and directories used by the project. Additional
 |---|---|
 | `index.html` | Main page and course/activity entry points |
 | `style.css` | Main site styling |
+| `site-chrome.css` | Styling for the header, footer, About Me section, and compact course hub |
+| `site-chrome.js` | Header and footer link behavior (works with `navigation.js`) |
 | `script.js` | JavaScript for the original Parts of Speech activity |
 | `toefl-listening.js` | Listening activity and audio-player behavior |
 | `listening-audio-scripts.json` | Source scripts and metadata used for listening audio generation |
 | `audio/listening/` | Generated listening audio assets |
 | `make_audio.py` | Python utility for generating audio with Gemini TTS |
 | `make_audio_edge.py` | Alternative Python utility for generating audio with Edge TTS |
+| `assets/images/` | Site images, including the About Me portrait (see `assets/images/README.md`) |
+| `ASSET_CREDITS.md` | Credits and usage terms for logos, images, fonts, and content references |
 | `README.md` | Project documentation |
 
 Other TOEFL or EST JavaScript and content files support individual activities. When adding or renaming files, update this table so it remains accurate.
@@ -143,6 +147,7 @@ The live site is hosted with GitHub Pages.
 - Never commit API keys, passwords, private credentials, or secret `.env` files.
 - A key used in a browser-based website is visible to visitors; keep provider API keys in maintainer-only environments.
 - Only publish content, questions, images, and audio that you created or have permission to use.
+- Record third-party visual assets and content references in `ASSET_CREDITS.md`.
 - Check repository changes before publishing, especially generated assets and configuration files.
 
 ## Quality checklist before a release

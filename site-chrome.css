@@ -1,0 +1,542 @@
+/* =========================================================
+   SITE CHROME: header, footer, About Me, compact course hub
+
+   Loaded AFTER style.css and toefl-reading.css so it can refine the
+   course-hub cards without editing those files. Everything here is
+   scoped to the header, footer, hub, and About sections; the lesson
+   and practice screens are not touched.
+
+   Fonts: system stacks only (no web fonts to load or credit).
+   ========================================================= */
+
+:root {
+    --sc-ink: #1e2a3a;
+    --sc-muted: #4b5563;
+    --sc-paper: #fbf8f3;       /* warm off-white panels */
+    --sc-line: #e7e0d4;        /* warm hairlines */
+    --sc-accent: #1d4ed8;      /* matches the existing site blue */
+    --sc-warm: #8a4b2a;        /* small warm accent for labels */
+    --sc-navy: #1b2b40;
+    --sc-serif: Georgia, "Times New Roman", Times, serif;
+}
+
+/* Keep in-page jumps clear of the sticky header (desktop only). */
+@media (min-width: 720px) {
+    html { scroll-padding-top: 76px; }
+}
+
+/* ---------- Accessibility helpers ---------- */
+
+.sc-visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.skip-link {
+    position: absolute;
+    left: 12px;
+    top: -60px;
+    z-index: 200;
+    padding: 10px 16px;
+    background: #fff;
+    color: var(--sc-ink);
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.skip-link:focus { top: 12px; }
+
+#main-content:focus,
+.hub-section-title:focus,
+.about-contact h3:focus { outline: none; }
+
+.site-header a:focus-visible,
+.site-footer a:focus-visible,
+.skip-link:focus-visible,
+.about-contact a:focus-visible,
+.course-card button:focus-visible {
+    outline: 3px solid var(--sc-accent);
+    outline-offset: 2px;
+}
+
+.site-footer a:focus-visible { outline-color: #fff; }
+
+/* ---------- Header ---------- */
+
+.site-header {
+    background: #fff;
+    border-bottom: 1px solid var(--sc-line);
+}
+
+.site-header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 8px 12px 6px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2px 16px;
+}
+
+.site-brand {
+    font-family: var(--sc-serif);
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.3;
+    color: var(--sc-ink);
+    text-decoration: none;
+    padding: 4px 2px;
+    border-radius: 6px;
+}
+
+.site-brand:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.site-nav { display: flex; gap: 2px; margin-left: -8px; }
+
+.site-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 0 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--sc-ink);
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.site-nav a:hover { background: #f1ede5; }
+
+@media (min-width: 720px) {
+    .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+    }
+
+    .site-header-inner {
+        padding: 10px 24px;
+        flex-wrap: nowrap;
+    }
+
+    .site-nav { margin-left: 0; }
+}
+
+/* ---------- Page spacing around the new header/footer ---------- */
+
+@media (min-width: 601px) {
+    .container { padding-top: 36px; padding-bottom: 48px; }
+}
+
+#welcome-screen { padding-bottom: 44px; }
+
+#welcome-screen h1 { font-family: var(--sc-serif); }
+
+/* ---------- Hub sections ---------- */
+
+.hub-section { margin-top: 40px; }
+
+.hub-section + .hub-section {
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid var(--sc-line);
+}
+
+.hub-section-title {
+    margin: 0 0 6px;
+    font-family: var(--sc-serif);
+    font-size: 30px;
+    line-height: 1.2;
+    text-align: center;
+}
+
+/* ---------- Course hub: compact, grouped cards ---------- */
+
+.course-groups { margin-top: 18px; text-align: left; }
+
+.course-group + .course-group { margin-top: 32px; }
+
+.course-group-title {
+    margin: 0 0 4px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sc-warm);
+}
+
+.course-group .course-group-note {
+    margin: 0 0 4px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--sc-muted);
+}
+
+.course-groups .course-grid {
+    display: grid;
+    gap: 14px;
+    margin: 12px 0 0;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+}
+
+.course-groups .course-grid-available {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+}
+
+.course-groups .course-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px;
+    border-radius: 14px;
+}
+
+.course-groups .course-card-active {
+    border: 2px solid var(--sc-accent);
+    background: #fff;
+}
+
+.course-groups .course-card-coming-soon:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.course-card-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.course-mark {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 46px;
+    height: 46px;
+    padding: 0 6px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    background: var(--sc-navy);
+    color: #fff;
+    font-family: var(--sc-serif);
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.02em;
+}
+
+.course-card-coming-soon .course-mark {
+    background: #e8e4db;
+    color: #4b4338;
+}
+
+.course-card-title h4 {
+    margin: 0 0 4px;
+    font-size: 18px;
+    line-height: 1.25;
+}
+
+.course-card .course-status {
+    display: inline-block;
+    margin: 0;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+}
+
+.course-status-available { background: #dbeafe; color: #1e3a8a; }
+.course-status-planned   { background: #eceae4; color: #4b4338; }
+
+.course-card .course-desc {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--sc-muted);
+}
+
+.course-groups .course-card .start-button,
+.course-groups .course-card .secondary-button {
+    width: auto;
+    align-self: flex-start;
+    margin-top: auto;
+    padding: 9px 16px;
+    border-radius: 9px;
+    font-size: 14.5px;
+}
+
+.course-groups .course-card .start-button { border: 0; }
+
+/* Planned courses: keep the same (alert-style) entry point, but visually quiet. */
+.course-groups .course-card-coming-soon .secondary-button {
+    border-width: 1px;
+    border-color: #b8b2a6;
+    color: #4b4338;
+    font-weight: 600;
+}
+
+.course-groups .course-card-coming-soon .secondary-button:hover { background: #f1ede5; }
+
+/* ---------- About Me ---------- */
+
+.about-panel {
+    margin-top: 22px;
+    padding: 28px;
+    background: var(--sc-paper);
+    border: 1px solid var(--sc-line);
+    border-radius: 16px;
+    text-align: left;
+}
+
+.about-layout {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
+}
+
+.about-portrait {
+    position: relative;
+    margin: 0;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #e5e1d8;
+    border: 1px solid var(--sc-line);
+}
+
+.about-portrait img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(100%) contrast(1.05);
+}
+
+.about-portrait.is-missing img { display: none; }
+
+.about-portrait-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--sc-serif);
+    font-size: 56px;
+    font-weight: bold;
+    letter-spacing: 0.04em;
+    color: #8b857a;
+}
+
+.about-text h3.about-name {
+    margin: 0 0 2px;
+    font-family: var(--sc-serif);
+    font-size: 28px;
+    line-height: 1.2;
+}
+
+.about-text .about-role {
+    margin: 0 0 16px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sc-warm);
+}
+
+.about-text p {
+    margin: 0 0 14px;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--sc-ink);
+}
+
+.about-text p.about-role { margin-bottom: 16px; font-size: 13px; color: var(--sc-warm); }
+
+.about-facts {
+    list-style: none;
+    margin: 20px 0 16px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 20px;
+}
+
+.about-facts li {
+    padding-left: 12px;
+    border-left: 3px solid var(--sc-accent);
+}
+
+.about-facts strong {
+    display: block;
+    font-family: var(--sc-serif);
+    font-size: 19px;
+    line-height: 1.3;
+}
+
+.about-facts span {
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--sc-muted);
+}
+
+.about-areas {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.about-areas li {
+    padding: 4px 12px;
+    background: #fff;
+    border: 1px solid var(--sc-line);
+    border-radius: 999px;
+    font-size: 14px;
+    color: var(--sc-ink);
+}
+
+.about-contact {
+    margin-top: 26px;
+    padding-top: 20px;
+    border-top: 1px dashed #d6cdbd;
+}
+
+.about-contact h3 {
+    margin: 0 0 6px;
+    font-family: var(--sc-serif);
+    font-size: 20px;
+}
+
+.about-contact p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.about-contact a {
+    color: var(--sc-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 700px) {
+    .hub-section-title { font-size: 26px; }
+
+    .about-panel { padding: 20px 16px; }
+
+    .about-layout {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .about-portrait {
+        width: 180px;
+        max-width: 60%;
+        margin: 0 auto;
+    }
+
+    .about-text h3.about-name,
+    .about-text .about-role { text-align: center; }
+}
+
+@media (max-width: 520px) {
+    .about-facts { grid-template-columns: 1fr; }
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+    margin-top: 8px;
+    background: var(--sc-navy);
+    color: #e5e9f0;
+}
+
+.site-footer-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 36px 12px 24px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 28px 40px;
+}
+
+.site-footer p { margin: 0; }
+
+.site-footer-name {
+    font-family: var(--sc-serif);
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 8px !important;
+}
+
+.site-footer-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #cbd5e1;
+    max-width: 38ch;
+}
+
+.site-footer-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 6px;
+}
+
+.site-footer-nav a {
+    display: inline-block;
+    padding: 4px 0;
+    color: #fff;
+    font-size: 15px;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.35);
+    text-underline-offset: 4px;
+}
+
+.site-footer-nav a:hover { text-decoration-color: #fff; }
+
+.site-footer-legal {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 16px 12px 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.site-footer-legal p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #cbd5e1;
+}
+
+@media (min-width: 720px) {
+    .site-footer-inner { padding: 40px 24px 28px; }
+    .site-footer-legal { padding-left: 24px; padding-right: 24px; }
+}
+
+@media (max-width: 600px) {
+    .site-footer-inner { grid-template-columns: 1fr; gap: 20px; }
+}
+
+/* ---------- Motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .course-card { transition: none; }
+    .course-card:hover { transform: none; }
+}

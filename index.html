@@ -7,11 +7,26 @@
 <title>Ahmad's English Platform</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="toefl-reading.css?v=2">
+    <link rel="stylesheet" href="site-chrome.css?v=1">
 </head>
 
 <body>
 
-    <main class="container">
+    <a class="skip-link" href="#main-content" data-skip>Skip to main content</a>
+
+    <header class="site-header">
+        <div class="site-header-inner">
+            <a class="site-brand" href="./" data-site-nav="top">Ahmad's English Platform</a>
+
+            <nav class="site-nav" aria-label="Primary">
+                <a href="#courses" data-site-nav="courses">Courses</a>
+                <a href="#about" data-site-nav="about">About Me</a>
+                <a href="#contact" data-site-nav="contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" id="main-content" tabindex="-1">
 
         <!-- Welcome Screen -->
 
@@ -24,7 +39,69 @@
         Learn English. Prepare smarter. Build confidence.
     </p>
 
-    <div id="courses-container" class="course-grid"></div>
+    <section class="hub-section" id="courses" aria-labelledby="courses-heading">
+        <h2 class="hub-section-title" id="courses-heading" tabindex="-1">Courses</h2>
+        <div id="courses-container" class="course-groups"></div>
+    </section>
+
+    <section class="hub-section" id="about" aria-labelledby="about-heading">
+        <h2 class="hub-section-title" id="about-heading" tabindex="-1">About Me</h2>
+
+        <div class="about-panel">
+            <div class="about-layout">
+
+                <!-- Add your photo at assets/images/ahmad-portrait.jpg (see assets/images/README.md).
+                     Until then the monogram placeholder is shown. -->
+                <figure class="about-portrait">
+                    <span class="about-portrait-fallback" aria-hidden="true">AA</span>
+                    <img src="assets/images/ahmad-portrait.jpg"
+                         alt="Portrait of Ahmad Abutalib"
+                         width="480" height="600"
+                         loading="lazy" decoding="async"
+                         onerror="this.parentNode.classList.add('is-missing')">
+                </figure>
+
+                <div class="about-text">
+                    <h3 class="about-name">Ahmad Abutalib</h3>
+                    <p class="about-role">English Language Arts teacher and IELTS specialist</p>
+
+                    <p>
+                        I'm an English teacher with more than eight years of experience,
+                        working across English teaching, test preparation, and teacher
+                        development. I hold a BA in English Language Arts and Literature
+                        and am Cambridge CELTA and Cambridge TTT certified.
+                    </p>
+
+                    <p>
+                        This platform brings that experience together in one place: clear
+                        explanations, focused practice, and a steady emphasis on building
+                        learners' confidence.
+                    </p>
+
+                    <ul class="about-facts" aria-label="Qualifications and experience">
+                        <li><strong>8+ years</strong><span>Teaching experience</span></li>
+                        <li><strong>BA</strong><span>English Language Arts and Literature</span></li>
+                        <li><strong>CELTA</strong><span>Cambridge certified</span></li>
+                        <li><strong>TTT</strong><span>Cambridge certified</span></li>
+                    </ul>
+
+                    <ul class="about-areas" aria-label="Areas of experience">
+                        <li>English teaching</li>
+                        <li>Test preparation</li>
+                        <li>Teacher development</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="about-contact" id="contact">
+                <h3 id="contact-heading" tabindex="-1">Contact</h3>
+                <p>
+                    Questions about the platform or its courses? Email
+                    <a href="mailto:AhmadAbutalib.ELT@gmail.com">AhmadAbutalib.ELT@gmail.com</a>.
+                </p>
+            </div>
+        </div>
+    </section>
 
 </section>
 
@@ -564,6 +641,34 @@
 </section>
     </main>
 
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+            <div class="site-footer-about">
+                <p class="site-footer-name">Ahmad's English Platform</p>
+                <p class="site-footer-desc">
+                    Interactive English lessons and test-preparation practice,
+                    created by Ahmad Abutalib.
+                </p>
+            </div>
+
+            <nav class="site-footer-nav" aria-label="Footer">
+                <ul>
+                    <li><a href="#courses" data-site-nav="courses">Courses</a></li>
+                    <li><a href="#about" data-site-nav="about">About Me</a></li>
+                    <li><a href="#contact" data-site-nav="contact">Contact</a></li>
+                    <li>
+                        <a href="https://github.com/AhmadAbutalibTEFL/AhmadsEnglishPlatform/blob/main/ASSET_CREDITS.md"
+                           target="_blank" rel="noopener noreferrer">Credits and attributions<span class="sc-visually-hidden"> (opens in a new tab)</span> ↗</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="site-footer-legal">
+            <p>© 2026 Ahmad Abutalib. Third-party materials remain the property of their respective owners.</p>
+        </div>
+    </footer>
+
 
     <script src="script.js"></script>
 <script src="toefl-reading-practice.js?v=1"></script>
@@ -575,5 +680,6 @@
 <script src="toefl-listening-practice.js?v=1"></script>
 <script src="toefl-listening.js?v=1"></script>
 <script src="navigation.js?v=1"></script>
+<script src="site-chrome.js?v=1"></script>
 </body>
 </html>

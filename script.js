@@ -2,56 +2,56 @@ const courses = [
     {
         id: "ela",
         title: "ELA",
-        icon: "📚",
+        mark: "ELA",
         description: "English Language Arts: reading, writing, language, and literary skills.",
         available: false
     },
     {
         id: "digital-sat",
         title: "Digital SAT",
-        icon: "🎯",
+        mark: "SAT",
         description: "Reading and Writing preparation organized by skills and difficulty.",
         available: false
     },
     {
         id: "est",
         title: "EST",
-        icon: "📝",
+        mark: "EST",
         description: "Structured EST preparation in Grammar, Reading, and Practice.",
         available: true
     },
     {
         id: "ielts",
         title: "IELTS",
-        icon: "🌍",
+        mark: "IELTS",
         description: "IELTS preparation for Listening, Reading, Writing, and Speaking.",
         available: false
     },
     {
     id: "toefl",
     title: "TOEFL",
-    icon: "🎓",
+    mark: "TOEFL",
     description: "TOEFL preparation covering Reading, Listening, Speaking, and Writing.",
     available: true
 },
     {
         id: "general-english",
         title: "General English",
-        icon: "💬",
+        mark: "GE",
         description: "Build practical English skills for communication and everyday use.",
         available: false
     },
     {
         id: "young-learners",
         title: "English for Young Learners",
-        icon: "🧩",
+        mark: "YL",
         description: "Engaging English learning designed for younger learners.",
         available: false
     },
     {
         id: "teacher-training",
         title: "Teacher Training",
-        icon: "👨‍🏫",
+        mark: "TT",
         description: "Professional development for English language teachers.",
         available: false
     }
@@ -304,55 +304,89 @@ const toeflSections = [
 ];
 
 
+function createCourseCard(course) {
+    const card = document.createElement("article");
+    card.className = "course-card " + (course.available ? "course-card-active" : "course-card-coming-soon");
+
+    const buttonLabel = course.available ? "Open Course →" : "Coming Soon";
+    const ariaLabel = course.available
+        ? "Open " + course.title + " course"
+        : course.title + " is planned and not available yet";
+
+    card.innerHTML = `
+        <div class="course-card-head">
+            <span class="course-mark" aria-hidden="true">${course.mark}</span>
+            <div class="course-card-title">
+                <h4>${course.title}</h4>
+                <span class="course-status ${course.available ? "course-status-available" : "course-status-planned"}">
+                    ${course.available ? "Available" : "Planned"}
+                </span>
+            </div>
+        </div>
+
+        <p class="course-desc">${course.description}</p>
+
+        <button type="button" class="${course.available ? "start-button" : "secondary-button"}" aria-label="${ariaLabel}">
+            ${buttonLabel}
+        </button>
+    `;
+
+    card.querySelector("button").onclick = function () {
+        if (course.id === "est") {
+            showESTCourse();
+        } else if (course.id === "toefl") {
+            showTOEFLCourse();
+        } else {
+            showComingSoon(course.title);
+        }
+    };
+
+    return card;
+}
+
 function displayCourses() {
     const container = document.getElementById("courses-container");
-
     container.innerHTML = "";
 
-    courses.forEach(course => {
+    const groups = [
+        {
+            title: "Available now",
+            note: "",
+            gridClass: "course-grid course-grid-available",
+            list: courses.filter(course => course.available)
+        },
+        {
+            title: "In planning",
+            note: "These courses are planned but not available yet.",
+            gridClass: "course-grid course-grid-planned",
+            list: courses.filter(course => !course.available)
+        }
+    ];
 
-        const card = document.createElement("div");
-        card.className = "course-card";
+    groups.forEach(group => {
+        if (!group.list.length) return;
 
-        if (course.available) {
-            card.classList.add("course-card-active");
-        } else {
-            card.classList.add("course-card-coming-soon");
+        const wrapper = document.createElement("div");
+        wrapper.className = "course-group";
+
+        const heading = document.createElement("h3");
+        heading.className = "course-group-title";
+        heading.textContent = group.title;
+        wrapper.appendChild(heading);
+
+        if (group.note) {
+            const note = document.createElement("p");
+            note.className = "course-group-note";
+            note.textContent = group.note;
+            wrapper.appendChild(note);
         }
 
-        card.innerHTML = `
-            <div class="course-icon">${course.icon}</div>
+        const grid = document.createElement("div");
+        grid.className = group.gridClass;
+        group.list.forEach(course => grid.appendChild(createCourseCard(course)));
+        wrapper.appendChild(grid);
 
-            <h3>${course.title}</h3>
-
-            <p>${course.description}</p>
-
-            <span class="course-status">
-                ${course.available ? "Available" : "Coming Soon"}
-            </span>
-
-            <button class="${course.available ? "start-button" : "secondary-button"}">
-                ${course.available ? "Open Course →" : "Coming Soon"}
-            </button>
-        `;
-
-        const button = card.querySelector("button");
-
- button.onclick = function () {
-
-    if (course.id === "est") {
-        showESTCourse();
-
-    } else if (course.id === "toefl") {
-        showTOEFLCourse();
-
-    } else {
-        showComingSoon(course.title);
-    }
-
-};
-
-        container.appendChild(card);
+        container.appendChild(wrapper);
     });
 }
 
