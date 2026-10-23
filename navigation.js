@@ -41,7 +41,8 @@
     /* ---------- routes ----------
        ""                                    course hub
        est                                   EST course
-       est/session-2                         EST session 2
+       est/session-2                         EST session 2 (has its own lesson screens)
+       est/session-<n>                       any other EST session outline (n = 1-21)
        est/session-2/learn|strategy|practice|results
        toefl                                 TOEFL course
        toefl/<section>                       section home (reading|listening|writing|speaking)
@@ -54,6 +55,19 @@
         if (!p.length) return { kind: "hub" };
         if (p[0] === "est") {
             if (p.length === 1) return { kind: "est" };
+            var m = /^session-(\d+)$/.exec(p[1] || "");
+            var num = m ? parseInt(m[1], 10) : 0;
+            if (num >= 1 && num <= 22 && (num !== 2 || p[2] === "lesson")) {
+                if (p.length === 2) return { kind: "estn", n: num };
+                var lessons = window.estLessons || {};
+                if (p[2] === "lesson" && lessons[p[3]] && lessons[p[3]].session === num) {
+                    if (p.length === 4) return { kind: "estlesson", n: num, id: p[3] };
+                    if (p.length === 5 && p[4] === "practice") return { kind: "estpractice", n: num, id: p[3] };
+                }
+                var tix = window.estTestIndex || {};
+                if (p[2] === "test" && p.length === 4 && tix[p[3]] && tix[p[3]].session === num) return { kind: "esttest", n: num, id: p[3] };
+                return { kind: "hub" };
+            }
             if (p[1] !== "session-2") return { kind: "hub" };
             if (p.length === 2) return { kind: "est2" };
             if (p.length === 3 && /^(learn|strategy|practice|results)$/.test(p[2])) return { kind: "pos", view: p[2] };
@@ -79,7 +93,9 @@
         switch (k.kind) {
             case "hub": return 0;
             case "est": case "toefl": return 1;
-            case "est2": case "section": return 2;
+            case "est2": case "estn": case "section": return 2;
+            case "estlesson": case "esttest": return 3;
+            case "estpractice": return 4;
             case "pos": return k.view === "results" ? 4 : 3;
             case "learn": case "hubview": return 3;
             case "set": return 4;
@@ -95,6 +111,10 @@
         switch (k.kind) {
             case "est": return "est";
             case "est2": return "est/session-2";
+            case "estn": return "est/session-" + k.n;
+            case "estlesson": return "est/session-" + k.n + "/lesson/" + k.id;
+            case "esttest": return "est/session-" + k.n + "/test/" + k.id;
+            case "estpractice": return "est/session-" + k.n + "/lesson/" + k.id + "/practice";
             case "pos": return "est/session-2/" + k.view;
             case "toefl": return "toefl";
             case "section": return build(["toefl", k.sec]);
@@ -223,6 +243,10 @@
             case "hub":   call("showCourseHub"); return "";
             case "est":   call("showESTCourse"); return "est";
             case "est2":  call("showESTSession2"); return "est/session-2";
+            case "estn":  call("showESTSession", k.n); return "est/session-" + k.n;
+            case "estlesson": call("showESTLesson", k.id); return canonical(route);
+            case "esttest": call("showESTTest", k.id); return canonical(route);
+            case "estpractice": call("showESTLessonPractice", k.id); return canonical(route);
             case "toefl": call("showTOEFLCourse"); return "toefl";
             case "pos":
                 if (k.view === "learn")    { call("showLearnMode");    return route; }
@@ -309,6 +333,11 @@
         wrap("showCourseHub",   function () { return ""; });
         wrap("showESTCourse",   function () { return "est"; });
         wrap("showESTSession2", function () { return "est/session-2"; });
+        wrap("showESTSession",  function (num) { return "est/session-" + num; });
+        var lessonRoute = function (id, tail) { var l = (window.estLessons || {})[id]; return l ? "est/session-" + l.session + "/lesson/" + id + tail : null; };
+        wrap("showESTLesson", function (id) { return lessonRoute(id, ""); });
+        wrap("showESTTest", function (id) { var t = (window.estTestIndex || {})[id]; return t ? "est/session-" + t.session + "/test/" + id : null; });
+        wrap("showESTLessonPractice", function (id) { return lessonRoute(id, "/practice"); });
         wrap("showLearnMode",   function () { return POS + "learn"; });
         wrap("showStrategyMode", function () { return POS + "strategy"; });
         wrap("startPractice",   function () { return POS + "practice"; }, { after: function () { quizAlive = true; resultsAlive = false; } });

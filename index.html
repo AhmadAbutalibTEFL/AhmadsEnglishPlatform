@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="toefl-reading.css?v=2">
     <link rel="stylesheet" href="site-chrome.css?v=1">
+    <link rel="stylesheet" href="est-course.css?v=4">
 </head>
 
 <body>
@@ -121,6 +122,67 @@
         </p>
     </div>
 
+    <div class="est-overview">
+
+        <h3 class="est-overview-heading">The exam: EST I HS Literacy (2026)</h3>
+
+        <p class="est-overview-text">
+            The Literacy test combines writing, reading, and integrated
+            reading-and-writing skills in one test.
+        </p>
+
+        <div class="est-stats">
+            <div class="est-stat"><strong>90 minutes</strong><span>Three modules of 30 minutes each</span></div>
+            <div class="est-stat"><strong>85 questions</strong><span>All multiple choice</span></div>
+            <div class="est-stat"><strong>3 modules</strong><span>Writing, Reading, Reading and Writing</span></div>
+        </div>
+
+        <div class="est-table-wrap">
+            <table class="est-module-table">
+                <caption class="sc-visually-hidden">EST I HS Literacy 2026 test structure</caption>
+                <thead>
+                    <tr><th scope="col">Module</th><th scope="col">Questions</th><th scope="col">Passages</th></tr>
+                </thead>
+                <tbody>
+                    <tr><th scope="row">1. Writing</th><td>35</td><td>2–3 passages, 300–800 words each</td></tr>
+                    <tr><th scope="row">2. Reading</th><td>25</td><td>2 passages, 400–800 words each</td></tr>
+                    <tr><th scope="row">3. Reading and Writing</th><td>25</td><td>Several short passages, 25–100 words each</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p class="est-source-note">
+            Source: EST High School Assessment Suite Description Document
+            (2026 Specifications), Academic Assessment Ltd.
+        </p>
+
+        <h3 class="est-overview-heading">How this course is organised</h3>
+
+        <dl class="est-key">
+            <div>
+                <dt>Official exam structure</dt>
+                <dd>The facts above come from the official 2026 specification.</dd>
+            </div>
+            <div>
+                <dt>The teaching sequence</dt>
+                <dd>22 sessions of about 90 minutes, built around Erica Meltzer’s grammar and reading books. Chapter titles and page numbers are cited so you can follow along. The books’ own text and exercises are not reproduced here.</dd>
+            </div>
+            <div>
+                <dt>Practice on this site</dt>
+                <dd>Original questions written for this platform. They teach the same skills but are not official EST questions, and a result here does not predict an official score.</dd>
+            </div>
+            <div>
+                <dt>Official EST questions</dt>
+                <dd>None are reproduced on this site.</dd>
+            </div>
+        </dl>
+
+        <h3 class="est-overview-heading">The 22 sessions</h3>
+
+        <p class="est-status-summary" id="est-status-summary"></p>
+
+    </div>
+
     <div id="est-sessions-container" class="session-list"></div>
 
     <button class="secondary-button" onclick="showCourseHub()">
@@ -180,9 +242,9 @@
             </span>
 
             <button
-                class="secondary-button"
-                onclick="showComingSoon('Vocabulary in Context')">
-                Coming Soon
+                class="start-button"
+                onclick="showESTLesson('vocabulary-in-context')">
+                Open Lesson →
             </button>
         </div>
 
@@ -218,6 +280,32 @@
     </div>
 
 </section>
+<!-- EST lesson and lesson practice (content in est-lessons.js) -->
+
+<section class="hero" id="est-lesson-screen" style="display: none;">
+    <div id="est-lesson-body"></div>
+</section>
+
+<!-- EST Session (generic outline for sessions other than 2) -->
+
+<section class="hero" id="est-session-screen" style="display: none;">
+
+    <div class="course-header">
+        <p class="course-label" id="est-session-label"></p>
+        <h2 id="est-session-title"></h2>
+        <p id="est-session-intro"></p>
+    </div>
+
+    <div id="est-session-components" class="est-session-components"></div>
+
+    <div class="session-navigation est-session-nav">
+        <button type="button" class="secondary-button" onclick="showESTCourse()">← Back to EST</button>
+        <button type="button" class="secondary-button" id="est-session-prev"></button>
+        <button type="button" class="secondary-button" id="est-session-next"></button>
+    </div>
+
+</section>
+
         <!-- TOEFL Course Screen -->
 
 
@@ -669,7 +757,11 @@
     </footer>
 
 
-    <script src="script.js"></script>
+    <script src="est-data.js?v=3"></script>
+<script src="est-enrich.js?v=1"></script>
+<script src="est-lessons.js?v=3"></script>
+<script src="est-lessons-2.js?v=2"></script>
+<script src="script.js?v=2"></script>
 <script src="toefl-reading-practice.js?v=1"></script>
 <script src="toefl-reading.js?v=4"></script>
 <script src="toefl-writing-practice.js?v=1"></script>
@@ -678,7 +770,7 @@
 <script src="toefl-speaking.js?v=2"></script>
 <script src="toefl-listening-practice.js?v=1"></script>
 <script src="toefl-listening.js?v=1"></script>
-<script src="navigation.js?v=1"></script>
+<script src="navigation.js?v=4"></script>
 <script src="site-chrome.js?v=1"></script>
 </body>
 </html>

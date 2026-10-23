@@ -57,197 +57,6 @@ const courses = [
     }
 ];
 
-const estSessions = [
-    {
-        number: 1,
-        grammar: "Ice Breaking & Introduction",
-        reading: "Diagnostic Test",
-        practice: "—",
-        available: false
-    },
-    {
-        number: 2,
-        grammar: "Parts of Speech",
-        grammarPage: "p. 9",
-        reading: "Vocabulary in Context",
-        readingPage: "p. 43",
-        practice: "Drill Exercises",
-        available: true
-    },
-    {
-        number: 3,
-        grammar: "Is it Relevant? Adding, Deleting, and Revising",
-        grammarPage: "p. 16",
-        reading: "Making the Leap: From Concrete to Abstract",
-        readingPage: "p. 65",
-        practice: "Drill Exercises",
-        available: false
-    },
-    {
-        number: 4,
-        grammar: "Sentence and Paragraph Order",
-        grammarPage: "p. 31",
-        reading: "The Big Picture",
-        readingPage: "p. 79",
-        practice: "Drill Exercises",
-        available: false
-    },
-    {
-        number: 5,
-        grammar: "Infographics",
-        grammarPage: "p. 40",
-        reading: "Supporting Evidence",
-        readingPage: "p. 117",
-        practice: "Drill Exercises",
-        available: false
-    },
-    {
-        number: 6,
-        grammar: "Shorter is Better",
-        grammarPage: "p. 53",
-        reading: "Literal Comprehension: Same Idea, Different Words",
-        readingPage: "p. 137",
-        practice: "Drill Exercises",
-        available: false
-    },
-    {
-        number: 7,
-        grammar: "Diction, Idioms, and Register",
-        grammarPage: "p. 61",
-        reading: "Reasonable Inferences",
-        readingPage: "p. 158",
-        practice: "Drill Exercises",
-        available: false
-    },
-    {
-        number: 8,
-        grammar: "Sentences and Fragments",
-        grammarPage: "p. 71",
-        reading: "Extended Reasoning and Analysis",
-        readingPage: "p. 189",
-        practice: "Practice Test 2",
-        available: false
-    },
-    {
-        number: 9,
-        grammar: "Combining & Separating Sentences",
-        grammarPage: "p. 85",
-        reading: "Function Questions",
-        readingPage: "p. 204",
-        practice: "Drill Exercises",
-        available: false
-    },
-    {
-        number: 10,
-        grammar: "Cumulative Review",
-        reading: "Tone and Attitude",
-        readingPage: "p. 232",
-        practice: "—",
-        available: false
-    },
-    {
-        number: 11,
-        grammar: "Transitions",
-        grammarPage: "p. 95",
-        reading: "Rhetorical Strategy",
-        readingPage: "p. 255",
-        practice: "Drill Exercises",
-        available: false
-    },
-    {
-        number: 12,
-        grammar: "Non-Essential & Essential Clauses",
-        grammarPage: "p. 113",
-        reading: "Paired Passages",
-        readingPage: "p. 276",
-        practice: "Drill Exercises",
-        available: false
-    },
-    {
-        number: 13,
-        grammar: "Additional Comma Uses and Misuses",
-        grammarPage: "p. 134",
-        reading: "Graphics and Data Analysis",
-        readingPage: "p. 300",
-        practice: "Drill Exercises",
-        available: false
-    },
-    {
-        number: 14,
-        grammar: "Colons and Dashes",
-        grammarPage: "p. 139",
-        reading: "Question Marks",
-        readingPage: "p. 143",
-        practice: "—",
-        available: false
-    },
-    {
-        number: 15,
-        grammar: "Apostrophes: Plural vs. Possessive",
-        grammarPage: "p. 144",
-        reading: "Pronoun and Noun Agreement",
-        readingPage: "p. 153",
-        practice: "Drill Exercises",
-        available: false
-    },
-    {
-        number: 16,
-        grammar: "Verbs: Agreement and Tense",
-        grammarPage: "p. 170",
-        reading: "Word Pairs and Comparisons",
-        readingPage: "p. 193",
-        practice: "Practice Test 3",
-        available: false
-    },
-    {
-        number: 17,
-        grammar: "Parallel Structure",
-        grammarPage: "p. 200",
-        reading: "Dangling and Misplaced Modifiers",
-        readingPage: "p. 210",
-        practice: "Drill Exercises",
-        available: false
-    },
-    {
-        number: 18,
-        grammar: "Relative Pronouns",
-        grammarPage: "p. 218",
-        reading: "Cumulative Review: All Punctuation and Transitions",
-        readingPage: "p. 163",
-        practice: "Drill Exercises",
-        available: false
-    },
-    {
-        number: 19,
-        grammar: "Session details not provided",
-        reading: "Session details not provided",
-        practice: "—",
-        available: false
-    },
-    {
-        number: 20,
-        grammar: "English Practice Test 1",
-        reading: "Drill Exercises",
-        practice: "—",
-        available: false
-    },
-    {
-        number: 21,
-        grammar: "English Practice Test 2",
-        reading: "Drill Exercises",
-        practice: "—",
-        available: false
-    },
-    {
-        number: 22,
-        grammar: "More Practice Tests",
-        reading: "Practice Test 4",
-        practice: "—",
-        available: false
-    }
-];
-
-
 const toeflSections = [
     {
         id: "reading",
@@ -447,64 +256,217 @@ function showTOEFLCourse() {
     });
 
 }
+// ===== EST course map (data lives in est-data.js) =====
+
+const EST_KIND_LABELS = {
+    intro: "Intro",
+    grammar: "Grammar",
+    reading: "Reading",
+    test: "Test",
+    revision: "Revision",
+    practice: "Practice"
+};
+
+const EST_KIND_ORDER = ["intro", "grammar", "reading", "test", "revision", "practice"];
+
+const EST_STATUS_TEXT = {
+    live: "Available",
+    prepared: "Prepared, not on the site yet",
+    planned: "Planned"
+};
+
+function estEscape(value) {
+    return String(value == null ? "" : value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+}
+
+function getESTSessionList() {
+    return Array.isArray(window.estSessions) ? window.estSessions : [];
+}
+
+function getESTSession(number) {
+    return getESTSessionList().find(session => session.number === Number(number)) || null;
+}
+
+function getESTSessionTitle(session) {
+    const parts = ["intro", "grammar", "reading", "test", "revision"]
+        .reduce((list, kind) => list.concat(
+            session.components.filter(c => c.kind === kind).map(c => c.short || c.title)
+        ), []);
+
+    return parts.length ? parts.join(" & ") : "Session " + session.number;
+}
+
+function getESTSessionStatus(session) {
+    const statuses = session.components.map(c => c.status);
+    const live = statuses.filter(s => s === "live").length;
+
+    if (live === statuses.length) return { id: "live", text: "Available" };
+    if (live > 0) return { id: "partial", text: "Partly available" };
+    if (statuses.indexOf("prepared") !== -1) return { id: "prepared", text: "In preparation" };
+    return { id: "planned", text: "Planned" };
+}
+
+function formatESTComponent(component) {
+    return estEscape(component.title) + (component.page ? " (p. " + component.page + ")" : "");
+}
+
+function getESTComponentSource(component) {
+    if (!component.book) return "";
+    const chapter = component.chapter === null || component.chapter === undefined
+        ? ""
+        : " \u00b7 Ch. " + component.chapter;
+    const page = component.page ? " \u00b7 p. " + component.page : "";
+    return "Erica Meltzer, " + component.book + chapter + page;
+}
+
+function displayESTStatusSummary() {
+    const target = document.getElementById("est-status-summary");
+    if (!target) return;
+
+    const lessons = [];
+    getESTSessionList().forEach(session => {
+        session.components.forEach(c => {
+            if (c.kind === "grammar" || c.kind === "reading") lessons.push(c);
+        });
+    });
+
+    const count = status => lessons.filter(c => c.status === status).length;
+
+    target.textContent =
+        "Grammar and Reading lessons: " + count("live") + " of " + lessons.length +
+        " on the site now, " + count("prepared") + " prepared and being added, " +
+        count("planned") + " planned.";
+}
+
 function displayESTSessions() {
     const container = document.getElementById("est-sessions-container");
 
     container.innerHTML = "";
 
-    estSessions.forEach(session => {
+    displayESTStatusSummary();
+
+    getESTSessionList().forEach(session => {
+
+        const status = getESTSessionStatus(session);
+        const isOpenable = status.id === "live" || status.id === "partial";
 
         const card = document.createElement("div");
         card.className = "session-card";
 
-        if (session.available) {
+        if (isOpenable) {
             card.classList.add("session-card-active");
         }
+
+        const rows = EST_KIND_ORDER.map(kind => {
+            const items = session.components.filter(c => c.kind === kind);
+            if (!items.length) return "";
+            return `
+            <div class="session-row">
+                <strong>${EST_KIND_LABELS[kind]}:</strong>
+                ${items.map(formatESTComponent).join("; ")}
+            </div>`;
+        }).join("");
 
         card.innerHTML = `
             <div class="session-number">
                 Session ${session.number}
             </div>
 
-            <h3>
-                ${session.available ? "Parts of Speech & Vocabulary in Context" : "EST Session " + session.number}
-            </h3>
+            <h3>${estEscape(getESTSessionTitle(session))}</h3>
 
-            <div class="session-row">
-                <strong>Grammar:</strong>
-                ${session.grammar}
-                ${session.grammarPage ? ` (${session.grammarPage})` : ""}
-            </div>
+            ${rows}
 
-            <div class="session-row">
-                <strong>Reading:</strong>
-                ${session.reading}
-                ${session.readingPage ? ` (${session.readingPage})` : ""}
-            </div>
+            <p class="est-session-status est-session-status-${status.id}">${status.text}</p>
 
-            <div class="session-row">
-                <strong>Practice:</strong>
-                ${session.practice}
-            </div>
-
-            <button
-                class="${session.available ? "start-button" : "secondary-button"} session-button">
-                ${session.available ? "Open Session →" : "Coming Soon"}
+            <button type="button"
+                class="${isOpenable ? "start-button" : "secondary-button"} session-button">
+                ${isOpenable ? "Open Session \u2192" : "View Session"}
             </button>
         `;
 
-        const button = card.querySelector("button");
-
-        button.onclick = function () {
-            if (session.available && session.number === 2) {
-                showESTSession2();
-            } else {
-                showComingSoon(`EST Session ${session.number}`);
-            }
-        };
+        card.querySelector("button").addEventListener("click", function () {
+            showESTSession(session.number);
+        });
 
         container.appendChild(card);
     });
+}
+
+function renderESTSession(session) {
+    const status = getESTSessionStatus(session);
+    const intros = {
+        live: "This session is available.",
+        partial: "Part of this session is available. The rest is on the way.",
+        prepared: "The teaching materials for this session are prepared and are being added to the site. Nothing here is open yet.",
+        planned: "This session is part of the course plan. Its lessons have not been prepared yet."
+    };
+
+    document.getElementById("est-session-label").textContent = "EST \u00b7 SESSION " + session.number;
+    document.getElementById("est-session-title").textContent = getESTSessionTitle(session);
+    document.getElementById("est-session-intro").textContent = intros[status.id];
+
+    const list = document.getElementById("est-session-components");
+    list.innerHTML = "";
+
+    EST_KIND_ORDER.forEach(kind => {
+        session.components.filter(c => c.kind === kind).forEach(component => {
+            const card = document.createElement("div");
+            card.className = "component-card est-component-card";
+
+            const source = getESTComponentSource(component);
+
+            card.innerHTML = `
+                <p class="est-component-kind">${EST_KIND_LABELS[kind]}</p>
+                <h3>${estEscape(component.title)}</h3>
+                ${source ? `<span class="component-source">${estEscape(source)}</span>` : ""}
+                <p class="est-component-status est-component-status-${component.status}">${EST_STATUS_TEXT[component.status]}</p>
+            `;
+
+            if (component.status === "live" && component.test) {
+                const testButton = document.createElement("button");
+                testButton.type = "button";
+                testButton.className = "start-button";
+                testButton.textContent = "Start Test \u2192";
+                testButton.addEventListener("click", function () { showESTTest(component.test); });
+                card.appendChild(testButton);
+            } else if (component.status === "live" && component.lesson) {
+                const lessonButton = document.createElement("button");
+                lessonButton.type = "button";
+                lessonButton.className = "start-button";
+                lessonButton.textContent = "Open Lesson \u2192";
+                lessonButton.addEventListener("click", function () { showESTLesson(component.lesson); });
+                card.appendChild(lessonButton);
+            } else if (component.status === "live" && component.action && typeof window[component.action] === "function") {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = "start-button";
+                button.textContent = "Open Lesson \u2192";
+                button.addEventListener("click", function () { window[component.action](); });
+                card.appendChild(button);
+            }
+
+            list.appendChild(card);
+        });
+    });
+
+    const previous = getESTSession(session.number - 1);
+    const next = getESTSession(session.number + 1);
+
+    const prevButton = document.getElementById("est-session-prev");
+    const nextButton = document.getElementById("est-session-next");
+
+    prevButton.style.display = previous ? "" : "none";
+    nextButton.style.display = next ? "" : "none";
+
+    prevButton.onclick = previous ? function () { showESTSession(previous.number); } : null;
+    nextButton.onclick = next ? function () { showESTSession(next.number); } : null;
+
+    if (previous) prevButton.textContent = "\u2190 Session " + previous.number;
+    if (next) nextButton.textContent = "Session " + next.number + " \u2192";
 }
 
 // ===== Parts of Speech Quiz =====
@@ -950,6 +912,32 @@ function showESTSession2() {
     hideAllScreens();
 
     document.getElementById("est-session-2-screen").style.display = "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function showESTSession(number) {
+    const session = getESTSession(number);
+
+    if (!session) {
+        showESTCourse();
+        return;
+    }
+
+    // Session 2 already has its own screen with the Parts of Speech lesson.
+    if (session.number === 2) {
+        showESTSession2();
+        return;
+    }
+
+    hideAllScreens();
+
+    renderESTSession(session);
+
+    document.getElementById("est-session-screen").style.display = "block";
 
     window.scrollTo({
         top: 0,
