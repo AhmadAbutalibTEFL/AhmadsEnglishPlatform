@@ -14,7 +14,7 @@ The current site includes learning activities and resources for:
 - **Parts of Speech** — an interactive grammar activity.
 - **EST preparation** — including an activity for Session 2.
 - **TOEFL preparation** — Reading, Writing, Speaking, and Listening sections.
-- **IELTS preparation** — a **preview**: dashboard, Guided Course overview, Practice Library and a Listening information hub. Lessons and practice activities are planned and not yet available.
+- **IELTS preparation** — Guided Course overview, Practice Library, Listening hub, introductory questionnaire, and eight strategy lessons with original text-based self-checks. Audio-based practice and full mock tests remain in development.
 
 The scope and completeness of each section may differ while the platform is being developed.
 
@@ -54,7 +54,8 @@ The following are the main files and directories used by the project. Additional
 | `site-chrome.js` | Header and footer link behavior (works with `navigation.js`) |
 | `script.js` | JavaScript for the original Parts of Speech activity |
 | `ielts/ielts.js` | IELTS dashboard, Guided Course overview, Practice Library and skill screens (`window.IELTS`; load before `navigation.js`) |
-| `ielts/listening-data.js` | IELTS Listening content data (parts, question types, planned features); pure data, load before `ielts.js` |
+| `ielts/listening-data.js` | IELTS Listening overview data (parts, question types, remaining planned features); pure data, load before `ielts.js` |
+| `ielts/ielts.js` | IELTS navigation, introductory questionnaire, and Listening teaching lessons with interactive self-checks |
 | `ielts/CONTENT_INVENTORY.md` | Record of IELTS resources, their sources and whether online publication permission is established |
 | `ielts/ielts.css` | IELTS-only styles (all classes prefixed `ielts-`) |
 | `toefl-listening.js` | Listening activity and audio-player behavior |
