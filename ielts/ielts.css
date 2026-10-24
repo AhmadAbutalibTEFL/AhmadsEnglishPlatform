@@ -108,3 +108,16 @@
   .ielts-option { padding: 11px 9px; }
   .ielts-correct-label { margin-left: 0; }
 }
+
+/* ---------- Listening teaching pathway ---------- */
+.ielts-lesson-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+.ielts-lesson-card { display:flex; flex-direction:column; align-items:flex-start; gap:6px; }
+.ielts-lesson-card .secondary-button { margin-top:auto; }
+.ielts-lesson-toolbar { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:0 0 16px; }
+.ielts-lesson-list { margin:8px 0 20px; padding-left:22px; }
+.ielts-lesson-list li { margin:0 0 9px; line-height:1.55; }
+.hero .ielts-root .ielts-worked-example { margin-top:18px; }
+.ielts-worked-example blockquote { margin:12px 0 18px; padding:14px 16px; border-left:4px solid #2563eb; background:#f8fafc; border-radius:0 10px 10px 0; line-height:1.65; }
+.ielts-practice-options { margin:12px 0 16px; }
+.ielts-lesson-check:disabled, .ielts-worked-example button:disabled { opacity:.55; cursor:not-allowed; }
+@media (max-width:700px) { .ielts-lesson-grid { grid-template-columns:1fr; } .ielts-lesson-toolbar { align-items:flex-start; flex-direction:column; gap:4px; } }

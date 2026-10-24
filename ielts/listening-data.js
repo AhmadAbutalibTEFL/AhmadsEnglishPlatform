@@ -41,7 +41,7 @@
         facts: [
             { label: "Parts", value: "4" },
             { label: "Questions", value: "40 (10 in each part)" },
-            { label: "Time", value: "About 30 minutes + 10 minutes transfer time for paper-based tests" },
+            { label: "Time", value: "About 30 minutes; where paper-based tests are offered, allow 10 additional minutes to transfer answers" },
             { label: "Recordings", value: "Heard once only" },
             { label: "Accents", value: "Several, e.g. British, Australian, New Zealand and North American" },
             { label: "Marking", value: "1 mark per correct answer, reported as a band score" }
@@ -65,9 +65,9 @@
                 id: "choose-match", title: "Choosing and matching",
                 summary: "Pick or link answers from options you are given.",
                 types: [
-                    { id: "multiple-choice", title: "Multiple choice", source: "instructor+official", session: 1, status: "planned",
+                    { id: "multiple-choice", title: "Multiple choice", source: "instructor+official", session: 1, status: "available",
                       summary: "Choose the correct answer from the options. Sometimes more than one answer is needed." },
-                    { id: "matching-classification", title: "Matching and classification", source: "instructor+official", session: 1, status: "planned",
+                    { id: "matching-classification", title: "Matching and classification", source: "instructor+official", session: 1, status: "available",
                       summary: "Match items from the recording to a list of options." }
                 ]
             },
@@ -75,9 +75,9 @@
                 id: "completion", title: "Completion",
                 summary: "Fill gaps using words or numbers from the recording, within a word limit.",
                 types: [
-                    { id: "form-note-table-flow-chart", title: "Form, note, table and summary completion", source: "official", session: null, status: "planned",
+                    { id: "form-note-table-flow-chart", title: "Form, note, table and summary completion", source: "official", session: null, status: "available",
                       summary: "Complete an outline of the main facts and ideas in the recording." },
-                    { id: "sentence-completion", title: "Sentence completion", source: "official", session: null, status: "planned",
+                    { id: "sentence-completion", title: "Sentence completion", source: "official", session: null, status: "available",
                       summary: "Complete sentences that summarise important information." }
                 ]
             },
@@ -85,7 +85,7 @@
                 id: "labelling", title: "Labelling",
                 summary: "Link what you hear to a visual.",
                 types: [
-                    { id: "plan-map-diagram", title: "Plan, map and diagram labelling", source: "official", session: null, status: "planned",
+                    { id: "plan-map-diagram", title: "Plan, map and diagram labelling", source: "official", session: null, status: "available",
                       summary: "Label a plan, map, diagram or set of pictures, following descriptions and directions." }
                 ]
             },
@@ -93,7 +93,7 @@
                 id: "short-answer", title: "Short answers",
                 summary: "Write brief answers to direct questions.",
                 types: [
-                    { id: "short-answer", title: "Short-answer questions", source: "official", session: null, status: "planned",
+                    { id: "short-answer", title: "Short-answer questions", source: "official", session: null, status: "available",
                       summary: "Answer questions with a few words, such as places, prices or times." }
                 ]
             }
@@ -106,12 +106,10 @@
         ],
 
         futureFeatures: [
-            "Listening lessons",
-            "Question-type practice",
+            "Audio-based question-type practice",
             "Full Listening tests",
-            "Answer review and explanations",
-            "Audio playback and transcripts",
-            "Progress tracking"
+            "Verified audio transcripts and answer keys",
+            "Saved progress tracking"
         ],
 
         resources: []
