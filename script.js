@@ -25,7 +25,7 @@ const courses = [
         title: "IELTS",
         mark: "IELTS",
         description: "IELTS preparation for Listening, Reading, Writing, and Speaking.",
-        available: false
+        status: "preview"
     },
     {
     id: "toefl",
@@ -113,29 +113,56 @@ const toeflSections = [
 ];
 
 
-function createCourseCard(course) {
-    const card = document.createElement("article");
-    card.className = "course-card " + (course.available ? "course-card-active" : "course-card-coming-soon");
+// Course status: "available" (fully usable), "preview" (opens, but most activities are still
+// being built) or "coming-soon". A course may set status explicitly; otherwise it is derived
+// from the older available flag, so existing course entries keep working unchanged.
+const COURSE_STATUS = {
+    "available": {
+        label: "Available", cardClass: "course-card-active", statusClass: "course-status-available",
+        buttonLabel: "Open Course →", buttonClass: "start-button",
+        aria: title => "Open " + title + " course"
+    },
+    "preview": {
+        label: "Preview", cardClass: "course-card-preview", statusClass: "course-status-preview",
+        buttonLabel: "Open Preview →", buttonClass: "secondary-button",
+        aria: title => "Open " + title + " preview. Most activities are not available yet"
+    },
+    "coming-soon": {
+        label: "Planned", cardClass: "course-card-coming-soon", statusClass: "course-status-planned",
+        buttonLabel: "Coming Soon", buttonClass: "secondary-button",
+        aria: title => title + " is planned and not available yet"
+    }
+};
 
-    const buttonLabel = course.available ? "Open Course →" : "Coming Soon";
-    const ariaLabel = course.available
-        ? "Open " + course.title + " course"
-        : course.title + " is planned and not available yet";
+function getCourseStatus(course) {
+    if (course.status && COURSE_STATUS[course.status]) return course.status;
+    return course.available ? "available" : "coming-soon";
+}
+
+function createCourseCard(course) {
+    const statusKey = getCourseStatus(course);
+    const status = COURSE_STATUS[statusKey];
+
+    const card = document.createElement("article");
+    card.className = "course-card " + status.cardClass;
+
+    const buttonLabel = status.buttonLabel;
+    const ariaLabel = status.aria(course.title);
 
     card.innerHTML = `
         <div class="course-card-head">
             <span class="course-mark" aria-hidden="true">${course.mark}</span>
             <div class="course-card-title">
                 <h4>${course.title}</h4>
-                <span class="course-status ${course.available ? "course-status-available" : "course-status-planned"}">
-                    ${course.available ? "Available" : "Planned"}
+                <span class="course-status ${status.statusClass}">
+                    ${status.label}
                 </span>
             </div>
         </div>
 
         <p class="course-desc">${course.description}</p>
 
-        <button type="button" class="${course.available ? "start-button" : "secondary-button"}" aria-label="${ariaLabel}">
+        <button type="button" class="${status.buttonClass}" aria-label="${ariaLabel}">
             ${buttonLabel}
         </button>
     `;
@@ -145,6 +172,8 @@ function createCourseCard(course) {
             showESTCourse();
         } else if (course.id === "toefl") {
             showTOEFLCourse();
+        } else if (course.id === "ielts" && typeof window.showIELTS === "function") {
+            window.showIELTS();
         } else {
             showComingSoon(course.title);
         }
@@ -162,13 +191,19 @@ function displayCourses() {
             title: "Available now",
             note: "",
             gridClass: "course-grid course-grid-available",
-            list: courses.filter(course => course.available)
+            list: courses.filter(course => getCourseStatus(course) === "available")
+        },
+        {
+            title: "Preview",
+            note: "These courses open, but most learning activities are still being built.",
+            gridClass: "course-grid course-grid-preview",
+            list: courses.filter(course => getCourseStatus(course) === "preview")
         },
         {
             title: "In planning",
             note: "These courses are planned but not available yet.",
             gridClass: "course-grid course-grid-planned",
-            list: courses.filter(course => !course.available)
+            list: courses.filter(course => getCourseStatus(course) === "coming-soon")
         }
     ];
 

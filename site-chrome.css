@@ -234,6 +234,16 @@
     letter-spacing: 0.02em;
 }
 
+/* Preview courses: clickable like available ones, but visibly "not finished". */
+.course-groups .course-card-preview {
+    border: 2px dashed #d97706;
+    background: #fff;
+}
+
+.course-card-preview .course-mark {
+    background: #92400e;
+}
+
 .course-card-coming-soon .course-mark {
     background: #e8e4db;
     color: #4b4338;
@@ -256,6 +266,7 @@
 
 .course-status-available { background: #dbeafe; color: #1e3a8a; }
 .course-status-planned   { background: #eceae4; color: #4b4338; }
+.course-status-preview   { background: #fef3c7; color: #92400e; }
 
 .course-card .course-desc {
     margin: 0;

@@ -48,9 +48,29 @@
        toefl/<section>                       section home (reading|listening|writing|speaking)
        toefl/<section>/learn/<task>          lesson + guided sets
        toefl/<section>/practice/<task>       practice hub
-       toefl/<section>/practice/<task>/<set> one practice set                          */
+       toefl/<section>/practice/<task>/<set> one practice set
+       ielts[?track=academic|general]        IELTS dashboard
+       ielts/<view>[?track=...]              view = course|library|listening|reading|writing|speaking */
+
+    var IELTS_VIEWS = { course: 1, library: 1, listening: 1, reading: 1, writing: 1, speaking: 1 };
+    var IELTS_TRACKS = { academic: 1, general: 1 };
+
+    function isIeltsRoute(route) { return /^ielts(\/|\?|$)/.test(route || ""); }
+    function stripQuery(route) { var i = route.indexOf("?"); return i < 0 ? route : route.slice(0, i); }
+
+    function parseIelts(route) {
+        var i = route.indexOf("?");
+        var query = i < 0 ? "" : route.slice(i + 1);
+        var m = /(?:^|&)track=([a-z]+)(?:&|$)/.exec(query);
+        var track = m && Object.prototype.hasOwnProperty.call(IELTS_TRACKS, m[1]) ? m[1] : "";
+        var p;
+        try { p = stripQuery(route).split("/").map(decodeURIComponent); } catch (e) { return { kind: "hub" }; }
+        var view = (p.length === 2 && Object.prototype.hasOwnProperty.call(IELTS_VIEWS, p[1])) ? p[1] : "";
+        return { kind: "ielts", view: view, track: track };
+    }
 
     function parse(route) {
+        if (isIeltsRoute(route)) return parseIelts(route);
         var p = route ? route.split("/").map(decodeURIComponent) : [];
         if (!p.length) return { kind: "hub" };
         if (p[0] === "est") {
@@ -93,6 +113,7 @@
         switch (k.kind) {
             case "hub": return 0;
             case "est": case "toefl": return 1;
+            case "ielts": return k.view ? 2 : 1;
             case "est2": case "estn": case "section": return 2;
             case "estlesson": case "esttest": return 3;
             case "estpractice": return 4;
@@ -110,6 +131,7 @@
         var k = parse(route);
         switch (k.kind) {
             case "est": return "est";
+            case "ielts": return "ielts" + (k.view ? "/" + k.view : "") + (k.track ? "?track=" + k.track : "");
             case "est2": return "est/session-2";
             case "estn": return "est/session-" + k.n;
             case "estlesson": return "est/session-" + k.n + "/lesson/" + k.id;
@@ -195,6 +217,14 @@
             return;
         }
 
+        // Only the IELTS track changed (Academic <-> General): same screen, so replace instead of stacking.
+        if (isIeltsRoute(current) && isIeltsRoute(route) && stripQuery(current) === stripQuery(route)) {
+            var tr = readState();
+            current = route;
+            replace(route, tr.trail, 0);
+            return;
+        }
+
         saveScrollNow();
         var st = readState();
         var trail = st.trail || [];
@@ -248,6 +278,10 @@
             case "esttest": call("showESTTest", k.id); return canonical(route);
             case "estpractice": call("showESTLessonPractice", k.id); return canonical(route);
             case "toefl": call("showTOEFLCourse"); return "toefl";
+            case "ielts":
+                if (!fn("showIELTS")) { call("showCourseHub"); return ""; }
+                call("showIELTS", k.view, k.track);     // IELTS.route() reports the track actually shown
+                return window.IELTS ? window.IELTS.route() : canonical(route);
             case "pos":
                 if (k.view === "learn")    { call("showLearnMode");    return route; }
                 if (k.view === "strategy") { call("showStrategyMode"); return route; }
@@ -345,6 +379,7 @@
         wrap("showResults",     function () { return POS + "results"; },  { after: function () { resultsAlive = true; } });
         wrap("exitPractice", function () { return null; }, { before: function () { quizAlive = false; } });
         wrap("showTOEFLCourse", function () { return "toefl"; });
+        wrap("showIELTS", function () { return window.IELTS ? window.IELTS.route() : null; });
 
         Object.keys(SECTIONS).forEach(function (sec) {
             var S = SECTIONS[sec];
