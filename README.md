@@ -182,3 +182,9 @@ The following are development priorities, not claims that the features are alrea
 ## Contributing and feedback
 
 This is an evolving educational project. When suggesting a change, describe the affected learning area, the issue or learning need, and how the expected behavior can be tested.
+
+### IELTS Listening audio mini-practice
+
+The IELTS Listening hub now includes six original audio-style mini activities (multiple choice, matching, directions/labelling, note completion, sentence completion, and short answer). The default playback uses the browser/device speech-synthesis voice, so pronunciation and voice selection vary by device; it is not an official IELTS recording. Answer feedback and the transcript are revealed after submission. Activities are designed for mobile screens and work without a backend.
+
+For generated audio files, the original scripts are in `ielts/audio-practice-scripts.json`. Use `make_ielts_audio_edge.py` to generate the IELTS MP3s with Edge TTS, without a Google AI Studio API key or Gemini token quota. From the repository root, install `edge-tts` with `python -m pip install edge-tts`, install FFmpeg and add it to PATH, then run `python make_ielts_audio_edge.py --dry-run`. Generate one test first with `python make_ielts_audio_edge.py --only ielts-l1-booking`, listen to the resulting file, and then run `python make_ielts_audio_edge.py` to generate all six tracks. Files are written to `audio/ielts-listening/`, separate from TOEFL assets. Edge TTS still needs an internet connection to Microsoft's speech service; it avoids Gemini quotas but is not offline. Completed MP3s are skipped on reruns unless `--force` is supplied.

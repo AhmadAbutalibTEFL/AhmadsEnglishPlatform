@@ -1,0 +1,17 @@
+IELTS map visual and compact navigation refinement
+
+Changes:
+- Replaced the always-wide desktop sidebar with a compact icon rail that expands on hover or keyboard focus. Tablet layout uses a similar narrower rail. Mobile retains the existing menu drawer.
+- Added an original accessible SVG campus map to the IELTS Plan, Map and Diagram Labelling lesson, including main entrance, reception, cafe, garden, library, compass direction, and a sample route.
+- The map is explicitly labelled as an illustrative teaching visual, not official IELTS content.
+
+Files changed:
+- site-chrome.css
+- ielts/ielts.js
+
+No TOEFL or EST files were modified. Audio MP3s and generator remain unchanged.
+
+Validation:
+- node --check ielts/ielts.js passed
+- node --check site-chrome.js passed
+- Browser visual/interaction testing still recommended before publishing.
