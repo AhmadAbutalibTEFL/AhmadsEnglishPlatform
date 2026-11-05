@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ahmad's English Platform</title>
+<title>Ahmad's English Academy · English Learning &amp; Test Preparation</title>
+    <!-- Google Fonts: Modern Neo-Grotesque & Monospace Numerical Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="toefl-reading.css?v=2">
     <link rel="stylesheet" href="site-chrome.css?v=4">
@@ -18,7 +22,24 @@
 
     <header class="site-header">
         <div class="site-header-inner">
-            <a class="site-brand" href="./" data-site-nav="top">Ahmad's English Platform</a>
+            <a class="site-brand academy-brand" href="./" data-site-nav="top">
+                <span class="modern-brand-logo" aria-hidden="true">
+                    <svg width="30" height="30" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="28" height="28" rx="8" fill="url(#brand-grad)"/>
+                        <path d="M7 20L14 8L21 20H17.5L14 13.5L10.5 20H7Z" fill="white"/>
+                        <defs>
+                            <linearGradient id="brand-grad" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#4F46E5"/>
+                                <stop offset="1" stop-color="#06B6D4"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </span>
+                <span class="academy-brand-text">
+                    <span class="academy-brand-title">Ahmad's English Academy</span>
+                    <span class="academy-brand-subtitle">English Language &amp; International Test Preparation</span>
+                </span>
+            </a>
 
             <nav class="site-nav" aria-label="Primary">
                 <a href="#courses" data-site-nav="courses">Courses</a>
@@ -33,12 +54,18 @@
         <!-- Welcome Screen -->
 
      <!-- Course Hub -->
-<section class="hero" id="welcome-screen">
+<section class="hero academy-hero" id="welcome-screen">
 
-    <h1>Ahmad's English Platform</h1>
+    <div class="modern-hero-pill" aria-label="Platform Overview">
+        <span class="pulse-live-dot" aria-hidden="true"></span>
+        <span class="modern-pill-text">INTERACTIVE ENGLISH LEARNING &amp; TEST PREPARATION</span>
+        <span class="modern-pill-arrow">→</span>
+    </div>
 
-    <p>
-        Learn English. Prepare smarter. Build confidence.
+    <h1 class="modern-hero-title">Master English Skills &amp; International Exams</h1>
+
+    <p class="modern-hero-tagline">
+        Interactive lessons, authentic test simulations, and guided strategy workouts for EST, TOEFL, IELTS, and English Language Arts—engineered for measurable mastery.
     </p>
 
     <section class="hub-section" id="courses" aria-labelledby="courses-heading">
@@ -65,22 +92,21 @@
 
                 <div class="about-text">
                     <h3 class="about-name">Ahmad Abutalib</h3>
-                    <p class="about-role">English Language teacher</p>
+                    <p class="about-role">Head of Faculty · International Exam Specialist</p>
 
                     <p>
-                        I'm an English Language Arts teacher and IELTS specialist with over eight years
-                        of experience across American-curriculum schools, online English teaching for
-                        young learners, and adult English language education. My expertise spans ELA,
-                        General English and ESL, academic writing, and test preparation for IELTS, TOEFL,
-                        Digital SAT, ACT, and EST. I also specialize in teacher training, curriculum development,
-                        and designing tailored learning experiences for diverse learners. I hold a BA in English
-                        Language Arts and Literature, along with Cambridge CELTA and TTT certifications.
+                        Welcome to Ahmad's English Academy. I am an English Language Arts specialist and international
+                        examination instructor with over eight years of academic experience across American-curriculum institutions,
+                        higher education preparatory programs, and adult language pedagogy. My expertise spans academic writing,
+                        discourse analysis, and high-stakes test preparation for IELTS, TOEFL, Digital SAT, ACT, and EST.
+                        I hold a BA in English Language Arts and Literature, along with official Cambridge CELTA and Cambridge TTT
+                        certifications in teacher training and curriculum development.
                     </p>
 
                     <p>
-                        This platform brings that experience together in one place: clear
-                        explanations, focused practice, and a steady emphasis on building
-                        learners' confidence.
+                        The Academy was founded on a simple conviction: top-tier examination results demand authentic materials,
+                        rigorous examiner rubrics, and systematic strategic guidance. Every module across this platform is engineered
+                        to cultivate genuine collegiate proficiency and Band 8.5+ mastery.
                     </p>
 
                     <ul class="about-facts" aria-label="Qualifications and experience">
@@ -741,10 +767,10 @@
     <footer class="site-footer">
         <div class="site-footer-inner">
             <div class="site-footer-about">
-                <p class="site-footer-name">Ahmad's English Platform</p>
+                <p class="site-footer-name">⚡ Ahmad's English Academy</p>
                 <p class="site-footer-desc">
-                    Interactive English lessons and test-preparation practice,
-                    created by Ahmad Abutalib.
+                    Next-generation English instruction and authentic international exam preparation.
+                    Directed by Ahmad Abutalib (BA, Cambridge CELTA &amp; TTT).
                 </p>
             </div>
 
@@ -758,7 +784,7 @@
         </div>
 
         <div class="site-footer-legal">
-            <p>© 2026 Ahmad Abutalib. Third-party materials remain the property of their respective owners.</p>
+            <p>© 2026 Ahmad's English Academy · Ahmad Abutalib. Authentic examination materials cited under fair educational use.</p>
         </div>
     </footer>
 
@@ -776,9 +802,14 @@
 <script src="toefl-speaking.js?v=2"></script>
 <script src="toefl-listening-practice.js?v=1"></script>
 <script src="toefl-listening.js?v=1"></script>
+<script src="ielts/ielts-content-engine.js?v=2.1"></script>
+<script src="ielts/curriculum-data.js?v=1"></script>
+<script src="ielts/question-adapter.js?v=1"></script>
 <script src="ielts/listening-data.js?v=2"></script>
 <script src="ielts/audio-practice.js?v=2"></script>
-<script src="ielts/ielts.js?v=5"></script>
+<script src="ielts/subskill-engine.js?v=1"></script>
+<script src="ielts/authentic-practice.js?v=1"></script>
+<script src="ielts/ielts.js?v=7"></script>
 <script src="navigation.js?v=5"></script>
 <script src="site-chrome.js?v=3"></script>
 </body>
