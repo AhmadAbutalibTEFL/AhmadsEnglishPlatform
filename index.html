@@ -1,816 +1,1004 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Ahmad's English Academy · English Learning &amp; Test Preparation</title>
-    <!-- Google Fonts: Modern Neo-Grotesque & Monospace Numerical Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="toefl-reading.css?v=2">
-    <link rel="stylesheet" href="site-chrome.css?v=4">
-    <link rel="stylesheet" href="est-course.css?v=4">
-    <link rel="stylesheet" href="ielts/ielts.css?v=5">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="BookMyClass connects students and parents with independent teachers to schedule one-off and weekly recurring lessons online.">
+<title>BookMyClass — Online Lesson Booking & Scheduling</title>
+<style>
+:root{--bg:#f3f5ff;--card:#fff;--ink:#1d2340;--mut:#6b7194;--pri:#5b5bf0;--acc:#2fc4b2;--line:#e1e5f6;--danger:#b00020;--danger-bg:#ffe9e9}
+@media(prefers-color-scheme:dark){:root{--bg:#12142a;--card:#1c1f3d;--ink:#eef0ff;--mut:#9aa0c8;--line:#2d315a;--danger:#ff8a9a;--danger-bg:#3b1822}}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;display:flex;flex-direction:column}
+.hero{background:linear-gradient(135deg,#5b5bf0,#2fc4b2);color:#fff;padding:20px 18px 54px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;max-width:760px;margin:0 auto 16px}
+.brand-link{display:inline-flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800;font-size:19px;letter-spacing:.2px;cursor:pointer}
+.brand-icon{width:32px;height:32px;border-radius:9px;background:rgba(255,255,255,.22);display:inline-flex;align-items:center;justify-content:center;font-weight:900;font-size:16px}
+.bar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.bar button{background:rgba(255,255,255,.22);color:#fff;border:0;border-radius:20px;padding:7px 14px;font-size:14px;cursor:pointer;font-family:inherit}
+.bar button:hover{background:rgba(255,255,255,.32)}
+.hero h1{max-width:760px;margin:0 auto;font-size:26px}
+.hero p{max-width:760px;margin:6px auto 0;opacity:.92;line-height:1.5}
+main{max-width:760px;width:100%;margin:-34px auto 32px;padding:0 14px;flex:1}
+main.wide{max-width:1120px}
+.card{background:var(--card);border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 4px 18px rgba(60,60,140,.1)}
+.card h2{margin:0 0 12px;font-size:17px;display:flex;gap:8px;align-items:center}
+.card h3{margin:0 0 8px;font-size:15px}
+.n{background:var(--pri);color:#fff;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none}
+select,input,textarea{width:100%;padding:12px;border:1.5px solid var(--line);border-radius:12px;font-size:16px;background:var(--card);color:var(--ink);margin-bottom:10px;font-family:inherit}
+input[type=checkbox]{width:auto;margin:0}
+input.t{width:auto;margin:0;padding:8px}
+textarea{min-height:80px;resize:vertical}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:9px 14px;font-size:14px;cursor:pointer;font-family:inherit}
+.chip.on{background:var(--pri);border-color:var(--pri);color:#fff}
+.chip.danger{color:var(--danger);border-color:var(--line)}
+.chip small{display:block;opacity:.75}
+.btn{width:100%;border:0;border-radius:14px;padding:14px;font-size:16px;font-weight:600;color:#fff;background:var(--pri);cursor:pointer;font-family:inherit}
+.btn.g{background:var(--card);color:var(--ink);border:1.5px solid var(--line)}
+.btn.d{background:var(--danger-bg);color:var(--danger);border:1.5px solid var(--danger)}
+.btn.w{background:#25d366;display:block;text-align:center;text-decoration:none;margin-top:10px}
+a.btn{display:block;text-align:center;text-decoration:none;margin-top:10px}
+.mut{color:var(--mut);font-size:14px;line-height:1.5}
+.err{background:var(--danger-bg);color:var(--danger);padding:10px 12px;border-radius:10px;margin-bottom:10px;font-size:14px}
+.okb{background:#e3f8ef;color:#0b6b47;padding:10px 12px;border-radius:10px;margin-bottom:10px;font-size:14px}
+.ok{text-align:center}.ok .big{font-size:44px}
+.bk{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;padding:12px 0;border-top:1px solid var(--line)}
+.bk:first-of-type{border-top:0;padding-top:0}
+.bk a{color:var(--pri);font-size:14px}
+.tc{display:flex;gap:14px;align-items:center}
+.tc h2{margin:0 0 4px;font-size:19px}.tc p{margin:0}
+.av{flex:none;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#5b5bf0,#2fc4b2);color:#fff;font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.av img{width:100%;height:100%;object-fit:cover}
+.fl{font-size:13px;color:var(--mut);margin:0 0 4px;display:block}
+.day{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--line);align-items:flex-start}
+.day:first-of-type{border-top:0}
+.day b{width:90px;flex:none;padding-top:8px}
+.day .rs{display:flex;flex-direction:column;gap:8px;flex:1}
+.lk{display:flex;gap:8px;align-items:stretch}.lk input{margin:0;direction:ltr}
+.ck{display:flex;gap:8px;padding:6px 0;font-size:15px;align-items:center}
+.ck a{color:var(--pri);cursor:pointer;text-decoration:underline}
+.sub{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.feat{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--bg)}
+.feat b{display:block;margin-bottom:4px;font-size:15px}
+.calwrap{overflow-x:auto;padding-bottom:8px}
+.calgrid{display:grid;grid-template-columns:repeat(7,minmax(148px,1fr));gap:8px;min-width:1040px}
+.timetable-wrap{overflow:auto;margin-top:12px}.timetable{display:grid;grid-template-columns:72px repeat(7,minmax(112px,1fr));min-width:930px;border-top:1px solid var(--line);border-left:1px solid var(--line);gap:0}.tt-head,.tt-time,.tt-cell{min-height:42px;padding:6px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-size:12px}.tt-head{position:sticky;top:0;background:var(--card);font-weight:700;text-align:center;z-index:1}.tt-time{background:var(--bg);font-variant-numeric:tabular-nums;color:var(--muted);text-align:center}.tt-cell{background:var(--bg)}.tt-free{background:#eaf7ee}.tt-free button{border:0;border-radius:8px;background:#c9ebd3;color:#14532d;font-weight:800;width:28px;height:26px;cursor:pointer}.tt-booked{background:#eee9fb;color:#49317e}.tt-booked small{display:block;font-size:10px}.tt-occupied{background:#f2eff9}.tt-closed{background:var(--bg);opacity:.5}.tt-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:10px}
+.calday{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;min-height:220px}
+.calday.single{min-height:auto}
+.calday h3{font-size:14px;margin:0 0 8px}
+.calfree{font-size:12px;color:#087b5b;background:#dff7ed;border-radius:8px;padding:8px;margin:6px 0}
+.calbook{font-size:12px;background:#e7e8ff;border-inline-start:4px solid var(--pri);border-radius:8px;padding:8px;margin:6px 0;color:#1d2340}
+.calbook small{display:block;color:#4a5072;margin-top:3px}
+.calempty{font-size:12px;color:var(--mut);padding:8px 0}
+.calnav{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600;background:rgba(91,91,240,.14);color:var(--pri);margin-inline-start:6px}
+.modal-bg{position:fixed;inset:0;background:rgba(15,18,38,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:100}
+.modal{background:var(--card);color:var(--ink);border-radius:18px;max-width:440px;width:100%;padding:20px;box-shadow:0 12px 36px rgba(0,0,0,.28)}
+.modal h3{margin:0 0 8px;font-size:18px}
+.modal .stack{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+footer.site-footer{max-width:760px;width:100%;margin:0 auto 28px;padding:14px 18px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:13px;color:var(--mut)}
+footer.site-footer a{color:var(--pri);text-decoration:none;font-weight:500}
+footer.site-footer a:hover{text-decoration:underline}
+@media(max-width:640px){.day{flex-direction:column;gap:4px}.day b{width:auto;padding:0}.g2,.g3{grid-template-columns:1fr}}
+code{background:var(--bg);padding:2px 8px;border-radius:8px;font-size:15px;direction:ltr;display:inline-block}
+</style>
 </head>
-
 <body>
-
-    <a class="skip-link" href="#main-content" data-skip>Skip to main content</a>
-
-    <header class="site-header">
-        <div class="site-header-inner">
-            <a class="site-brand academy-brand" href="./" data-site-nav="top">
-                <span class="modern-brand-logo" aria-hidden="true">
-                    <svg width="30" height="30" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="28" height="28" rx="8" fill="url(#brand-grad)"/>
-                        <path d="M7 20L14 8L21 20H17.5L14 13.5L10.5 20H7Z" fill="white"/>
-                        <defs>
-                            <linearGradient id="brand-grad" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#4F46E5"/>
-                                <stop offset="1" stop-color="#06B6D4"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                </span>
-                <span class="academy-brand-text">
-                    <span class="academy-brand-title">Ahmad's English Academy</span>
-                    <span class="academy-brand-subtitle">English Language &amp; International Test Preparation</span>
-                </span>
-            </a>
-
-            <nav class="site-nav" aria-label="Primary">
-                <a href="#courses" data-site-nav="courses">Courses</a>
-                <a href="#about" data-site-nav="about">About Me</a>
-                <a href="#contact" data-site-nav="contact">Contact</a>
-            </nav>
-        </div>
-    </header>
-
-    <main class="container" id="main-content" tabindex="-1">
-
-        <!-- Welcome Screen -->
-
-     <!-- Course Hub -->
-<section class="hero academy-hero" id="welcome-screen">
-
-    <div class="modern-hero-pill" aria-label="Platform Overview">
-        <span class="pulse-live-dot" aria-hidden="true"></span>
-        <span class="modern-pill-text">INTERACTIVE ENGLISH LEARNING &amp; TEST PREPARATION</span>
-        <span class="modern-pill-arrow">→</span>
+<div class="hero">
+  <div class="bar">
+    <a class="brand-link" onclick="nav(null)" href="javascript:void(0)">
+      <span class="brand-icon">B</span>
+      <span>BookMyClass</span>
+    </a>
+    <div class="bar-right">
+      <span id="who" style="font-size:13px;opacity:.92"></span>
+      <span id="btns" class="row"></span>
     </div>
-
-    <h1 class="modern-hero-title">Master English Skills &amp; International Exams</h1>
-
-    <p class="modern-hero-tagline">
-        Interactive lessons, authentic test simulations, and guided strategy workouts for EST, TOEFL, IELTS, and English Language Arts—engineered for measurable mastery.
-    </p>
-
-    <section class="hub-section" id="courses" aria-labelledby="courses-heading">
-        <h2 class="hub-section-title" id="courses-heading" tabindex="-1">Courses</h2>
-        <div id="courses-container" class="course-groups"></div>
-    </section>
-
-    <section class="hub-section" id="about" aria-labelledby="about-heading">
-        <h2 class="hub-section-title" id="about-heading" tabindex="-1">About Me</h2>
-
-        <div class="about-panel">
-            <div class="about-layout">
-
-                <!-- Add your photo at assets/images/ahmad-portrait.jpg (see assets/images/README.md).
-                     Until then the monogram placeholder is shown. -->
-                <figure class="about-portrait">
-                    <span class="about-portrait-fallback" aria-hidden="true">AA</span>
-                    <img src="assets/images/ahmad-portrait.jpg"
-                         alt="Portrait of Ahmad Abutalib"
-                         width="480" height="600"
-                         loading="lazy" decoding="async"
-                         onerror="this.parentNode.classList.add('is-missing')">
-                </figure>
-
-                <div class="about-text">
-                    <h3 class="about-name">Ahmad Abutalib</h3>
-                    <p class="about-role">Head of Faculty · International Exam Specialist</p>
-
-                    <p>
-                        Welcome to Ahmad's English Academy. I am an English Language Arts specialist and international
-                        examination instructor with over eight years of academic experience across American-curriculum institutions,
-                        higher education preparatory programs, and adult language pedagogy. My expertise spans academic writing,
-                        discourse analysis, and high-stakes test preparation for IELTS, TOEFL, Digital SAT, ACT, and EST.
-                        I hold a BA in English Language Arts and Literature, along with official Cambridge CELTA and Cambridge TTT
-                        certifications in teacher training and curriculum development.
-                    </p>
-
-                    <p>
-                        The Academy was founded on a simple conviction: top-tier examination results demand authentic materials,
-                        rigorous examiner rubrics, and systematic strategic guidance. Every module across this platform is engineered
-                        to cultivate genuine collegiate proficiency and Band 8.5+ mastery.
-                    </p>
-
-                    <ul class="about-facts" aria-label="Qualifications and experience">
-                        <li><strong>8+ years</strong><span>Teaching experience</span></li>
-                        <li><strong>BA</strong><span>English Language Arts and Literature</span></li>
-                        <li><strong>CELTA</strong><span>Cambridge certified</span></li>
-                        <li><strong>TTT</strong><span>Cambridge certified</span></li>
-                    </ul>
-
-                    <ul class="about-areas" aria-label="Areas of experience">
-                        <li>English teaching</li>
-                        <li>Test preparation</li>
-                        <li>Teacher development</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="about-contact" id="contact">
-                <h3 id="contact-heading" tabindex="-1">Contact</h3>
-                <p>
-                    Questions about the platform or its courses? Email
-                    <a href="mailto:AhmadAbutalib.ELT@gmail.com">AhmadAbutalib.ELT@gmail.com</a>.
-                </p>
-            </div>
-        </div>
-    </section>
-
-</section>
-
-        <!-- EST Course Screen -->
-<section class="hero" id="est-course-screen" style="display: none;">
-
-    <div class="course-header">
-        <p class="course-label">COURSE</p>
-        <h2>EST Preparation</h2>
-
-        <p>
-            A structured preparation program combining Grammar,
-            Reading, and focused practice.
-        </p>
-    </div>
-
-    <div class="est-overview">
-
-        <h3 class="est-overview-heading">The exam: EST I HS Literacy (2026)</h3>
-
-        <p class="est-overview-text">
-            The Literacy test combines writing, reading, and integrated
-            reading-and-writing skills in one test.
-        </p>
-
-        <div class="est-stats">
-            <div class="est-stat"><strong>90 minutes</strong><span>Three modules of 30 minutes each</span></div>
-            <div class="est-stat"><strong>85 questions</strong><span>All multiple choice</span></div>
-            <div class="est-stat"><strong>3 modules</strong><span>Writing, Reading, Reading and Writing</span></div>
-        </div>
-
-        <div class="est-table-wrap">
-            <table class="est-module-table">
-                <caption class="sc-visually-hidden">EST I HS Literacy 2026 test structure</caption>
-                <thead>
-                    <tr><th scope="col">Module</th><th scope="col">Questions</th><th scope="col">Passages</th></tr>
-                </thead>
-                <tbody>
-                    <tr><th scope="row">1. Writing</th><td>35</td><td>2–3 passages, 300–800 words each</td></tr>
-                    <tr><th scope="row">2. Reading</th><td>25</td><td>2 passages, 400–800 words each</td></tr>
-                    <tr><th scope="row">3. Reading and Writing</th><td>25</td><td>Several short passages, 25–100 words each</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <p class="est-source-note">
-            Source: EST High School Assessment Suite Description Document
-            (2026 Specifications), Academic Assessment Ltd.
-        </p>
-
-        <h3 class="est-overview-heading">How this course is organised</h3>
-
-        <dl class="est-key">
-            <div>
-                <dt>Official exam structure</dt>
-                <dd>The facts above come from the official 2026 specification.</dd>
-            </div>
-            <div>
-                <dt>The teaching sequence</dt>
-                <dd>22 sessions of about 90 minutes, built around Erica Meltzer’s grammar and reading books. Chapter titles and page numbers are cited so you can follow along. The books’ own text and exercises are not reproduced here.</dd>
-            </div>
-            <div>
-                <dt>Practice on this site</dt>
-                <dd>Original questions written for this platform. They teach the same skills but are not official EST questions, and a result here does not predict an official score.</dd>
-            </div>
-            <div>
-                <dt>Official EST questions</dt>
-                <dd>None are reproduced on this site.</dd>
-            </div>
-        </dl>
-
-        <h3 class="est-overview-heading">The 22 sessions</h3>
-
-        <p class="est-status-summary" id="est-status-summary"></p>
-
-    </div>
-
-    <div id="est-sessions-container" class="session-list"></div>
-
-    <button class="secondary-button" onclick="showCourseHub()">
-        ← Back to Courses
-    </button>
-
-</section>
-        
-<!-- EST Session 2 -->
-
-<section class="hero" id="est-session-2-screen" style="display: none;">
-
-    <div class="course-header">
-
-        <p class="course-label">EST · SESSION 2</p>
-
-        <h2>Parts of Speech & Vocabulary in Context</h2>
-
-        <p>
-            Build the grammar and reading foundations needed for EST success.
-        </p>
-
-    </div>
-
-    <div class="session-components">
-
-        <div class="component-card">
-            <div class="component-icon">📘</div>
-
-            <h3>Grammar</h3>
-
-            <p>
-                Parts of Speech
-            </p>
-
-            <span class="component-source">
-                Erica Meltzer · p. 9
-            </span>
-
-            <button class="start-button" onclick="showLearnMode()">
-                Open Lesson →
-            </button>
-        </div>
-
-
-        <div class="component-card">
-            <div class="component-icon">📖</div>
-
-            <h3>Reading</h3>
-
-            <p>
-                Vocabulary in Context
-            </p>
-
-            <span class="component-source">
-                Erica Meltzer · p. 43
-            </span>
-
-            <button
-                class="start-button"
-                onclick="showESTLesson('vocabulary-in-context')">
-                Open Lesson →
-            </button>
-        </div>
-
-
-        <div class="component-card">
-            <div class="component-icon">🎯</div>
-
-            <h3>Practice</h3>
-
-            <p>
-                Drill Exercises
-            </p>
-
-            <span class="component-source">
-                EST Practice
-            </span>
-
-            <button
-                class="secondary-button"
-                onclick="showComingSoon('EST Drill Exercises')">
-                Coming Soon
-            </button>
-        </div>
-
-    </div>
-
-    <div class="session-navigation">
-
-        <button class="secondary-button" onclick="showESTCourse()">
-            ← Back to EST
-        </button>
-
-    </div>
-
-</section>
-<!-- EST lesson and lesson practice (content in est-lessons.js) -->
-
-<section class="hero" id="est-lesson-screen" style="display: none;">
-    <div id="est-lesson-body"></div>
-</section>
-
-<!-- EST Session (generic outline for sessions other than 2) -->
-
-<section class="hero" id="est-session-screen" style="display: none;">
-
-    <div class="course-header">
-        <p class="course-label" id="est-session-label"></p>
-        <h2 id="est-session-title"></h2>
-        <p id="est-session-intro"></p>
-    </div>
-
-    <div id="est-session-components" class="est-session-components"></div>
-
-    <div class="session-navigation est-session-nav">
-        <button type="button" class="secondary-button" onclick="showESTCourse()">← Back to EST</button>
-        <button type="button" class="secondary-button" id="est-session-prev"></button>
-        <button type="button" class="secondary-button" id="est-session-next"></button>
-    </div>
-
-</section>
-
-        <!-- TOEFL Course Screen -->
-
-
-<!-- TOEFL Course Overview -->
-
-
-<!-- TOEFL Course Overview -->
-
-<section class="hero" id="toefl-course-screen" style="display: none;">
-
-    <div class="course-header">
-        <p class="course-label">TOEFL iBT · 2026 FORMAT</p>
-
-        <h2>TOEFL Preparation</h2>
-
-        <p>
-            Prepare for the current TOEFL iBT with focused lessons,
-            practical strategies, and interactive practice across
-            all four skills.
-        </p>
-    </div>
-
-    <!-- Test Overview -->
-
-    <div class="toefl-overview-stats">
-
-        <div class="toefl-stat">
-            <strong>~2 hours</strong>
-            <span>Approximate total test time</span>
-        </div>
-
-        <div class="toefl-stat">
-            <strong>4 sections</strong>
-            <span>Reading, Listening, Writing, Speaking</span>
-        </div>
-
-        <div class="toefl-stat">
-            <strong>Adaptive</strong>
-            <span>Items and timing may vary</span>
-        </div>
-
-    </div>
-
-    <p class="toefl-format-note">
-        Test time excludes directions. The test adapts, so the
-        actual number of items and duration may vary.
-    </p>
-
-    <p class="toefl-source-link">
-        <a
-            href="https://www.ets.org/toefl/test-takers/ibt/about/content.html?version=after-jan-2026"
-            target="_blank"
-            rel="noopener noreferrer">
-            View the official TOEFL iBT format ↗
-        </a>
-    </p>
-
-    <!-- Four Skills -->
-
-    <h3 class="toefl-overview-heading">Explore the Four Sections</h3>
-
-    <div id="toefl-sections-container" class="toefl-sections-grid"></div>
-
-    <!-- First Activity -->
-
-    <div class="toefl-next-up">
-
-        <p class="course-label">FIRST INTERACTIVE ACTIVITY</p>
-
-        <h3>Reading: Complete the Words</h3>
-
-        <p>
-            Practise vocabulary, word formation, and context clues
-            through an original interactive reading activity.
-        </p>
-
-        <button class="start-button" onclick="showTOEFLReading()">Start Reading Pass →</button>
-
-    </div>
-
-    <button class="secondary-button" onclick="showCourseHub()">
-        ← Back to Courses
-    </button>
-
-</section>
-
-<section class="hero" id="toefl-reading-screen" style="display: none;">
-    <div class="course-header">
-        <p class="course-label">TOEFL iBT · READING</p>
-        <h2>Reading Skills Lab</h2>
-        <p>Learn the task, use a clear strategy, and practise with original questions and explanations.</p>
-    </div>
-
-    <div class="toefl-reading-shell">
-        <div class="toefl-reading-back-row">
-            <button type="button" class="secondary-button" onclick="showTOEFLCourse()">← Back to TOEFL</button>
-        </div>
-
-        <div id="toefl-reading-home">
-            <div class="toefl-reading-intro">
-                <h3>What are you practising?</h3>
-                <p>The TOEFL Reading section uses short, practical texts and academic passages. You need to understand meaning, locate details, and use context—not just recognise individual words.</p>
-                <p>Work through the three task types below. Each includes a task explanation, a strategy, common mistakes, and two original practice sets with feedback.</p>
-            </div>
-
-            <div class="toefl-reading-targets">
-                <div class="toefl-reading-target"><strong>🔤 Complete the Words</strong><span>Context clues, vocabulary, word forms, and grammar.</span></div>
-                <div class="toefl-reading-target"><strong>📩 Read in Daily Life</strong><span>Notices, messages, schedules, and everyday purposes.</span></div>
-                <div class="toefl-reading-target"><strong>🔬 Read an Academic Passage</strong><span>Main idea, details, vocabulary, inference, and purpose.</span></div>
-            </div>
-
-            <div class="toefl-reading-progress-wrap">
-                <div class="toefl-reading-progress-caption"><strong>Your Reading progress</strong><span id="toefl-reading-overall-progress">0 of 3 task types completed</span></div>
-                <div class="toefl-reading-progress-track"><div class="toefl-reading-progress-bar" id="toefl-reading-overall-bar"></div></div>
-            </div>
-
-            <h3 class="toefl-overview-heading">Choose a task type</h3>
-            <div id="toefl-reading-task-grid" class="toefl-reading-task-grid"></div>
-        </div>
-
-        <div id="toefl-reading-activity" style="display: none;"></div>
-    </div>
-</section>
-
-
-<section class="hero" id="toefl-writing-screen" style="display: none;">
-    <div class="course-header">
-        <p class="course-label">TOEFL iBT · WRITING</p>
-        <h2>Writing Skills Lab</h2>
-        <p>Learn each task, use a clear strategy, then practise with original prompts, checklists, and model responses.</p>
-    </div>
-
-    <div class="toefl-reading-shell">
-        <div class="toefl-reading-back-row">
-            <button type="button" class="secondary-button" onclick="showTOEFLCourse()">← Back to TOEFL</button>
-        </div>
-
-        <div id="toefl-writing-home">
-            <div class="toefl-reading-intro">
-                <h3>What are you practising?</h3>
-                <p>The TOEFL Writing section checks whether you can build accurate sentences and communicate clearly in practical and academic situations. Grammar, organisation, and appropriateness all matter.</p>
-                <p>Work through the three task types below. Each has a Learn page with explanations and guided practice, and a separate Practice page with a larger bank and saved progress.</p>
-            </div>
-
-            <div class="toefl-reading-targets">
-                <div class="toefl-reading-target"><strong>🧩 Build a Sentence</strong><span>Word order, questions, clauses, and verb forms.</span></div>
-                <div class="toefl-reading-target"><strong>✉️ Write an Email</strong><span>Purpose, tone, required points, and organisation.</span></div>
-                <div class="toefl-reading-target"><strong>💬 Write for an Academic Discussion</strong><span>Position, support, and replying to classmates.</span></div>
-            </div>
-
-            <div class="toefl-reading-progress-wrap">
-                <div class="toefl-reading-progress-caption"><strong>Your Writing progress</strong><span id="toefl-writing-overall-progress">0 of 3 lessons completed</span></div>
-                <div class="toefl-reading-progress-track"><div class="toefl-reading-progress-bar" id="toefl-writing-overall-bar"></div></div>
-            </div>
-
-            <h3 class="toefl-overview-heading">Choose a task type</h3>
-            <div id="toefl-writing-task-grid" class="toefl-reading-task-grid"></div>
-        </div>
-
-        <div id="toefl-writing-activity" style="display: none;"></div>
-    </div>
-</section>
-
-        <section class="hero" id="toefl-speaking-screen" style="display: none;">
-    <div class="course-header">
-        <p class="course-label">TOEFL iBT · SPEAKING</p>
-        <h2>Speaking Skills Lab</h2>
-        <p>Learn each task, record yourself, and review your answers against models and checklists.</p>
-    </div>
-
-    <div class="toefl-reading-shell">
-        <div class="toefl-reading-back-row">
-            <button type="button" class="secondary-button" onclick="showTOEFLCourse()">← Back to TOEFL</button>
-        </div>
-
-        <div id="toefl-speaking-home">
-            <div class="toefl-reading-intro">
-                <h3>What are you practising?</h3>
-                <p>The TOEFL Speaking section checks whether you can repeat language accurately and answer questions clearly. Pronunciation, fluency, organisation, and grammar all matter.</p>
-                <p>Each task has a Learn page with guided practice and a separate Practice page with a larger bank and saved progress. Use Chrome or Edge, and allow the microphone when asked.</p>
-            </div>
-
-            <div class="toefl-reading-targets">
-                <div class="toefl-reading-target"><strong>🔊 Listen and Repeat</strong><span>Memory, accuracy, stress, and rhythm.</span></div>
-                <div class="toefl-reading-target"><strong>🎤 Take an Interview</strong><span>Direct answers, reasons, examples, and fluency.</span></div>
-            </div>
-
-            <div class="toefl-reading-progress-wrap">
-                <div class="toefl-reading-progress-caption"><strong>Your Speaking progress</strong><span id="toefl-speaking-overall-progress">0 of 2 lessons completed</span></div>
-                <div class="toefl-reading-progress-track"><div class="toefl-reading-progress-bar" id="toefl-speaking-overall-bar"></div></div>
-            </div>
-
-            <h3 class="toefl-overview-heading">Choose a task type</h3>
-            <div id="toefl-speaking-task-grid" class="toefl-reading-task-grid"></div>
-        </div>
-
-        <div id="toefl-speaking-activity" style="display: none;"></div>
-    </div>
-</section>
-
-<section class="hero" id="toefl-listening-screen" style="display: none;">
-    <div class="course-header">
-        <p class="course-label">TOEFL iBT · LISTENING</p>
-        <h2>Listening Skills Lab</h2>
-        <p>Learn each task, use a clear strategy, then practise with original audio, questions, and explanations.</p>
-    </div>
-
-    <div class="toefl-reading-shell">
-        <div class="toefl-reading-back-row">
-            <button type="button" class="secondary-button" onclick="showTOEFLCourse()">← Back to TOEFL</button>
-        </div>
-
-        <div id="toefl-listening-home">
-            <div class="toefl-reading-intro">
-                <h3>What are you practising?</h3>
-                <p>The TOEFL Listening section checks whether you can follow spoken English in everyday and academic situations. In the real test each audio plays only once, so practise listening for purpose, main ideas, and key details.</p>
-                <p>Each task has a Learn page with a strategy and guided sets, and a Practice page with a larger bank and saved progress.</p>
-            </div>
-
-            <div class="toefl-reading-targets">
-                <div class="toefl-reading-target"><strong>💬 Choose a Response</strong><span>Purpose, tone, and natural replies.</span></div>
-                <div class="toefl-reading-target"><strong>🗣️ Conversation</strong><span>Problem, reasons, and next steps.</span></div>
-                <div class="toefl-reading-target"><strong>📢 Announcement</strong><span>Changes, details, and listener actions.</span></div>
-                <div class="toefl-reading-target"><strong>🎓 Academic Talk</strong><span>Main idea, examples, and inference.</span></div>
-            </div>
-
-            <div class="toefl-reading-progress-wrap">
-                <div class="toefl-reading-progress-caption"><strong>Your Listening progress</strong><span id="toefl-listening-overall-progress">0 of 4 lessons completed</span></div>
-                <div class="toefl-reading-progress-track"><div class="toefl-reading-progress-bar" id="toefl-listening-overall-bar"></div></div>
-            </div>
-
-            <h3 class="toefl-overview-heading">Choose a task type</h3>
-            <div id="toefl-listening-task-grid" class="toefl-reading-task-grid"></div>
-        </div>
-
-        <div id="toefl-listening-activity" style="display: none;"></div>
-    </div>
-</section>
-        
-<!-- IELTS Screen (content is rendered by ielts/ielts.js) -->
-<section class="hero" id="ielts-screen" style="display: none;">
-    <div class="ielts-root" id="ielts-root"></div>
-</section>
-
-<!-- Learn Screen -->
-
-<section class="hero" id="learn-screen" style="display: none;">
-
-    <h2>Learn the Seven Parts of Speech</h2>
-
-    <p>
-        Every word has a job in a sentence.
-        The job tells you its part of speech.
-    </p>
-
-    <div id="parts-container" class="parts-container"></div>
-
-   <button class="secondary-button" onclick="showESTSession2()">
-    ← Back to Session 2
-</button>
-
-<button class="start-button" onclick="showStrategyMode()">
-    Learn the Strategy →
-</button>
-
-</section>
-
-        <!-- Strategy Screen -->
-
-<section class="hero" id="strategy-screen" style="display: none;">
-
-    <h2>How to Identify a Part of Speech</h2>
-
-    <p>
-        Don't identify a word by itself.
-        Look at the word in the sentence.
-    </p>
-
-    <div class="strategy-steps">
-
-        <div class="strategy-step">
-            <div class="strategy-number">1</div>
-            <div>
-                <h3>Read the whole sentence</h3>
-                <p>
-                    Read the sentence first. Look at the complete idea.
-                </p>
-            </div>
-        </div>
-
-        <div class="strategy-step">
-            <div class="strategy-number">2</div>
-            <div>
-                <h3>Look at the target word</h3>
-                <p>
-                    Look at the word and the words around it.
-                </p>
-            </div>
-        </div>
-
-        <div class="strategy-step">
-            <div class="strategy-number">3</div>
-            <div>
-                <h3>Ask the key question</h3>
-                <p class="strategy-question">
-                    “What job does this word do?”
-                </p>
-            </div>
-        </div>
-
-        <div class="strategy-step">
-            <div class="strategy-number">4</div>
-            <div>
-                <h3>Choose the part of speech</h3>
-                <p>
-                    Use the word's job in the sentence to identify it.
-                </p>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="strategy-example">
-
-        <h3>Let's try one</h3>
-
-        <p class="strategy-sentence">
-            The students <strong>study</strong> every evening.
-        </p>
-
-        <p>
-            <strong>Target word:</strong> study
-        </p>
-
-        <p>
-            What job does <strong>study</strong> do?
-        </p>
-
-        <p class="strategy-answer">
-            It shows an action.
-        </p>
-
-        <p>
-            Therefore, <strong>study</strong> is a
-            <strong>verb</strong>.
-        </p>
-
-    </div>
-
-<div class="strategy-buttons">
-
-  <button class="secondary-button" onclick="showESTSession2()">
-    ← Back to Session 2
-</button>
-
-    <button class="start-button" onclick="startPractice()">
-        Try It Yourself →
-    </button>
-
-</div>
-</section>
-        
-<!-- Practice Screen -->
-
-<section class="hero" id="practice-screen" style="display: none;">
-
-    <button
-    class="exit-button"
-    onclick="exitPractice()"
-    aria-label="Exit practice">
-    ✕
-</button>
-
-    <p id="question-number">Question 1 of 8</p>
-    <div class="progress-container">
-    <div id="progress-bar" class="progress-bar"></div>
+  </div>
+  <h1 id="h1"></h1>
+  <p id="sub"></p>
 </div>
 
-    <h2 id="sentence">
-        The students study every evening.
-    </h2>
+<main id="app"></main>
+<div id="modalRoot"></div>
 
-    <p>
-        What is the part of speech of
-        <strong id="target-word">study</strong>?
-    </p>
+<footer class="site-footer">
+  <span>© 2026 <strong>BookMyClass</strong> · <span id="footNote">Online Lesson Scheduling Platform</span></span>
+  <div class="row" style="gap:14px">
+    <a href="/privacy.html" id="footPriv">Privacy Policy</a>
+    <a href="/terms.html" id="footTerms">Terms of Service</a>
+  </div>
+</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+// ====== CONFIG: your Supabase URL + publishable (anon) key ======
+const SB_URL = 'https://crtxvqamgksiigfpmxvg.supabase.co';
+const SB_KEY = 'sb_publishable_yzbx9HqvX-fodzJYbVZLnQ_sx8MS_lf';
+// ================================================================
+const sb = supabase.createClient(SB_URL, SB_KEY);
+// Only these teacher columns are public (meeting link + WhatsApp are released after booking)
+const TCOLS = 'id,slug,display_name,bio,photo_url,timezone,min_notice_hours,on_the_spot_booking,is_active';
 
-<div id="answers" class="answers"></div>
+const T = {
+ en:{
+  title:'BookMyClass — Online Lesson Scheduling',
+  sub:'Connect with independent teachers, pick an available time in your time zone, and book one-off or weekly recurring lessons.',
+  welcome:'Welcome to BookMyClass',
+  welSub:'BookMyClass makes it simple for students and parents to schedule lessons with independent teachers, and for teachers to manage their weekly availability and bookings.',
+  feat1Title:'For Students & Parents',
+  feat1Body:'Open the booking link shared by your teacher, view real-time availability in your local time zone, and reserve one-off or weekly lessons.',
+  feat2Title:'For Independent Teachers',
+  feat2Body:'Set your weekly teaching hours, lesson durations, buffers, and custom days off, and share your personal booking link.',
+  feat3Title:'Free Scheduling Platform',
+  feat3Body:'BookMyClass is a dedicated scheduling and calendar management platform. No payments or commissions are charged on the platform.',
+  howTitle:'How BookMyClass Works',
+  how1:'1. Open your teacher’s BookMyClass link or sign in with Google.',
+  how2:'2. Choose your lesson duration and pick an available day and time.',
+  how3:'3. Book a single lesson or a weekly recurring time slot and manage your schedule anytime.',
+  invited:'You’ve been invited to join BookMyClass as a teacher. Sign in with Google to set up your account.',
+  login:'Continue with Google',signToBook:'Sign in with Google to see available times and book your lesson.',
+  bookWith:'Book a lesson with',badLink:'This booking link isn’t valid, or the teacher isn’t available right now.',
+  len:'Lesson length',min:'min',day:'Choose a day',time:'Choose a time',pickDay:'Select a day…',pickTime:'Select a time…',
+  tz:'Times shown in your time zone',none:'No free times in the selected range.',noTypes:'This teacher hasn’t set up lessons yet.',
+  details:'Lesson details',name:'Student’s full name',phone:'WhatsApp number (optional)',book:'Confirm booking',needName:'Please enter the student’s name.',
+  taken:'Sorry, that time was just taken or is no longer available. Please pick another.',tooSoon:'Please choose a time at least 8 hours from now.',
+  done:'You’re booked!',link:'Join link',wa:'Send details on WhatsApp',gcal:'Add to Google Calendar',out:'Sign out',in:'Sign in',lang:'العربية',again:'Book another lesson',
+  cfg:'Setup needed: add your Supabase key in index.html.',hi:'Signed in as',waMsg:'Hello! I booked a lesson on BookMyClass:',
+  mine:'Your upcoming lessons',resched:'Change time',cancel:'Cancel',confirmCancel:'Cancel this lesson?',late:'It’s too late to change this lesson online. Please message the teacher.',
+  limit:'You’ve reached the limit of 5 upcoming lessons.',changing:'Changing the time for',confirmNew:'Confirm new time',back:'Never mind',
+  homeTitle:'Book a new lesson',homeHint:'Open the booking link your teacher shared with you to view their schedule.',noSessions:'You have no upcoming lessons scheduled yet.',
+  imTeacher:'I’m a teacher — set up my account',goHome:'My lessons',goDash:'Dashboard',
+  regTitle:'Create your teacher account',code:'Invite code',dname:'Your display name',slugL:'Link name (letters, numbers, dashes)',tzl:'Time zone',create:'Create account',
+  errCode:'That invite code is invalid or already used.',errSlug:'That link name is taken or not valid (3–30 letters, numbers or dashes).',errGen:'Something went wrong. Please try again.',
+  adminNote:'You’re the admin, so no invite code is needed.',
+  dashTitle:'Teacher dashboard',
+  tLink:'Booking link',tHours:'Weekly hours',tTypes:'Lessons',tBook:'Bookings',tProf:'Profile',tInv:'Invites',tAdmin:'Platform admin',bookForStudent:'Book for a student',existingStudent:'Existing student (or type a new name)',adminTeachers:'Teacher directory',adminStats:'Platform overview',activeTeachers:'Active teachers',totalTeachers:'Registered teachers',totalBookings:'Total bookings',confirmedBookings:'Confirmed',cancelledBookings:'Cancelled',teacherCreated:'Teacher-created bookings',publicPreview:'Public page',createdAt:'Joined',noTeachers:'No teachers found',adminLoadError:'Could not load platform overview.',
+  linkTitle:'Your BookMyClass link',linkHint:'Share this link with students and parents. They sign in with Google, then pick a time.',
+  copy:'Copy link',copied:'Copied ✓',shareWa:'Share on WhatsApp',preview:'Preview as a student',shareMsg:'Book a lesson with me on BookMyClass:',
+  check:'Setup checklist',ckHours:'Weekly hours are set',ckMeet:'Meeting link added',ckTypes:'At least one lesson length is visible',ckWa:'WhatsApp number added',fix:'Fix',
+  hoursTitle:'Weekly hours',hoursHint:'Times are in your time zone:',addR:'+ Add hours',closed:'Not available',save:'Save',saved:'Saved ✓',badHours:'Check your hours: each end time must be after its start time, and ranges can’t overlap.',
+  offTitle:'Days off and special days',offHint:'A day off blocks the date. Custom hours replace your weekly hours on that date.',dayOff:'Day off',custom:'Custom hours',remove:'Remove',noExc:'Nothing scheduled.',needDate:'Choose a date first.',needTimes:'Enter a start and end time.',
+  typesTitle:'Lesson lengths',typesHint:'Students choose one of these. The buffer is kept free after each lesson.',nameEn:'Name (English)',nameAr:'Name (Arabic)',dur:'Length (min)',buf:'Buffer (min)',vis:'Visible to students',addType:'Add a lesson length',add:'Add',badType:'Enter a name and a length above 0.',
+  upcoming:'Upcoming bookings',noBk:'No upcoming bookings yet.',
+  bioL:'About you (shown to students)',photoL:'Photo link (optional, https://)',meetL:'Meeting link (Google Meet, Zoom…)',meetH:'Must start with https://. You can change it any time.',waL:'WhatsApp number (digits only, with country code)',noticeL:'Minimum notice (hours)',
+  badProf:'Please check: name, link name, https:// links, WhatsApp digits (6–15).',slugWarn:'If you change the link name, the old link stops working.',
+  invTitle:'Invite a teacher',invHint:'Generate a one-time invite and send the link. The teacher signs in with Google and sets up their own account.',gen:'Generate invite',inviteMsg:'You’re invited to join BookMyClass as a teacher. Open this link:',
+  weeklyRecurring:'Make this a weekly recurring lesson',recurringHint:'The same day and time will be reserved every week (rolling 12-week schedule) until ended.',
+  onSpot:'Allow on-the-spot bookings (no advance notice)',noticeEight:'When this is off, students must book at least 8 hours ahead.',
+  calendarTitle:'Teaching Schedule',calendarTab:'Calendar',
+  calViewDay:'Day',calViewWeek:'Week',calViewAgenda:'Agenda',
+  prevDay:'Previous day',nextDay:'Next day',previousWeek:'Previous week',nextWeek:'Next week',todayBtn:'Today',
+  calendarHint:'Times use your teacher timezone. Green shows available start times; purple shows booked lessons.',
+  available:'Available',unavailable:'Unavailable',weeklyBadge:'Weekly',removeBooking:'Cancel',noBookingsDay:'No booked lessons',noFreeSlots:'No free start times',
+  cancelModalTitle:'Cancel lesson',cancelModalSub:'Choose which lessons to cancel:',
+  cancelOne:'Cancel this lesson only',cancelFuture:'Cancel this and all future lessons',cancelAll:'Cancel entire recurring series',
+  reschedModalTitle:'Reschedule lesson',reschedModalSub:'Choose how to reschedule this recurring lesson:',
+  reschedOne:'Move this lesson only',reschedFuture:'Move this and all future weekly lessons',
+  footNote:'Online Lesson Scheduling Platform',footPriv:'Privacy Policy',footTerms:'Terms of Service'
+ },
+ ar:{
+  title:'BookMyClass — منصة حجز وجدولة الحصص',
+  sub:'تواصل مع المعلمين المستقلين، اختر الموعد المناسب حسب منطقتك الزمنية، واحجز حصة فردية أو حصصًا أسبوعية متكررة.',
+  welcome:'أهلًا بك في BookMyClass',
+  welSub:'تُسهّل منصة BookMyClass للطلاب وأولياء الأمور حجز الحصص مع المعلمين المستقلين، وتمنح المعلمين أدوات متكاملة لإدارة أوقات الإتاحة والحجوزات الأسبوعية.',
+  feat1Title:'للطلاب وأولياء الأمور',
+  feat1Body:'افتح رابط الحجز الخاص بمعلمك، واستعرض الأوقات المتاحة بتوقيتك المحلي، واحجز حصة واحدة أو حصة أسبوعية ثابتة.',
+  feat2Title:'للمعلمين المستقلين',
+  feat2Body:'حدّد ساعات عملك الأسبوعية، ومدد الحصص، وفترات الراحة، وأيام الإجازة، وشارك رابط الحجز الخاص بك بسهولة.',
+  feat3Title:'منصة جدولة مجانية',
+  feat3Body:'BookMyClass منصة مخصصة لتنظيم المواعيد وحجز الحصص فقط، ولا توجد أي مدفوعات أو عمولات داخل المنصة.',
+  howTitle:'كيف تعمل منصة BookMyClass؟',
+  how1:'١. افتح رابط المعلم على BookMyClass أو سجّل الدخول باستخدام حساب Google.',
+  how2:'٢. اختر مدة الحصة واليوم والوقت المناسبين لك.',
+  how3:'٣. أكّد حجزك لحصة واحدة أو لحصة أسبوعية متكررة، وأدر مواعيدك في أي وقت.',
+  invited:'تمت دعوتك للانضمام إلى BookMyClass كمعلم. سجّل الدخول عبر Google لإعداد حسابك.',
+  login:'المتابعة باستخدام Google',signToBook:'سجّل الدخول عبر Google لعرض الأوقات المتاحة وحجز حصتك.',
+  bookWith:'احجز حصة مع',badLink:'رابط الحجز هذا غير صالح، أو أن المعلم غير متاح حاليًا.',
+  len:'مدة الحصة',min:'دقيقة',day:'اختر اليوم',time:'اختر الوقت',pickDay:'اختر يومًا…',pickTime:'اختر وقتًا…',
+  tz:'الأوقات معروضة حسب منطقتك الزمنية',none:'لا توجد أوقات متاحة في الفترة المحددة.',noTypes:'لم يُعدّ المعلم حصصه بعد.',
+  details:'تفاصيل الحصة',name:'الاسم الكامل للطالب',phone:'رقم واتساب (اختياري)',book:'تأكيد الحجز',needName:'يرجى إدخال اسم الطالب.',
+  taken:'عذرًا، هذا الوقت لم يعد متاحًا. يرجى اختيار وقت آخر.',tooSoon:'يرجى اختيار موعد يبعد عن الوقت الحالي ثماني ساعات على الأقل.',
+  done:'تم الحجز بنجاح!',link:'رابط الحصة',wa:'أرسل التفاصيل عبر واتساب',gcal:'أضف إلى تقويم Google',out:'تسجيل الخروج',in:'تسجيل الدخول',lang:'English',again:'احجز حصة أخرى',
+  cfg:'مطلوب إعداد: أضف مفتاح Supabase في index.html.',hi:'مسجل الدخول باسم',waMsg:'مرحبًا! لقد حجزت حصة عبر BookMyClass:',
+  mine:'حصصك القادمة',resched:'تغيير الموعد',cancel:'إلغاء',confirmCancel:'هل تريد إلغاء هذه الحصة؟',late:'فات وقت التعديل عبر الموقع. يرجى مراسلة المعلم.',
+  limit:'وصلت للحد الأقصى: 5 حصص قادمة.',changing:'تغيير موعد حصة',confirmNew:'تأكيد الموعد الجديد',back:'تراجع',
+  homeTitle:'احجز حصة جديدة',homeHint:'افتح رابط الحجز الذي شاركه معك المعلم لعرض جدوله.',noSessions:'ليس لديك حصص قادمة مجدولة حاليًا.',
+  imTeacher:'أنا معلم — إعداد حسابي',goHome:'حصصي',goDash:'لوحة التحكم',
+  regTitle:'أنشئ حساب المعلم',code:'رمز الدعوة',dname:'الاسم الظاهر',slugL:'اسم الرابط (حروف إنجليزية وأرقام وشرطات)',tzl:'المنطقة الزمنية',create:'إنشاء الحساب',
+  errCode:'رمز الدعوة غير صالح أو مستخدم مسبقًا.',errSlug:'اسم الرابط مستخدم أو غير صالح (من 3 إلى 30 حرفًا إنجليزيًا أو رقمًا أو شرطة).',errGen:'حدث خطأ. حاول مرة أخرى.',
+  adminNote:'أنت المشرف، لذلك لا تحتاج إلى رمز دعوة.',
+  dashTitle:'لوحة المعلم',
+  tLink:'رابط الحجز',tHours:'ساعات العمل',tTypes:'الحصص',tBook:'الحجوزات',tProf:'الملف الشخصي',tInv:'الدعوات',tAdmin:'إدارة المنصة',bookForStudent:'احجز حصة لطالب',existingStudent:'طالب حالي (أو اكتب اسمًا جديدًا)',adminTeachers:'دليل المعلمين',adminStats:'نظرة عامة على المنصة',activeTeachers:'المعلمون النشطون',totalTeachers:'إجمالي المعلمين',totalBookings:'إجمالي الحجوزات',confirmedBookings:'مؤكدة',cancelledBookings:'ملغاة',teacherCreated:'حجوزات أنشأها المعلمون',publicPreview:'معاينة الصفحة',createdAt:'تاريخ الانضمام',noTeachers:'لا يوجد معلمون',adminLoadError:'تعذر تحميل بيانات المنصة.',
+  linkTitle:'رابط BookMyClass الخاص بك',linkHint:'شارك هذا الرابط مع الطلاب وأولياء الأمور. يسجّلون الدخول عبر Google ثم يختارون الموعد.',
+  copy:'نسخ الرابط',copied:'تم النسخ ✓',shareWa:'مشاركة عبر واتساب',preview:'معاينة كطالب',shareMsg:'احجز حصة معي عبر BookMyClass من هنا:',
+  check:'قائمة الإعداد',ckHours:'ساعات العمل محددة',ckMeet:'رابط الحصة مضاف',ckTypes:'مدة حصة واحدة على الأقل ظاهرة',ckWa:'رقم واتساب مضاف',fix:'إصلاح',
+  hoursTitle:'ساعات العمل الأسبوعية',hoursHint:'الأوقات حسب منطقتك الزمنية:',addR:'+ إضافة ساعات',closed:'غير متاح',save:'حفظ',saved:'تم الحفظ ✓',badHours:'تحقق من الساعات: يجب أن يكون وقت النهاية بعد البداية، ولا يجوز أن تتداخل الفترات.',
+  offTitle:'أيام الإجازة والأيام الخاصة',offHint:'يوم الإجازة يغلق التاريخ. الساعات الخاصة تحل محل ساعاتك الأسبوعية في ذلك التاريخ.',dayOff:'يوم إجازة',custom:'ساعات خاصة',remove:'حذف',noExc:'لا يوجد شيء مجدول.',needDate:'اختر التاريخ أولًا.',needTimes:'أدخل وقت البداية والنهاية.',
+  typesTitle:'مدد الحصص',typesHint:'يختار الطالب إحدى هذه المدد. تبقى فترة الراحة فارغة بعد كل حصة.',nameEn:'الاسم (إنجليزي)',nameAr:'الاسم (عربي)',dur:'المدة (دقيقة)',buf:'فترة الراحة (دقيقة)',vis:'ظاهرة للطلاب',addType:'إضافة مدة حصة',add:'إضافة',badType:'أدخل اسمًا ومدة أكبر من 0.',
+  upcoming:'الحصص القادمة',noBk:'لا توجد حصص قادمة بعد.',
+  bioL:'نبذة عنك (تظهر للطلاب)',photoL:'رابط الصورة (اختياري، https://)',meetL:'رابط الحصة (Google Meet أو Zoom…)',meetH:'يجب أن يبدأ بـ https:// ويمكنك تغييره في أي وقت.',waL:'رقم واتساب (أرقام فقط مع رمز الدولة)',noticeL:'الحد الأدنى للإشعار المسبق (بالساعات)',
+  badProf:'يرجى التحقق من: الاسم، اسم الرابط، روابط https://‏، أرقام واتساب (6–15).',slugWarn:'إذا غيّرت اسم الرابط فسيتوقف الرابط القديم عن العمل.',
+  invTitle:'دعوة معلم',invHint:'أنشئ دعوة لمرة واحدة وأرسل الرابط. يسجّل المعلم الدخول عبر Google ويُعدّ حسابه بنفسه.',gen:'إنشاء دعوة',inviteMsg:'تمت دعوتك للانضمام إلى BookMyClass كمعلم. افتح هذا الرابط:',
+  weeklyRecurring:'اجعلها حصة أسبوعية متكررة',recurringHint:'سيتم حجز نفس اليوم والوقت أسبوعيًا (جدول متجدد لمدة 12 أسبوعًا) حتى إيقاف السلسلة.',
+  onSpot:'السماح بالحجز الفوري دون مهلة مسبقة',noticeEight:'عند إيقاف هذا الخيار، يجب الحجز قبل الموعد بثماني ساعات على الأقل.',
+  calendarTitle:'جدول الحصص',calendarTab:'الجدول',
+  calViewDay:'يوم',calViewWeek:'أسبوع',calViewAgenda:'قائمة المواعيد',
+  prevDay:'اليوم السابق',nextDay:'اليوم التالي',previousWeek:'الأسبوع السابق',nextWeek:'الأسبوع التالي',todayBtn:'اليوم',
+  calendarHint:'الأوقات معروضة حسب المنطقة الزمنية للمعلم. الأخضر يوضح أوقات البداية المتاحة، والبنفسجي يوضح الحصص المحجوزة.',
+  available:'متاح',unavailable:'غير متاح',weeklyBadge:'أسبوعي',removeBooking:'إلغاء الحصة',noBookingsDay:'لا توجد حصص محجوزة',noFreeSlots:'No free start times',
+  cancelModalTitle:'إلغاء الحصة',cancelModalSub:'اختر نطاق الإلغاء:',
+  cancelOne:'إلغاء هذه الحصة فقط',cancelFuture:'إلغاء هذه الحصة وجميع الحصص القادمة',cancelAll:'إلغاء السلسلة الأسبوعية بالكامل',
+  reschedModalTitle:'تغيير موعد الحصة',reschedModalSub:'اختر نطاق تعديل الموعد لهذه السلسلة الأسبوعية:',
+  reschedOne:'تغيير موعد هذه الحصة فقط',reschedFuture:'تغيير موعد هذه الحصة وجميع الحصص القادمة',
+  footNote:'منصة حجز وجدولة الحصص عبر الإنترنت',footPriv:'سياسة الخصوصية',footTerms:'شروط الخدمة'
+ }
+};
 
+let lang = 'en';
+try { lang = localStorage.getItem('lang') || ((navigator.language||'').startsWith('ar') ? 'ar' : 'en'); } catch(e){}
+const S = {
+  ready:false,user:null,me:null,slug:null,t:null,bad:false,types:[],ty:null,rules:[],exc:[],busy:[],slots:{},day:null,slot:null,done:null,err:'',msg:'',
+  mine:[],rs:null,rsScope:'single',rsFrom:null,rsAsTeacher:false,loaded:null,loading:false,booking:false,reg:false,
+  tab:'link',calMode:'week',calendarOffset:0,dayOffset:0,modal:null,
+  invites:[],wk:{},dTypes:[],dExc:[],dRules:[],dBk:[],teacherBooking:false,adminData:null,adminLoading:false
+};
+const $ = s => document.querySelector(s), tr = k => T[lang][k] || k;
+const loc = () => lang === 'ar' ? 'ar' : 'en';
+const su = u => /^https:\/\//i.test(u||'') ? u : '';
+const ls = {get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},del:k=>{try{localStorage.removeItem(k)}catch(e){}}};
 
- <div id="feedback" class="feedback"></div>
-    
+function setLang(l){lang=l;ls.set('lang',l);render()}
+window.setLang=setLang; window.getLang=()=>lang;
 
+// ---- time zone helpers (no libraries) ----
+function off(ms,tz){const o={};new Intl.DateTimeFormat('en-US',{timeZone:tz,hourCycle:'h23',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'}).formatToParts(new Date(ms)).forEach(p=>o[p.type]=p.value);return Date.UTC(o.year,o.month-1,o.day,o.hour,o.minute,o.second)-ms}
+function toUtc(d,t,tz){const[Y,M,D]=d.split('-').map(Number),[h,m]=t.split(':').map(Number),g=Date.UTC(Y,M-1,D,h,m);return g-off(g-off(g,tz),tz)}
+const fT = ms => new Date(ms).toLocaleTimeString(loc(),{hour:'numeric',minute:'2-digit'});
+const fD = k => new Date(k+'T12:00').toLocaleDateString(loc(),{weekday:'short',day:'numeric',month:'short'});
+const fF = ms => new Date(ms).toLocaleString(loc(),{weekday:'long',day:'numeric',month:'long',hour:'numeric',minute:'2-digit'});
+const tn = x => (lang==='ar' && x.name_ar) ? x.name_ar : x.name;
+const wdName = i => new Date(2024,0,7+i).toLocaleDateString(loc(),{weekday:'long'});
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  }[c]));
+}
+  const slugify = n => n.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,30);
+const myLink = () => location.origin + '/?t=' + S.me.teacher.slug;
+const hasInvite = () => !!ls.get('invite');
 
-    <button
-        id="next-button"
-        class="start-button"
-        onclick="nextQuestion()"
-        style="display: none;">
-        Next Question
-    </button>
-</section>
-        
-        <!-- Results Screen -->
-        
-<section class="hero" id="results-screen" style="display: none;">
+// ---- data loading ----
+async function loadMine(){
+  if(!S.user){S.mine=[];return}
+  try{await sb.rpc('maintain_my_recurring_bookings')}catch(e){console.warn('Recurring schedule refresh failed',e)}
+  const r = await sb.from('bookings')
+    .select('id,student_name,starts_at,teacher_id,session_type_id,series_id,session_types(duration_min,name,name_ar),teachers(display_name,slug)')
+    .eq('booker_id',S.user.id).eq('status','confirmed').gte('starts_at',new Date().toISOString()).order('starts_at');
+  S.mine = r.data || [];
+  await Promise.all(S.mine.map(async b=>{
+    const c = await sb.rpc('get_booking_contact',{p_booking:b.id});
+    b.ct = (c.data && c.data[0]) || {};
+  }));
+}
+async function loadMe(){
+  if(!S.user){S.me=null;return}
+  const [p,t] = await Promise.all([
+    sb.from('profiles').select('role,full_name').eq('id',S.user.id).maybeSingle(),
+    sb.rpc('get_my_teacher')]);
+  S.me = {role:(p.data&&p.data.role)||'student', teacher:(t.data&&t.data[0])||null};
+  if(S.me.teacher) await loadDash();
+}
+async function loadDash(){
+  const id=S.me.teacher.id, today=new Date().toISOString().slice(0,10), now=new Date().toISOString();
+  const bq = cols => sb.from('bookings').select(cols).eq('teacher_id',id).eq('status','confirmed').gte('starts_at',now).order('starts_at');
+  try{await sb.rpc('maintain_my_recurring_bookings')}catch(e){console.warn('Recurring schedule refresh failed',e)}
+  const [a,b,c,d] = await Promise.all([
+    sb.from('session_types').select('*').eq('teacher_id',id).order('duration_min'),
+    sb.from('availability_rules').select('*').eq('teacher_id',id).order('start_time'),
+    sb.from('availability_exceptions').select('*').eq('teacher_id',id).gte('on_date',today).order('on_date'),
+    bq('id,student_name,contact_phone,notes,starts_at,ends_at,blocked_until,series_id,session_type_id,session_types(name,name_ar,duration_min)')]);
+  S.dTypes=a.data||[]; S.dRules=b.data||[]; S.dExc=c.data||[];
+  S.wk={}; for(let i=0;i<7;i++) S.wk[i]=[];
+  S.dRules.forEach(r=>S.wk[r.weekday].push([r.start_time.slice(0,5),r.end_time.slice(0,5)]));
+  let bk=d;
+  if(bk.error) bk=await bq('id,student_name,starts_at,ends_at,blocked_until,series_id,session_type_id,session_types(name,name_ar,duration_min)');
+  S.dBk=bk.data||[];
+}
+async function loadTeacher(){
+  S.t=null; S.bad=false; S.loaded=null;
+  if(!S.slug) return;
+  const r = await sb.from('teachers').select(TCOLS).eq('slug',S.slug).eq('is_active',true).maybeSingle();
+  S.t = r.data || null; S.bad = !S.t;
+}
+async function loadBook(keep){
+  if(!S.user||!S.t) return;
+  const id=S.t.id, ty=keep&&S.ty&&S.ty.id, err=keep?S.err:'';
+  S.ty=null;S.day=null;S.slot=null;S.slots={};S.done=null;S.err=err;
+  const [a,b,c,r] = await Promise.all([
+    sb.from('session_types').select('*').eq('teacher_id',id).eq('is_active',true).order('duration_min'),
+    sb.from('availability_rules').select('*').eq('teacher_id',id),
+    sb.from('availability_exceptions').select('*').eq('teacher_id',id),
+    sb.rpc('get_busy_times',{p_teacher:id,p_from:new Date().toISOString(),p_to:new Date(Date.now()+85*864e5).toISOString()})]);
+  S.types=a.data||[]; S.rules=b.data||[]; S.exc=c.data||[];
+  S.busy=(r.data||[]).map(x=>[Date.parse(x.starts_at),Date.parse(x.blocked_until)]);
+  S.ty=(ty&&S.types.find(x=>x.id===ty)) || (S.types.length===1?S.types[0]:null);
+  S.loaded=id; build();
+}
+function build(){
+  S.slots={}; S.day=null; S.slot=null; if(!S.t||!S.ty) return;
+  const tz=S.t.timezone, dur=S.ty.duration_min*6e4, buf=S.ty.buffer_min*6e4;
+  const isTeacherOverride = S.rsAsTeacher && S.me?.teacher?.id === S.t.id;
+  const min=Date.now()+(isTeacherOverride || S.t.on_the_spot_booking ? 0 : 8)*36e5;
+  const td=new Date().toLocaleDateString('en-CA',{timeZone:tz}).split('-').map(Number);
+  const horizonDays = S.rs ? 28 : 14;
+  for(let i=0;i<horizonDays;i++){
+    const dt=new Date(Date.UTC(td[0],td[1]-1,td[2]+i)), ds=dt.toISOString().slice(0,10), ex=S.exc.filter(x=>x.on_date===ds);
+    const w = ex.some(x=>!x.is_available) ? [] : ex.length ? ex.filter(x=>x.is_available) : S.rules.filter(r=>r.weekday===dt.getUTCDay());
+    w.forEach(r=>{
+      const a=toUtc(ds,r.start_time.slice(0,5),tz), b=toUtc(ds,r.end_time.slice(0,5),tz);
+      for(let s=a;s+dur<=b;s+=18e5){
+        if(s<min||S.busy.some(([x,y])=>s<y&&s+dur+buf>x)) continue;
+        const k=new Date(s).toLocaleDateString('en-CA'); const arr=(S.slots[k]=S.slots[k]||[]); if(!arr.includes(s)) arr.push(s);
+      }
+    });
+  }
+  Object.values(S.slots).forEach(a=>a.sort((x,y)=>x-y));
+}
 
-    <h2>Quiz Complete!</h2>
+// ---- navigation ----
+function appRouteState(){
+  return {bmc:true,slug:S.slug||null,tab:S.tab||'link',teacherBooking:!!S.teacherBooking,reg:!!S.reg};
+}
+function writeAppHistory(mode='push'){
+  try{
+    const url=S.slug?'?t='+encodeURIComponent(S.slug):location.pathname;
+    history[mode+'State'](appRouteState(),'',url);
+  }catch(e){console.warn('Could not update in-app navigation history:',e);}
+}
+async function restoreAppRoute(st){
+  if(!st||!st.bmc) return;
+  S.slug=st.slug||null; S.tab=st.tab||'link'; S.teacherBooking=!!st.teacherBooking; S.reg=!!st.reg;
+  S.done=null; S.err=''; S.msg=''; S.modal=null; S.rs=null; S.rsAsTeacher=false;
+  await loadTeacher();
+  if(S.slug&&S.user&&S.t) await loadBook();
+  else if(S.user&&S.me?.teacher) await loadDash();
+  render();
+}
+async function nav(slug){
+  S.slug=slug||null; S.done=null; S.err=''; S.msg=''; S.reg=false; S.rs=null; S.rsAsTeacher=false; S.teacherBooking=false; S.modal=null;
+  writeAppHistory('push');
+  await loadTeacher(); if(S.t&&S.user) await loadBook(); render();
+}
+function setTab(t){S.tab=t;S.err='';S.msg='';writeAppHistory('push');if(t==='admin'&&S.me?.role==='admin')loadAdminOverview();render()}
+async function startTeacherBooking(){
+  if(!S.me?.teacher) return;
+  S.teacherBooking=true; S.rs=null; S.rsAsTeacher=true; S.rsFrom=null; S.done=null; S.err='';
+  S.slug=S.me.teacher.slug; S.rsAsTeacher=true; S.teacherBooking=true; writeAppHistory('push'); await loadTeacher(); await loadBook(); S.rsAsTeacher=true; S.teacherBooking=true; render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+async function stopTeacherBooking(){if(history.state?.bmc&&history.state.teacherBooking){history.back();return;}S.teacherBooking=false;S.rsAsTeacher=false;S.slug=null;S.done=null;S.err='';writeAppHistory('push');await loadDash();render()}
+async function loadAdminOverview(){
+  if(S.adminLoading||S.me?.role!=='admin') return; S.adminLoading=true; render();
+  const {data,error}=await sb.rpc('admin_platform_overview');
+  S.adminLoading=false; S.adminData=error?{error:true}:data; render();
+}
+function setCalMode(m){S.calMode=m;render()}
+function pickType(id){S.ty=S.types.find(x=>x.id===id);build();render()}
+function pickDay(k){S.day=k||null;S.slot=null;render()}
+function pickSlot(v){S.slot=v?+v:null;render()}
+function closeModal(){S.modal=null;render()}
 
-    <p>Your score:</p>
+// ---- auth ----
+async function signIn(){
+  if(S.slug) ls.set('next',S.slug);
+  await sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+'/'}});
+}
+async function signOut(){await sb.auth.signOut();S.user=null;S.me=null;S.mine=[];S.rs=null;S.loaded=null;S.reg=false;S.modal=null;render()}
 
-    <div id="score" class="score">
-        0 / 8
-    </div>
+// ---- booking actions ----
+async function contactFor(id){
+  const c = await sb.rpc('get_booking_contact',{p_booking:id});
+  return (c.data && c.data[0]) || {};
+}
+async function book(){
+  if(S.booking) return;
+  const n=$('#sn').value.trim(); if(!n){S.err=tr('needName');render();return}
+  const ph=$('#ph').value.trim();
+  const isRec=!!$('#recurringBooking')?.checked;
+  S.booking=true;
+  const submit=$('#app .card:last-child .btn');
+  if(submit){submit.disabled=true;submit.textContent=lang==='ar'?'جارٍ تأكيد الحجز…':'Booking…';}
+  try{
+    const {data,error}=await sb.rpc('book_slot',{p_teacher:S.t.id,p_session_type:S.ty.id,p_starts:new Date(S.slot).toISOString(),p_student:n,p_phone:ph,p_notes:'',p_recurring:isRec});
+    if(error){
+      const em=(error.message||'').toLowerCase(), lim=em.includes('booking limit'), soon=em.includes('too soon');
+      S.booking=false; S.err=''; await loadBook(true); S.err=tr(lim?'limit':soon?'tooSoon':'taken'); render(); return;
+    }
+    const createdForTeacher=!!S.teacherBooking;
+    S.err=''; S.booking=false;
+    if(createdForTeacher){
+      S.teacherBooking=false; S.rsAsTeacher=false; S.slug=null; S.done=null;
+      await loadDash(); S.tab='calendar'; S.msg=lang==='ar'?'تم حجز الحصة للطالب بنجاح.':'Lesson booked for the student.'; render(); return;
+    }
+    S.done={start:S.slot,name:n,type:S.ty,t:S.t,meeting:'',whatsapp:'',recurring:isRec}; render();
+    try{
+      const ct=await contactFor(data);
+      S.done.meeting=ct.meeting_url||''; S.done.whatsapp=ct.whatsapp||'';
+      await loadMine();
+      if(S.me?.teacher) await loadDash();
+    }catch(refreshError){ console.warn('Booking succeeded; optional post-booking refresh failed:',refreshError); }
+    render();
+  }catch(requestError){
+    console.error('Booking request failed:',requestError);
+    S.booking=false; S.err=tr('taken'); render();
+  }
+}
 
-    <div class="results-buttons">
+function promptCancel(id){
+  const b=S.mine.find(x=>x.id===id)||S.dBk.find(x=>x.id===id);
+  if(!b) return;
+  if(b.series_id){
+    S.modal={type:'cancel',booking:b};
+    render();
+  } else {
+    if(confirm(tr('confirmCancel'))) executeCancel(id,'single');
+  }
+}
+async function executeCancel(id,scope){
+  S.modal=null; render();
+  const {error}=await sb.rpc('cancel_booking',{p_booking:id,p_scope:scope||'single'});
+  await loadMine(); if(S.me?.teacher) await loadDash();
+  if(S.t&&S.user) await loadBook(true);
+  if(error) flash(tr('late'),true); else flash(tr('saved'),false);
+}
 
-        <button class="start-button" onclick="restartQuiz()">
-            Try Again
-        </button>
+function promptResched(id, asTeacher){
+  const b = asTeacher ? S.dBk.find(x=>x.id===id) : S.mine.find(x=>x.id===id);
+  if(!b) return;
+  if(b.series_id){
+    S.modal={type:'resched',booking:b,asTeacher:!!asTeacher};
+    render();
+  } else {
+    startResched(id,'single',!!asTeacher);
+  }
+}
+async function startResched(id, scope, asTeacher){
+  S.modal=null;
+  const b = asTeacher ? S.dBk.find(x=>x.id===id) : S.mine.find(x=>x.id===id);
+  if(!b) return;
+  const targetSlug = asTeacher ? S.me.teacher.slug : b.teachers?.slug;
+  if(!targetSlug) return;
+  S.rs=b; S.rsScope=scope||'single'; S.rsAsTeacher=!!asTeacher; S.rsFrom=S.slug; S.slug=targetSlug; S.done=null; S.err='';
+  writeAppHistory('push');
+  await loadTeacher(); await loadBook();
+  S.ty=S.types.find(x=>x.id===b.session_type_id)||S.types[0]||null; build(); render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+async function stopResched(){
+  const f=S.rsFrom, wasTeacher=S.rsAsTeacher;
+  S.rs=null; S.rsAsTeacher=false;
+  if(wasTeacher){ S.slug=null; await loadDash(); render(); }
+  else { await nav(f); }
+}
+async function doResched(){
+  const scope=S.rsScope||'single';
+  const wasTeacher=S.rsAsTeacher;
+  const {data,error}=await sb.rpc('reschedule_booking',{p_booking:S.rs.id,p_starts:new Date(S.slot).toISOString(),p_scope:scope});
+  if(error){
+    const em=(error.message||'').toLowerCase(), late=em.includes('too late'), soon=em.includes('too soon');
+    S.err=''; await loadBook(true); S.ty=S.types.find(x=>x.id===S.rs.session_type_id)||S.ty; build(); S.err=tr(late?'late':soon?'tooSoon':'taken'); render(); return;
+  }
+  if(wasTeacher){
+    S.rs=null; S.rsAsTeacher=false; S.slug=null; S.err='';
+    await loadDash(); flash(tr('saved'),false); return;
+  }
+  const ct=await contactFor(data);
+  S.done={start:S.slot,name:S.rs.student_name,type:S.ty,t:S.t,meeting:ct.meeting_url||'',whatsapp:ct.whatsapp||'',recurring:!!S.rs.series_id};
+  S.rs=null; S.rsAsTeacher=false; S.err=''; await loadMine(); render();
+}
 
-      <button class="secondary-button" onclick="showESTSession2()">
-    ← Back to Session 2
-</button>
-        
-    </div>
+// ---- teacher registration ----
+function onNameInput(el){const s=$('#rs'); if(s&&!s.dataset.m) s.value=slugify(el.value)}
+async function registerTeacher(){
+  const admin=S.me.role==='admin';
+  const code=admin?'':$('#rc').value.trim(), name=$('#rn').value.trim(), slug=$('#rs').value.trim().toLowerCase(), tz=$('#rt').value;
+  if(!name||!/^[a-z0-9-]{3,30}$/.test(slug)){S.err=tr('errSlug');render();return}
+  if(!admin&&!code){S.err=tr('errCode');render();return}
+  const {error}=await sb.rpc('register_teacher',{p_code:code,p_name:name,p_slug:slug,p_tz:tz});
+  if(error){
+    const m=(error.message||'').toLowerCase();
+    S.err = m.includes('code')?tr('errCode') : (m.includes('slug')||m.includes('duplicate')||m.includes('unique'))?tr('errSlug') : tr('errGen');
+    render(); return;
+  }
+  ls.del('invite'); S.reg=false; S.err=''; S.tab='link';
+  await loadMe(); S.msg=tr('saved'); render();
+}
 
-</section>
-    </main>
+// ---- teacher dashboard actions ----
+const flash = (m,isErr)=>{S.msg=isErr?'':m;S.err=isErr?m:'';render()};
+const flashHtml = () => (S.err?'<div class="err">'+esc(S.err)+'</div>':'')+(S.msg?'<div class="okb">'+esc(S.msg)+'</div>':'');
+async function copyLink(){
+  const el=$('#lk');
+  try{await navigator.clipboard.writeText(el.value)}catch(e){el.select();document.execCommand('copy')}
+  $('#cp').textContent=tr('copied'); setTimeout(()=>{const b=$('#cp'); if(b) b.textContent=tr('copy')},1600);
+}
+function addR(d){const a=S.wk[d],l=a[a.length-1]; a.push(l?[l[1],l[1]]:['16:00','20:00']); render()}
+function delR(d,j){S.wk[d].splice(j,1); render()}
+function setR(d,j,k,v){S.wk[d][j][k]=v}
+async function saveHours(){
+  const id=S.me.teacher.id, rows=[];
+  for(let d=0;d<7;d++){
+    const a=S.wk[d].filter(r=>r[0]&&r[1]).slice().sort((x,y)=>x[0]<y[0]?-1:1);
+    for(let i=0;i<a.length;i++){
+      if(a[i][1]<=a[i][0]||(i&&a[i][0]<a[i-1][1])){flash(tr('badHours'),true);return}
+      rows.push({teacher_id:id,weekday:d,start_time:a[i][0],end_time:a[i][1]});
+    }
+  }
+  const del=await sb.from('availability_rules').delete().eq('teacher_id',id);
+  if(del.error){flash(tr('errGen'),true);return}
+  if(rows.length){const ins=await sb.from('availability_rules').insert(rows); if(ins.error){await loadDash();flash(tr('errGen'),true);return}}
+  await loadDash(); flash(tr('saved'));
+}
+async function addExc(off){
+  const d=$('#xd').value, a=$('#xa').value, b=$('#xb').value;
+  if(!d){flash(tr('needDate'),true);return}
+  const row={teacher_id:S.me.teacher.id,on_date:d,is_available:!off};
+  if(!off){if(!a||!b||b<=a){flash(tr('needTimes'),true);return} row.start_time=a;row.end_time=b}
+  const r=await sb.from('availability_exceptions').insert(row);
+  if(r.error){flash(tr('errGen'),true);return}
+  await loadDash(); flash(tr('saved'));
+}
+async function delExc(id){await sb.from('availability_exceptions').delete().eq('id',id); await loadDash(); flash(tr('saved'))}
+async function saveType(id){
+  const g=k=>$('#ty-'+k+'-'+id);
+  const row={name:g('n').value.trim(),name_ar:g('a').value.trim()||null,duration_min:parseInt(g('d').value,10),buffer_min:parseInt(g('b').value,10)||0,is_active:g('v').checked};
+  if(!row.name||!(row.duration_min>0)||row.buffer_min<0){flash(tr('badType'),true);return}
+  const r=await sb.from('session_types').update(row).eq('id',id);
+  if(r.error){flash(tr('errGen'),true);return}
+  await loadDash(); flash(tr('saved'));
+}
+async function addType(){
+  const g=k=>$('#ty-'+k+'-new');
+  const row={teacher_id:S.me.teacher.id,name:g('n').value.trim(),name_ar:g('a').value.trim()||null,duration_min:parseInt(g('d').value,10),buffer_min:parseInt(g('b').value,10)||0,is_active:true};
+  if(!row.name||!(row.duration_min>0)||row.buffer_min<0){flash(tr('badType'),true);return}
+  const r=await sb.from('session_types').insert(row);
+  if(r.error){flash(tr('errGen'),true);return}
+  await loadDash(); flash(tr('saved'));
+}
+async function saveProfile(){
+  const v=i=>$('#'+i).value.trim();
+  const slug=v('ps').toLowerCase(), name=v('pn'), meet=v('pm'), photo=v('pp'), wa=v('pw').replace(/\D/g,'');
+  if(!name||!/^[a-z0-9-]{3,30}$/.test(slug)||(meet&&!su(meet))||(photo&&!su(photo))||(wa&&!/^[0-9]{6,15}$/.test(wa))){flash(tr('badProf'),true);return}
+  const r=await sb.from('teachers').update({slug,display_name:name,bio:v('pb')||null,photo_url:photo||null,timezone:$('#pt').value,meeting_url:meet||null,whatsapp:wa||null,on_the_spot_booking:$('#onspot').checked}).eq('id',S.me.teacher.id);
+  if(r.error){flash((r.error.message||'').toLowerCase().includes('slug')||r.error.code==='23505'?tr('errSlug'):tr('errGen'),true);return}
+  await loadMe(); flash(tr('saved'));
+}
+async function genInvite(){
+  const r=await sb.rpc('create_teacher_invite');
+  if(r.error||!r.data){flash(tr('errGen'),true);return}
+  S.invites.unshift(r.data); render();
+}
+async function copyText(t,btn){
+  try{await navigator.clipboard.writeText(t)}catch(e){prompt('',t)}
+  const o=btn.textContent; btn.textContent=tr('copied'); setTimeout(()=>btn.textContent=o,1500);
+}
 
-    <footer class="site-footer">
-        <div class="site-footer-inner">
-            <div class="site-footer-about">
-                <p class="site-footer-name">⚡ Ahmad's English Academy</p>
-                <p class="site-footer-desc">
-                    Next-generation English instruction and authentic international exam preparation.
-                    Directed by Ahmad Abutalib (BA, Cambridge CELTA &amp; TTT).
-                </p>
-            </div>
+// ---- view pieces ----
+function tzSel(id,sel){
+  let l=[]; try{l=Intl.supportedValuesOf('timeZone')}catch(e){}
+  if(!l.length) l=['Asia/Riyadh','Asia/Dubai','Africa/Cairo','Europe/London','America/New_York'];
+  if(!l.includes('UTC')) l=l.concat('UTC');
+  if(!l.includes(sel)) l=[sel].concat(l);
+  return '<select id="'+id+'">'+l.map(z=>'<option'+(z===sel?' selected':'')+'>'+esc(z)+'</option>').join('')+'</select>';
+}
+const fld = (label,inner) => '<label class="fl">'+label+'</label>'+inner;
 
-            <nav class="site-footer-nav" aria-label="Footer">
-                <ul>
-                    <li><a href="#courses" data-site-nav="courses">Courses</a></li>
-                    <li><a href="#about" data-site-nav="about">About Me</a></li>
-                    <li><a href="#contact" data-site-nav="contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+function teacherCard(t){
+  const p=su(t.photo_url);
+  return '<div class="card tc"><div class="av">'+(p?'<img src="'+esc(p)+'" alt="">':esc((t.display_name||'?').trim().charAt(0).toUpperCase()))+'</div><div><h2>'+esc(t.display_name)+'</h2>'+(t.bio?'<p class="mut">'+esc(t.bio)+'</p>':'')+'</div></div>';
+}
+function minesCard(){
+  if(!S.user||!S.mine.length) return '';
+  return '<div class="card"><h2>'+tr('mine')+'</h2>'+S.mine.map(b=>{
+    const st=b.session_types||{}, link=su(b.ct&&b.ct.meeting_url);
+    return '<div class="bk"><div><b>'+esc(b.student_name)+'</b>'+(b.series_id?'<span class="badge">'+tr('weeklyBadge')+'</span>':'')
+      +'<br><span class="mut">'+fF(Date.parse(b.starts_at))+' · '+(st.duration_min||'')+' '+tr('min')+' · '+esc(b.teachers?.display_name)+'</span>'
+      +(link?'<br><a href="'+esc(link)+'" target="_blank" rel="noopener">'+tr('link')+'</a>':'')+'</div>'
+      +'<div class="row"><button class="chip" onclick="promptResched(\''+b.id+'\',false)">'+tr('resched')+'</button><button class="chip danger" onclick="promptCancel(\''+b.id+'\')">'+tr('cancel')+'</button></div></div>';
+  }).join('')+'</div>';
+}
+function doneCard(){
+  const d=S.done, m=su(d.meeting), dur=d.type.duration_min;
+  const wa=(d.whatsapp||'').replace(/\D/g,''), txt=encodeURIComponent(tr('waMsg')+'\n'+d.name+'\n'+fF(d.start)+' ('+dur+' '+tr('min')+')');
+  const gc=ms=>new Date(ms).toISOString().replace(/[-:]|\.\d{3}/g,'');
+  const cal='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(d.t.display_name+' – '+d.name)+'&dates='+gc(d.start)+'/'+gc(d.start+dur*6e4)+'&details='+encodeURIComponent(m||'');
+  return '<div class="card ok"><div class="big">🎉</div><h2 style="justify-content:center">'+tr('done')+'</h2><p><b>'+esc(d.name)+'</b><br>'+fF(d.start)+'<br><span class="mut">'+dur+' '+tr('min')+' · '+esc(d.t.display_name)+'</span>'+(d.recurring?'<br><span class="badge">'+tr('weeklyBadge')+'</span>':'')+'</p>'
+    +(m?'<p><a href="'+esc(m)+'" target="_blank" rel="noopener">'+tr('link')+'</a></p>':'')
+    +(wa?'<a class="btn w" href="https://wa.me/'+wa+'?text='+txt+'" target="_blank" rel="noopener">'+tr('wa')+'</a>':'')
+    +'<a class="btn g" href="'+esc(cal)+'" target="_blank" rel="noopener">'+tr('gcal')+'</a>'
+    +'<br><button class="btn g" onclick="nav(S.slug)">'+tr('again')+'</button></div>';
+}
 
-        <div class="site-footer-legal">
-            <p>© 2026 Ahmad's English Academy · Ahmad Abutalib. Authentic examination materials cited under fair educational use.</p>
-        </div>
-    </footer>
+function viewLanding(){
+  return '<div class="card ok" style="padding:26px 20px">'
+    +'<div class="big">📚</div>'
+    +'<h2 style="justify-content:center;font-size:22px">'+tr('welcome')+'</h2>'
+    +'<p class="mut" style="max-width:560px;margin:0 auto 18px">'+tr(hasInvite()?'invited':'welSub')+'</p>'
+    +'<button class="btn" style="max-width:320px;margin:0 auto" onclick="signIn()">'+tr('login')+'</button>'
+    +'</div>'
+    +'<div class="card">'
+    +'<h2>'+tr('howTitle')+'</h2>'
+    +'<div class="g3">'
+    +'<div class="feat"><b>🎓 '+tr('feat1Title')+'</b><span class="mut">'+tr('feat1Body')+'</span></div>'
+    +'<div class="feat"><b>🗓️ '+tr('feat2Title')+'</b><span class="mut">'+tr('feat2Body')+'</span></div>'
+    +'<div class="feat"><b>🔒 '+tr('feat3Title')+'</b><span class="mut">'+tr('feat3Body')+'</span></div>'
+    +'</div>'
+    +'<div class="sub mut">'
+    +'<p style="margin:4px 0">'+tr('how1')+'</p>'
+    +'<p style="margin:4px 0">'+tr('how2')+'</p>'
+    +'<p style="margin:4px 0">'+tr('how3')+'</p>'
+    +'</div>'
+    +'</div>';
+}
 
+function viewBook(){
+  if(S.bad) return '<div class="card err">'+tr('badLink')+'</div>';
+  if(!S.t) return '';
+  if(S.done) return doneCard();
+  let h=teacherCard(S.t);
+  if(S.teacherBooking) h+='<div class="card"><div class="row" style="justify-content:space-between"><b>'+(lang==='ar'?'حجز حصة لطالب من لوحة المعلم':'Teacher booking for a student')+'</b><button class="chip" onclick="stopTeacherBooking()">'+tr('back')+'</button></div></div>';
+  if(!S.user) return h+'<div class="card ok"><p>'+tr('signToBook')+'</p><button class="btn" onclick="signIn()">'+tr('login')+'</button></div>';
+  if(S.loaded!==S.t.id) return h+'<div class="card mut">…</div>';
+  if(S.rs) h+='<div class="card"><h2>'+tr('changing')+': '+esc(S.rs.student_name)+(S.rsScope==='future'?' <span class="badge">'+tr('weeklyBadge')+'</span>':'')+'</h2><p class="mut">'+fF(Date.parse(S.rs.starts_at))+'</p><button class="chip" onclick="stopResched()">'+tr('back')+'</button></div>';
+  else h+='<div class="card"><h2><span class="n">1</span>'+tr('len')+'</h2>'+(S.types.length
+    ? '<div class="row">'+S.types.map(x=>'<button class="chip'+(S.ty&&S.ty.id===x.id?' on':'')+'" onclick="pickType(\''+x.id+'\')">'+x.duration_min+' '+tr('min')+'<small>'+esc(tn(x))+'</small></button>').join('')+'</div>'
+    : '<p class="mut">'+tr('noTypes')+'</p>')+'</div>';
+  if(S.ty){
+    const days=Object.keys(S.slots).sort(), dur=S.ty.duration_min*6e4;
+    h+='<div class="card"><h2><span class="n">2</span>'+tr('day')+'</h2>';
+    if(days.length){
+      h+='<select onchange="pickDay(this.value)"><option value="">'+tr('pickDay')+'</option>'+days.map(k=>'<option value="'+k+'"'+(S.day===k?' selected':'')+'>'+fD(k)+'</option>').join('')+'</select>';
+      if(S.day) h+='<h2 style="margin-top:6px">'+tr('time')+'</h2><select onchange="pickSlot(this.value)"><option value="">'+tr('pickTime')+'</option>'+S.slots[S.day].map(s=>'<option value="'+s+'"'+(S.slot===s?' selected':'')+'>'+fT(s)+' – '+fT(s+dur)+'</option>').join('')+'</select>';
+      h+='<p class="mut" style="margin:0">'+tr('tz')+': '+esc(Intl.DateTimeFormat().resolvedOptions().timeZone)+'</p>';
+    } else h+='<p class="mut">'+tr('none')+'</p>';
+    h+='</div>';
+  }
+  if(S.slot){
+    h+='<div class="card"><h2><span class="n">3</span>'+tr('details')+'</h2>'+(S.err?'<div class="err">'+esc(S.err)+'</div>':'')+'<p><b>'+fF(S.slot)+'</b> · '+S.ty.duration_min+' '+tr('min')+'</p>';
+    h+=S.rs?'<button class="btn" onclick="doResched()">'+tr('confirmNew')+'</button>'
+      :'<input id="sn" list="knownStudents" placeholder="'+(S.teacherBooking?tr('existingStudent'):tr('name'))+'"><datalist id="knownStudents">'+(S.teacherBooking?[...new Set(S.dBk.map(b=>b.student_name).filter(Boolean))].sort().map(n=>'<option value="'+esc(n)+'">').join(''):'')+'</datalist><input id="ph" type="tel" placeholder="'+tr('phone')+'">'+(S.teacherBooking?'':'<label class="ck"><input id="recurringBooking" type="checkbox" checked> '+tr('weeklyRecurring')+'</label><p class="mut">'+tr('recurringHint')+'</p>')+'<button class="btn" onclick="book()">'+tr('book')+'</button>';
+    h+='</div>';
+  } else if(S.err) h+='<div class="card err">'+esc(S.err)+'</div>';
+  if(!S.rs) h+=minesCard();
+  return h;
+}
 
-    <script src="est-data.js?v=3"></script>
-<script src="est-enrich.js?v=1"></script>
-<script src="est-lessons.js?v=3"></script>
-<script src="est-lessons-2.js?v=2"></script>
-<script src="script.js?v=4"></script>
-<script src="toefl-reading-practice.js?v=1"></script>
-<script src="toefl-reading.js?v=4"></script>
-<script src="toefl-writing-practice.js?v=1"></script>
-<script src="toefl-writing.js?v=1"></script>
-<script src="toefl-speaking-practice.js?v=1"></script>
-<script src="toefl-speaking.js?v=2"></script>
-<script src="toefl-listening-practice.js?v=1"></script>
-<script src="toefl-listening.js?v=1"></script>
-<script src="ielts/ielts-content-engine.js?v=2.1"></script>
-<script src="ielts/curriculum-data.js?v=1"></script>
-<script src="ielts/question-adapter.js?v=1"></script>
-<script src="ielts/listening-data.js?v=2"></script>
-<script src="ielts/audio-practice.js?v=2"></script>
-<script src="ielts/subskill-engine.js?v=1"></script>
-<script src="ielts/authentic-practice.js?v=1"></script>
-<script src="ielts/ielts.js?v=7"></script>
-<script src="navigation.js?v=5"></script>
-<script src="site-chrome.js?v=3"></script>
+function invitesCard(){
+  return '<div class="card"><h2>'+tr('invTitle')+'</h2><p class="mut">'+tr('invHint')+'</p><button class="btn" onclick="genInvite()">'+tr('gen')+'</button>'
+    +S.invites.map(c=>{
+      const url=location.origin+'/?invite='+c, msg=tr('inviteMsg')+' '+url;
+      return '<div class="sub"><code>'+esc(c)+'</code><div class="row" style="margin-top:10px"><button class="chip" onclick="copyText(\''+esc(url)+'\',this)">'+tr('copy')+'</button><a class="chip" style="text-decoration:none" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent(msg)+'">'+tr('shareWa')+'</a></div></div>';
+    }).join('')+'</div>';
+}
+function regCard(){
+  const admin=S.me.role==='admin', tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC';
+  const nm=S.user.user_metadata?.full_name||'';
+  return '<div class="card"><h2>'+tr('regTitle')+'</h2>'+(S.err?'<div class="err">'+esc(S.err)+'</div>':'')
+    +(admin?'<p class="mut">'+tr('adminNote')+'</p>':fld(tr('code'),'<input id="rc" value="'+esc(ls.get('invite')||'')+'" autocapitalize="characters" style="direction:ltr">'))
+    +fld(tr('dname'),'<input id="rn" value="'+esc(nm)+'" oninput="onNameInput(this)">')
+    +fld(tr('slugL'),'<input id="rs" value="'+esc(slugify(nm))+'" oninput="this.dataset.m=1" style="direction:ltr" autocapitalize="none">')
+    +fld(tr('tzl'),tzSel('rt',tz))
+    +'<button class="btn" onclick="registerTeacher()">'+tr('create')+'</button>'
+    +(hasInvite()?'':'<br><button class="btn g" onclick="S.reg=false;S.err=\'\';render()">'+tr('back')+'</button>')+'</div>';
+}
+function viewHome(){
+  if(S.reg) return regCard();
+  let h=minesCard();
+  h+='<div class="card ok"><div class="big">🔗</div><h2 style="justify-content:center">'+tr('homeTitle')+'</h2><p class="mut">'+tr('homeHint')+'</p>'
+    +(S.mine.length?'':'<p class="mut">'+tr('noSessions')+'</p>')+'</div>';
+  h+='<div class="card"><button class="btn g" onclick="S.reg=true;S.err=\'\';render()">'+tr('imTeacher')+'</button></div>';
+  if(S.me&&S.me.role==='admin') h+=invitesCard();
+  return h;
+}
+
+// ---- dashboard tabs ----
+function tabLink(){
+  const t=S.me.teacher, link=myLink();
+  const ok=[[S.dRules.length>0,'ckHours','hours'],[!!t.meeting_url,'ckMeet','prof'],[S.dTypes.some(x=>x.is_active),'ckTypes','types'],[!!t.whatsapp,'ckWa','prof']];
+  return '<div class="card"><h2>'+tr('linkTitle')+'</h2>'+flashHtml()+'<p class="mut">'+tr('linkHint')+'</p>'
+    +'<div class="lk"><input id="lk" readonly value="'+esc(link)+'"><button class="chip" id="cp" onclick="copyLink()">'+tr('copy')+'</button></div>'
+    +'<a class="btn w" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent(tr('shareMsg')+' '+link)+'">'+tr('shareWa')+'</a>'
+    +'<a class="btn g" href="javascript:nav(\''+esc(t.slug)+'\')">'+tr('preview')+'</a></div>'
+    +'<div class="card"><h2>'+tr('check')+'</h2>'+ok.map(([v,k,tab])=>'<div class="ck"><span>'+(v?'✅':'⚠️')+'</span><span>'+tr(k)+(v?'':' · <a onclick="setTab(\''+tab+'\')">'+tr('fix')+'</a>')+'</span></div>').join('')+'</div>';
+}
+function tabHours(){
+  const t=S.me.teacher, today=new Date().toISOString().slice(0,10);
+  let h='<div class="card"><h2>'+tr('hoursTitle')+'</h2>'+flashHtml()+'<p class="mut">'+tr('hoursHint')+' <b dir="ltr">'+esc(t.timezone)+'</b></p>';
+  for(let d=0;d<7;d++){
+    h+='<div class="day"><b>'+wdName(d)+'</b><div class="rs">'
+      +(S.wk[d].length?S.wk[d].map((r,j)=>'<div class="row"><input class="t" type="time" value="'+r[0]+'" onchange="setR('+d+','+j+',0,this.value)"> – <input class="t" type="time" value="'+r[1]+'" onchange="setR('+d+','+j+',1,this.value)"><button class="chip" aria-label="'+tr('remove')+'" onclick="delR('+d+','+j+')">✕</button></div>').join(''):'<span class="mut" style="padding-top:8px">'+tr('closed')+'</span>')
+      +'<div><button class="chip" onclick="addR('+d+')">'+tr('addR')+'</button></div></div></div>';
+  }
+  h+='<br><button class="btn" onclick="saveHours()">'+tr('save')+'</button></div>';
+  h+='<div class="card"><h2>'+tr('offTitle')+'</h2><p class="mut">'+tr('offHint')+'</p>'
+    +(S.dExc.length?S.dExc.map(x=>'<div class="row" style="justify-content:space-between;padding:6px 0"><span>📅 '+fD(x.on_date)+' · '+(x.is_available?esc((x.start_time||'').slice(0,5)+' – '+(x.end_time||'').slice(0,5)):tr('dayOff'))+'</span><button class="chip" onclick="delExc(\''+x.id+'\')">'+tr('remove')+'</button></div>').join(''):'<p class="mut">'+tr('noExc')+'</p>')
+    +'<div class="sub"><input id="xd" type="date" min="'+today+'"><div class="row" style="margin-bottom:10px"><input class="t" id="xa" type="time"> – <input class="t" id="xb" type="time"></div>'
+    +'<div class="g2"><button class="btn g" onclick="addExc(true)">'+tr('dayOff')+'</button><button class="btn g" onclick="addExc(false)">'+tr('custom')+'</button></div></div></div>';
+  return h;
+}
+function typeFields(id,x){
+  x=x||{};
+  return '<div class="g2">'+fld(tr('nameEn'),'<input id="ty-n-'+id+'" value="'+esc(x.name||'')+'">')+fld(tr('nameAr'),'<input id="ty-a-'+id+'" dir="rtl" value="'+esc(x.name_ar||'')+'">')
+    +fld(tr('dur'),'<input id="ty-d-'+id+'" type="number" min="5" step="5" value="'+(x.duration_min||'')+'">')+fld(tr('buf'),'<input id="ty-b-'+id+'" type="number" min="0" step="5" value="'+(x.buffer_min??5)+'">')+'</div>';
+}
+function tabTypes(){
+  return '<div class="card"><h2>'+tr('typesTitle')+'</h2>'+flashHtml()+'<p class="mut">'+tr('typesHint')+'</p>'
+    +S.dTypes.map(x=>'<div class="sub">'+typeFields(x.id,x)+'<div class="row" style="justify-content:space-between"><label class="row"><input type="checkbox" id="ty-v-'+x.id+'"'+(x.is_active?' checked':'')+'> '+tr('vis')+'</label><button class="chip" onclick="saveType(\''+x.id+'\')">'+tr('save')+'</button></div></div>').join('')+'</div>'
+    +'<div class="card"><h2>'+tr('addType')+'</h2>'+typeFields('new',{buffer_min:5})+'<button class="btn" onclick="addType()">'+tr('add')+'</button></div>';
+}
+
+function renderDayCol(day, tz, fmtTime, fmt24, dayKey, minBookAt, isSingle){
+  const wd=new Date(day.key+'T12:00:00Z').getUTCDay(), ex=S.dExc.filter(x=>x.on_date===day.key);
+  const windows=ex.some(x=>!x.is_available)?[]:ex.length?ex.filter(x=>x.is_available).map(x=>[(x.start_time||'').slice(0,5),(x.end_time||'').slice(0,5)]):S.wk[wd]||[];
+  const bookings=S.dBk.filter(b=>dayKey(new Date(b.starts_at))===day.key).sort((a,b)=>Date.parse(a.starts_at)-Date.parse(b.starts_at));
+  let h='<div class="calday'+(isSingle?' single':'')+'"><h3>'+day.date.toLocaleDateString(loc(),{timeZone:tz,weekday:isSingle?'long':'short',day:'numeric',month:'short'})+'</h3>';
+  if(windows.length){
+    const free=[]; const types=S.dTypes.filter(x=>x.is_active).sort((a,b)=>a.duration_min-b.duration_min);
+    windows.forEach(w=>{
+      const [sh,sm]=w[0].split(':').map(Number),[eh,em]=w[1].split(':').map(Number), from=sh*60+sm,to=eh*60+em;
+      for(let m=from;m<to;m+=30){
+        const hh=String(Math.floor(m/60)).padStart(2,'0'),mm=String(m%60).padStart(2,'0'), at=toUtc(day.key,hh+':'+mm,tz);
+        const open=at>=minBookAt&&types.some(ty=>m+ty.duration_min<=to&&!bookings.some(b=>at<Date.parse(b.blocked_until||b.ends_at)&&at+ty.duration_min*60000+ty.buffer_min*60000>Date.parse(b.starts_at)));
+        if(open) free.push(fmt24(at));
+      }
+    });
+    h+='<div class="calfree"><b>'+tr('available')+' ('+windows.map(w=>w[0]+'–'+w[1]).join(', ')+')</b><div class="row" style="gap:4px;margin-top:5px">'+(free.length?free.map(x=>'<span class="chip" style="padding:3px 7px;font-size:11px;cursor:default">'+x+'</span>').join(''):'<span>'+tr('noFreeSlots')+'</span>')+'</div></div>';
+  } else {
+    h+='<div class="calempty">'+tr('unavailable')+'</div>';
+  }
+  if(bookings.length){
+    bookings.forEach(b=>{
+      const st=b.session_types||{};
+      h+='<div class="calbook"><b>'+fmtTime(b.starts_at)+' · '+esc(b.student_name)+'</b>'
+        +'<small>'+(st.duration_min||'')+' '+tr('min')+' · '+esc(tn(st))+(b.series_id?' · '+tr('weeklyBadge'):'')+'</small>'
+        +'<div class="row" style="gap:6px;margin-top:6px">'
+        +'<button class="chip" style="padding:4px 8px;font-size:12px" onclick="promptResched(\''+b.id+'\',true)">'+tr('resched')+'</button>'
+        +'<button class="chip danger" style="padding:4px 8px;font-size:12px" onclick="promptCancel(\''+b.id+'\')">'+tr('removeBooking')+'</button>'
+        +'</div></div>';
+    });
+  } else {
+    h+='<div class="calempty">'+tr('noBookingsDay')+'</div>';
+  }
+  h+='</div>';
+  return h;
+}
+
+function renderWeekTimetable(days,tz,dayKey,minBookAt){
+  const windowsFor=day=>{const ex=S.dExc.filter(x=>x.on_date===day.key);return ex.some(x=>!x.is_available)?[]:ex.length?ex.filter(x=>x.is_available).map(x=>[(x.start_time||'').slice(0,5),(x.end_time||'').slice(0,5)]):S.wk[new Date(day.key+'T12:00:00Z').getUTCDay()]||[]};
+  const windows=days.map(windowsFor); const all=windows.flat();
+  if(!all.length) return '<div class="calempty">'+tr('unavailable')+'</div>';
+  const mins=all.flatMap(w=>w.map(t=>{const [h,m]=t.split(':').map(Number);return h*60+m}));
+  const from=Math.floor(Math.min(...mins)/30)*30, to=Math.ceil(Math.max(...mins)/30)*30;
+  const times=[]; for(let m=from;m<to;m+=30) times.push(m);
+  const timeLabel=m=>String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
+  let h='<div class="timetable-wrap"><div class="timetable"><div class="tt-head tt-time">'+(lang==='ar'?'الوقت':'Time')+'</div>';
+  days.forEach(d=>h+='<div class="tt-head">'+d.date.toLocaleDateString(loc(),{timeZone:tz,weekday:'short',day:'numeric',month:'short'})+'</div>');
+  times.forEach(m=>{
+    h+='<div class="tt-time">'+timeLabel(m)+'</div>';
+    days.forEach((day,idx)=>{
+      const win=windows[idx].some(w=>{const [a,b]=w.map(t=>{const [hh,mm]=t.split(':').map(Number);return hh*60+mm});return m>=a&&m<b});
+      const at=toUtc(day.key,timeLabel(m),tz), bk=S.dBk.find(b=>dayKey(new Date(b.starts_at))===day.key&&at>=Date.parse(b.starts_at)&&at<Date.parse(b.blocked_until||b.ends_at));
+      const starts=S.dBk.find(b=>dayKey(new Date(b.starts_at))===day.key&&Math.abs(Date.parse(b.starts_at)-at)<60000);
+      if(starts){const st=starts.session_types||{};h+='<div class="tt-cell tt-booked"><b>'+esc(starts.student_name)+'</b><small>'+timeLabel(m)+' · '+(st.duration_min||'')+' '+tr('min')+'</small></div>';}
+      else if(bk) h+='<div class="tt-cell tt-occupied"></div>';
+      else if(win){const type=S.dTypes.filter(t=>t.is_active&&m+t.duration_min<=to&&at>=minBookAt).sort((a,b)=>a.duration_min-b.duration_min)[0];h+='<div class="tt-cell tt-free">'+(type?'<button title="'+tr('bookForStudent')+'" onclick="startTeacherBookingAt(\''+day.key+'\',\''+timeLabel(m)+'\')">＋</button>':'')+'</div>';}
+      else h+='<div class="tt-cell tt-closed"></div>';
+    });
+  });
+  return h+'</div></div><div class="tt-legend"><span>🟩 '+tr('available')+'</span><span>🟪 '+(lang==='ar'?'حصة محجوزة':'Booked lesson')+'</span><span>⬜ '+tr('unavailable')+'</span></div>';
+}
+async function startTeacherBookingAt(day,time){await startTeacherBooking();const types=S.types.filter(x=>x.is_active).sort((a,b)=>a.duration_min-b.duration_min);if(types[0]){S.ty=types[0];build();S.slot=Object.values(S.slots).flat().find(x=>Math.abs(x-toUtc(day,time,S.t.timezone))<60000)||null;S.day=S.slot?new Date(S.slot).toLocaleDateString('en-CA'):null;}render();}
+
+function teacherCalendar(){
+  const tz=S.me.teacher.timezone;
+  const dayKey=d=>{const p=new Intl.DateTimeFormat('en-CA',{timeZone:tz,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(d).reduce((a,x)=>(a[x.type]=x.value,a),{});return p.year+'-'+p.month+'-'+p.day};
+  const fmtTime=iso=>new Date(iso).toLocaleTimeString(loc(),{timeZone:tz,hour:'numeric',minute:'2-digit'});
+  const fmt24=ms=>new Date(ms).toLocaleTimeString('en-GB',{timeZone:tz,hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
+  const minBookAt=Date.now()+(S.me.teacher.on_the_spot_booking?0:8)*3600000;
+
+  const modeBtns = ['day','week','agenda'].map(m=>{
+    const label = m==='day'?tr('calViewDay'):m==='week'?tr('calViewWeek'):tr('calViewAgenda');
+    return '<button class="chip'+(S.calMode===m?' on':'')+'" onclick="setCalMode(\''+m+'\')">'+label+'</button>';
+  }).join('');
+
+  let h='<div class="card"><div class="calnav"><h2>'+tr('calendarTitle')+'</h2><div class="row">'+modeBtns+'<button class="btn" style="width:auto" onclick="startTeacherBooking()">＋ '+tr('bookForStudent')+'</button></div></div>'+flashHtml()+'<p class="mut" style="margin-top:0">'+tr('calendarHint')+' (<b dir="ltr">'+esc(tz)+'</b>)</p>';
+
+  if(S.calMode==='day'){
+    const d=new Date(); d.setDate(d.getDate()+S.dayOffset);
+    const dayObj={date:d,key:dayKey(d)};
+    h+='<div class="calnav">'
+      +'<div class="row"><button class="chip" onclick="S.dayOffset--;render()">‹ '+tr('prevDay')+'</button>'
+      +'<button class="chip" onclick="S.dayOffset=0;render()">'+tr('todayBtn')+'</button>'
+      +'<button class="chip" onclick="S.dayOffset++;render()">'+tr('nextDay')+' ›</button></div>'
+      +'<b>'+d.toLocaleDateString(loc(),{timeZone:tz,weekday:'long',month:'short',day:'numeric'})+'</b>'
+      +'</div>';
+    h+=renderDayCol(dayObj, tz, fmtTime, fmt24, dayKey, minBookAt, true);
+  } else if(S.calMode==='week'){
+    const base=new Date(); base.setDate(base.getDate()+S.calendarOffset*7);
+    const days=[]; for(let i=0;i<7;i++){const d=new Date(base);d.setDate(base.getDate()+i);days.push({date:d,key:dayKey(d)});}
+    h+='<div class="calnav">'
+      +'<div class="row"><button class="chip" onclick="S.calendarOffset--;render()">‹ '+tr('previousWeek')+'</button>'
+      +'<button class="chip" onclick="S.calendarOffset=0;render()">'+tr('todayBtn')+'</button>'
+      +'<button class="chip" onclick="S.calendarOffset++;render()">'+tr('nextWeek')+' ›</button></div>'
+      +'<b>'+days[0].date.toLocaleDateString(loc(),{month:'short',day:'numeric'})+' – '+days[6].date.toLocaleDateString(loc(),{month:'short',day:'numeric'})+'</b>'
+      +'</div>';
+    h+=renderWeekTimetable(days,tz,dayKey,minBookAt);
+  } else {
+    if(!S.dBk.length){
+      h+='<p class="mut">'+tr('noBk')+'</p>';
+    } else {
+      let lastKey='';
+      S.dBk.forEach(b=>{
+        const k=dayKey(new Date(b.starts_at)), st=b.session_types||{}, ph=(b.contact_phone||'').replace(/\D/g,'');
+        if(k!==lastKey){
+          lastKey=k;
+          h+='<h3 style="margin:16px 0 6px;padding-top:10px;border-top:1px solid var(--line)">📅 '+fD(k)+'</h3>';
+        }
+        h+='<div class="bk"><div><b>'+fmtTime(b.starts_at)+' · '+esc(b.student_name)+'</b>'+(b.series_id?'<span class="badge">'+tr('weeklyBadge')+'</span>':'')
+          +'<br><span class="mut">'+(st.duration_min||'')+' '+tr('min')+' · '+esc(tn(st))+'</span>'
+          +(ph?' · <a target="_blank" rel="noopener" href="https://wa.me/'+ph+'">'+esc(b.contact_phone)+'</a>':'')
+          +'</div><div class="row">'
+          +'<button class="chip" onclick="promptResched(\''+b.id+'\',true)">'+tr('resched')+'</button>'
+          +'<button class="chip danger" onclick="promptCancel(\''+b.id+'\')">'+tr('removeBooking')+'</button>'
+          +'</div></div>';
+      });
+    }
+  }
+  h+='</div>';
+  return h;
+}
+
+function tabBookings(){
+  return '<div class="card"><h2>'+tr('upcoming')+'</h2>'+flashHtml()+(S.dBk.length?S.dBk.map(b=>{
+    const st=b.session_types||{}, ph=(b.contact_phone||'').replace(/\D/g,'');
+    return '<div class="bk"><div><b>'+esc(b.student_name)+'</b>'+(b.series_id?'<span class="badge">'+tr('weeklyBadge')+'</span>':'')+'<br><span class="mut">'+fF(Date.parse(b.starts_at))+' · '+(st.duration_min||'')+' '+tr('min')+'</span>'
+      +(ph?'<br><a target="_blank" rel="noopener" href="https://wa.me/'+ph+'">'+esc(b.contact_phone)+'</a>':'')+(b.notes?'<br><span class="mut">'+esc(b.notes)+'</span>':'')+'</div>'
+      +'<div class="row"><button class="chip" onclick="promptResched(\''+b.id+'\',true)">'+tr('resched')+'</button><button class="chip danger" onclick="promptCancel(\''+b.id+'\')">'+tr('removeBooking')+'</button></div></div>';
+  }).join(''):'<p class="mut">'+tr('noBk')+'</p>')+'</div>';
+}
+function tabProfile(){
+  const t=S.me.teacher;
+  return '<div class="card"><h2>'+tr('tProf')+'</h2>'+flashHtml()
+    +fld(tr('dname'),'<input id="pn" value="'+esc(t.display_name)+'">')
+    +fld(tr('bioL'),'<textarea id="pb">'+esc(t.bio||'')+'</textarea>')
+    +fld(tr('photoL'),'<input id="pp" style="direction:ltr" value="'+esc(t.photo_url||'')+'">')
+    +fld(tr('meetL'),'<input id="pm" style="direction:ltr" placeholder="https://meet.google.com/…" value="'+esc(t.meeting_url||'')+'"><p class="mut" style="margin:-4px 0 10px">'+tr('meetH')+'</p>')
+    +fld(tr('waL'),'<input id="pw" type="tel" style="direction:ltr" placeholder="9665XXXXXXXX" value="'+esc(t.whatsapp||'')+'">')
+    +fld(tr('tzl'),tzSel('pt',t.timezone))
+    +'<label class="ck"><input id="onspot" type="checkbox"'+(t.on_the_spot_booking?' checked':'')+'> '+tr('onSpot')+'</label><p class="mut">'+tr('noticeEight')+'</p>'
+    +fld(tr('slugL'),'<input id="ps" style="direction:ltr" value="'+esc(t.slug)+'"><p class="mut" style="margin:-4px 0 10px">'+tr('slugWarn')+'</p>')
+    +'<button class="btn" onclick="saveProfile()">'+tr('save')+'</button></div>';
+}
+function adminDashboard(){
+  const d=S.adminData;
+  if(S.adminLoading&&!d) return '<div class="card mut">…</div>';
+  if(!d||d.error) return '<div class="card"><h2>'+tr('adminStats')+'</h2><p class="err">'+tr('adminLoadError')+'</p><button class="btn" onclick="loadAdminOverview()">'+tr('fix')+'</button></div>';
+  const st=d.stats||{};
+  let h='<div class="card"><h2>'+tr('adminStats')+'</h2><div class="g3">'+[[tr('totalTeachers'),st.total_teachers],[tr('activeTeachers'),st.active_teachers],[tr('totalBookings'),st.total_bookings],[tr('confirmedBookings'),st.confirmed_bookings],[tr('cancelledBookings'),st.cancelled_bookings],[tr('teacherCreated'),st.teacher_created_bookings]].map(([k,v])=>'<div class="feat"><b>'+esc(k)+'</b><strong style="font-size:25px">'+Number(v||0).toLocaleString()+'</strong></div>').join('')+'</div></div>';
+  h+='<div class="card"><h2>'+tr('adminTeachers')+'</h2>';
+  const ts=d.teachers||[];
+  h+=ts.length?ts.map(t=>'<div class="bk"><div><b>'+esc(t.display_name||'')+'</b> '+(t.is_active?'<span class="badge">Active</span>':'<span class="badge">Inactive</span>')+'<br><span class="mut">'+esc(t.slug||'')+' · '+esc(t.timezone||'')+(t.created_at?' · '+tr('createdAt')+': '+new Date(t.created_at).toLocaleDateString(loc()):'')+'</span></div><div class="row"><a class="chip" target="_blank" rel="noopener" href="'+location.origin+'/?t='+encodeURIComponent(t.slug||'')+'">'+tr('publicPreview')+'</a></div></div>').join(''):'<p class="mut">'+tr('noTeachers')+'</p>';
+  return h+'</div>';
+}
+
+function viewDash(){
+  const tabs=[['link','tLink'],['calendar','calendarTab'],['hours','tHours'],['types','tTypes'],['bk','tBook'],['prof','tProf']];
+  if(S.me.role==='admin') tabs.push(['inv','tInv'],['admin','tAdmin']);
+  let h='<div class="card"><div class="row">'+tabs.map(([k,l])=>'<button class="chip'+(S.tab===k?' on':'')+'" onclick="setTab(\''+k+'\')">'+tr(l)+'</button>').join('')+'</div></div>';
+  h+=({link:tabLink,calendar:teacherCalendar,hours:tabHours,types:tabTypes,bk:tabBookings,prof:tabProfile,inv:()=>flashHtml()+invitesCard(),admin:adminDashboard}[S.tab]||tabLink)();
+  return h;
+}
+
+function renderModal(){
+  const M=$('#modalRoot');
+  if(!S.modal){M.innerHTML='';return}
+  const b=S.modal.booking;
+  if(S.modal.type==='cancel'){
+    M.innerHTML='<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal">'
+      +'<h3>'+tr('cancelModalTitle')+'</h3>'
+      +'<p class="mut" style="margin:0">'+esc(b.student_name)+' · '+fF(Date.parse(b.starts_at))+'</p>'
+      +'<p class="mut" style="margin:6px 0 0">'+tr('cancelModalSub')+'</p>'
+      +'<div class="stack">'
+      +'<button class="btn g" onclick="executeCancel(\''+b.id+'\',\'single\')">'+tr('cancelOne')+'</button>'
+      +'<button class="btn g" onclick="executeCancel(\''+b.id+'\',\'future\')">'+tr('cancelFuture')+'</button>'
+      +'<button class="btn d" onclick="executeCancel(\''+b.id+'\',\'all\')">'+tr('cancelAll')+'</button>'
+      +'<button class="chip" onclick="closeModal()">'+tr('back')+'</button>'
+      +'</div></div></div>';
+  } else if(S.modal.type==='resched'){
+    const asT = S.modal.asTeacher ? 'true' : 'false';
+    M.innerHTML='<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal">'
+      +'<h3>'+tr('reschedModalTitle')+'</h3>'
+      +'<p class="mut" style="margin:0">'+esc(b.student_name)+' · '+fF(Date.parse(b.starts_at))+'</p>'
+      +'<p class="mut" style="margin:6px 0 0">'+tr('reschedModalSub')+'</p>'
+      +'<div class="stack">'
+      +'<button class="btn" onclick="startResched(\''+b.id+'\',\'single\','+asT+')">'+tr('reschedOne')+'</button>'
+      +'<button class="btn g" onclick="startResched(\''+b.id+'\',\'future\','+asT+')">'+tr('reschedFuture')+'</button>'
+      +'<button class="chip" onclick="closeModal()">'+tr('back')+'</button>'
+      +'</div></div></div>';
+  }
+}
+
+// ---- main render ----
+function render(){
+  document.documentElement.lang=lang; document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  const A=$('#app');
+  $('#who').textContent=S.user?(tr('hi')+' '+(S.user.user_metadata?.full_name||S.user.email)):'';
+  let b='<button type="button" id="languageToggle">'+tr('lang')+'</button> ';
+  if(S.user&&S.slug) b+='<button onclick="nav(null)">'+tr(S.me&&S.me.teacher?'goDash':'goHome')+'</button> ';
+  b+='<button onclick="S.user?signOut():signIn()">'+tr(S.user?'out':'in')+'</button>';
+  $('#btns').innerHTML=b;
+  const languageToggle=$('#languageToggle'); if(languageToggle) languageToggle.addEventListener('click',()=>setLang(lang==='ar'?'en':'ar'));
+  $('#footNote').textContent=tr('footNote');
+  $('#footPriv').textContent=tr('footPriv');
+  $('#footTerms').textContent=tr('footTerms');
+
+  const dash=!S.slug&&S.user&&S.me&&S.me.teacher&&!S.reg;
+  A.className = (dash && S.tab==='calendar' && S.calMode==='week') ? 'wide' : '';
+  $('#h1').textContent = S.slug&&S.t ? tr('bookWith')+' '+S.t.display_name : dash ? tr('dashTitle') : tr('title');
+  $('#sub').textContent = S.slug ? '' : dash ? S.me.teacher.display_name : tr('sub');
+  if(SB_KEY.startsWith('PASTE')){A.innerHTML='<div class="card err">'+tr('cfg')+'</div>';return}
+  if(!S.ready){A.innerHTML='<div class="card mut">…</div>';return}
+  A.innerHTML = S.slug ? viewBook()
+    : !S.user ? viewLanding()
+    : !S.me ? '<div class="card mut">…</div>'
+    : dash ? viewDash()
+    : viewHome();
+  renderModal();
+}
+
+async function init(){
+  const q=new URLSearchParams(location.search), m=location.pathname.match(/^\/t\/([a-z0-9-]+)/i);
+  let slug=((q.get('t')||(m&&m[1])||'')+'').toLowerCase()||null;
+  const inv=q.get('invite'); if(inv) ls.set('invite',inv.toUpperCase().replace(/[^A-Z0-9]/g,''));
+  const {data:{session}}=await sb.auth.getSession(); S.user=session?.user||null;
+  const next=ls.get('next'); ls.del('next');
+  if(!slug&&S.user&&next) slug=next;
+  S.slug=slug;
+  writeAppHistory('replace');
+  window.addEventListener('popstate', async (event)=>{
+    if(event.state?.bmc){ await restoreAppRoute(event.state); }
+    else {
+      // Keep browser Back inside the app instead of leaving an authenticated page
+      // through a stale OAuth redirect/history entry. Never sign the user out here.
+      writeAppHistory('replace');
+      if(S.user&&S.me?.teacher){S.slug=null;S.teacherBooking=false;S.rs=null;S.rsAsTeacher=false;await loadDash();render();}
+    }
+  });
+  sb.auth.onAuthStateChange((_e,s)=>{
+    const u=s?.user||null;
+    if((u?.id||null)!==(S.user?.id||null)) setTimeout(async()=>{
+      S.user=u; S.loaded=null; S.done=null;
+      if(u){await Promise.all([loadMe(),loadMine()])} else {S.me=null;S.mine=[]}
+      if(S.slug&&S.t&&u) await loadBook();
+      S.reg = !!(u&&S.me&&!S.me.teacher&&hasInvite()&&!S.slug);
+      render();
+    },0);
+  });
+  if(S.user) await Promise.all([loadMe(),loadMine()]);
+  await loadTeacher();
+  if(S.slug&&S.user&&S.t) await loadBook();
+  S.reg = !!(S.user&&S.me&&!S.me.teacher&&hasInvite()&&!S.slug);
+  S.ready=true; render();
+}
+render(); init();
+</script>
 </body>
 </html>
