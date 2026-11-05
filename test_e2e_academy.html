@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Modern Academy Full Regression Suite</title>
+</head>
+<body>
+    <div id="ielts-screen">
+        <div id="ielts-root"></div>
+    </div>
+    <div id="test-log"></div>
+
+    <!-- Scripts from index.html -->
+    <script src="ielts/ielts-content-engine.js"></script>
+    <script src="ielts/curriculum-data.js"></script>
+    <script src="ielts/question-adapter.js"></script>
+    <script src="ielts/listening-data.js"></script>
+    <script src="ielts/audio-practice.js"></script>
+    <script src="ielts/subskill-engine.js?v=1"></script>
+<script src="ielts/authentic-practice.js"></script>
+    <script src="ielts/ielts.js"></script>
+
+    <script>
+        var logEl = document.getElementById("test-log");
+        var mountEl = document.getElementById("ielts-root");
+        var assertions = [];
+
+        function assert(cond, msg) {
+            assertions.push({ pass: !!cond, msg: msg });
+        }
+
+        try {
+            // ==========================================
+            // 0. DASHBOARD & MODERN 4-PILLAR COMMAND CENTER
+            // ==========================================
+            window.showIELTS("");
+            assert(mountEl.textContent.indexOf("Ahmad's 4-Pillar Preparation Protocol") !== -1, "Dashboard displays 4-Pillar Preparation Protocol");
+            assert(mountEl.textContent.indexOf("Authentic Cambridge Tasks") !== -1, "Pillar 1 Authentic Cambridge Tasks rendered");
+            assert(mountEl.textContent.indexOf("Dean's Strategy Compasses") !== -1, "Pillar 2 Strategy Compasses rendered");
+            assert(mountEl.textContent.indexOf("Examiner Trap Radars") !== -1, "Pillar 3 Examiner Trap Radars rendered");
+            assert(mountEl.textContent.indexOf("Band 8.5+ Scaffolding") !== -1, "Pillar 4 Band 8.5+ Scaffolding rendered");
+            assert(!!mountEl.querySelector(".modern-protocol-card"), "Modern high-tech Protocol card rendered");
+
+            // ==========================================
+            // 1. READING PRACTICE, WHITE STORKS & TRACK SWITCHING
+            // ==========================================
+            window.showIELTS("reading");
+            assert(mountEl.children.length > 0, "IELTS Reading view rendered");
+
+            var readingTrackPicker = mountEl.querySelector(".ielts-track");
+            assert(!!readingTrackPicker, "Reading view displays Modern Segmented Track Picker");
+
+            // Switch to General Training
+            var gtBtn = mountEl.querySelector('[data-ielts-track="general"]');
+            assert(!!gtBtn, "General Training track button exists");
+            if (gtBtn) gtBtn.click();
+            assert(mountEl.textContent.indexOf("GENERAL TRAINING") !== -1, "Reading header updated to General Training");
+
+            var readPracTab = mountEl.querySelector('[data-ielts-tab="reading|practise"]');
+            assert(!!readPracTab, "Reading Practise tab exists");
+            if (readPracTab) readPracTab.click();
+
+            assert(mountEl.textContent.indexOf("Dean's Strategy Compass: The 4-Step Scanning Protocol") !== -1, "Reading Hub displays 4-Step Scanning Strategy Compass");
+            assert(mountEl.textContent.indexOf("White Storks Back in Britain") !== -1, "White Storks passage listed in Reading Hub");
+
+            // Open White Storks Passage
+            var storksBtn = mountEl.querySelector('[data-ielts-open-reading="c18-white-storks"]');
+            assert(!!storksBtn, "White Storks practice button exists");
+            if (storksBtn) storksBtn.click();
+
+            assert(mountEl.textContent.indexOf("Section A") !== -1, "Section A rendered in White Storks");
+            assert(mountEl.textContent.indexOf("Section F") !== -1, "Section F rendered in White Storks");
+            assert(mountEl.textContent.indexOf("Dean's Strategy Compass: Matching Headings") !== -1, "Dean's Matching Headings Compass rendered");
+            assert(mountEl.textContent.indexOf("Examiner Trap Radar: Keyword Distractors") !== -1, "Examiner Trap Radar rendered");
+
+            var trapIcon = mountEl.querySelector(".ielts-trap-radar-icon");
+            assert(!!trapIcon, "Examiner Trap Radar displays pulsating radar ping icon");
+
+            // Check Question 28 heading select
+            var h28 = mountEl.querySelector('[data-ielts-reading-answer="h-28"]');
+            assert(!!h28, "Heading select for Q28 exists");
+            if (h28) {
+                h28.value = "vii";
+                h28.dispatchEvent(new Event("change", { bubbles: true }));
+            }
+
+            // Check Question 34 summary input
+            var sum34 = mountEl.querySelector('[data-ielts-reading-answer="sum-34"]');
+            assert(!!sum34, "Summary input for Q34 exists");
+            if (sum34) {
+                sum34.value = "sticks";
+                sum34.dispatchEvent(new Event("input", { bubbles: true }));
+                sum34.dispatchEvent(new Event("change", { bubbles: true }));
+            }
+
+            // Check Question 38 MCQ radio
+            var mcq38 = mountEl.querySelector('[data-ielts-reading-answer="mcq-38"][value="D"]');
+            assert(!!mcq38, "MCQ radio for Q38 D exists");
+            if (mcq38) {
+                mcq38.checked = true;
+                mcq38.dispatchEvent(new Event("change", { bubbles: true }));
+            }
+
+            // Submit White Storks answers
+            var subStorks = mountEl.querySelector("[data-ielts-reading-submit]");
+            assert(!!subStorks, "White Storks submit button exists");
+            if (subStorks) subStorks.click();
+
+            assert(mountEl.textContent.indexOf("Total Score:") !== -1, "Score banner displayed after White Storks submission");
+
+            // ==========================================
+            // 2. LISTENING PRACTICE & PART 3 DISCUSSION
+            // ==========================================
+            window.showIELTS("listening");
+            var listenPracTab = mountEl.querySelector('[data-ielts-tab="listening|practise"]');
+            assert(!!listenPracTab, "Listening Practise tab exists");
+            if (listenPracTab) listenPracTab.click();
+
+            assert(mountEl.textContent.indexOf("Dean's Strategy Compass: The 30-Second Pre-Listening Prediction Protocol") !== -1, "Listening Hub displays 30-Second Prediction Protocol");
+
+            var p3Btn = mountEl.querySelector('[data-ielts-auth-listen-mode="c18-p3"]');
+            assert(!!p3Btn, "Cambridge 18 Part 3 button exists in Listening sub-nav");
+            if (p3Btn) p3Btn.click();
+
+            assert(mountEl.textContent.indexOf("Jobs in Fashion Design") !== -1, "Part 3 Jobs in Fashion Design rendered");
+            assert(mountEl.textContent.indexOf("Dean's Strategy Compass: Part 3 Discussion Dynamics") !== -1, "Part 3 Strategy Compass rendered");
+            assert(mountEl.textContent.indexOf("Examiner Trap Radar: Speaker Agreement Trap") !== -1, "Part 3 Trap Radar rendered");
+
+            var q21 = mountEl.querySelector('[data-ielts-c18-ans="p3-21"][value="B"]');
+            assert(!!q21, "Part 3 Q21 radio exists");
+            if (q21) {
+                q21.checked = true;
+                q21.dispatchEvent(new Event("change", { bubbles: true }));
+            }
+
+            var subP3 = mountEl.querySelector("[data-ielts-c18-submit]");
+            assert(!!subP3, "Part 3 submit button exists");
+            if (subP3) subP3.click();
+
+            assert(mountEl.textContent.indexOf("Official answers and reasoning verified") !== -1, "Part 3 score banner displayed");
+
+            // ==========================================
+            // 3. WRITING PRACTICE & COHESION TOOLKIT
+            // ==========================================
+            window.showIELTS("writing");
+            var writingTrackPicker = mountEl.querySelector(".ielts-track");
+            assert(!!writingTrackPicker, "Writing view displays Modern Track Picker");
+
+            var writePracTab = mountEl.querySelector('[data-ielts-tab="writing|practise"]');
+            assert(!!writePracTab, "Writing Practise tab exists");
+            if (writePracTab) writePracTab.click();
+
+            assert(mountEl.textContent.indexOf("Dean's Strategy Compass: The 4-Paragraph Academic Blueprint") !== -1, "Writing Hub displays 4-Paragraph Academic Blueprint");
+
+            var taskBtn = mountEl.querySelector('[data-ielts-writing-auth-task="ac-line-energy"]');
+            assert(!!taskBtn, "Academic Line Graph task button exists");
+            if (taskBtn) taskBtn.click();
+
+            assert(mountEl.textContent.indexOf("Academic Cohesive Devices & Collocations") !== -1, "Academic Cohesion Toolkit rendered");
+            assert(mountEl.textContent.indexOf("Band 8.5+ Examiner Self-Assessment Rubric") !== -1, "Band 8.5+ Rubric Checklist rendered");
+
+            var countBadge = mountEl.querySelector(".word-count-badge");
+            assert(!!countBadge, "Word count badge rendered with milestone styling");
+
+            // Test clicking a cohesion pill
+            var moreoverPill = mountEl.querySelector('[data-ielts-cohesion-insert="Moreover, "]');
+            assert(!!moreoverPill, "Moreover cohesion pill exists");
+            if (moreoverPill) moreoverPill.click();
+
+            var textarea = document.getElementById("ielts-writing-live-draft");
+            assert(!!textarea && textarea.value.indexOf("Moreover, ") !== -1, "Cohesion device inserted directly into draft textarea");
+
+            var toast = mountEl.querySelector(".modern-cohesion-toast");
+            assert(!!toast && toast.textContent.indexOf("Inserted") !== -1, "Cohesion click triggers animated toast notification");
+
+            // ==========================================
+            // 4. SPEAKING PRACTICE & SVG TIMER
+            // ==========================================
+            window.showIELTS("speaking");
+            var speakPracTab = mountEl.querySelector('[data-ielts-tab="speaking|practise"]');
+            assert(!!speakPracTab, "Speaking Practise tab exists");
+            if (speakPracTab) speakPracTab.click();
+
+            assert(mountEl.textContent.indexOf("Dean's Strategy Compass: The 3-Sentence Rule") !== -1, "Speaking Part 1 displays 3-Sentence Rule");
+
+            var spPart2Btn = mountEl.querySelector('[data-ielts-sp-part="2"]');
+            assert(!!spPart2Btn, "Speaking Part 2 button exists");
+            if (spPart2Btn) spPart2Btn.click();
+
+            assert(mountEl.textContent.indexOf("Dean's Strategy Compass: 60-Second Note-Taking Compass") !== -1, "Speaking Part 2 displays 60-Second Note Compass");
+            assert(mountEl.textContent.indexOf("Official IELTS Speaking Timer") !== -1, "Official Speaking Timer rendered");
+
+            var svgCircle = mountEl.querySelector("#ielts-timer-circle");
+            assert(!!svgCircle, "Modern SVG circular countdown ring rendered");
+
+            var prepTimerBtn = mountEl.querySelector('[data-ielts-sp-timer="prep"]');
+            assert(!!prepTimerBtn, "1-Min Prep timer button exists");
+            if (prepTimerBtn) prepTimerBtn.click();
+
+            var digitsEl = mountEl.querySelector("#ielts-sp-timer-display");
+            assert(!!digitsEl && digitsEl.textContent.indexOf("01:00") !== -1, "Speaking timer starts counting down with digital readout");
+
+            var resetTimerBtn = mountEl.querySelector('[data-ielts-sp-timer="stop"]');
+            if (resetTimerBtn) resetTimerBtn.click();
+
+            var spPart3Btn = mountEl.querySelector('[data-ielts-sp-part="3"]');
+            assert(!!spPart3Btn, "Speaking Part 3 button exists");
+            if (spPart3Btn) spPart3Btn.click();
+
+            assert(mountEl.textContent.indexOf("Dean's Strategy Compass: The A-R-E Discursive Framework") !== -1, "Speaking Part 3 displays A-R-E Framework");
+
+        } catch (e) {
+            assertions.push({ pass: false, msg: "UNCAUGHT ERROR: " + e.message + " (" + e.stack + ")" });
+        }
+
+        // Render assertion results
+        var allPassed = assertions.every(function(a){ return a.pass; });
+        var resHtml = "<h2>E2E ACADEMY REGRESSION RESULTS: " + (allPassed ? "ALL PASSED (100%)" : "FAILED") + "</h2><ul>";
+        assertions.forEach(function(a) {
+            resHtml += "<li style='color:" + (a.pass ? "green" : "red") + "; font-weight:bold;'>" + (a.pass ? "✓ PASS: " : "✗ FAIL: ") + a.msg + "</li>";
+        });
+        resHtml += "</ul>";
+        logEl.innerHTML = resHtml;
+    </script>
+</body>
+</html>
