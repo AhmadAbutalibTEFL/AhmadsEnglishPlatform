@@ -6,7 +6,8 @@
    here without touching the screen code. Load BEFORE ielts.js.
 
    STATUS values: "available" | "preview" | "planned"
-   Nothing below is playable. Every learning activity is "planned".
+   Audio-based mini practice is implemented in ielts.js using browser speech synthesis.
+   Full-length tests, verified audio transcripts/answer keys, and saved progress remain planned.
 
    SOURCES
    - "official": paraphrased from the IELTS partners' public test-format page (see `source`).
@@ -106,7 +107,6 @@
         ],
 
         futureFeatures: [
-            "Audio-based question-type practice",
             "Full Listening tests",
             "Verified audio transcripts and answer keys",
             "Saved progress tracking"

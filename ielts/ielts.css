@@ -121,3 +121,2548 @@
 .ielts-practice-options { margin:12px 0 16px; }
 .ielts-lesson-check:disabled, .ielts-worked-example button:disabled { opacity:.55; cursor:not-allowed; }
 @media (max-width:700px) { .ielts-lesson-grid { grid-template-columns:1fr; } .ielts-lesson-toolbar { align-items:flex-start; flex-direction:column; gap:4px; } }
+
+/* Audio practice additions */
+.ielts-audio-practice { margin-top: 1.25rem; }
+.ielts-audio-item { border-top: 1px solid var(--ielts-border, #d8dee8); padding: 1rem 0; }
+.ielts-audio-item:first-of-type { border-top: 0; }
+.ielts-audio-player { display: block; width: 100%; max-width: 620px; margin: .75rem 0 1rem; }
+.ielts-transcript { margin-top: 1rem; padding: .75rem; border-radius: .6rem; background: var(--ielts-soft, #f5f7fa); }
+.ielts-transcript summary { cursor: pointer; font-weight: 700; }
+.ielts-transcript li { margin: .5rem 0; line-height: 1.55; }
+.ielts-audio-item h4 { margin-bottom: .6rem; }
+
+/* ---------- Map and plan labelling exercise ---------- */
+.ielts-map-exercise { margin-top: 1.25rem; }
+.ielts-map-exercise h3[tabindex="-1"]:focus,
+.ielts-map-score:focus { outline: none; }
+.ielts-map-steps { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 12px 0 14px; padding: 0; counter-reset: ielts-step; }
+.ielts-map-steps li { counter-increment: ielts-step; padding: 5px 12px; border: 1px solid #d1d5db; border-radius: 999px; background: #fff; color: #4b5563; font-size: 14px; }
+.ielts-map-steps li::before { content: counter(ielts-step) ". "; font-weight: 700; }
+.ielts-map-steps li[aria-current="step"] { background: #1d4ed8; border-color: #1d4ed8; color: #fff; font-weight: 700; }
+
+.ielts-map-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; align-items: start; margin-top: 8px; }
+@media (min-width: 900px) { .ielts-map-layout { grid-template-columns: minmax(0, 1.25fr) minmax(300px, 1fr); } }
+
+.ielts-exmap-figure { margin: 0; padding: 12px; border: 1px solid #dbe3ee; border-radius: 14px; background: #fff; min-width: 0; }
+.ielts-exmap-figure figcaption { margin-bottom: 8px; color: #1e3a8a; font-size: 14px; font-weight: 700; }
+.ielts-exmap { display: block; width: 100%; height: auto; max-width: 680px; margin: 0 auto; }
+.ielts-map-textdesc { margin-top: 10px; font-size: 14px; }
+.ielts-map-textdesc summary { cursor: pointer; font-weight: 700; color: #1e3a8a; }
+.ielts-map-textdesc ul { margin: 8px 0; padding-left: 20px; line-height: 1.5; }
+
+.ielts-map-side { min-width: 0; }
+.ielts-map-side .ielts-audio-player { margin-top: 0; }
+.ielts-map-form { margin: 0 0 14px; }
+.ielts-map-q { padding: 12px 14px; margin: 0 0 10px; border: 1px solid #e5e7eb; border-left-width: 5px; border-radius: 10px; background: #fff; }
+.ielts-map-q label { display: block; margin-bottom: 8px; font-weight: 700; line-height: 1.35; }
+.ielts-map-qnum { display: inline-grid; place-items: center; min-width: 24px; height: 24px; margin-right: 6px; border-radius: 50%; background: #1b2b40; color: #fff; font-size: 13px; }
+.ielts-map-q select { width: 100%; max-width: 240px; min-height: 44px; padding: 6px 10px; border: 2px solid #94a3b8; border-radius: 10px; background: #fff; color: #1f2937; font-size: 16px; }
+.ielts-map-q select:disabled { background: #f3f4f6; color: #374151; }
+.ielts-map-q select:focus-visible, .ielts-map-textdesc summary:focus-visible { outline: 3px solid #1d4ed8; outline-offset: 2px; }
+.ielts-map-q-correct { border-left-color: #15803d; background: #f7fdf9; }
+.ielts-map-q-incorrect { border-left-color: #b91c1c; background: #fffafa; }
+.hero .ielts-root .ielts-map-feedback { margin: 10px 0 0; font-size: 15px; line-height: 1.5; }
+.ielts-map-score { margin: 12px 0; padding: 10px 14px; border-radius: 10px; background: #eff6ff; border: 1px solid #bfdbfe; font-size: 20px; }
+.ielts-transcript-locked { margin-top: 10px; }
+@media (min-width: 900px) and (min-height: 640px) {
+  .ielts-exmap-figure { position: sticky; top: 88px; }
+}
+.ielts-map-zoomhint { display: none; margin: 6px 0 0; }
+@media (max-width: 700px) {
+  /* Reclaim width on phones so the map stays legible: the exercise card goes edge to edge inside the page card. */
+  .ielts-map-exercise { margin-left: -10px; margin-right: -10px; padding: 14px 10px; border-radius: 12px; }
+  .ielts-exmap-figure { padding: 0; border: 0; background: transparent; }
+  .ielts-exmap-figure figcaption { margin-bottom: 6px; }
+  .ielts-map-zoomhint { display: block; }
+  .ielts-map-q select { max-width: none; }
+  .ielts-map-side .start-button, .ielts-map-side .secondary-button { width: 100%; box-sizing: border-box; }
+}
+
+/* ---- New IELTS Home ---- */
+.ielts-skill-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; }
+@media (max-width: 700px) { .ielts-skill-grid { grid-template-columns: 1fr; } }
+.ielts-home-card { display: flex; flex-direction: column; gap: 10px; padding: 28px; }
+.ielts-home-card-top { display: flex; align-items: center; gap: 14px; }
+.ielts-home-card-top .ielts-skill-icon { font-size: 36px; margin: 0; }
+.ielts-home-card-top h3 { margin: 0; font-size: 22px; }
+.ielts-home-go { margin-top: auto; width: 100%; }
+.ielts-quiz-link { background: none; border: none; color: #2563eb; font-weight: 700; cursor: pointer; padding: 0; font-size: 14px; text-decoration: underline; }
+.ielts-quiz-link:hover { color: #1d4ed8; }
+
+/* ---- Course timeline ---- */
+.ielts-timeline-wrap { margin: 28px 0 8px; border: 1px solid #e5e7eb; border-radius: 14px; overflow: hidden; }
+.ielts-timeline-toggle { width: 100%; text-align: left; background: #f8fafc; border: none; padding: 14px 20px; font-size: 16px; font-weight: 700; cursor: pointer; color: #1e3a8a; }
+.ielts-timeline-toggle:hover { background: #eff6ff; }
+.ielts-timeline { list-style: none; margin: 0; padding: 0; }
+.ielts-tl-item { padding: 16px 20px; border-top: 1px solid #e5e7eb; }
+.ielts-tl-label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: #2563eb; margin-bottom: 4px; }
+.ielts-tl-item strong { display: block; font-size: 16px; margin-bottom: 6px; }
+.ielts-tl-item ul { margin: 4px 0 8px; padding-left: 18px; font-size: 14px; color: #4b5563; }
+.ielts-tl-item ul li { margin-bottom: 2px; }
+.ielts-tl-item .ielts-status { margin: 4px 0; }
+
+/* ---- Tab bar ---- */
+.ielts-tab-bar { display: flex; gap: 0; border-bottom: 2px solid #e5e7eb; margin: 18px 0 24px; }
+.ielts-tab { flex: 1; padding: 12px 16px; border: none; border-bottom: 3px solid transparent; margin-bottom: -2px; background: none; font-size: 16px; font-weight: 700; color: #6b7280; cursor: pointer; transition: color .15s, border-color .15s; }
+.ielts-tab:hover { color: #2563eb; }
+.ielts-tab.ielts-tab-on { color: #1d4ed8; border-bottom-color: #1d4ed8; background: none; }
+
+/* ---- Compact lesson card in hub grid ---- */
+.ielts-lesson-card .ielts-lesson-purpose { font-size: 14px; color: #4b5563; margin: 4px 0 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* ---- Compact lesson detail ---- */
+.ielts-key-strategies { margin: 0 0 18px; }
+.ielts-key-strategies h3 { margin: 0 0 10px; }
+.ielts-key-strategies ul { margin: 0; padding-left: 22px; }
+.ielts-key-strategies li { margin-bottom: 8px; line-height: 1.55; }
+.ielts-full-guide { margin-top: 18px; border: 1px solid #e5e7eb; border-radius: 12px; }
+.ielts-full-guide summary { padding: 12px 16px; cursor: pointer; font-weight: 700; color: #1e3a8a; list-style: none; display: flex; align-items: center; gap: 8px; }
+.ielts-full-guide summary::before { content: '\25b6'; font-size: 11px; }
+.ielts-full-guide[open] summary::before { content: '\25bc'; }
+.ielts-full-guide .ielts-full-guide-body { padding: 0 16px 16px; }
+
+/* ---- Writing practice ---- */
+.ielts-writing-task-picker { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; margin: 8px 0 24px; }
+@media (max-width: 700px) { .ielts-writing-task-picker { grid-template-columns: 1fr; } }
+.ielts-task-card { display: flex; flex-direction: column; gap: 10px; }
+.ielts-task-card .start-button { margin-top: auto; }
+.ielts-task-label { display: inline-block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: #1d4ed8; margin-bottom: 4px; }
+.ielts-writing-prompt { background: #f8fafc; border: 1px solid #dbe3ee; border-radius: 12px; padding: 18px; margin: 0 0 16px; white-space: pre-line; line-height: 1.7; font-size: 15px; }
+.ielts-data-table { width: 100%; border-collapse: collapse; margin: 12px 0 6px; font-size: 15px; }
+.ielts-data-table th { background: #eff6ff; color: #1e3a8a; padding: 8px 12px; text-align: left; border: 1px solid #bfdbfe; }
+.ielts-data-table td { padding: 8px 12px; border: 1px solid #e5e7eb; }
+.ielts-data-table tr:nth-child(even) td { background: #f8fafc; }
+.ielts-data-note { font-size: 12px; color: #6b7280; margin: 4px 0 16px; }
+.ielts-model-answer { background: #f0fdf4; border: 1px solid #86efac; border-radius: 12px; padding: 18px; margin-top: 12px; white-space: pre-line; line-height: 1.75; font-size: 15px; }
+.hero .ielts-root .ielts-model-label { font-size: 13px; font-weight: 700; text-transform: uppercase; color: #166534; margin: 0 0 8px; }
+
+/* ---- Speaking practice ---- */
+.ielts-sp-part-bar { display: flex; gap: 10px; flex-wrap: wrap; margin: 8px 0 24px; }
+.ielts-sp-part-btn { padding: 10px 20px; border-radius: 999px; border: 2px solid #2563eb; background: #fff; color: #2563eb; font-weight: 700; font-size: 15px; cursor: pointer; }
+.ielts-sp-part-btn.is-on { background: #2563eb; color: #fff; }
+.ielts-sp-topic-nav { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+.ielts-sp-topic-title { font-size: 18px; font-weight: 700; flex: 1; }
+.ielts-sp-nav-btn { padding: 8px 16px; border: 1px solid #d1d5db; border-radius: 8px; background: #fff; cursor: pointer; font-size: 15px; }
+.ielts-sp-nav-btn:disabled { opacity: .4; cursor: not-allowed; }
+.ielts-sp-question { padding: 16px; border: 1px solid #e5e7eb; border-radius: 12px; margin-bottom: 12px; background: #fff; }
+.hero .ielts-root .ielts-sp-q-text { font-weight: 700; margin: 0 0 10px; font-size: 16px; }
+.ielts-sp-model-btn { background: none; border: 1px solid #2563eb; border-radius: 8px; padding: 7px 14px; color: #2563eb; font-weight: 700; cursor: pointer; font-size: 14px; }
+.ielts-sp-model-btn:hover { background: #eff6ff; }
+.ielts-sp-model-text { background: #eff6ff; border-radius: 8px; padding: 12px 14px; margin-top: 10px; font-size: 14px; line-height: 1.65; }
+.ielts-cue-card { background: #fffbeb; border: 2px solid #fde68a; border-radius: 14px; padding: 22px; margin-bottom: 18px; }
+.hero .ielts-root .ielts-cue-title { font-size: 19px; font-weight: 800; margin: 0 0 14px; }
+.ielts-cue-bullets { margin: 0 0 12px; padding-left: 22px; font-size: 15px; line-height: 1.7; }
+.hero .ielts-root .ielts-cue-close { font-style: italic; color: #92400e; margin: 0; font-size: 15px; }
+.ielts-timer-section { background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+.hero .ielts-root .ielts-timer-label { font-weight: 700; margin: 0 0 10px; }
+.ielts-timer-display { font-size: 42px; font-weight: 800; color: #1d4ed8; font-variant-numeric: tabular-nums; display: block; margin: 8px 0; }
+.ielts-timer-phase { font-size: 14px; color: #4b5563; margin: 0 0 12px; }
+.ielts-sp-info { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 14px 16px; margin-bottom: 20px; font-size: 15px; }
+
+/* =========================================================
+   AUTHENTIC IELTS PRACTICE SUITE (EXPANDED)
+   ========================================================= */
+
+.ielts-auth-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+    border-radius: 9999px;
+    padding: 4px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.ielts-auth-badge-cambridge {
+    background: #eff6ff;
+    color: #1e40af;
+    border-color: #bfdbfe;
+}
+
+.ielts-auth-badge-quiz {
+    background: #fef3c7;
+    color: #92400e;
+    border-color: #fde68a;
+}
+
+.ielts-sub-nav {
+    display: flex;
+    gap: 8px;
+    margin: 18px 0 24px 0;
+    flex-wrap: wrap;
+}
+
+.ielts-sub-btn {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.ielts-sub-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.ielts-sub-btn.is-active {
+    background: #1e3a8a;
+    color: #ffffff;
+    border-color: #1e3a8a;
+    box-shadow: 0 2px 4px rgba(30, 58, 138, 0.2);
+}
+
+/* Reading Split Layout */
+.ielts-reading-workspace {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 16px;
+}
+
+@media (min-width: 900px) {
+    .ielts-reading-workspace {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .ielts-reading-passage-panel {
+        flex: 1.2;
+        position: sticky;
+        top: 20px;
+        max-height: calc(100vh - 40px);
+        overflow-y: auto;
+    }
+    .ielts-reading-questions-panel {
+        flex: 1;
+        max-height: calc(100vh - 40px);
+        overflow-y: auto;
+    }
+}
+
+.ielts-passage-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 24px;
+    line-height: 1.75;
+    font-size: 15.5px;
+    color: #1e293b;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.ielts-passage-card h3 {
+    margin-top: 0;
+    color: #0f172a;
+    font-size: 20px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
+}
+
+.ielts-reading-timer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 16px;
+}
+
+.ielts-timer-clock {
+    font-family: monospace;
+    font-size: 18px;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.ielts-q-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    transition: border-color 0.15s ease;
+}
+
+.ielts-q-item.is-correct {
+    border-color: #10b981;
+    background: #f0fdf4;
+}
+
+.ielts-q-item.is-incorrect {
+    border-color: #ef4444;
+    background: #fef2f2;
+}
+
+.ielts-q-prompt {
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 10px;
+    font-size: 14.5px;
+}
+
+.ielts-tfng-options {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.ielts-tfng-opt {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #334155;
+}
+
+.ielts-tfng-opt:hover {
+    border-color: #94a3b8;
+}
+
+.ielts-tfng-opt input[type="radio"] {
+    margin: 0;
+}
+
+.ielts-feedback-box {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    line-height: 1.5;
+}
+
+.ielts-feedback-box.correct {
+    background: #dcfce7;
+    color: #14532d;
+    border-left: 4px solid #16a34a;
+}
+
+.ielts-feedback-box.incorrect {
+    background: #fee2e2;
+    color: #7f1d1d;
+    border-left: 4px solid #dc2626;
+}
+
+/* Audio Player Enhanced */
+.ielts-auth-audio-box {
+    background: #f1f5f9;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 16px 0;
+    border: 1px solid #cbd5e1;
+}
+
+.ielts-auth-audio-box audio {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.ielts-audio-hint {
+    font-size: 13px;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Writing Essay Blueprint & Typing */
+.ielts-essay-blueprint {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 18px;
+    margin: 18px 0;
+}
+
+.ielts-essay-blueprint h4 {
+    margin-top: 0;
+    color: #1e3a8a;
+    font-size: 16px;
+}
+
+.ielts-essay-step {
+    padding: 8px 12px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.ielts-phrase-frames {
+    background: #fdf4ff;
+    border: 1px solid #f0abfc;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 16px 0;
+}
+
+.ielts-phrase-frames h4 {
+    margin-top: 0;
+    color: #86198f;
+    font-size: 15px;
+}
+
+.ielts-phrase-list {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13.5px;
+    color: #4a044e;
+    line-height: 1.6;
+}
+
+.ielts-word-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    margin-top: 6px;
+}
+
+/* Idioms Cards Grid */
+.ielts-idiom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+}
+
+.ielts-idiom-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ielts-idiom-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.ielts-idiom-title {
+    font-weight: 700;
+    color: #1e3a8a;
+    font-size: 16px;
+    margin: 0 0 8px 0;
+}
+
+.ielts-idiom-meaning {
+    font-size: 14px;
+    color: #334155;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.ielts-idiom-origin {
+    font-size: 12.5px;
+    color: #64748b;
+    background: #f8fafc;
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.ielts-idiom-example {
+    font-size: 13px;
+    color: #0369a1;
+    font-weight: 500;
+}
+
+/* Format Quiz Modal / View */
+.ielts-quiz-container {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 24px;
+    margin-top: 16px;
+}
+
+.ielts-score-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+}
+
+.ielts-score-val {
+    font-size: 26px;
+    font-weight: 800;
+    color: #15803d;
+}
+
+
+/* =========================================================
+   AHMAD'S ENGLISH ACADEMY: MODERN TIER-ONE IELTS MODULE SYSTEM
+   Colors: Obsidian Slate (#0F172A), Electric Violet/Indigo (#6366F1),
+           Energetic Emerald (#10B981), Cyber Cyan (#06B6D4), Alert Rose (#EF4444)
+   Typography: Inter, Plus Jakarta Sans, Space Grotesk
+   ========================================================= */
+
+.hero .ielts-root {
+    font-family: var(--font-sans, 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
+    color: #0f172a;
+}
+
+/* Course Header & Titles */
+.hero .ielts-root .course-header h2 {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 34px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.8px !important;
+    background: linear-gradient(135deg, #0f172a 0%, #312e81 50%, #4f46e5 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    margin-bottom: 8px !important;
+}
+
+.hero .ielts-root .course-header p.course-label {
+    font-family: var(--font-sans) !important;
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1.2px !important;
+    text-transform: uppercase !important;
+    color: #6366f1 !important;
+    display: inline-block !important;
+    background: #eef2ff !important;
+    padding: 3px 12px !important;
+    border-radius: 9999px !important;
+    margin-bottom: 8px !important;
+}
+
+.hero .ielts-root .course-header p {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    color: #475569;
+    max-width: 600px;
+    margin: 0 auto 16px;
+}
+
+/* Modern Segmented Track Selector */
+.ielts-track {
+    background: #f1f5f9 !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 16px !important;
+    padding: 14px 20px !important;
+    margin: 0 0 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02) !important;
+}
+
+.hero .ielts-root .ielts-track-title {
+    font-family: var(--font-sans) !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.8px !important;
+    text-transform: uppercase !important;
+    color: #475569 !important;
+    margin: 0 !important;
+}
+
+.ielts-track-options {
+    display: flex !important;
+    gap: 6px !important;
+    background: rgba(226, 232, 240, 0.6) !important;
+    padding: 4px !important;
+    border-radius: 9999px !important;
+}
+
+.ielts-track-btn {
+    border: none !important;
+    color: #64748b !important;
+    background: transparent !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 600 !important;
+    font-size: 13.5px !important;
+    border-radius: 9999px !important;
+    padding: 7px 18px !important;
+    cursor: pointer !important;
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.ielts-track-btn:hover {
+    color: #0f172a !important;
+    background: rgba(255, 255, 255, 0.6) !important;
+}
+
+.ielts-track-btn.ielts-track-on {
+    background: #ffffff !important;
+    color: #4f46e5 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.16) !important;
+    transform: scale(1.02) !important;
+}
+
+/* Modern Tabs Navigation */
+.ielts-tabs, .ielts-tab-bar {
+    display: flex !important;
+    gap: 8px !important;
+    border-bottom: 2px solid #e2e8f0 !important;
+    margin-bottom: 24px !important;
+}
+
+.ielts-tab {
+    font-family: var(--font-sans) !important;
+    font-size: 14.5px !important;
+    font-weight: 600 !important;
+    color: #64748b !important;
+    padding: 10px 20px !important;
+    border: none !important;
+    border-bottom: 2px solid transparent !important;
+    background: transparent !important;
+    border-radius: 8px 8px 0 0 !important;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    cursor: pointer !important;
+}
+
+.ielts-tab:hover {
+    color: #4f46e5 !important;
+    background: #f8fafc !important;
+}
+
+.ielts-tab.ielts-tab-on {
+    color: #4f46e5 !important;
+    font-weight: 700 !important;
+    background: #ffffff !important;
+    border-bottom: 3px solid #6366f1 !important;
+}
+
+/* Sub-Navigation Buttons */
+.ielts-sub-nav {
+    display: flex !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+    margin-bottom: 20px !important;
+}
+
+.ielts-sub-btn {
+    background: #f1f5f9 !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 9999px !important;
+    padding: 7px 16px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #334155 !important;
+    cursor: pointer !important;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.ielts-sub-btn:hover {
+    background: #eef2ff !important;
+    color: #4f46e5 !important;
+    border-color: #a5b4fc !important;
+    transform: translateY(-1px) !important;
+}
+
+.ielts-sub-btn.is-active {
+    background: #4f46e5 !important;
+    color: #ffffff !important;
+    border-color: #4f46e5 !important;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3) !important;
+}
+
+/* Tactile Spring Cards */
+.ielts-card {
+    background: #ffffff !important;
+    border: 1px solid rgba(226, 232, 240, 0.9) !important;
+    border-radius: 16px !important;
+    padding: 24px !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -2px rgba(0, 0, 0, 0.03) !important;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    margin-bottom: 20px !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.ielts-card:hover {
+    transform: translateY(-5px) scale(1.01) !important;
+    border-color: rgba(99, 102, 241, 0.4) !important;
+    box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.12), 0 8px 10px -6px rgba(99, 102, 241, 0.06) !important;
+}
+
+.hero .ielts-root h3 {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 21px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.4px !important;
+    color: #0f172a !important;
+}
+
+/* Modern High-Energy Buttons */
+.start-button {
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%) !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 12px 24px !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 700 !important;
+    font-size: 14.5px !important;
+    letter-spacing: -0.2px !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35) !important;
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+}
+
+.start-button:hover {
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.45) !important;
+}
+
+.start-button:active {
+    transform: scale(0.97) !important;
+}
+
+.secondary-button {
+    background: #ffffff !important;
+    border: 1.5px solid #cbd5e1 !important;
+    border-radius: 12px !important;
+    padding: 10px 20px !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    color: #334155 !important;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    cursor: pointer !important;
+}
+
+.secondary-button:hover {
+    border-color: #4f46e5 !important;
+    color: #4f46e5 !important;
+    background: #eef2ff !important;
+    transform: translateY(-2px) !important;
+}
+
+/* =========================================================
+   MAXIMUM GUIDANCE SYSTEM SCAFFOLDING (MODERN UPGRADE)
+   ========================================================= */
+
+/* Strategy Compass Callout (Modern Stepper Drawer) */
+.ielts-guidance-compass {
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.95), rgba(241, 245, 249, 0.95)) !important;
+    border: 1px solid rgba(203, 213, 225, 0.8) !important;
+    border-left: 5px solid #6366f1 !important;
+    border-radius: 16px !important;
+    padding: 20px 24px !important;
+    margin: 20px 0 !important;
+    box-shadow: 0 8px 24px -4px rgba(99, 102, 241, 0.1) !important;
+    backdrop-filter: blur(12px) !important;
+}
+
+.ielts-guidance-head {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    margin-bottom: 14px !important;
+    flex-wrap: wrap !important;
+}
+
+.ielts-guidance-title {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.3px !important;
+    color: #0f172a !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin: 0 !important;
+}
+
+.ielts-guidance-badge {
+    font-family: var(--font-sans) !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.6px !important;
+    text-transform: uppercase !important;
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: #ffffff !important;
+    padding: 4px 12px !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 2px 6px rgba(99, 102, 241, 0.3) !important;
+}
+
+.ielts-guidance-steps {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: grid !important;
+    gap: 8px !important;
+}
+
+.ielts-guidance-steps li {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 10px !important;
+    padding: 12px 16px !important;
+    margin: 0 !important;
+    font-size: 14.5px !important;
+    line-height: 1.6 !important;
+    color: #334155 !important;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+}
+
+.ielts-guidance-steps li:hover {
+    transform: translateX(6px) !important;
+    border-color: #6366f1 !important;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1) !important;
+}
+
+.ielts-guidance-steps li strong {
+    color: #4f46e5 !important;
+}
+
+/* Examiner Trap Radar: Dynamic Pulse Animation */
+@keyframes radar-pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 14px rgba(239, 68, 68, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.ielts-trap-radar {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    background: linear-gradient(135deg, rgba(254, 242, 242, 0.95), rgba(255, 255, 255, 0.95)) !important;
+    border: 1px solid rgba(254, 202, 202, 0.8) !important;
+    border-left: 4px solid #ef4444 !important;
+    border-radius: 14px !important;
+    padding: 18px 20px !important;
+    margin: 18px 0 !important;
+    box-shadow: 0 6px 18px -2px rgba(239, 68, 68, 0.1) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.ielts-trap-radar-icon {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    border-radius: 50% !important;
+    background: #fee2e2 !important;
+    color: #ef4444 !important;
+    display: grid !important;
+    place-items: center !important;
+    font-size: 18px !important;
+    animation: radar-pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1) !important;
+}
+
+.ielts-trap-radar-body {
+    flex: 1 !important;
+}
+
+.ielts-trap-radar-title {
+    font-family: var(--font-heading) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.2px !important;
+    color: #991b1b !important;
+    margin: 0 0 4px !important;
+}
+
+.ielts-trap-radar-text {
+    font-size: 13.5px !important;
+    color: #7f1d1d !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+}
+
+/* Authentic Reading Passage Pane */
+.ielts-authentic-passage {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 16px !important;
+    padding: 26px !important;
+    font-family: var(--font-sans) !important;
+    font-size: 15.5px !important;
+    line-height: 1.7 !important;
+    color: #334155 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+}
+
+.ielts-section-tag {
+    display: inline-block;
+    font-family: var(--font-mono, monospace);
+    font-size: 12px;
+    font-weight: 700;
+    background: #eef2ff;
+    color: #4f46e5;
+    padding: 3px 10px;
+    border-radius: 6px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* Matching Headings Interactive UI */
+.ielts-matching-container {
+    display: grid;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.ielts-matching-row {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    transition: all 0.25s var(--spring-bounce);
+}
+
+.ielts-matching-row:hover {
+    border-color: #6366f1;
+    transform: translateX(4px);
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.12);
+}
+
+.ielts-matching-label {
+    font-weight: 700;
+    font-size: 14.5px;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ielts-heading-select {
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    background: #f8fafc;
+    color: #0f172a;
+    min-width: 280px;
+    max-width: 100%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ielts-heading-select:focus {
+    border-color: #6366f1;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+/* Interactive Cohesion Toolkit */
+.ielts-cohesion-drawer {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 16px !important;
+    padding: 18px 22px !important;
+    margin: 18px 0 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+    position: relative !important;
+}
+
+.ielts-cohesion-head {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin-bottom: 12px !important;
+}
+
+.ielts-cohesion-title {
+    font-family: var(--font-heading) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    margin: 0 !important;
+}
+
+.ielts-cohesion-pills {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    margin-top: 8px !important;
+}
+
+.ielts-cohesion-pill {
+    background: #f1f5f9 !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 9999px !important;
+    padding: 6px 14px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    font-family: var(--font-sans) !important;
+    color: #334155 !important;
+    cursor: pointer !important;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    user-select: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+.ielts-cohesion-pill:hover {
+    background: #6366f1 !important;
+    color: #ffffff !important;
+    border-color: #6366f1 !important;
+    transform: translateY(-2px) scale(1.04) !important;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35) !important;
+}
+
+.ielts-cohesion-pill:active {
+    transform: scale(0.92) !important;
+}
+
+/* Dynamic Cohesion Toast */
+@keyframes toast-pop {
+    0% { opacity: 0; transform: translateY(6px) scale(0.95); }
+    20% { opacity: 1; transform: translateY(0) scale(1); }
+    80% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-4px) scale(0.95); }
+}
+
+.modern-cohesion-toast {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: #10b981;
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.modern-cohesion-toast.is-visible {
+    animation: toast-pop 1.8s forwards ease;
+}
+
+/* Rubric Card */
+.ielts-rubric-card {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 16px !important;
+    padding: 24px !important;
+    margin: 20px 0 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+}
+
+.ielts-rubric-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+    gap: 16px !important;
+    margin-top: 14px !important;
+}
+
+.ielts-rubric-col {
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 16px !important;
+    transition: all 0.25s var(--spring-bounce);
+}
+
+.ielts-rubric-col:hover {
+    transform: translateY(-2px);
+    border-color: #cbd5e1;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.ielts-rubric-col-title {
+    font-family: var(--font-heading) !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    color: #4f46e5 !important;
+    margin: 0 0 8px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.ielts-rubric-col ul {
+    margin: 0 !important;
+    padding-left: 18px !important;
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+    color: #475569 !important;
+}
+
+/* Modern Speaking SVG Circular Countdown Timer */
+.modern-timer-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 24px;
+    margin: 20px 0;
+    text-align: center;
+    box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.06);
+    position: relative;
+}
+
+.modern-timer-header {
+    margin-bottom: 12px;
+}
+
+.modern-timer-badge {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #6366f1;
+    background: #eef2ff;
+    padding: 4px 14px;
+    border-radius: 9999px;
+}
+
+.timer-svg-container {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 16px auto;
+}
+
+.timer-svg {
+    transform: rotate(-90deg);
+    filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.25));
+}
+
+.timer-fill {
+    transition: stroke-dashoffset 0.25s linear;
+}
+
+.timer-digital-readout {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer-digits {
+    font-family: var(--font-mono, monospace);
+    font-size: 26px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.1;
+}
+
+.timer-phase-tag {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+/* 3D Idiom & Vocabulary Flip Cards */
+.ielts-idiom-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+    gap: 16px !important;
+    margin: 20px 0 !important;
+}
+
+.ielts-idiom-card {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 16px !important;
+    padding: 20px !important;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03) !important;
+    position: relative !important;
+}
+
+.ielts-idiom-card:hover {
+    transform: translateY(-4px) scale(1.02) !important;
+    border-color: rgba(99, 102, 241, 0.4) !important;
+    box-shadow: 0 16px 24px -4px rgba(99, 102, 241, 0.12) !important;
+}
+
+.ielts-idiom-title {
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    color: #4f46e5 !important;
+    margin: 0 0 6px 0 !important;
+}
+
+.ielts-idiom-meaning {
+    font-size: 14px !important;
+    color: #475569 !important;
+    line-height: 1.5 !important;
+    margin-bottom: 12px !important;
+}
+
+.ielts-idiom-origin {
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 10px !important;
+    padding: 10px 14px !important;
+    font-size: 13px !important;
+    color: #334155 !important;
+    margin-bottom: 12px !important;
+}
+
+/* Live Word Counter & Milestone Glow */
+@keyframes target-glow {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    50% { transform: scale(1.06); box-shadow: 0 0 16px 4px rgba(16, 185, 129, 0.4); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.word-count-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 6px 14px !important;
+    border-radius: 9999px !important;
+    background: #f1f5f9 !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    color: #475569 !important;
+    border: 1px solid #cbd5e1 !important;
+    transition: all 0.3s ease !important;
+}
+
+.word-count-badge.is-target-met {
+    background: #dcfce7 !important;
+    color: #15803d !important;
+    border-color: #86efac !important;
+    animation: target-glow 1.2s ease-out !important;
+}
+
+/* Modern 4-Pillar Command Center Card */
+.modern-protocol-card {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 55%, #312e81 100%) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(99, 102, 241, 0.35) !important;
+    border-radius: 20px !important;
+    padding: 28px !important;
+    margin-bottom: 24px !important;
+    box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.25) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.modern-protocol-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.protocol-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+}
+
+.protocol-brand-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.protocol-pulse-icon {
+    font-size: 24px;
+    filter: drop-shadow(0 0 8px #6366f1);
+}
+
+.protocol-title {
+    font-family: var(--font-heading) !important;
+    font-size: 19px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    letter-spacing: -0.4px !important;
+    margin: 0 !important;
+}
+
+.protocol-subtitle {
+    font-size: 11.5px;
+    color: #a5b4fc;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.protocol-status-badge {
+    background: rgba(99, 102, 241, 0.2);
+    border: 1px solid rgba(99, 102, 241, 0.4);
+    color: #a5b4fc;
+    padding: 4px 14px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+}
+
+.protocol-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+}
+
+.protocol-tile {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    backdrop-filter: blur(8px);
+    transition: all 0.25s var(--spring-bounce);
+}
+
+.protocol-tile:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(99, 102, 241, 0.5);
+    transform: translateY(-2px);
+}
+
+.protocol-tile-num {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: #818cf8;
+    margin-bottom: 4px;
+}
+
+.protocol-tile-title {
+    display: block;
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 6px;
+    font-weight: 700;
+}
+
+.protocol-tile-desc {
+    display: block;
+    font-size: 12.5px;
+    color: #cbd5e1;
+    line-height: 1.5;
+}
+
+
+/* ==========================================================================
+   IELTS Subskill Learning & Unified Practice Engine Styling
+   Modern Tier-One Visual Language (Spring Physics, Glows, Glassmorphism)
+   ========================================================================== */
+
+.ielts-subskills-header {
+    margin-bottom: 24px;
+}
+
+.ielts-subskills-header h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--color-slate-900, #0f172a);
+    margin-bottom: 6px;
+    letter-spacing: -0.4px;
+}
+
+.ielts-subskills-header p {
+    font-size: 0.95rem;
+    color: var(--color-slate-600, #475569);
+    margin: 0;
+}
+
+.ielts-subskills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-bottom: 36px;
+}
+
+.subskill-card {
+    background: #ffffff;
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.subskill-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: 0 16px 25px -5px rgba(99, 102, 241, 0.12), 0 8px 10px -6px rgba(99, 102, 241, 0.08);
+}
+
+.subskill-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.subskill-badge {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(129, 140, 248, 0.12));
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    color: #4f46e5;
+    font-family: var(--font-mono, monospace);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    letter-spacing: 0.5px;
+}
+
+.subskill-difficulty {
+    font-size: 11px;
+    font-weight: 600;
+    color: #64748b;
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+
+.subskill-card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 10px 0;
+    line-height: 1.4;
+}
+
+.subskill-card-desc {
+    font-size: 0.85rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    flex-grow: 1;
+}
+
+.subskill-card-types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.subskill-type-tag {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #334155;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+.subskill-card-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.subskill-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #4f46e5;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.subskill-cta-btn:hover {
+    background: #4338ca;
+    transform: translateX(2px);
+}
+
+/* 6-Stage Stepper Navigation */
+.subskill-stepper-container {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.stepper-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 4px;
+}
+
+.stepper-step {
+    flex: 1;
+    min-width: 140px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.stepper-step:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+.stepper-step.active {
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    border-color: #4338ca;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+}
+
+.stepper-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    color: #475569;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.stepper-step.active .stepper-num {
+    background: #ffffff;
+    color: #4f46e5;
+}
+
+.stepper-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.stepper-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.8;
+}
+
+.stepper-title {
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Practice Mode Switcher */
+.practice-mode-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 12px 18px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.practice-mode-pills {
+    display: flex;
+    gap: 8px;
+}
+
+.practice-mode-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 9999px;
+    font-size: 12.5px;
+    font-weight: 600;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #334155;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.practice-mode-pill.active {
+    background: #4f46e5;
+    border-color: #4f46e5;
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(79, 70, 229, 0.2);
+}
+
+/* Question Card Styling */
+.unified-question-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.unified-question-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.unified-question-num {
+    font-size: 14px;
+    font-weight: 800;
+    color: #4f46e5;
+}
+
+.unified-question-meta {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.unified-question-prompt {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #1e293b;
+    margin-bottom: 18px;
+    font-weight: 500;
+}
+
+/* Progressive Hints */
+.guided-hints-box {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 16px;
+}
+
+.guided-hint-item {
+    background: #ffffff;
+    border: 1px solid #dcfce7;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #166534;
+    line-height: 1.5;
+}
+
+.hint-trigger-btn {
+    background: #f0fdf4;
+    border: 1px dashed #86efac;
+    color: #15803d;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.hint-trigger-btn:hover {
+    background: #dcfce7;
+}
+
+/* Evaluation & Diagnostics */
+.eval-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.mistake-item {
+    background: #fff1f2;
+    border-left: 4px solid #f43f5e;
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 12px;
+}
+
+.mistake-title {
+    font-weight: 700;
+    color: #9f1239;
+    font-size: 13.5px;
+    margin-bottom: 4px;
+}
+
+.mistake-fix {
+    font-size: 12.5px;
+    color: #475569;
+    line-height: 1.5;
+}
+
+
+/* ==========================================================================
+   Computer-Delivered IELTS Exam Experience (Split-Screen & Media Centers)
+   ========================================================================== */
+
+/* Dual-Pane Split Reader (Passage Left, Questions Right) */
+.ielts-split-reader {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 28px;
+    align-items: start;
+    margin-top: 16px;
+}
+
+@media (max-width: 960px) {
+    .ielts-split-reader {
+        grid-template-columns: 1fr;
+    }
+}
+
+.ielts-passage-column {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    position: sticky;
+    top: 24px;
+    max-height: 820px;
+    overflow-y: auto;
+}
+
+.passage-header-sticky {
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 14px;
+    margin-bottom: 20px;
+}
+
+.passage-badge {
+    background: linear-gradient(135deg, rgba(2, 132, 199, 0.12), rgba(56, 189, 248, 0.12));
+    border: 1px solid rgba(2, 132, 199, 0.3);
+    color: #0284c7;
+    font-family: var(--font-mono, monospace);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    letter-spacing: 0.5px;
+}
+
+.passage-exam-tag {
+    font-size: 11.5px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.passage-title {
+    font-family: var(--font-heading, serif);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 8px 0 4px 0;
+    letter-spacing: -0.3px;
+    line-height: 1.3;
+}
+
+.passage-content-scrollable {
+    font-family: Charter, 'Bitstream Charter', Georgia, Cambria, 'Times New Roman', serif;
+    font-size: 15.5px;
+    line-height: 1.85;
+    color: #1e293b;
+}
+
+.passage-paragraph {
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 28px;
+}
+
+.paragraph-marker {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-family: var(--font-mono, monospace);
+    font-weight: 800;
+    font-size: 12px;
+    color: #4f46e5;
+    background: #eef2ff;
+    border-radius: 4px;
+    padding: 1px 6px;
+}
+
+.ielts-questions-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Audio Examination Center */
+.ielts-audio-station {
+    background: linear-gradient(135deg, #f8fafc, #eff6ff);
+    border: 1px solid #bfdbfe;
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.06);
+}
+
+.audio-station-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.audio-station-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #1e3a8a;
+}
+
+.audio-station-subtitle {
+    font-size: 12px;
+    color: #3b82f6;
+}
+
+.audio-exam-badge {
+    background: #dbeafe;
+    color: #1e40af;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 9999px;
+}
+
+.audio-player-wrapper audio {
+    width: 100%;
+    border-radius: 10px;
+    outline: none;
+}
+
+.audio-tip-banner {
+    font-size: 12px;
+    color: #475569;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+/* Writing Studio Styles */
+.writing-studio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 28px;
+    align-items: start;
+    margin-top: 16px;
+}
+
+@media (max-width: 960px) {
+    .writing-studio-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.writing-prompt-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.writing-visual-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px;
+    margin: 16px 0;
+    text-align: center;
+}
+
+.writing-visual-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.writing-editor-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.writing-textarea {
+    width: 100%;
+    min-height: 380px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 18px;
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #1e293b;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.writing-textarea:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.word-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.milestone-track {
+    width: 100%;
+    height: 8px;
+    background: #f1f5f9;
+    border-radius: 9999px;
+    overflow: hidden;
+    margin-bottom: 18px;
+}
+
+.milestone-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6366f1, #10b981);
+    border-radius: 9999px;
+    transition: width 0.3s ease;
+}
+
+.cohesion-pill-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.cohesion-chip {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cohesion-chip:hover {
+    background: #e0e7ff;
+    border-color: #818cf8;
+    color: #4338ca;
+    transform: translateY(-1px);
+}
+
+/* Speaking Monologue & Studio */
+.speaking-studio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 16px;
+}
+
+@media (max-width: 900px) {
+    .speaking-studio-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.cue-card-box {
+    background: #fffbeb;
+    border: 2px dashed #f59e0b;
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.cue-card-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #92400e;
+    margin-bottom: 12px;
+}
+
+.cue-card-bullets {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 14px;
+    color: #78350f;
+    line-height: 1.7;
+}
+
+.prep-notes-area {
+    width: 100%;
+    min-height: 160px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 12px;
+    font-family: var(--font-mono, monospace);
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #334155;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Ahmad's English Platform - Streamlined 2-Stage Learning Engine Styles
+   ========================================================================== */
+
+.two-stage-stepper {
+    display: flex;
+    gap: 10px;
+    background: #f1f5f9;
+    padding: 6px;
+    border-radius: 12px;
+    max-width: 480px;
+}
+
+.stage-pill {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.stage-pill:hover {
+    color: #1e293b;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.stage-pill.active {
+    background: #ffffff;
+    color: #4f46e5;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.stage-pill-icon {
+    font-size: 15px;
+}
+
+/* TFNG Clickable Button Pills */
+.tfng-pill-btn {
+    padding: 8px 18px;
+    border: 1px solid #cbd5e1;
+    background: #f8fafc;
+    color: #334155;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.tfng-pill-btn:hover {
+    border-color: #818cf8;
+    background: #eef2ff;
+    color: #4338ca;
+}
+
+.tfng-pill-btn.active {
+    background: #4f46e5;
+    color: #ffffff;
+    border-color: #4f46e5;
+    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.25);
+}
+
+/* Clean Passage Paragraphs & Headings */
+.passage-p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #1e293b;
+    margin: 0 0 16px 0;
+}
+
+.passage-subheading {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 20px 0 10px 0;
+}
+
+/* Natural Section Card (e.g. A Sharpsavers) */
+.passage-section-card {
+    display: flex;
+    gap: 14px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+}
+
+.passage-section-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: #4f46e5;
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.passage-section-body {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #334155;
+}
+
+/* Marked Paragraph for Matching Headings */
+.passage-paragraph-marked {
+    position: relative;
+    padding-left: 36px;
+    margin-bottom: 18px;
+}
+
+.paragraph-letter-tag {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    background: #e0e7ff;
+    color: #4338ca;
+    font-weight: 800;
+    font-size: 13px;
+}
+
+.passage-marked-body {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #1e293b;
+}
+
+
+/* -------------------------------------------------------------
+   IELTS MOBILE RESPONSIVENESS OVERRIDES (max-width: 640px)
+   Eliminates cramped layouts, squished buttons, and awkward scrolls
+   ------------------------------------------------------------- */
+@media (max-width: 640px) {
+    /* 1. Universal Card & Padding Resizing */
+    .ielts-card,
+    .unified-question-card,
+    .subskill-card,
+    .modern-card,
+    .stage-teach-container .modern-card,
+    .stage-practice-container .modern-card,
+    .audio-exam-station {
+        padding: 14px 12px !important;
+        border-radius: 12px !important;
+        margin-bottom: 12px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 2. Top Two-Stage Stepper (Teach vs Practice) */
+    .two-stage-stepper {
+        display: flex !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 3px !important;
+        gap: 3px !important;
+        margin-bottom: 14px !important;
+        box-sizing: border-box !important;
+    }
+    .stage-pill {
+        flex: 1 1 50% !important;
+        padding: 8px 4px !important;
+        font-size: 12px !important;
+        white-space: nowrap !important;
+        justify-content: center !important;
+        text-align: center !important;
+        border-radius: 8px !important;
+    }
+
+    /* 3. Subskill Learning Header & Badges */
+    .subskill-learning-header {
+        margin-bottom: 12px !important;
+        gap: 8px !important;
+    }
+    .subskill-learning-header .subskill-badge-title {
+        font-size: 1.05rem !important;
+        line-height: 1.3 !important;
+    }
+    .subskill-learning-header > div:first-child {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 4px !important;
+        width: 100% !important;
+    }
+    .subskill-learning-header > div:last-child {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: flex-start !important;
+    }
+
+    /* 4. Reading Split Reader (Passage + Questions) */
+    .ielts-split-reader {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 14px !important;
+        margin-top: 10px !important;
+    }
+    .ielts-passage-column {
+        position: relative !important;
+        top: auto !important;
+        max-height: 320px !important;
+        overflow-y: auto !important;
+        padding: 14px 12px !important;
+        border-radius: 12px !important;
+        -webkit-overflow-scrolling: touch;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    }
+    .passage-header-sticky {
+        padding-bottom: 10px !important;
+        margin-bottom: 12px !important;
+    }
+    .passage-title {
+        font-size: 1.15rem !important;
+        line-height: 1.35 !important;
+        margin: 6px 0 4px 0 !important;
+    }
+    .passage-content-scrollable {
+        font-size: 14px !important;
+        line-height: 1.65 !important;
+    }
+    .passage-p {
+        font-size: 14px !important;
+        line-height: 1.65 !important;
+        margin-bottom: 12px !important;
+    }
+    .passage-paragraph {
+        padding-left: 24px !important;
+        margin-bottom: 12px !important;
+    }
+    .paragraph-marker {
+        font-size: 11px !important;
+        padding: 0 4px !important;
+    }
+    .passage-section-card {
+        padding: 10px 12px !important;
+        gap: 10px !important;
+        margin-bottom: 10px !important;
+    }
+    .passage-section-body {
+        font-size: 13.5px !important;
+        line-height: 1.55 !important;
+    }
+    .passage-paragraph-marked {
+        padding-left: 30px !important;
+        margin-bottom: 12px !important;
+    }
+    .paragraph-letter-tag {
+        width: 22px !important;
+        height: 22px !important;
+        font-size: 11px !important;
+    }
+    .passage-marked-body {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+    }
+
+    /* 5. Questions List & Prompt */
+    .unified-question-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 4px !important;
+        margin-bottom: 10px !important;
+    }
+    .unified-question-num {
+        font-size: 12.5px !important;
+    }
+    .unified-question-prompt {
+        font-size: 14px !important;
+        line-height: 1.55 !important;
+        margin-bottom: 14px !important;
+    }
+
+    /* 6. True / False / Not Given & Choice Pills */
+    .tfng-pill-group,
+    .unified-question-card > div[style*="flex-wrap: wrap"] {
+        display: flex !important;
+        gap: 6px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    .tfng-pill-btn {
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        padding: 9px 4px !important;
+        font-size: 12px !important;
+        text-align: center !important;
+        justify-content: center !important;
+        white-space: nowrap !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Multiple Choice Options */
+    .unified-question-card label {
+        padding: 9px 12px !important;
+        font-size: 13px !important;
+        line-height: 1.4 !important;
+    }
+
+    /* Text Inputs for Completion */
+    .unified-question-card input[type="text"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        font-size: 14px !important;
+        padding: 9px 12px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Check answer & Hint buttons */
+    .unified-question-card .modern-btn-primary,
+    .hint-trigger-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+        padding: 9px 14px !important;
+        font-size: 12.5px !important;
+        min-height: 40px !important;
+    }
+
+    /* 7. Subskill Grid & Cards */
+    .subskill-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+    .subskill-card {
+        padding: 14px 12px !important;
+    }
+    .subskill-card-title {
+        font-size: 15px !important;
+        line-height: 1.35 !important;
+    }
+    .subskill-card-desc {
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+    }
+    .subskill-card-action {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 8px !important;
+        margin-top: 12px !important;
+        padding-top: 10px !important;
+    }
+    .subskill-card-action button,
+    .subskill-card-action .modern-btn-primary,
+    .subskill-card-action .secondary-button,
+    .subskill-card-action .modern-btn-outline {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+        padding: 10px 14px !important;
+        font-size: 13px !important;
+        min-height: 42px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 8. Stage 1 (Teach) Enhancements on Mobile */
+    .stage-teach-container {
+        gap: 12px !important;
+    }
+    .stage-teach-container .modern-card {
+        padding: 14px 12px !important;
+    }
+    .stage-teach-container button[data-ielts-subskill-stage="2"] {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+        padding: 12px 16px !important;
+        font-size: 14.5px !important;
+        min-height: 44px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 9. Stage Bottom Navigation */
+    .stage-footer-nav,
+    .stage-practice-container > div[style*="justify-content: space-between"] {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 8px !important;
+        padding-top: 14px !important;
+        margin-top: 16px !important;
+    }
+    .stage-footer-nav button,
+    .stage-practice-container > div[style*="justify-content: space-between"] button {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+        padding: 10px 14px !important;
+        min-height: 42px !important;
+        font-size: 13px !important;
+    }
+
+    /* 10. IELTS Dashboard on Mobile */
+    .ielts-skill-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+    .ielts-home-card {
+        padding: 16px 14px !important;
+    }
+    .ielts-home-go {
+        width: 100% !important;
+        text-align: center !important;
+        justify-content: center !important;
+        padding: 10px 14px !important;
+        min-height: 42px !important;
+    }
+    .ielts-track-banner {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 10px !important;
+        padding: 12px !important;
+    }
+    .ielts-track {
+        width: 100% !important;
+        display: flex !important;
+    }
+    .ielts-track button {
+        flex: 1 1 50% !important;
+        padding: 8px 6px !important;
+        font-size: 12px !important;
+        text-align: center !important;
+    }
+
+    /* 11. Audio Station on Mobile */
+    .audio-exam-station {
+        padding: 14px 12px !important;
+        margin-bottom: 16px !important;
+    }
+    .audio-exam-station > div:first-child {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+    }
+
+    /* 12. Writing Studio & Speaking Studio on Mobile */
+    .writing-studio-grid,
+    .speaking-studio-grid {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+    }
+    .writing-textarea {
+        min-height: 200px !important;
+        font-size: 14px !important;
+        padding: 10px !important;
+    }
+    .writing-action-bar {
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+    .writing-action-bar button {
+        width: 100% !important;
+        justify-content: center !important;
+        min-height: 42px !important;
+    }
+    .cue-card-box {
+        padding: 14px 12px !important;
+    }
+}
