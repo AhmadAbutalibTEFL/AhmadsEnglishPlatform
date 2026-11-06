@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Streamlined Built-In Architecture Regression Suite</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="site-chrome.css">
+    <link rel="stylesheet" href="ielts/ielts.css">
+</head>
+<body style="background: #f8fafc; font-family: sans-serif; padding: 20px;">
+
+    <h1>IELTS Streamlined Architecture Test Runner</h1>
+    <div id="ielts-screen"><div id="ielts-root"></div></div>
+    <div id="test-log"></div>
+
+    <!-- ONLY CORE SCRIPTS LOADED -->
+    <script src="ielts/curriculum-data.js"></script>
+    <script src="ielts/listening-data.js"></script>
+    <script src="ielts/audio-practice.js"></script>
+    <script src="ielts/subskill-engine.js"></script>
+    <script src="ielts/ielts.js"></script>
+
+    <script>
+        var assertions = [];
+        function assert(cond, msg) {
+            assertions.push({ pass: !!cond, msg: msg });
+        }
+
+        try {
+            // ==============================================================
+            // 1. DECOUPLING VERIFICATION: External engines removed & absent
+            // ==============================================================
+            assert(!!window.IELTS, "window.IELTS namespace is initialized");
+            assert(!!window.IELTS.curriculumData, "window.IELTS.curriculumData is initialized");
+            assert(!!window.IELTS.subskillEngine, "window.IELTS.subskillEngine is initialized");
+            assert(!window.IELTS.contentEngine, "window.IELTS.contentEngine is decoupled (absent)");
+            assert(!window.IELTS.questionAdapter, "window.IELTS.questionAdapter is decoupled (absent)");
+            assert(!window.IELTS.authenticReading, "window.IELTS.authenticReading is decoupled (absent)");
+
+            // ==============================================================
+            // 2. CURRICULUM TAXONOMY & BUILT-IN PRACTICE DATA
+            // ==============================================================
+            assert(window.IELTS.curriculumData.listening.subskills.length === 6, "Curriculum defines 6 Listening question types");
+            assert(window.IELTS.curriculumData.reading.subskills.length === 6, "Curriculum defines 6 Reading question types");
+            assert(window.IELTS.curriculumData.writing.subskills.length === 4, "Curriculum defines 4 Writing question types");
+            assert(window.IELTS.curriculumData.speaking.subskills.length === 4, "Curriculum defines 4 Speaking interview formats");
+
+            var allSubskills = [];
+            ["listening", "reading", "writing", "speaking"].forEach(function (skill) {
+                allSubskills = allSubskills.concat(window.IELTS.curriculumData[skill].subskills);
+            });
+            assert(allSubskills.length === 20, "Total of exactly 20 official question types");
+
+            // Verify clean naming (no R-SUB-01 codes in names)
+            var hasCodes = allSubskills.some(function(s) { return /^[LRWS]-SUB-/i.test(s.name); });
+            assert(!hasCodes, "Subskill names are student-friendly and free of internal codes (R-SUB-01)");
+
+            // Verify all 20 have built-in practice definitions
+            var allHavePractice = allSubskills.every(function(s) { return !!s.practice; });
+            assert(allHavePractice, "All 20 subskills contain built-in practice definitions");
+
+            var subTFNG = window.IELTS.getSubskillByCode("R_TRUTH_VERIFY");
+            assert(!!subTFNG, "getSubskillByCode('R_TRUTH_VERIFY') returns subskill metadata");
+            assert(subTFNG.name === "True / False / Not Given", "Subskill name is 'True / False / Not Given'");
+            assert(!!subTFNG.understand && !!subTFNG.recognise && !!subTFNG.strategise, "Subskill has pedagogical metadata");
+            assert(subTFNG.practice && subTFNG.practice.questions.length === 4, "R_TRUTH_VERIFY contains 4 built-in practice questions");
+            assert(!!subTFNG.practice.passageContext, "R_TRUTH_VERIFY contains clean passage text");
+
+            // ==============================================================
+            // 3. BUILT-IN EVALUATOR TESTS
+            // ==============================================================
+            var sampleQ = { answer: "TRUE", acceptableAnswers: ["TRUE", "T"] };
+            var evalCorrect = window.IELTS.subskillEngine.evaluateAnswer(sampleQ, "TRUE");
+            assert(evalCorrect.isCorrect === true, "evaluateAnswer accepts exact canonical answer");
+
+            var evalLower = window.IELTS.subskillEngine.evaluateAnswer(sampleQ, "true");
+            assert(evalLower.isCorrect === true, "evaluateAnswer accepts lowercased variant");
+
+            var evalShort = window.IELTS.subskillEngine.evaluateAnswer(sampleQ, "T");
+            assert(evalShort.isCorrect === true, "evaluateAnswer accepts 'T' shorthand for TRUE");
+
+            var evalWrong = window.IELTS.subskillEngine.evaluateAnswer(sampleQ, "FALSE");
+            assert(evalWrong.isCorrect === false, "evaluateAnswer rejects contradictory answer");
+
+            // ==============================================================
+            // 4. DASHBOARD & SKILL HUBS
+            // ==============================================================
+            window.showIELTS("");
+            var mountEl = document.getElementById("ielts-root");
+            assert(mountEl.textContent.indexOf("IELTS Preparation") !== -1, "Dashboard displays IELTS Preparation");
+            assert(!!mountEl.querySelector('[data-ielts-view="listening"]'), "Dashboard contains Listening Skill Card");
+            assert(!!mountEl.querySelector('[data-ielts-view="reading"]'), "Dashboard contains Reading Skill Card");
+            assert(!!mountEl.querySelector('[data-ielts-view="writing"]'), "Dashboard contains Writing Skill Card");
+            assert(!!mountEl.querySelector('[data-ielts-view="speaking"]'), "Dashboard contains Speaking Skill Card");
+            assert(mountEl.querySelectorAll(".ielts-home-card").length === 4, "Dashboard contains exactly 4 Skill Cards");
+            assert(!mountEl.querySelector(".modern-protocol-card"), "Cluttered 4-Pillar protocol card is cleanly removed");
+
+            // ==============================================================
+            // 5. READING QUESTION TYPES GRID
+            // ==============================================================
+            window.showIELTS("reading");
+            assert(mountEl.textContent.indexOf("Official Question Types (6)") !== -1, "Reading displays 6 Official Question Types");
+            var tfngCardBtn = mountEl.querySelector('[data-ielts-open-subskill="R_TRUTH_VERIFY"]');
+            assert(!!tfngCardBtn, "R_TRUTH_VERIFY workout card exists in grid");
+
+            // ==============================================================
+            // 6. STAGE 1: TEACH & STRATEGY
+            // ==============================================================
+            if (tfngCardBtn) tfngCardBtn.click();
+            assert(mountEl.textContent.indexOf("True / False / Not Given") !== -1, "Opened True / False / Not Given");
+            assert(!!mountEl.querySelector(".two-stage-stepper"), "Clean 2-Stage Stepper rendered");
+            assert(mountEl.textContent.indexOf("How It Works in the Exam") !== -1, "Stage 1 Teach explains how it works in exam");
+            assert(mountEl.textContent.indexOf("3-Step TFNG Strategy") !== -1, "Stage 1 Teach provides 3-Step Strategy");
+            assert(!!mountEl.querySelector(".modern-trap-radar"), "Examiner Trap Radar rendered in Stage 1");
+
+            // ==============================================================
+            // 7. STAGE 2: PRACTICE WORKOUT (Dual-Pane Split Reader)
+            // ==============================================================
+            var stage2Btn = mountEl.querySelector('[data-ielts-subskill-stage="2"]');
+            assert(!!stage2Btn, "Stage 2 Stepper button exists");
+            if (stage2Btn) stage2Btn.click();
+
+            assert(!!mountEl.querySelector(".ielts-split-reader"), "Stage 2 Dual-Pane Split Reader rendered for Reading");
+            assert(!!mountEl.querySelector(".passage-content-scrollable"), "Authentic passage pane rendered");
+            assert(mountEl.textContent.indexOf("The Evolution of Timekeeping and Mechanical Horology") !== -1, "Passage title rendered");
+            assert(mountEl.querySelectorAll(".unified-question-card").length === 4, "4 built-in practice questions rendered");
+
+            var tfPills = mountEl.querySelectorAll(".tfng-pill-btn");
+            assert(tfPills.length === 12, "12 TFNG clickable pill buttons rendered");
+
+            // Test interaction: Click TRUE on Q1
+            var q1True = mountEl.querySelector('[data-ielts-answer-q="r_tv_1"][data-ielts-val="TRUE"]');
+            assert(!!q1True, "TRUE button for Q1 exists");
+            if (q1True) q1True.click();
+
+            var q1TrueActive = mountEl.querySelector('[data-ielts-answer-q="r_tv_1"][data-ielts-val="TRUE"]');
+            assert(q1TrueActive && q1TrueActive.classList.contains("active"), "TRUE button has 'active' class when selected");
+
+            // Check Answer in Guided Mode
+            var checkBtn = mountEl.querySelector('[data-ielts-check-guided="r_tv_1"]');
+            assert(!!checkBtn, "Check Answer button exists");
+            if (checkBtn) checkBtn.click();
+
+            assert(mountEl.textContent.indexOf("Correct!") !== -1, "Instant answer feedback displayed with 'Correct!'");
+            assert(mountEl.textContent.indexOf("Correct Answer: TRUE") !== -1, "Correct Answer TRUE confirmed in feedback");
+
+            // Test Hint button on Q2
+            var hintBtn = mountEl.querySelector('[data-ielts-reveal-hint="r_tv_2"]');
+            assert(!!hintBtn, "Hint trigger button for Q2 exists");
+            if (hintBtn) hintBtn.click();
+            assert(mountEl.textContent.indexOf("💡 Hint 1:") !== -1, "Clicking hint button reveals Hint 1 clue");
+
+            // ==============================================================
+            // 8. MARK AS PRACTICED & RETURN
+            // ==============================================================
+            var masterBtn = mountEl.querySelector('[data-ielts-complete-subskill="R_TRUTH_VERIFY"]');
+            assert(!!masterBtn, "Mark as Practiced button exists");
+            if (masterBtn) masterBtn.click();
+
+            assert(mountEl.textContent.indexOf("Official Question Types") !== -1, "Returned to Skill Dashboard after completion");
+            assert(mountEl.textContent.indexOf("✓ Practiced") !== -1, "Subskill card now displays ✓ Practiced badge");
+
+            // ==============================================================
+            // 9. LISTENING, WRITING & SPEAKING SUBSKILLS
+            // ==============================================================
+            window.showIELTS("listening");
+            assert(mountEl.textContent.indexOf("Official Question Types (6)") !== -1, "Listening displays 6 Official Question Types");
+            var lBtn = mountEl.querySelector('[data-ielts-open-subskill="L_SPEC_INFO"]');
+            assert(!!lBtn, "L_SPEC_INFO exists in listening grid");
+            if (lBtn) lBtn.click();
+            var lS2 = mountEl.querySelector('[data-ielts-subskill-stage="2"]');
+            if (lS2) lS2.click();
+            assert(!!mountEl.querySelector(".audio-exam-station audio"), "Audio station rendered with audio player");
+
+            window.showIELTS("writing");
+            assert(mountEl.textContent.indexOf("Official Question Types (4)") !== -1, "Writing displays 4 Official Question Types");
+            var wBtn = mountEl.querySelector('[data-ielts-open-subskill="W_TASK_ACHIEVE"]');
+            assert(!!wBtn, "W_TASK_ACHIEVE exists in writing grid");
+
+            window.showIELTS("speaking");
+            assert(mountEl.textContent.indexOf("Official Question Types (4)") !== -1, "Speaking displays 4 Official Interview Formats");
+            var sBtn = mountEl.querySelector('[data-ielts-open-subskill="S_LEXICAL"]');
+            assert(!!sBtn, "S_LEXICAL exists in speaking grid");
+
+        } catch (e) {
+            assertions.push({ pass: false, msg: "CRITICAL RUNTIME EXCEPTION: " + e.message + (e.stack ? " :: " + e.stack : "") });
+        }
+
+        var allPassed = assertions.every(function(a){ return a.pass; });
+        var resHtml = "<h2>IELTS STREAMLINED ARCHITECTURE TEST RESULTS: " + (allPassed ? "ALL PASSED (100%)" : "FAILED") + "</h2><ul>";
+        assertions.forEach(function(a) {
+            resHtml += "<li style='color:" + (a.pass ? "green" : "red") + "; font-weight:" + (a.pass ? "normal" : "bold") + ";'>" + (a.pass ? "✓ PASSED: " : "✕ FAILED: ") + a.msg + "</li>";
+        });
+        resHtml += "</ul>";
+        document.getElementById("test-log").innerHTML = resHtml;
+    </script>
+</body>
+</html>

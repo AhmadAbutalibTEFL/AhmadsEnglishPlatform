@@ -24,8 +24,8 @@ const courses = [
         id: "ielts",
         title: "IELTS",
         mark: "IELTS",
-        description: "IELTS preparation for Listening, Reading, Writing, and Speaking.",
-        status: "preview"
+        description: "Comprehensive IELTS preparation for Listening, Reading, Writing, and Speaking with authentic Cambridge past papers.",
+        available: true
     },
     {
     id: "toefl",

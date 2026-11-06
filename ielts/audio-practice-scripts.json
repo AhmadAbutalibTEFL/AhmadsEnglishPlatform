@@ -1,0 +1,268 @@
+[
+  {
+    "id": "ielts-l1-booking",
+    "lines": [
+      {
+        "sp": "Staff",
+        "text": "Good morning, Greenfield Centre. How can I help?"
+      },
+      {
+        "sp": "Caller",
+        "text": "I'd like to book the photography course. Is the Saturday class at nine?"
+      },
+      {
+        "sp": "Staff",
+        "text": "It used to start at nine, but that group is full. The new Saturday class begins at ten thirty, and we still have places."
+      },
+      {
+        "sp": "Caller",
+        "text": "Ten thirty works for me. Please book me onto that one."
+      }
+    ]
+  },
+  {
+    "id": "ielts-l1-matching",
+    "lines": [
+      {
+        "sp": "Leah",
+        "text": "The library is quiet, but it closes too early for me."
+      },
+      {
+        "sp": "Tom",
+        "text": "I like the study café. It stays open late, although it can get noisy."
+      },
+      {
+        "sp": "Leah",
+        "text": "Then I'll use the library in the afternoon and go home before closing."
+      }
+    ]
+  },
+  {
+    "id": "ielts-l2-directions",
+    "lines": [
+      {
+        "sp": "Guide",
+        "text": "When you enter the garden, walk straight ahead along the main path. The greenhouse is on your right. Continue past it, and you'll find the tool shed on the left, opposite the benches."
+      }
+    ]
+  },
+  {
+    "id": "ielts-l1-notes",
+    "lines": [
+      {
+        "sp": "Coordinator",
+        "text": "The science workshop is on Thursday the eighteenth. It starts at two fifteen in the afternoon. Please bring a notebook; all other equipment is provided."
+      }
+    ]
+  },
+  {
+    "id": "ielts-l4-lecture",
+    "lines": [
+      {
+        "sp": "Lecturer",
+        "text": "Trees can make urban streets more comfortable during summer. Their leaves provide shade, while water released from the leaves also cools the surrounding air. For this reason, planting trees can reduce the local temperature during hot periods."
+      }
+    ]
+  },
+  {
+    "id": "ielts-l2-museum",
+    "lines": [
+      {
+        "sp": "Announcer",
+        "text": "The history museum opens at half past nine every morning except Monday. Guided tours begin at eleven, and visitors should meet beside the main staircase."
+      }
+    ]
+  },
+  {
+    "id": "ielts-l1-course-options",
+    "lines": [
+      {
+        "sp": "Advisor",
+        "text": "Good afternoon, Westbridge Language Centre. How can I help you?"
+      },
+      {
+        "sp": "Student",
+        "text": "I'm interested in the evening English course. Does it run on Tuesdays?"
+      },
+      {
+        "sp": "Advisor",
+        "text": "The Tuesday group is full now, but we have a Thursday class from six until half past seven."
+      },
+      {
+        "sp": "Student",
+        "text": "Thursday would be better. Is the coursebook included in the fee?"
+      },
+      {
+        "sp": "Advisor",
+        "text": "The digital materials are included. The printed book costs an extra twelve pounds."
+      },
+      {
+        "sp": "Student",
+        "text": "That's fine. Please send me the enrolment form."
+      }
+    ]
+  },
+  {
+    "id": "ielts-l1-matching-activities",
+    "lines": [
+      {
+        "sp": "Maya",
+        "text": "I tried the photography club, but most meetings are outdoors, and the weather has been awful."
+      },
+      {
+        "sp": "Oliver",
+        "text": "I joined the film society. We watch a film on Wednesdays and discuss it afterwards."
+      },
+      {
+        "sp": "Maya",
+        "text": "That sounds interesting, but I work late on Wednesdays."
+      },
+      {
+        "sp": "Oliver",
+        "text": "The art group meets on Saturday mornings. They focus on drawing rather than painting."
+      },
+      {
+        "sp": "Maya",
+        "text": "I could manage Saturdays. I want to improve my drawing, so I'll try the art group."
+      }
+    ]
+  },
+  {
+    "id": "ielts-l2-campus-map",
+    "lines": [
+      {
+        "sp": "Guide",
+        "text": "You are standing at the main entrance of the campus. Walk along the path until you reach the fountain. Turn left there, and the student services office is the first building on your right."
+      },
+      {
+        "sp": "Guide",
+        "text": "If you need the computer room, continue beyond student services and cross the small bridge. The computer room is opposite the sports hall, beside the car park."
+      }
+    ]
+  },
+  {
+    "id": "ielts-l2-form-completion",
+    "lines": [
+      {
+        "sp": "Receptionist",
+        "text": "Could I take a few details for your library membership?"
+      },
+      {
+        "sp": "Visitor",
+        "text": "Of course. My name is Daniel Price."
+      },
+      {
+        "sp": "Receptionist",
+        "text": "And your postcode?"
+      },
+      {
+        "sp": "Visitor",
+        "text": "It's LS six, two, QJ."
+      },
+      {
+        "sp": "Receptionist",
+        "text": "Thank you. What is the best number to contact you on?"
+      },
+      {
+        "sp": "Visitor",
+        "text": "Zero seven seven, four two, eight one, six nine, three five."
+      },
+      {
+        "sp": "Receptionist",
+        "text": "Finally, the membership starts on the third of November."
+      }
+    ]
+  },
+  {
+    "id": "ielts-l2-sentence-completion",
+    "lines": [
+      {
+        "sp": "Speaker",
+        "text": "The community garden project began three years ago, when local residents turned an unused car park into a green space."
+      },
+      {
+        "sp": "Speaker",
+        "text": "Volunteers meet every Sunday morning. They grow vegetables, look after the fruit trees, and teach children how to compost food waste."
+      },
+      {
+        "sp": "Speaker",
+        "text": "The most popular feature is the small pond, which attracts birds and insects. Next year, the group hopes to build a greenhouse."
+      }
+    ]
+  },
+  {
+    "id": "ielts-l2-short-answer",
+    "lines": [
+      {
+        "sp": "Interviewer",
+        "text": "Where will the walking tour begin?"
+      },
+      {
+        "sp": "Organiser",
+        "text": "At the information desk inside the railway station, at ten o'clock."
+      },
+      {
+        "sp": "Interviewer",
+        "text": "How long will the tour last?"
+      },
+      {
+        "sp": "Organiser",
+        "text": "About ninety minutes, including a short break by the river."
+      },
+      {
+        "sp": "Interviewer",
+        "text": "What should visitors bring?"
+      },
+      {
+        "sp": "Organiser",
+        "text": "A bottle of water. We provide the map and safety equipment."
+      }
+    ]
+  },
+  {
+    "id": "ielts-l3-multiple-choice",
+    "lines": [
+      {
+        "sp": "Nina",
+        "text": "Have you finished the report on urban transport?"
+      },
+      {
+        "sp": "Sam",
+        "text": "Almost. I was going to focus on bus services, but the survey results were more interesting than I expected."
+      },
+      {
+        "sp": "Nina",
+        "text": "The cycling data?"
+      },
+      {
+        "sp": "Sam",
+        "text": "Exactly. The number of people cycling hasn't increased much, but most respondents said they'd cycle more if there were safer routes."
+      },
+      {
+        "sp": "Nina",
+        "text": "So what will your recommendation be?"
+      },
+      {
+        "sp": "Sam",
+        "text": "Rather than buying more bicycles for the public scheme, I think the city should improve protected cycle lanes first."
+      }
+    ]
+  },
+  {
+    "id": "ielts-l3-lecture-notes",
+    "lines": [
+      {
+        "sp": "Lecturer",
+        "text": "Today we're looking at sleep and memory. Research suggests that sleep helps the brain organise information collected during the day."
+      },
+      {
+        "sp": "Lecturer",
+        "text": "In one experiment, participants who slept after learning a list of words remembered more items the following morning than participants who stayed awake."
+      },
+      {
+        "sp": "Lecturer",
+        "text": "The effect was strongest when sleep began within a few hours of learning. However, researchers stress that sleep does not replace regular revision; the two work best together."
+      }
+    ]
+  }
+]
