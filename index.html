@@ -26,7 +26,7 @@
     </style>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="toefl-reading.css?v=2">
-    <link rel="stylesheet" href="site-chrome.css?v=7">
+    <link rel="stylesheet" href="site-chrome.css?v=8">
     <link rel="stylesheet" href="est-course.css?v=4">
     <link rel="stylesheet" href="ielts/ielts.css?v=6">
 </head>
@@ -61,13 +61,15 @@
 
     <header class="site-header">
         <div class="site-header-inner">
-            <a class="site-brand" href="./" data-site-nav="top">PassMyEnglish</a>
+            <a class="site-brand" href="./" data-site-nav="top"><img class="site-brand-logo" src="icon-192.png" alt="" width="30" height="30">PassMyEnglish</a>
 
             <nav class="site-nav" aria-label="Primary">
                 <a href="#courses" data-site-nav="courses">Courses</a>
                 <a href="#about" data-site-nav="about">About Me</a>
                 <a href="#contact" data-site-nav="contact">Contact</a>
             </nav>
+
+            <button type="button" id="pwa-install" class="pwa-install" hidden>Install app</button>
         </div>
     </header>
 
@@ -801,7 +803,6 @@
                     Interactive English lessons and test-preparation practice,
                     created by Ahmad Abutalib.
                 </p>
-                <button type="button" id="pwa-install" class="pwa-install" hidden>Install the app</button>
             </div>
 
             <nav class="site-footer-nav" aria-label="Footer">

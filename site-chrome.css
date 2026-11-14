@@ -103,7 +103,12 @@ html { scroll-padding-top: 64px; }
     border-radius: 6px;
     margin-right: auto;
     min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 9px;
 }
+
+.site-brand-logo { width: 30px; height: 30px; border-radius: 8px; flex: none; }
 
 @media (max-width: 400px) {
     .site-brand { font-size: 17px; }
@@ -903,7 +908,8 @@ html { scroll-padding-top: 64px; }
 /* ---------- Splash screen (markup and brand name live in index.html) ---------- */
 #site-splash .splash-inner { display: flex; flex-direction: column; align-items: center; gap: 16px; }
 
-/* Install-the-app button (footer); only visible when the browser offers install */
-.pwa-install { margin-top: 10px; padding: 9px 18px; border: none; border-radius: 999px; background: #5453EC; color: #fff; font-weight: 600; font-size: 14px; cursor: pointer; }
+/* Install-the-app button (top bar, BookMyClass-style); only visible when the browser offers install */
+.pwa-install { margin-left: 8px; padding: 7px 14px; border: none; border-radius: 999px; background: #5453EC; color: #fff; font-weight: 600; font-size: 13px; cursor: pointer; white-space: nowrap; }
+@media (max-width: 400px) { .pwa-install { padding: 6px 11px; font-size: 12px; } }
 .pwa-install:hover { background: #4340d4; }
 .pwa-install:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
