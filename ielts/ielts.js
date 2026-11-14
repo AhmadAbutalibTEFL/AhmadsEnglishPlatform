@@ -362,7 +362,11 @@
         html += '</div>';
         if (!state.lessonChecked) html += '<button type="button" class="start-button" data-ielts-lesson-check ' + (state.lessonAnswer===null?'disabled':'') + '>Check answer</button>';
         else html += '<p class="ielts-answer-feedback ' + (state.lessonAnswer===L.answer?'ielts-answer-correct':'ielts-answer-incorrect') + '"><strong>' + (state.lessonAnswer===L.answer?'Correct.':'Not quite.') + '</strong> ' + esc(L.feedback) + '</p><button type="button" class="secondary-button" data-ielts-lesson-retry>Try again</button>';
-        html += '</section><div class="ielts-back-row">' + goButton('← All Listening lessons','listening','secondary-button') + '</div>';
+        html += '</section>';
+        if (ns.audioPractice && typeof ns.audioPractice.renderForLesson === "function") {
+            html += ns.audioPractice.renderForLesson(L.id);
+        }
+        html += '<div class="ielts-back-row">' + goButton('← All Listening lessons','listening','secondary-button') + '</div>';
         return html;
     }
 

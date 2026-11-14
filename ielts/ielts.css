@@ -121,3 +121,19 @@
 .ielts-practice-options { margin:12px 0 16px; }
 .ielts-lesson-check:disabled, .ielts-worked-example button:disabled { opacity:.55; cursor:not-allowed; }
 @media (max-width:700px) { .ielts-lesson-grid { grid-template-columns:1fr; } .ielts-lesson-toolbar { align-items:flex-start; flex-direction:column; gap:4px; } }
+
+/* ---------- IELTS Listening audio practice ---------- */
+.ielts-ap { margin-top: 18px; }
+.ielts-ap-heading { margin: 26px 0 6px; }
+.ielts-ap-audio { display: block; width: 100%; margin: 10px 0 6px; }
+.ielts-ap-body { margin-top: 6px; }
+.ielts-ap-question { border: 0; padding: 0; margin: 14px 0 0; }
+.ielts-ap-question .ielts-question-prompt { font-weight: 600; margin: 0 0 6px; }
+.ielts-ap-text { width: 100%; max-width: 340px; padding: 9px 11px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 15px; }
+.ielts-ap-text:disabled { background: #f3f4f6; color: #374151; }
+.ielts-ap-score { margin: 14px 0 4px; font-weight: 700; }
+.ielts-ap-actions { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+.ielts-ap-transcript { margin-top: 12px; padding: 12px 14px; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 10px; font-size: 14px; line-height: 1.55; white-space: pre-line; }
+@media (max-width: 640px) {
+    .ielts-ap-actions .start-button, .ielts-ap-actions .secondary-button { width: 100%; }
+}
