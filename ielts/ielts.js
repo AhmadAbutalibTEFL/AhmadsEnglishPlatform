@@ -38,13 +38,13 @@
         },
         { id: "reading", icon: "📖", title: "Reading",
           summary: "Build strategies for the IELTS Reading passages and question types.",
-          available: false, statusText: "Planned", statusKind: "planned" },
+          available: true, statusText: "Interactive module available", statusKind: "open" },
         { id: "writing", icon: "✍️", title: "Writing",
           summary: "Prepare for Writing Task 1 and Writing Task 2.",
-          available: false, statusText: "Planned", statusKind: "planned" },
+          available: true, statusText: "Interactive module available", statusKind: "open" },
         { id: "speaking", icon: "🎙️", title: "Speaking",
           summary: "Prepare for Speaking Parts 1 to 3.",
-          available: false, statusText: "Planned", statusKind: "planned" }
+          available: true, statusText: "Interactive module available", statusKind: "open" }
     ];
 
     // Based on the instructor's eight-session intensive course.
@@ -55,11 +55,11 @@
         { id: "s2", label: "Session 2", skill: "Listening", title: "Listening question types and sub-skills",
           topics: ["Plan, map and diagram labelling", "Form, note, table and summary completion", "Sentence completion", "Short-answer questions", "Prediction: grammar form, synonyms, subject and function", "Paraphrasing: synonyms, word form, sentence structure, active/passive"], status: "available", hub: "listening" },
         { id: "s3-4", label: "Sessions 3\u20134", skill: "Reading", title: "Reading",
-          topics: ["IELTS Reading"], status: "planned" },
+          topics: ["Skimming and scanning", "True / False / Not Given", "Matching headings", "Completion questions", "Academic and General Training practice sets"], status: "available", hub: "reading" },
         { id: "s5-6", label: "Sessions 5\u20136", skill: "Writing", title: "Writing Task 1 and Task 2",
-          topics: ["Writing Task 1", "Writing Task 2"], status: "planned" },
+          topics: ["Task 2 essay structure", "Task 1 reports and letters", "Coherence and cohesion", "Practice tasks with model answers"], status: "available", hub: "writing" },
         { id: "s7-8", label: "Sessions 7\u20138", skill: "Speaking", title: "Speaking Parts 1\u20133",
-          topics: ["Speaking Part 1", "Speaking Part 2", "Speaking Part 3", "General guidance and questions"], status: "planned" }
+          topics: ["Part 1 interview", "Part 2 long turn", "Part 3 discussion", "Practice with sample answers"], status: "available", hub: "speaking" }
     ];
     var COURSE_MOCKS = { title: "Two full mock exams", note: "Part of the overall course plan.", status: "planned" };
 
@@ -96,7 +96,7 @@
 
     /* ---------- state ---------- */
 
-    var state = { view: "", track: loadTrack(), quiz: false, quizSubmitted: false, answers: {}, lessonId: null, lessonChecked: false, lessonAnswer: null };
+    var state = { view: "", track: loadTrack(), quiz: false, quizSubmitted: false, answers: {}, lessonId: null, lessonSkill: "listening", lessonChecked: false, lessonAnswer: null, practiceId: null, practiceAnswers: {}, practiceSubmitted: false, taskId: null, checks: {} };
     var root = null;
 
     function validTrack(t) { return typeof t === "string" && Object.prototype.hasOwnProperty.call(TRACKS, t); }
@@ -201,9 +201,7 @@
             status("Planned \u00b7 not available yet", "planned") +
             '<p>Full IELTS mock tests are planned. They are not available yet.</p></div>';
 
-        html += '<h3 class="ielts-heading">Your progress</h3><div class="ielts-card ielts-progress">' +
-            '<p><strong>No progress recorded yet.</strong></p>' +
-            '<p class="ielts-note">Progress will appear here once IELTS practice activities are available and you complete them.</p></div>';
+        html += '<h3 class="ielts-heading">Your progress</h3>' + progressCard();
 
         html += backRow('<button type="button" class="secondary-button" data-ielts-courses>\u2190 Back to Courses</button>');
         return html;
@@ -212,7 +210,7 @@
     function viewCourse() {
         var html = header("IELTS \u00b7 GUIDED COURSE \u00b7 " + trackLabel().toUpperCase(), "Guided Course",
             "An overview of the eight-session intensive IELTS course.");
-        html += '<div class="ielts-banner">Listening teaching is available for Sessions 1–2. Reading, Writing, and Speaking lessons are still in development.</div>';
+        html += '<div class="ielts-banner">Lessons and practice are now available for all eight sessions — Listening, Reading, Writing and Speaking. Full mock tests are still planned.</div>';
         html += '<ol class="ielts-course-list">';
         COURSE.forEach(function (b) {
             html += '<li class="ielts-card ielts-session"><div class="ielts-session-head">' +
@@ -222,7 +220,7 @@
             b.topics.forEach(function (t) { topicsHtml += '<li>' + esc(t) + '</li>'; });
             topicsHtml += '</ul>';
             html += disclosure('Session topics (' + b.topics.length + ')', topicsHtml);
-            if (b.hub) html += '<div class="ielts-session-actions">' + goButton("Open Listening lessons \u2192", b.hub, "secondary-button") + '</div>';
+            if (b.hub) html += '<div class="ielts-session-actions">' + goButton("Open " + b.skill + " hub \u2192", b.hub, "secondary-button") + '</div>';
             html += '</li>';
         });
         html += '<li class="ielts-card ielts-session"><div class="ielts-session-head"><div>' +
@@ -268,7 +266,7 @@
     function viewListening() {
         var D = ns.listeningData;
         var html = header("IELTS \u00b7 LISTENING \u00b7 " + trackLabel().toUpperCase(), "Listening",
-            "What the IELTS Listening test involves, and where Listening lessons and practice will live as they are built.");
+            "What the IELTS Listening test involves, with an orientation quiz, strategy lessons and original audio practice.");
         if (!D) {
             return html + '<div class="ielts-banner">Listening information could not be loaded.</div>' +
                 backRow(goButton("\u2190 IELTS dashboard", "", "secondary-button"));
@@ -280,7 +278,7 @@
             'The Listening test is the same for Academic and General Training, so this page does not change with your choice.</p>';
         html += '<section class="ielts-card ielts-quiz-launch"><p class="ielts-session-label">First interactive activity</p>' +
             '<h3>Intro to IELTS Listening: Check Your Understanding</h3>' +
-            '<p>12 marks · 11 questions, including one choose-two question. Check your understanding of the test format.</p>' +
+            '<p>12 marks · 11 questions, including one choose-two question. Check your understanding of the test format.</p>' + bestLine("listening-quiz") +
             '<button type="button" class="start-button" data-ielts-quiz-start>Start activity →</button></section>';
 
         // overview
@@ -327,20 +325,6 @@
         });
         html += '</div>';
 
-        // two ways to learn
-        html += '<h3 class="ielts-heading">Two ways to learn Listening</h3><div class="ielts-paths">';
-        html += '<article class="ielts-card ielts-path"><h3>Guided Course</h3>' + status("Planned", "planned") +
-            '<p>Sessions 1 and 2 now include teaching lessons and original self-check practice.</p><ul class="ielts-type-list">';
-        D.sessions.forEach(function (s) {
-            var blk = null;
-            COURSE.forEach(function (b) { if (b.id === s.courseBlockId) blk = b; });
-            if (blk) html += '<li><strong>' + esc(blk.label) + ':</strong> ' + esc(blk.title) + '</li>';
-        });
-        html += '</ul>' + goButton("View Guided Course \u2192", "course", "start-button") + '</article>';
-        html += '<article class="ielts-card ielts-path"><h3>Self-study</h3>' + status("Planned", "planned") +
-            '<p>Open the Listening hub to study each question type and sub-skill. Audio-based practice and full tests remain in development.</p>' +
-            goButton("Open Practice Library \u2192", "library", "secondary-button") + '</article></div>';
-
         // what is coming (collapsed: tap to open)
         var futureHtml = '<ul class="ielts-future">';
         D.futureFeatures.forEach(function (f) { futureHtml += '<li>' + esc(f) + ' ' + status("Planned", "planned") + '</li>'; });
@@ -352,38 +336,7 @@
         return html;
     }
 
-    function findListeningLesson(id) {
-        for (var i = 0; i < LISTENING_LESSONS.length; i++) if (LISTENING_LESSONS[i].id === id) return LISTENING_LESSONS[i];
-        return null;
-    }
 
-    function viewListeningLesson() {
-        var L = findListeningLesson(state.lessonId);
-        if (!L) return viewListening();
-        var html = header('IELTS · LISTENING · SESSION ' + L.session, L.title, L.purpose);
-        html += '<div class="ielts-lesson-toolbar">' + status(L.type, 'open') + '<span class="ielts-note">Instructor-handout-aligned lesson · Original example · tap a section to open it</span></div>';
-        html += disclosure('Before listening', '<ul class="ielts-lesson-list">' + L.before.map(function(x){return '<li>'+esc(x)+'</li>';}).join('') + '</ul>');
-        html += disclosure('While listening', '<ul class="ielts-lesson-list">' + L.during.map(function(x){return '<li>'+esc(x)+'</li>';}).join('') + '</ul>');
-        if (L.after.length) html += disclosure('After listening', '<ul class="ielts-lesson-list">' + L.after.map(function(x){return '<li>'+esc(x)+'</li>';}).join('') + '</ul>');
-        html += '<div class="ielts-paths">';
-        html += disclosure('Do', '<ul class="ielts-lesson-list">' + L.dos.map(function(x){return '<li>'+esc(x)+'</li>';}).join('') + '</ul>');
-        html += disclosure('Don\'t', '<ul class="ielts-lesson-list">' + L.donts.map(function(x){return '<li>'+esc(x)+'</li>';}).join('') + '</ul>');
-        html += '</div>';
-        html += '<section class="ielts-card ielts-worked-example"><p class="ielts-session-label">Worked example · illustrative text, not an official test recording</p><blockquote>' + esc(L.example) + '</blockquote>' +
-            '<h3>Think it through</h3><p><strong>' + esc(L.question) + '</strong></p><div class="ielts-practice-options">';
-        L.options.forEach(function(opt,i){
-            html += '<label class="ielts-option"><input type="radio" name="ielts-lesson-answer" value="' + i + '" data-ielts-lesson-answer ' + (String(state.lessonAnswer)===String(i)?'checked':'') + (state.lessonChecked?' disabled':'') + '><span>' + esc(opt) + '</span></label>';
-        });
-        html += '</div>';
-        if (!state.lessonChecked) html += '<button type="button" class="start-button" data-ielts-lesson-check ' + (state.lessonAnswer===null?'disabled':'') + '>Check answer</button>';
-        else html += '<p class="ielts-answer-feedback ' + (state.lessonAnswer===L.answer?'ielts-answer-correct':'ielts-answer-incorrect') + '"><strong>' + (state.lessonAnswer===L.answer?'Correct.':'Not quite.') + '</strong> ' + esc(L.feedback) + '</p><button type="button" class="secondary-button" data-ielts-lesson-retry>Try again</button>';
-        html += '</section>';
-        if (ns.audioPractice && typeof ns.audioPractice.renderForLesson === "function") {
-            html += ns.audioPractice.renderForLesson(L.id);
-        }
-        html += '<div class="ielts-back-row">' + goButton('← All Listening lessons','listening','secondary-button') + '</div>';
-        return html;
-    }
 
     function viewListeningQuiz() {
         var html = header("IELTS · LISTENING · INTRODUCTION", "Check Your Understanding",
@@ -432,24 +385,410 @@
         return score;
     }
 
-    function viewPlaceholder(skill) {
-        var html = header("IELTS \u00b7 " + skill.title.toUpperCase() + " \u00b7 " + trackLabel().toUpperCase(), skill.title,
-            skill.summary);
-        html += '<div class="ielts-banner">' + esc(skill.title) + ' is planned. There is nothing to practise here yet.</div>';
-        html += backRow(goButton("\u2190 IELTS dashboard", "", "secondary-button") +
-            goButton("Practice Library", "library", "secondary-button"));
+
+
+    /* =====================================================
+       READING / WRITING / SPEAKING modules + progress UI
+       (data lives in ielts/reading-data.js, writing-data.js,
+       speaking-data.js; storage in ielts/progress.js)
+       ===================================================== */
+
+    var PHASE_LABELS = {
+        listening: ["Before listening", "While listening", "After listening"],
+        reading: ["Before you read", "While you read", "After you read"],
+        writing: ["Before you write", "While you write", "After you write"],
+        speaking: ["Before you speak", "While you speak", "After you speak"]
+    };
+
+    function lessonsForSkill(skillId) {
+        if (skillId === "listening") return LISTENING_LESSONS;
+        var D = skillId === "reading" ? ns.readingData : skillId === "writing" ? ns.writingData : skillId === "speaking" ? ns.speakingData : null;
+        return (D && D.lessons) || [];
+    }
+
+    function findLessonAnywhere(id) {
+        var skills = ["listening", "reading", "writing", "speaking"];
+        for (var s = 0; s < skills.length; s++) {
+            var list = lessonsForSkill(skills[s]);
+            for (var i = 0; i < list.length; i++) if (list[i].id === id) return { lesson: list[i], skill: skills[s] };
+        }
+        return null;
+    }
+
+    function findReadingSet(id) {
+        var sets = (ns.readingData || {}).practiceSets || [];
+        for (var i = 0; i < sets.length; i++) if (sets[i].id === id) return sets[i];
+        return null;
+    }
+
+    function findWritingTask(id) {
+        var tasks = (ns.writingData || {}).tasks || [];
+        for (var i = 0; i < tasks.length; i++) if (tasks[i].id === id) return tasks[i];
+        return null;
+    }
+
+    function findSpeakingItem(id) {
+        var items = (ns.speakingData || {}).practice || [];
+        for (var i = 0; i < items.length; i++) if (items[i].id === id) return items[i];
+        return null;
+    }
+
+    function wordCount(text) {
+        var words = String(text || "").trim().split(/\s+/).filter(Boolean);
+        return words.length;
+    }
+
+    function loadDraft(id) {
+        try { return window.localStorage.getItem("ieltsDraft." + id) || ""; } catch (e) { return ""; }
+    }
+
+    function factsBlock(D) {
+        var html = '<dl class="ielts-facts">';
+        D.facts.forEach(function (f) { html += '<div class="ielts-fact"><dt>' + esc(f.label) + '</dt><dd>' + esc(f.value) + '</dd></div>'; });
+        return html + '</dl>';
+    }
+
+    function sourceNote(D) {
+        if (!D.source || !D.source.url) return '';
+        return '<p class="ielts-note ielts-source">Source: <a class="ielts-link" href="' + esc(D.source.url) +
+            '" target="_blank" rel="noopener noreferrer">' + esc(D.source.label) + ' \u2197</a> (checked ' + esc(D.source.checked) +
+            '), summarised in our own words. All passages, tasks and answers here are original. IELTS is jointly owned by the British Council, IDP IELTS and Cambridge University Press &amp; Assessment.</p>';
+    }
+
+    function trackPair(D) {
+        if (!D.trackDifferences) return '';
+        return '<div class="ielts-paths">' +
+            '<article class="ielts-card"><p class="ielts-session-label">Academic</p><p>' + esc(D.trackDifferences.academic) + '</p></article>' +
+            '<article class="ielts-card"><p class="ielts-session-label">General Training</p><p>' + esc(D.trackDifferences.general) + '</p></article></div>';
+    }
+
+    function lessonsGrid(lessons) {
+        var html = '<div class="ielts-grid">';
+        lessons.forEach(function (L) {
+            var checked = ns.progress && ns.progress.mastered("lesson:" + L.id);
+            html += '<article class="ielts-card"><p class="ielts-session-label">Session ' + L.session + ' \u00b7 ' + esc(L.type) + '</p>' +
+                '<h3>' + esc(L.title) + (checked ? ' \u2713' : '') + '</h3>' +
+                '<p>' + esc(L.purpose) + '</p>' +
+                '<button type="button" class="secondary-button" data-ielts-lesson="' + esc(L.id) + '">Open lesson \u2192</button></article>';
+        });
+        return html + '</div>';
+    }
+
+    function criteriaCards(criteria) {
+        var html = '<div class="ielts-grid">';
+        criteria.forEach(function (c) {
+            html += '<article class="ielts-card"><h3>' + esc(c.name) + '</h3><p>' + esc(c.plain) + '</p></article>';
+        });
+        return html + '</div>';
+    }
+
+    function bestLine(activityKey) {
+        if (!ns.progress) return '';
+        var b = ns.progress.best(activityKey);
+        if (b === null) return '';
+        return '<p class="ielts-note">Best score: <strong>' + b + '%</strong>' +
+            (ns.progress.mastered(activityKey) ? ' \u00b7 mastered \u2713' : ' \u00b7 mastery at ' + ns.progress.masteryPct + '%') + '</p>';
+    }
+
+    /* Generic lesson page - one renderer for all four skills. */
+    function viewLessonPage() {
+        var found = findLessonAnywhere(state.lessonId);
+        if (!found) { state.lessonId = null; return viewDashboard(); }
+        var L = found.lesson, skillId = found.skill;
+        state.lessonSkill = skillId;
+        var skillTitle = skillById(skillId).title;
+        var phases = PHASE_LABELS[skillId] || PHASE_LABELS.listening;
+        var html = header('IELTS \u00b7 ' + skillTitle.toUpperCase() + ' \u00b7 SESSION ' + L.session, L.title, L.purpose);
+        html += '<div class="ielts-lesson-toolbar">' + status(L.type, 'open') + '<span class="ielts-note">Original lesson and example \u00b7 tap a section to open it</span></div>';
+        html += disclosure(phases[0], '<ul class="ielts-lesson-list">' + L.before.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>');
+        html += disclosure(phases[1], '<ul class="ielts-lesson-list">' + L.during.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>');
+        if (L.after.length) html += disclosure(phases[2], '<ul class="ielts-lesson-list">' + L.after.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>');
+        html += '<div class="ielts-paths">';
+        html += disclosure('Do', '<ul class="ielts-lesson-list">' + L.dos.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>');
+        html += disclosure('Don\'t', '<ul class="ielts-lesson-list">' + L.donts.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>');
+        html += '</div>';
+        html += '<section class="ielts-card ielts-worked-example"><p class="ielts-session-label">Worked example \u00b7 original illustrative text</p><blockquote>' + esc(L.example) + '</blockquote>' +
+            '<h3>Think it through</h3><p><strong>' + esc(L.question) + '</strong></p><div class="ielts-practice-options">';
+        L.options.forEach(function (opt, i) {
+            html += '<label class="ielts-option"><input type="radio" name="ielts-lesson-answer" value="' + i + '" data-ielts-lesson-answer ' + (String(state.lessonAnswer) === String(i) ? 'checked' : '') + (state.lessonChecked ? ' disabled' : '') + '><span>' + esc(opt) + '</span></label>';
+        });
+        html += '</div>';
+        if (!state.lessonChecked) html += '<button type="button" class="start-button" data-ielts-lesson-check ' + (state.lessonAnswer === null ? 'disabled' : '') + '>Check answer</button>';
+        else html += '<p class="ielts-answer-feedback ' + (state.lessonAnswer === L.answer ? 'ielts-answer-correct' : 'ielts-answer-incorrect') + '"><strong>' + (state.lessonAnswer === L.answer ? 'Correct.' : 'Not quite.') + '</strong> ' + esc(L.feedback) + '</p><button type="button" class="secondary-button" data-ielts-lesson-retry>Try again</button>';
+        html += '</section>';
+        if (skillId === "listening" && ns.audioPractice && typeof ns.audioPractice.renderForLesson === "function") {
+            html += ns.audioPractice.renderForLesson(L.id);
+        }
+        var list = lessonsForSkill(skillId);
+        var li = list.indexOf(L);
+        var nav = '';
+        if (li > 0) nav += '<button type="button" class="secondary-button" data-ielts-lesson="' + esc(list[li - 1].id) + '">\u2190 Previous lesson</button>';
+        nav += goButton('All ' + skillTitle + ' lessons', skillId, 'secondary-button');
+        if (li < list.length - 1) nav += '<button type="button" class="start-button" data-ielts-lesson="' + esc(list[li + 1].id) + '">Next lesson \u2192</button>';
+        html += '<div class="ielts-back-row">' + nav + '</div>';
+        return html;
+    }
+
+    /* ---------- READING ---------- */
+
+    function viewReading() {
+        var D = ns.readingData;
+        var html = header('IELTS \u00b7 READING \u00b7 ' + trackLabel().toUpperCase(), 'Reading',
+            'What the IELTS Reading test involves, with strategy lessons and original practice sets with full answer keys.');
+        if (!D) {
+            return html + '<div class="ielts-banner">Reading information could not be loaded.</div>' +
+                backRow(goButton('\u2190 IELTS dashboard', '', 'secondary-button'));
+        }
+        html += '<div class="ielts-banner ielts-banner-preview">' + status('Learning module', 'open') +
+            ' Study the four strategy lessons, then take a practice set. Every set is original, auto-scored, and shows the answer key with the exact passage evidence after you submit.</div>';
+        html += '<p class="ielts-note ielts-track-note">You are viewing the <strong>' + esc(trackLabel()) + '</strong> track. ' +
+            'Academic and General Training Reading differ, so each practice set below is marked with its track.</p>';
+        html += '<h3 class="ielts-heading">Reading at a glance</h3>' + factsBlock(D);
+        html += trackPair(D);
+        html += disclosure('The question types (' + D.questionTypes.length + ')',
+            '<ul class="ielts-type-list">' + D.questionTypes.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>');
+        html += sourceNote(D);
+        html += '<h3 class="ielts-heading">Strategy lessons</h3>' + lessonsGrid(D.lessons);
+        html += '<h3 class="ielts-heading">Practice sets</h3><div class="ielts-grid">';
+        D.practiceSets.forEach(function (set) {
+            var key = 'reading-set:' + set.id;
+            var attempted = ns.progress && ns.progress.best(key) !== null;
+            html += '<article class="ielts-card"><p class="ielts-session-label">' + (set.track === 'general' ? 'General Training' : 'Academic') + ' \u00b7 ' + set.questions.length + ' questions</p>' +
+                '<h3>' + esc(set.title) + '</h3><p>' + esc(set.intro) + '</p>' + bestLine(key) +
+                '<button type="button" class="start-button" data-ielts-practice="' + esc(set.id) + '">' + (attempted ? 'Retry set \u2192' : 'Start set \u2192') + '</button></article>';
+        });
+        html += '</div>';
+        html += backRow(goButton('\u2190 IELTS dashboard', '', 'secondary-button'));
+        return html;
+    }
+
+    function viewReadingSet() {
+        var set = findReadingSet(state.practiceId);
+        if (!set) { state.practiceId = null; return viewReading(); }
+        var html = header('IELTS \u00b7 READING \u00b7 PRACTICE', set.title, set.intro);
+        if (state.practiceSubmitted) {
+            var total = set.questions.length, correct = 0;
+            set.questions.forEach(function (q, i) { if (Number(state.practiceAnswers[i]) === q.answer) correct += 1; });
+            var pct = Math.round(correct / total * 100);
+            html += '<div class="ielts-card ielts-quiz-result"><h3>Your result</h3><p class="ielts-quiz-score">' + correct + ' / ' + total + ' \u00b7 ' + pct + '%</p>' +
+                '<p>' + (pct >= (ns.progress ? ns.progress.masteryPct : 80) ? 'Mastered - great work.' : 'Review the answer key below - every answer shows its passage evidence - then try again.') + '</p>' + bestLine('reading-set:' + set.id) + '</div>';
+        }
+        html += '<section class="ielts-card ielts-passage"><p class="ielts-session-label">Reading passage \u00b7 original text</p><h3>' + esc(set.passageTitle) + '</h3>' +
+            set.passage.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') + '</section>';
+        html += '<form class="ielts-quiz-form" data-ielts-practice-form>';
+        set.questions.forEach(function (q, i) {
+            var chosen = state.practiceAnswers[i];
+            var isCorrect = state.practiceSubmitted && Number(chosen) === q.answer;
+            html += '<fieldset class="ielts-card ielts-question' + (state.practiceSubmitted ? (isCorrect ? ' ielts-answer-correct' : ' ielts-answer-incorrect') : '') + '"><legend>Question ' + (i + 1) + '</legend>' +
+                '<p class="ielts-question-prompt">' + esc(q.prompt) + '</p>';
+            q.options.forEach(function (opt, j) {
+                html += '<label class="ielts-option"><input type="radio" name="pq' + i + '" value="' + j + '" data-ielts-practice-answer="' + i + '"' +
+                    (String(chosen) === String(j) ? ' checked' : '') + (state.practiceSubmitted ? ' disabled' : '') + '> <span>' + esc(opt) + '</span>' +
+                    (state.practiceSubmitted && q.answer === j ? '<strong class="ielts-correct-label">Correct answer</strong>' : '') + '</label>';
+            });
+            if (state.practiceSubmitted) {
+                html += '<p class="ielts-answer-feedback"><strong>' + (isCorrect ? 'Correct' : 'Correct answer: ' + esc(q.options[q.answer])) + '</strong> \u2014 ' + esc(q.explanation) + '</p>';
+            }
+            html += '</fieldset>';
+        });
+        html += '</form>';
+        if (!state.practiceSubmitted) html += '<button type="button" class="start-button" data-ielts-practice-submit>Submit answers</button>';
+        else html += '<button type="button" class="start-button" data-ielts-practice-retry>Try again</button>';
+        html += backRow('<button type="button" class="secondary-button" data-ielts-practice-back>\u2190 Back to Reading</button>');
+        return html;
+    }
+
+    /* ---------- WRITING ---------- */
+
+    function viewWriting() {
+        var D = ns.writingData;
+        var html = header('IELTS \u00b7 WRITING \u00b7 ' + trackLabel().toUpperCase(), 'Writing',
+            'What the IELTS Writing test involves, with strategy lessons and original practice tasks with model answers.');
+        if (!D) {
+            return html + '<div class="ielts-banner">Writing information could not be loaded.</div>' +
+                backRow(goButton('\u2190 IELTS dashboard', '', 'secondary-button'));
+        }
+        html += '<div class="ielts-banner ielts-banner-preview">' + status('Learning module', 'open') +
+            ' Study the three lessons, then write a practice task in the built-in editor. Your draft saves on this device as you type, and each task has an original model answer and a self-check on the four official criteria.</div>';
+        html += '<p class="ielts-note ielts-track-note">You are viewing the <strong>' + esc(trackLabel()) + '</strong> track. ' +
+            'Task 1 differs between Academic and General Training; Task 2 is the same essay for both.</p>';
+        html += '<h3 class="ielts-heading">Writing at a glance</h3>' + factsBlock(D);
+        html += trackPair(D);
+        html += '<h3 class="ielts-heading">How Writing is marked</h3>' + criteriaCards(D.criteria);
+        html += sourceNote(D);
+        html += '<h3 class="ielts-heading">Strategy lessons</h3>' + lessonsGrid(D.lessons);
+        html += '<h3 class="ielts-heading">Practice tasks</h3><div class="ielts-grid">';
+        D.tasks.forEach(function (t) {
+            var key = 'writing-task:' + t.id;
+            var done = ns.progress && ns.progress.best(key) !== null;
+            html += '<article class="ielts-card"><p class="ielts-session-label">' +
+                (t.track === 'both' ? 'Both tracks' : t.track === 'general' ? 'General Training' : 'Academic') + ' \u00b7 ' + t.minWords + '+ words \u00b7 ~' + t.minutes + ' min</p>' +
+                '<h3>' + esc(t.title) + (done ? ' \u2713' : '') + '</h3>' +
+                '<p>' + esc(t.instructions.slice(0, 110)) + '\u2026</p>' +
+                (done ? '<p class="ielts-note">Completed \u00b7 recorded in your progress</p>' : '') +
+                '<button type="button" class="start-button" data-ielts-task="' + esc(t.id) + '">' + (done ? 'Open task again \u2192' : 'Open task \u2192') + '</button></article>';
+        });
+        html += '</div>';
+        html += backRow(goButton('\u2190 IELTS dashboard', '', 'secondary-button'));
+        return html;
+    }
+
+    function dataTableHtml(t) {
+        if (!t.dataTable) return '';
+        var dt = t.dataTable;
+        var html = '<table class="ielts-data-table"><caption class="ielts-note">' + esc(dt.caption) + '</caption><thead><tr>';
+        dt.headers.forEach(function (h) { html += '<th>' + esc(h) + '</th>'; });
+        html += '</tr></thead><tbody>';
+        dt.rows.forEach(function (r) {
+            html += '<tr>' + r.map(function (c) { return '<td>' + esc(c) + '</td>'; }).join('') + '</tr>';
+        });
+        return html + '</tbody></table>';
+    }
+
+    function criteriaChecklist(criteria, activityKey, hint) {
+        var recorded = ns.progress && ns.progress.best(activityKey) !== null;
+        var html = '<section class="ielts-card"><p class="ielts-session-label">Self-evaluation</p><h3>Check yourself against the official criteria</h3>' +
+            '<p class="ielts-note">' + esc(hint) + '</p>';
+        criteria.forEach(function (c, i) {
+            html += '<label class="ielts-check-item"><input type="checkbox" data-ielts-check="' + i + '"' + (recorded ? ' checked disabled' : '') + '>' +
+                '<span><strong>' + esc(c.name) + ':</strong> ' + esc(c.plain) + '</span></label>';
+        });
+        if (recorded) html += '<p class="ielts-answer-feedback ielts-answer-correct"><strong>Completed.</strong> Recorded in your progress.</p>';
+        else html += '<button type="button" class="start-button" data-ielts-task-complete="' + esc(activityKey) + '" disabled>Mark as complete</button>';
+        return html + '</section>';
+    }
+
+    function viewWritingTask() {
+        var t = findWritingTask(state.taskId);
+        if (!t) { state.taskId = null; return viewWriting(); }
+        var draft = loadDraft(t.id);
+        var html = header('IELTS \u00b7 WRITING \u00b7 PRACTICE', t.title,
+            'About ' + t.minutes + ' minutes \u00b7 write at least ' + t.minWords + ' words.');
+        html += '<section class="ielts-card"><p class="ielts-session-label">The task \u00b7 original prompt</p><p><strong>' + esc(t.instructions) + '</strong></p>' +
+            dataTableHtml(t) + '</section>';
+        html += '<section class="ielts-card"><p class="ielts-session-label">Your answer</p>' +
+            '<textarea class="ielts-editor" rows="12" data-ielts-draft="' + esc(t.id) + '" placeholder="Write your answer here\u2026">' + esc(draft) + '</textarea>' +
+            '<p class="ielts-word-count">Words: <span data-ielts-wc>' + wordCount(draft) + '</span> / ' + t.minWords + ' minimum</p>' +
+            '<p class="ielts-note">Your draft saves automatically on this device as you type.</p></section>';
+        html += disclosure('Model answer - compare after you write',
+            t.modelAnswer.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') +
+            '<p class="ielts-note">One of many good answers \u00b7 original, written to a band 8-9 standard.</p>');
+        html += criteriaChecklist(ns.writingData.criteria, 'writing-task:' + t.id, t.checklistHint);
+        html += backRow('<button type="button" class="secondary-button" data-ielts-task-back>\u2190 Back to Writing</button>');
+        return html;
+    }
+
+    /* ---------- SPEAKING ---------- */
+
+    function viewSpeaking() {
+        var D = ns.speakingData;
+        var html = header('IELTS \u00b7 SPEAKING \u00b7 ' + trackLabel().toUpperCase(), 'Speaking',
+            'What the IELTS Speaking test involves, with a lesson per part and original practice with sample answers.');
+        if (!D) {
+            return html + '<div class="ielts-banner">Speaking information could not be loaded.</div>' +
+                backRow(goButton('\u2190 IELTS dashboard', '', 'secondary-button'));
+        }
+        html += '<div class="ielts-banner ielts-banner-preview">' + status('Learning module', 'open') +
+            ' One lesson per part of the test, then practise with an original cue card and discussion set. You practise aloud on your own - nothing is recorded or uploaded.</div>';
+        html += '<p class="ielts-note ielts-track-note">You are viewing the <strong>' + esc(trackLabel()) + '</strong> track. ' +
+            'The Speaking test is identical for Academic and General Training, so this page does not change with your choice.</p>';
+        html += '<h3 class="ielts-heading">Speaking at a glance</h3>' + factsBlock(D);
+        html += '<div class="ielts-grid">';
+        D.parts.forEach(function (p) {
+            html += '<article class="ielts-card"><p class="ielts-session-label">' + esc(p.name) + ' \u00b7 ' + esc(p.time) + '</p>' +
+                '<p>' + esc(p.what) + '</p><p class="ielts-note">' + esc(p.tip) + '</p></article>';
+        });
+        html += '</div>';
+        html += '<h3 class="ielts-heading">How Speaking is marked</h3>' + criteriaCards(D.criteria);
+        html += sourceNote(D);
+        html += '<h3 class="ielts-heading">Strategy lessons</h3>' + lessonsGrid(D.lessons);
+        html += '<h3 class="ielts-heading">Practice</h3><div class="ielts-grid">';
+        D.practice.forEach(function (item) {
+            var key = 'speaking-practice:' + item.id;
+            var done = ns.progress && ns.progress.best(key) !== null;
+            html += '<article class="ielts-card"><p class="ielts-session-label">Part ' + item.part + ' practice</p>' +
+                '<h3>' + esc(item.title) + (done ? ' \u2713' : '') + '</h3>' +
+                '<p>' + esc(item.prepNote) + '</p>' +
+                (done ? '<p class="ielts-note">Completed \u00b7 recorded in your progress</p>' : '') +
+                '<button type="button" class="start-button" data-ielts-task="' + esc(item.id) + '">' + (done ? 'Open practice again \u2192' : 'Open practice \u2192') + '</button></article>';
+        });
+        html += '</div>';
+        html += backRow(goButton('\u2190 IELTS dashboard', '', 'secondary-button'));
+        return html;
+    }
+
+    function viewSpeakingItem() {
+        var item = findSpeakingItem(state.taskId);
+        if (!item) { state.taskId = null; return viewSpeaking(); }
+        var html = header('IELTS \u00b7 SPEAKING \u00b7 PRACTICE', item.title, item.prepNote);
+        if (item.kind === 'cuecard') {
+            html += '<section class="ielts-card"><p class="ielts-session-label">Cue card \u00b7 original</p><h3>' + esc(item.cueCard.topic) + '</h3>' +
+                '<p>You should say:</p><ul class="ielts-cue-bullets">' +
+                item.cueCard.bullets.map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('') + '</ul></section>';
+            var notes = loadDraft(item.id);
+            html += '<section class="ielts-card"><p class="ielts-session-label">Your keyword notes</p>' +
+                '<textarea class="ielts-editor" rows="4" data-ielts-draft="' + esc(item.id) + '" placeholder="One or two words per bullet point\u2026">' + esc(notes) + '</textarea>' +
+                '<p class="ielts-note">Notes save automatically on this device.</p></section>';
+        } else {
+            html += '<section class="ielts-card"><p class="ielts-session-label">Discussion questions \u00b7 original</p><ul class="ielts-cue-bullets">' +
+                item.questions.map(function (q) { return '<li>' + esc(q) + '</li>'; }).join('') + '</ul></section>';
+        }
+        var sampleBody = item.sampleAnswer.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('');
+        if (item.samplePhrases && item.samplePhrases.length) {
+            sampleBody += '<p class="ielts-note">Useful phrases: ' + item.samplePhrases.map(esc).join(' \u00b7 ') + '</p>';
+        }
+        html += disclosure('Sample answer - compare after you practise', sampleBody +
+            '<p class="ielts-note">One of many good answers \u00b7 original, written to a band 8-9 standard.</p>');
+        html += criteriaChecklist(ns.speakingData.criteria, 'speaking-practice:' + item.id,
+            'Judge your spoken practice honestly against the four official criteria.');
+        html += backRow('<button type="button" class="secondary-button" data-ielts-task-back>\u2190 Back to Speaking</button>');
+        return html;
+    }
+
+    /* ---------- dashboard progress card ---------- */
+
+    function progressCard() {
+        if (!ns.progress) {
+            return '<div class="ielts-card ielts-progress"><p><strong>No progress recorded yet.</strong></p>' +
+                '<p class="ielts-note">Complete a quiz, lesson self-check or practice activity and your progress appears here.</p></div>';
+        }
+        var groups = [
+            { label: 'Listening', ids: ['listening-quiz'].concat(LISTENING_LESSONS.map(function (l) { return 'lesson:' + l.id; })) },
+            { label: 'Reading', ids: lessonsForSkill('reading').map(function (l) { return 'lesson:' + l.id; }).concat(((ns.readingData || {}).practiceSets || []).map(function (s) { return 'reading-set:' + s.id; })) },
+            { label: 'Writing', ids: lessonsForSkill('writing').map(function (l) { return 'lesson:' + l.id; }).concat(((ns.writingData || {}).tasks || []).map(function (t) { return 'writing-task:' + t.id; })) },
+            { label: 'Speaking', ids: lessonsForSkill('speaking').map(function (l) { return 'lesson:' + l.id; }).concat(((ns.speakingData || {}).practice || []).map(function (p) { return 'speaking-practice:' + p.id; })) }
+        ];
+        var summaries = ns.progress.summarize(groups);
+        var anyAttempted = summaries.some(function (s) { return s.attempted > 0; });
+        if (!anyAttempted) {
+            return '<div class="ielts-card ielts-progress"><p><strong>No progress recorded yet.</strong></p>' +
+                '<p class="ielts-note">Complete a quiz, lesson self-check or practice activity and your progress appears here. Scores save on this device.</p></div>';
+        }
+        var html = '<div class="ielts-progress-grid">';
+        summaries.forEach(function (s) {
+            html += '<article class="ielts-card"><h3>' + esc(s.label) + '</h3>' +
+                '<p><strong>' + s.attempted + '</strong> of ' + s.total + ' activities started</p>' +
+                '<p><strong>' + s.mastered + '</strong> mastered</p>' +
+                (s.average !== null ? '<p class="ielts-note">Average best score: ' + s.average + '%</p>' : '') + '</article>';
+        });
+        html += '</div><p class="ielts-note">Mastery = best score of ' + ns.progress.masteryPct + '% or more \u2014 the same rule as the TOEFL section. Progress is saved on this device.</p>';
         return html;
     }
 
     function render() {
         if (!root) return;
         var v = state.view, html;
-        if (v === "listening" && state.lessonId) html = viewListeningLesson();
+        if (state.lessonId) html = viewLessonPage();
         else if (v === "listening" && state.quiz) html = viewListeningQuiz();
+        else if (v === "reading" && state.practiceId) html = viewReadingSet();
+        else if (v === "writing" && state.taskId) html = viewWritingTask();
+        else if (v === "speaking" && state.taskId) html = viewSpeakingItem();
         else if (v === "course") html = viewCourse();
         else if (v === "library") html = viewLibrary();
         else if (v === "listening") html = viewListening();
-        else if (v === "reading" || v === "writing" || v === "speaking") html = viewPlaceholder(skillById(v));
+        else if (v === "reading") html = viewReading();
+        else if (v === "writing") html = viewWriting();
+        else if (v === "speaking") html = viewSpeaking();
         else html = viewDashboard();
         root.innerHTML = html;
     }
@@ -459,7 +798,7 @@
     function show(view, track) {
         view = (typeof view === "string" && Object.prototype.hasOwnProperty.call(VIEWS, view)) ? view : "";
         if (validTrack(track)) state.track = track;
-        if (view !== state.view) { state.quiz = false; state.quizSubmitted = false; state.answers = {}; state.lessonId = null; state.lessonChecked = false; state.lessonAnswer = null; }
+        if (view !== state.view) { state.quiz = false; state.quizSubmitted = false; state.answers = {}; state.lessonId = null; state.lessonChecked = false; state.lessonAnswer = null; state.practiceId = null; state.practiceAnswers = {}; state.practiceSubmitted = false; state.taskId = null; state.checks = {}; }
         state.view = view;
 
         root = document.getElementById("ielts-root");
@@ -482,7 +821,12 @@
             state.lessonId = el.getAttribute("data-ielts-lesson"); state.lessonChecked = false; state.lessonAnswer = null; render();
             window.scrollTo({top:0,behavior:"smooth"});
         } else if (el.hasAttribute("data-ielts-lesson-check")) {
-            if (state.lessonAnswer !== null) { state.lessonChecked = true; render(); }
+            if (state.lessonAnswer !== null) {
+                state.lessonChecked = true;
+                var foundL = findLessonAnywhere(state.lessonId);
+                if (ns.progress && foundL && state.lessonAnswer === foundL.lesson.answer) ns.progress.record("lesson:" + foundL.lesson.id, 100);
+                render();
+            }
         } else if (el.hasAttribute("data-ielts-lesson-retry")) {
             state.lessonChecked = false; state.lessonAnswer = null; render();
         } else if (el.hasAttribute("data-ielts-quiz-start")) {
@@ -494,9 +838,41 @@
                 var a = state.answers[q.id]; return q.type === "single" ? typeof a !== "string" : !Array.isArray(a) || a.length !== 2;
             });
             if (missing) { window.alert("Please answer every question. Select exactly two options for Questions 11–12."); return; }
-            state.quizSubmitted = true; render();
+            state.quizSubmitted = true;
+            if (ns.progress) ns.progress.record("listening-quiz", Math.round(scoreQuiz() / 12 * 100));
+            render();
         } else if (el.hasAttribute("data-ielts-quiz-retry")) {
             state.quizSubmitted = false; state.answers = {}; render();
+        } else if (el.hasAttribute("data-ielts-practice")) {
+            state.practiceId = el.getAttribute("data-ielts-practice");
+            state.practiceAnswers = {}; state.practiceSubmitted = false; render();
+            window.scrollTo({top:0,behavior:"smooth"});
+        } else if (el.hasAttribute("data-ielts-practice-submit")) {
+            var pset = findReadingSet(state.practiceId);
+            if (pset) {
+                var pmissing = pset.questions.some(function (q, i) { return typeof state.practiceAnswers[i] !== "string"; });
+                if (pmissing) { window.alert("Please answer every question before submitting."); return; }
+                state.practiceSubmitted = true;
+                if (ns.progress) {
+                    var pcorrect = 0;
+                    pset.questions.forEach(function (q, i) { if (Number(state.practiceAnswers[i]) === q.answer) pcorrect += 1; });
+                    ns.progress.record("reading-set:" + pset.id, Math.round(pcorrect / pset.questions.length * 100));
+                }
+                render();
+                window.scrollTo({top:0,behavior:"smooth"});
+            }
+        } else if (el.hasAttribute("data-ielts-practice-retry")) {
+            state.practiceAnswers = {}; state.practiceSubmitted = false; render();
+        } else if (el.hasAttribute("data-ielts-practice-back")) {
+            state.practiceId = null; state.practiceAnswers = {}; state.practiceSubmitted = false; render();
+        } else if (el.hasAttribute("data-ielts-task")) {
+            state.taskId = el.getAttribute("data-ielts-task"); state.checks = {}; render();
+            window.scrollTo({top:0,behavior:"smooth"});
+        } else if (el.hasAttribute("data-ielts-task-back")) {
+            state.taskId = null; state.checks = {}; render();
+        } else if (el.hasAttribute("data-ielts-task-complete")) {
+            if (ns.progress) ns.progress.record(el.getAttribute("data-ielts-task-complete"), 100);
+            render();
         } else if (el.hasAttribute("data-ielts-track")) {
             var t = el.getAttribute("data-ielts-track");
             if (validTrack(t)) {
@@ -515,12 +891,33 @@
     var rootAtLoad = document.getElementById("ielts-root");
     if (rootAtLoad) {
         rootAtLoad.addEventListener("click", onClick);
+        rootAtLoad.addEventListener("input", function (event) {
+            var field = event.target;
+            if (!field || !field.hasAttribute || !field.hasAttribute("data-ielts-draft")) return;
+            var draftId = field.getAttribute("data-ielts-draft");
+            try { window.localStorage.setItem("ieltsDraft." + draftId, field.value); } catch (e) { /* ignore */ }
+            var wc = root.querySelector("[data-ielts-wc]");
+            if (wc) wc.textContent = String(wordCount(field.value));
+        });
         rootAtLoad.addEventListener("change", function (event) {
             var input = event.target;
             if (!input) return;
             if (input.hasAttribute("data-ielts-lesson-answer") && !state.lessonChecked) {
                 state.lessonAnswer = Number(input.value);
                 var checkBtn = root.querySelector("[data-ielts-lesson-check]"); if (checkBtn) checkBtn.disabled = false;
+                return;
+            }
+            if (input.hasAttribute("data-ielts-practice-answer") && !state.practiceSubmitted) {
+                state.practiceAnswers[input.getAttribute("data-ielts-practice-answer")] = input.value;
+                return;
+            }
+            if (input.hasAttribute("data-ielts-check")) {
+                state.checks[input.getAttribute("data-ielts-check")] = input.checked;
+                var boxes = root.querySelectorAll("[data-ielts-check]");
+                var allOn = boxes.length > 0;
+                boxes.forEach(function (b) { if (!b.checked) allOn = false; });
+                var doneBtn = root.querySelector("[data-ielts-task-complete]");
+                if (doneBtn) doneBtn.disabled = !allOn;
                 return;
             }
             if (!input.hasAttribute("data-ielts-answer") || state.quizSubmitted) return;

@@ -137,3 +137,23 @@
 @media (max-width: 640px) {
     .ielts-ap-actions .start-button, .ielts-ap-actions .secondary-button { width: 100%; }
 }
+
+/* ---------- IELTS Reading / Writing / Speaking modules ---------- */
+.ielts-passage p { line-height: 1.75; }
+.ielts-data-table { width: 100%; border-collapse: collapse; margin: 12px 0 4px; font-size: 15px; }
+.ielts-data-table caption { text-align: left; margin-bottom: 6px; }
+.ielts-data-table th, .ielts-data-table td { border: 1px solid #e5e7eb; padding: 8px 12px; text-align: left; }
+.ielts-data-table th { background: #eff6ff; color: #1e3a8a; }
+.ielts-editor { width: 100%; box-sizing: border-box; border: 1px solid #d1d5db; border-radius: 12px; padding: 14px; font-size: 16px; line-height: 1.6; font-family: inherit; resize: vertical; margin-top: 6px; }
+.ielts-editor:focus { outline: 2px solid #2563eb; border-color: #2563eb; }
+.ielts-word-count { font-size: 14px; color: #4b5563; margin-top: 8px; }
+.ielts-check-item { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid #f3f4f6; font-size: 15px; line-height: 1.5; }
+.ielts-check-item:last-of-type { border-bottom: 0; }
+.ielts-check-item input { margin-top: 3px; }
+.ielts-cue-bullets { margin: 8px 0 0; padding-left: 22px; line-height: 1.8; }
+.ielts-progress-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+[data-ielts-task-complete]:disabled { opacity: .55; cursor: not-allowed; }
+@media (max-width: 640px) {
+    .ielts-progress-grid { grid-template-columns: 1fr; }
+    .ielts-data-table { font-size: 14px; }
+}

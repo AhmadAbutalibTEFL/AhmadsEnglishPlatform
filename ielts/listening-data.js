@@ -106,10 +106,7 @@
         ],
 
         futureFeatures: [
-            "Audio-based question-type practice",
-            "Full Listening tests",
-            "Verified audio transcripts and answer keys",
-            "Saved progress tracking"
+            "Full Listening tests"
         ],
 
         resources: []
