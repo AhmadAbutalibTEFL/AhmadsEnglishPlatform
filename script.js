@@ -413,7 +413,10 @@ function displayESTSessions() {
 
             <h3>${estEscape(getESTSessionTitle(session))}</h3>
 
-            ${rows}
+            <details class="site-disclosure est-session-details">
+                <summary>What this session covers</summary>
+                <div class="sd-anim"><div class="sd-clip"><div class="site-disclosure-body">${rows}</div></div></div>
+            </details>
 
             <p class="est-session-status est-session-status-${status.id}">${status.text}</p>
 

@@ -864,3 +864,41 @@ html { scroll-padding-top: 64px; }
 .ielts-campus-map { display: block; width: 100%; height: auto; max-height: 420px; }
 .ielts-map-caption { margin: 10px 0 0; color: #64748b; font-size: .88rem; }
 @media (max-width: 600px) { .ielts-map-figure { padding: 8px; } .ielts-map-figure figcaption { font-size: .82rem; } }
+
+/* ---------- Collapsible sections (tap to open / tap to close, animated) ----------
+   Native details/summary: keyboard and screen-reader accessible by default.
+   Smooth height animation via the grid-rows technique; site-chrome.js animates
+   opening and closing. Everything degrades to instant toggling when
+   grid-rows animation is unsupported or the user prefers reduced motion. */
+.site-disclosure { border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; margin: 10px 0; }
+.site-disclosure > summary { list-style: none; cursor: pointer; position: relative; padding: 13px 16px 13px 44px; font-weight: 600; color: #111827; font-size: 15px; border-radius: 12px; }
+.site-disclosure > summary::-webkit-details-marker { display: none; }
+/* plus/minus marker: the upright bar spins down into the flat bar when opened */
+.site-disclosure > summary::before,
+.site-disclosure > summary::after { content: ""; position: absolute; left: 17px; top: 50%; width: 14px; height: 2.5px; border-radius: 2px; background: #6b7280; margin-top: -1.25px; }
+.site-disclosure > summary::after { transform: rotate(90deg); }
+.site-disclosure[open] > summary::before,
+.site-disclosure[open] > summary::after { background: #2563eb; }
+.site-disclosure[open] > summary::after { transform: rotate(0deg); }
+.site-disclosure > summary:hover { background: #f8fafc; }
+.site-disclosure > summary:focus-visible { outline: 2px solid #2563eb; outline-offset: -2px; }
+.sd-anim { display: grid; grid-template-rows: 0fr; }
+.site-disclosure[open] > .sd-anim { grid-template-rows: 1fr; }
+.site-disclosure.sd-closing > .sd-anim { grid-template-rows: 0fr; }
+.sd-clip { overflow: hidden; min-height: 0; }
+.site-disclosure-body { padding: 6px 16px 16px; border-top: 1px solid #f1f5f9; }
+@media (prefers-reduced-motion: no-preference) {
+    .sd-anim { transition: grid-template-rows .3s ease; }
+    .site-disclosure > summary::before { transition: background .2s ease; }
+    .site-disclosure > summary::after { transition: transform .3s cubic-bezier(.34, 1.4, .64, 1), background .2s ease; }
+}
+.est-session-details { margin: 10px 0 4px; }
+@media (max-width: 640px) {
+    .site-disclosure > summary { padding: 12px 14px 12px 40px; }
+    .site-disclosure > summary::before,
+    .site-disclosure > summary::after { left: 15px; }
+    .site-disclosure-body { padding: 4px 14px 14px; }
+}
+
+/* ---------- Splash screen (markup and brand name live in index.html) ---------- */
+#site-splash .splash-inner { display: flex; flex-direction: column; align-items: center; gap: 16px; }

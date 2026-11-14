@@ -282,3 +282,46 @@
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", installCourseSidebar);
     else installCourseSidebar();
 })();
+
+// Animated disclosure open/close for .site-disclosure blocks.
+// The CSS animates grid-template-rows between 0fr and 1fr; this handler adds a
+// smooth close (native details close instantly) and a from-zero opening ramp.
+// Skipped entirely when the user prefers reduced motion (CSS has no transitions then).
+(function () {
+    "use strict";
+    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
+
+    document.addEventListener("click", function (e) {
+        var summary = e.target.closest && e.target.closest(".site-disclosure > summary");
+        if (!summary) return;
+        var details = summary.parentNode;
+        var anim = details.querySelector(":scope > .sd-anim");
+        if (!anim) return; // no animation wrapper: let the native toggle happen
+        e.preventDefault();
+
+        if (!details.open) {
+            // OPEN: force 0fr start, open, then release to 1fr on the next frame.
+            anim.style.gridTemplateRows = "0fr";
+            details.open = true;
+            void anim.offsetHeight; // reflow so the 0fr start sticks
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () { anim.style.gridTemplateRows = ""; });
+            });
+        } else {
+            // CLOSE: pin the closing state, then actually close once it reaches 0fr.
+            details.classList.add("sd-closing");
+            var finished = false;
+            var finish = function () {
+                if (finished) return;
+                finished = true;
+                details.classList.remove("sd-closing");
+                details.open = false;
+                anim.removeEventListener("transitionend", onEnd);
+            };
+            var onEnd = function (ev) { if (ev.propertyName === "grid-template-rows") finish(); };
+            anim.addEventListener("transitionend", onEnd);
+            setTimeout(finish, 450); // failsafe if transitionend never fires
+        }
+    });
+})();

@@ -5,14 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Ahmad's English Platform</title>
+    <style>
+        /* Splash screen critical CSS: paints before the external stylesheets arrive.
+           The brand name itself lives in one span in the body below (search "splash-name"). */
+        #site-splash { position: fixed; inset: 0; z-index: 9999; background: #f6f7fb; display: flex; align-items: center; justify-content: center; }
+        #site-splash .splash-mark { width: 64px; height: 64px; border-radius: 18px; background: #2563eb; color: #fff; display: flex; align-items: center; justify-content: center; font: 700 28px/1 Georgia, 'Times New Roman', serif; box-shadow: 0 10px 24px rgba(37, 99, 235, .25); }
+        #site-splash .splash-name { color: #1f2937; font: 600 18px/1.35 Georgia, 'Times New Roman', serif; letter-spacing: .01em; text-align: center; padding: 0 24px; }
+        #site-splash.splash-hide { opacity: 0; pointer-events: none; }
+        @media (prefers-reduced-motion: no-preference) {
+            #site-splash { transition: opacity .35s ease; }
+            #site-splash .splash-mark { animation: splash-pulse 1.15s ease-in-out infinite; }
+            @keyframes splash-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.07); } }
+        }
+    </style>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="toefl-reading.css?v=2">
-    <link rel="stylesheet" href="site-chrome.css?v=5">
+    <link rel="stylesheet" href="site-chrome.css?v=6">
     <link rel="stylesheet" href="est-course.css?v=4">
     <link rel="stylesheet" href="ielts/ielts.css?v=6">
 </head>
 
 <body>
+
+    <!-- SPLASH SCREEN: the brand name lives ONLY in the splash-name span below.
+         When the site is rebranded, change that one line (and the splash-mark letter). -->
+    <div id="site-splash" aria-hidden="true">
+        <div class="splash-inner">
+            <div class="splash-mark">A</div>
+            <div class="splash-name">Ahmad's English Platform</div>
+        </div>
+    </div>
+    <script>
+        (function () {
+            var s = document.getElementById('site-splash');
+            if (!s) return;
+            var done = false;
+            function hide() {
+                if (done) return;
+                done = true;
+                s.classList.add('splash-hide');
+                setTimeout(function () { if (s.parentNode) s.parentNode.removeChild(s); }, 500);
+            }
+            window.addEventListener('load', function () { setTimeout(hide, 200); });
+            setTimeout(hide, 3000); // failsafe: never trap anyone on the splash
+        })();
+    </script>
 
     <a class="skip-link" href="#main-content" data-skip>Skip to main content</a>
 
@@ -134,7 +171,7 @@
 
         <details class="site-disclosure">
             <summary>Test format at a glance</summary>
-            <div class="site-disclosure-body">
+            <div class="sd-anim"><div class="sd-clip"><div class="site-disclosure-body">
 
         <div class="est-stats">
             <div class="est-stat"><strong>90 minutes</strong><span>Three modules of 30 minutes each</span></div>
@@ -161,12 +198,12 @@
             (2026 Specifications), Academic Assessment Ltd.
         </p>
 
-            </div>
+            </div></div></div>
         </details>
 
         <details class="site-disclosure">
             <summary>How this course is organised</summary>
-            <div class="site-disclosure-body">
+            <div class="sd-anim"><div class="sd-clip"><div class="site-disclosure-body">
 
         <dl class="est-key">
             <div>
@@ -187,7 +224,7 @@
             </div>
         </dl>
 
-            </div>
+            </div></div></div>
         </details>
 
         <h3 class="est-overview-heading">The 22 sessions</h3>
@@ -779,7 +816,7 @@
 <script src="est-enrich.js?v=1"></script>
 <script src="est-lessons.js?v=3"></script>
 <script src="est-lessons-2.js?v=2"></script>
-<script src="script.js?v=5"></script>
+<script src="script.js?v=6"></script>
 <script src="toefl-reading-practice.js?v=1"></script>
 <script src="toefl-reading.js?v=4"></script>
 <script src="toefl-writing-practice.js?v=1"></script>
@@ -790,8 +827,8 @@
 <script src="toefl-listening.js?v=1"></script>
 <script src="ielts/listening-data.js?v=2"></script>
 <script src="ielts/audio-practice.js?v=2"></script>
-<script src="ielts/ielts.js?v=7"></script>
+<script src="ielts/ielts.js?v=8"></script>
 <script src="navigation.js?v=5"></script>
-<script src="site-chrome.js?v=3"></script>
+<script src="site-chrome.js?v=4"></script>
 </body>
 </html>
