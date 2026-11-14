@@ -25,7 +25,7 @@ const courses = [
         title: "IELTS",
         mark: "IELTS",
         description: "IELTS preparation for Listening, Reading, Writing, and Speaking.",
-        status: "preview"
+        status: "available"
     },
     {
     id: "toefl",
