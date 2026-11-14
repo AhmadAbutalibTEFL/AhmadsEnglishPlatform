@@ -902,3 +902,8 @@ html { scroll-padding-top: 64px; }
 
 /* ---------- Splash screen (markup and brand name live in index.html) ---------- */
 #site-splash .splash-inner { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+
+/* Install-the-app button (footer); only visible when the browser offers install */
+.pwa-install { margin-top: 10px; padding: 9px 18px; border: none; border-radius: 999px; background: #5453EC; color: #fff; font-weight: 600; font-size: 14px; cursor: pointer; }
+.pwa-install:hover { background: #4340d4; }
+.pwa-install:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
