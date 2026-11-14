@@ -148,7 +148,7 @@
        Uses native details/summary so keyboard and screen readers work with no extra JS. */
     function disclosure(title, bodyHtml) {
         return '<details class="site-disclosure"><summary>' + esc(title) + '</summary>' +
-            '<div class="site-disclosure-body">' + bodyHtml + '</div></details>';
+            '<div class="sd-anim"><div class="sd-clip"><div class="site-disclosure-body">' + bodyHtml + '</div></div></div></details>';
     }
 
     function backRow(buttons) {
