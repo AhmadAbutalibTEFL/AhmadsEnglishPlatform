@@ -144,6 +144,13 @@
         return '<button type="button" class="' + cls + '" data-ielts-view="' + esc(view) + '">' + esc(label) + '</button>';
     }
 
+    /* Collapsible block: closed by default, tap the title to open or close.
+       Uses native details/summary so keyboard and screen readers work with no extra JS. */
+    function disclosure(title, bodyHtml) {
+        return '<details class="site-disclosure"><summary>' + esc(title) + '</summary>' +
+            '<div class="site-disclosure-body">' + bodyHtml + '</div></details>';
+    }
+
     function backRow(buttons) {
         return '<div class="ielts-back-row">' + buttons + '</div>';
     }
@@ -210,9 +217,11 @@
         COURSE.forEach(function (b) {
             html += '<li class="ielts-card ielts-session"><div class="ielts-session-head">' +
                 '<div><p class="ielts-session-label">' + esc(b.label) + ' \u00b7 ' + esc(b.skill) + '</p>' +
-                '<h3>' + esc(b.title) + '</h3></div>' + status(b.status === "available" ? "Lessons available" : "Planned", b.status === "available" ? "open" : "planned") + '</div><ul>';
-            b.topics.forEach(function (t) { html += '<li>' + esc(t) + '</li>'; });
-            html += '</ul>';
+                '<h3>' + esc(b.title) + '</h3></div>' + status(b.status === "available" ? "Lessons available" : "Planned", b.status === "available" ? "open" : "planned") + '</div>';
+            var topicsHtml = '<ul>';
+            b.topics.forEach(function (t) { topicsHtml += '<li>' + esc(t) + '</li>'; });
+            topicsHtml += '</ul>';
+            html += disclosure('Session topics (' + b.topics.length + ')', topicsHtml);
             if (b.hub) html += '<div class="ielts-session-actions">' + goButton("Open Listening lessons \u2192", b.hub, "secondary-button") + '</div>';
             html += '</li>';
         });
@@ -232,9 +241,10 @@
             var types = '';
             var qts = s.id === "listening" ? listeningTypes() : [];
             if (qts.length) {
-                types = '<p class="ielts-note">Question types (all planned):</p><ul class="ielts-type-list">' + qts.map(function (q) {
+                var listHtml = '<ul class="ielts-type-list">' + qts.map(function (q) {
                     return '<li>' + esc(q.title) + '</li>';
                 }).join("") + '</ul>';
+                types = disclosure('Question types (' + qts.length + ')', listHtml);
             }
             html += '<article class="ielts-card ielts-skill-card"><div class="ielts-skill-icon" aria-hidden="true">' + s.icon + '</div>' +
                 '<h3>' + esc(s.title) + '</h3>' + status(s.statusText, s.statusKind) +
@@ -278,30 +288,32 @@
         D.facts.forEach(function (f) { html += '<div class="ielts-fact"><dt>' + esc(f.label) + '</dt><dd>' + esc(f.value) + '</dd></div>'; });
         html += '</dl>';
 
-        // four parts
-        html += '<h3 class="ielts-heading">The four parts</h3><div class="ielts-grid">';
+        // four parts (collapsed: tap to open)
+        var partsHtml = '<div class="ielts-grid">';
         D.parts.forEach(function (p) {
-            html += '<article class="ielts-card ielts-part"><p class="ielts-session-label">Part ' + p.id + '</p>' +
+            partsHtml += '<article class="ielts-card ielts-part"><p class="ielts-session-label">Part ' + p.id + '</p>' +
                 '<h3>' + esc(p.format) + '</h3><p><strong>' + esc(p.speakers) + '</strong> \u00b7 ' + esc(p.context) + '</p>' +
                 '<p class="ielts-note">' + esc(p.example) + '</p></article>';
         });
-        html += '</div><p class="ielts-note ielts-source">Source: <a class="ielts-link" href="' + esc(D.source.url) +
+        partsHtml += '</div><p class="ielts-note ielts-source">Source: <a class="ielts-link" href="' + esc(D.source.url) +
             '" target="_blank" rel="noopener noreferrer">' + esc(D.source.label) + ' \u2197</a> (checked ' + esc(D.source.checked) +
             '), summarised in our own words. IELTS is jointly owned by the British Council, IDP IELTS and Cambridge University Press &amp; Assessment.</p>';
+        html += disclosure('The four parts of the Listening test', partsHtml);
 
-        // question-type library
+        // question-type library: one collapsed block per group, tap to open
         html += '<h3 class="ielts-heading">Question types</h3>' +
             '<p class="ielts-legend"><strong>Status key:</strong> ' + status("Available", "open") + ' ready to use ' +
             status("Preview", "preview") + ' partly built ' + status("Planned", "planned") + ' not built yet</p>';
         D.questionGroups.forEach(function (g) {
-            html += '<section class="ielts-card ielts-group"><h3>' + esc(g.title) + '</h3><p class="ielts-note">' + esc(g.summary) + '</p><ul class="ielts-type-rows">';
+            var groupHtml = '<p class="ielts-note">' + esc(g.summary) + '</p><ul class="ielts-type-rows">';
             g.types.forEach(function (t) {
-                html += '<li class="ielts-type-row"><div><strong>' + esc(t.title) + '</strong>' +
+                groupHtml += '<li class="ielts-type-row"><div><strong>' + esc(t.title) + '</strong>' +
                     '<span class="ielts-type-sum">' + esc(t.summary) + '</span>' +
                     '<span class="ielts-type-meta">' + (t.session ? 'Guided Course \u00b7 Session ' + t.session : 'Guided Course placement to be confirmed') + '</span></div>' +
                     status(statusName(t.status), t.status === "available" ? "open" : t.status) + '</li>';
             });
-            html += '</ul></section>';
+            groupHtml += '</ul>';
+            html += disclosure(g.title + ' (' + g.types.length + ')', groupHtml);
         });
 
         // Teaching pathway built from the instructor's handout (pp. 7–16), with original illustrative mini-practice.
@@ -329,10 +341,11 @@
             '<p>Open the Listening hub to study each question type and sub-skill. Audio-based practice and full tests remain in development.</p>' +
             goButton("Open Practice Library \u2192", "library", "secondary-button") + '</article></div>';
 
-        // what is coming
-        html += '<h3 class="ielts-heading">Coming to Listening</h3><ul class="ielts-future">';
-        D.futureFeatures.forEach(function (f) { html += '<li>' + esc(f) + ' ' + status("Planned", "planned") + '</li>'; });
-        html += '</ul>';
+        // what is coming (collapsed: tap to open)
+        var futureHtml = '<ul class="ielts-future">';
+        D.futureFeatures.forEach(function (f) { futureHtml += '<li>' + esc(f) + ' ' + status("Planned", "planned") + '</li>'; });
+        futureHtml += '</ul>';
+        html += disclosure('Coming to Listening', futureHtml);
 
         html += backRow(goButton("\u2190 IELTS dashboard", "", "secondary-button") +
             goButton("Practice Library", "library", "secondary-button"));
@@ -348,12 +361,14 @@
         var L = findListeningLesson(state.lessonId);
         if (!L) return viewListening();
         var html = header('IELTS · LISTENING · SESSION ' + L.session, L.title, L.purpose);
-        html += '<div class="ielts-lesson-toolbar">' + status(L.type, 'open') + '<span class="ielts-note">Instructor-handout-aligned lesson · Original example</span></div>';
-        html += '<section class="ielts-card"><h3>Before listening</h3><ul class="ielts-lesson-list">' + L.before.map(function(x){return '<li>'+esc(x)+'</li>';}).join('') + '</ul>';
-        html += '<h3>While listening</h3><ul class="ielts-lesson-list">' + L.during.map(function(x){return '<li>'+esc(x)+'</li>';}).join('') + '</ul>';
-        if (L.after.length) html += '<h3>After listening</h3><ul class="ielts-lesson-list">' + L.after.map(function(x){return '<li>'+esc(x)+'</li>';}).join('') + '</ul></section>';
-        html += '<div class="ielts-paths"><section class="ielts-card"><h3>Do</h3><ul class="ielts-lesson-list">' + L.dos.map(function(x){return '<li>'+esc(x)+'</li>';}).join('') + '</ul></section>';
-        html += '<section class="ielts-card"><h3>Don\'t</h3><ul class="ielts-lesson-list">' + L.donts.map(function(x){return '<li>'+esc(x)+'</li>';}).join('') + '</ul></section></div>';
+        html += '<div class="ielts-lesson-toolbar">' + status(L.type, 'open') + '<span class="ielts-note">Instructor-handout-aligned lesson · Original example · tap a section to open it</span></div>';
+        html += disclosure('Before listening', '<ul class="ielts-lesson-list">' + L.before.map(function(x){return '<li>'+esc(x)+'</li>';}).join('') + '</ul>');
+        html += disclosure('While listening', '<ul class="ielts-lesson-list">' + L.during.map(function(x){return '<li>'+esc(x)+'</li>';}).join('') + '</ul>');
+        if (L.after.length) html += disclosure('After listening', '<ul class="ielts-lesson-list">' + L.after.map(function(x){return '<li>'+esc(x)+'</li>';}).join('') + '</ul>');
+        html += '<div class="ielts-paths">';
+        html += disclosure('Do', '<ul class="ielts-lesson-list">' + L.dos.map(function(x){return '<li>'+esc(x)+'</li>';}).join('') + '</ul>');
+        html += disclosure('Don\'t', '<ul class="ielts-lesson-list">' + L.donts.map(function(x){return '<li>'+esc(x)+'</li>';}).join('') + '</ul>');
+        html += '</div>';
         html += '<section class="ielts-card ielts-worked-example"><p class="ielts-session-label">Worked example · illustrative text, not an official test recording</p><blockquote>' + esc(L.example) + '</blockquote>' +
             '<h3>Think it through</h3><p><strong>' + esc(L.question) + '</strong></p><div class="ielts-practice-options">';
         L.options.forEach(function(opt,i){
