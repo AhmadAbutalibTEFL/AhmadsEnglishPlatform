@@ -15,6 +15,13 @@
 
 .ielts-heading { margin: 30px 0 14px !important; }
 
+/* exam overview stat cards (dashboard) */
+.ielts-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 0 0 18px; }
+.ielts-stat { display: flex; flex-direction: column; justify-content: center; gap: 7px; padding: 20px 14px; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 14px; text-align: center; }
+.ielts-stat strong { font-size: 21px; }
+.ielts-stat span { font-size: 14px; color: #4b5563; line-height: 1.45; }
+@media (max-width: 700px) { .ielts-stats { grid-template-columns: 1fr; } }
+
 /* track picker */
 .ielts-track { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 16px; padding: 20px; margin: 0 0 8px; }
 .hero .ielts-root .ielts-track-title { font-weight: bold; margin: 0 0 10px; }

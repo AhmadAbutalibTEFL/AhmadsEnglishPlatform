@@ -179,9 +179,19 @@
     }
 
     function viewDashboard() {
-        var html = header("IELTS \u00b7 " + trackLabel().toUpperCase(), "IELTS Preparation",
+        var html = header("IELTS Preparation", "IELTS Preparation",
             "Prepare for all four IELTS skills. Follow the guided course or choose what to practise yourself.");
-        html += trackPicker();
+
+        html += '<h3 class="ielts-heading">The exam at a glance</h3><div class="ielts-stats">' +
+            '<div class="ielts-stat"><strong>~2 hours 45 min</strong><span>Listening 30 + Reading 60 + Writing 60 minutes, plus Speaking 11\u201314 minutes</span></div>' +
+            '<div class="ielts-stat"><strong>4 sections</strong><span>Listening, Reading, Writing, Speaking</span></div>' +
+            '<div class="ielts-stat"><strong>Band 1\u20139</strong><span>Each skill is scored 1\u20139; their average is your overall band</span></div>' +
+            '</div>' +
+            '<div class="ielts-paths">' +
+            '<article class="ielts-card"><p class="ielts-session-label">Academic</p><p>For university admission and professional registration. Reading uses academic texts, and Writing Task 1 is a report on a chart, table or diagram.</p></article>' +
+            '<article class="ielts-card"><p class="ielts-session-label">General Training</p><p>For work and immigration. Reading uses everyday and workplace texts, and Writing Task 1 is a letter. Listening and Speaking are identical for both.</p></article>' +
+            '</div>' +
+            '<p class="ielts-note ielts-source">Format facts summarised in our own words from the official <a class="ielts-link" href="https://ielts.org/take-a-test/test-types" target="_blank" rel="noopener noreferrer">IELTS test format pages \u2197</a> (checked 15 November 2026). The Speaking test is a live interview and may be scheduled on a different day.</p>';
 
         html += '<h3 class="ielts-heading">How would you like to learn?</h3><div class="ielts-paths">' +
             '<article class="ielts-card ielts-path"><h3>Guided Course</h3>' +
@@ -507,8 +517,15 @@
         html += disclosure('Do', '<ul class="ielts-lesson-list">' + L.dos.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>');
         html += disclosure('Don\'t', '<ul class="ielts-lesson-list">' + L.donts.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>');
         html += '</div>';
-        html += '<section class="ielts-card ielts-worked-example"><p class="ielts-session-label">Worked example \u00b7 original illustrative text</p><blockquote>' + esc(L.example) + '</blockquote>' +
-            '<h3>Think it through</h3><p><strong>' + esc(L.question) + '</strong></p><div class="ielts-practice-options">';
+        html += '<section class="ielts-card ielts-worked-example">';
+        if (L.practice) {
+            html += '<p class="ielts-session-label">Worked example \u00b7 original illustrative text</p><blockquote>' + esc(L.example) + '</blockquote>' +
+                '<h3>Your turn - apply the skill</h3><blockquote>' + esc(L.practice) + '</blockquote><p><strong>' + esc(L.question) + '</strong></p>';
+        } else {
+            html += '<p class="ielts-session-label">Practice material \u00b7 original</p><blockquote>' + esc(L.example) + '</blockquote>' +
+                '<h3>Your turn - apply the skill</h3><p><strong>' + esc(L.question) + '</strong></p>';
+        }
+        html += '<div class="ielts-practice-options">';
         L.options.forEach(function (opt, i) {
             html += '<label class="ielts-option"><input type="radio" name="ielts-lesson-answer" value="' + i + '" data-ielts-lesson-answer ' + (String(state.lessonAnswer) === String(i) ? 'checked' : '') + (state.lessonChecked ? ' disabled' : '') + '><span>' + esc(opt) + '</span></label>';
         });
@@ -541,8 +558,7 @@
         }
         html += '<div class="ielts-banner ielts-banner-preview">' + status('Learning module', 'open') +
             ' Study the four strategy lessons, then take a practice set. Every set is original, auto-scored, and shows the answer key with the exact passage evidence after you submit.</div>';
-        html += '<p class="ielts-note ielts-track-note">You are viewing the <strong>' + esc(trackLabel()) + '</strong> track. ' +
-            'Academic and General Training Reading differ, so each practice set below is marked with its track.</p>';
+        html += trackPicker();
         html += '<h3 class="ielts-heading">Reading at a glance</h3>' + factsBlock(D);
         html += trackPair(D);
         html += disclosure('The question types (' + D.questionTypes.length + ')',
@@ -610,8 +626,7 @@
         }
         html += '<div class="ielts-banner ielts-banner-preview">' + status('Learning module', 'open') +
             ' Study the three lessons, then write a practice task in the built-in editor. Your draft saves on this device as you type, and each task has an original model answer and a self-check on the four official criteria.</div>';
-        html += '<p class="ielts-note ielts-track-note">You are viewing the <strong>' + esc(trackLabel()) + '</strong> track. ' +
-            'Task 1 differs between Academic and General Training; Task 2 is the same essay for both.</p>';
+        html += trackPicker();
         html += '<h3 class="ielts-heading">Writing at a glance</h3>' + factsBlock(D);
         html += trackPair(D);
         html += '<h3 class="ielts-heading">How Writing is marked</h3>' + criteriaCards(D.criteria);
@@ -795,11 +810,34 @@
 
     /* ---------- public entry point ---------- */
 
-    function show(view, track) {
+    function show(view, track, sub) {
         view = (typeof view === "string" && Object.prototype.hasOwnProperty.call(VIEWS, view)) ? view : "";
         if (validTrack(track)) state.track = track;
         if (view !== state.view) { state.quiz = false; state.quizSubmitted = false; state.answers = {}; state.lessonId = null; state.lessonChecked = false; state.lessonAnswer = null; state.practiceId = null; state.practiceAnswers = {}; state.practiceSubmitted = false; state.taskId = null; state.checks = {}; }
         state.view = view;
+        /* Open the requested screen inside the view (a lesson, practice set, task or quiz),
+           or - when no sub-screen is requested - return to the view's home screen. This is
+           what makes the phone's Back button step back one screen instead of jumping to the
+           IELTS dashboard, and it fixes same-view buttons such as "All Reading lessons". */
+        if (sub && sub.type === "lesson" && findLessonAnywhere(sub.id)) {
+            state.lessonId = sub.id; state.lessonChecked = false; state.lessonAnswer = null;
+            state.practiceId = null; state.taskId = null; state.quiz = false;
+        } else if (sub && sub.type === "set" && state.view === "reading" && findReadingSet(sub.id)) {
+            state.practiceId = sub.id; state.practiceAnswers = {}; state.practiceSubmitted = false;
+            state.lessonId = null; state.taskId = null; state.quiz = false;
+        } else if (sub && sub.type === "task" &&
+                ((state.view === "writing" && findWritingTask(sub.id)) || (state.view === "speaking" && findSpeakingItem(sub.id)))) {
+            state.taskId = sub.id; state.checks = {};
+            state.lessonId = null; state.practiceId = null; state.quiz = false;
+        } else if (sub && sub.type === "quiz" && state.view === "listening") {
+            state.quiz = true; state.quizSubmitted = false; state.answers = {};
+            state.lessonId = null; state.practiceId = null; state.taskId = null;
+        } else {
+            state.lessonId = null; state.lessonChecked = false; state.lessonAnswer = null;
+            state.practiceId = null; state.practiceAnswers = {}; state.practiceSubmitted = false;
+            state.taskId = null; state.checks = {};
+            state.quiz = false; state.quizSubmitted = false; state.answers = {};
+        }
 
         root = document.getElementById("ielts-root");
         if (typeof window.hideAllScreens === "function") window.hideAllScreens();
@@ -810,7 +848,12 @@
     }
 
     function route() {
-        return "ielts" + (state.view ? "/" + state.view : "") + "?track=" + state.track;
+        var r = "ielts" + (state.view ? "/" + state.view : "");
+        if (state.lessonId) r += "/lesson/" + encodeURIComponent(state.lessonId);
+        else if (state.view === "reading" && state.practiceId) r += "/set/" + encodeURIComponent(state.practiceId);
+        else if ((state.view === "writing" || state.view === "speaking") && state.taskId) r += "/task/" + encodeURIComponent(state.taskId);
+        else if (state.view === "listening" && state.quiz) r += "/quiz";
+        return r + "?track=" + state.track;
     }
 
     function onClick(event) {
@@ -818,8 +861,7 @@
         if (!el || !root || !root.contains(el)) return;
 
         if (el.hasAttribute("data-ielts-lesson")) {
-            state.lessonId = el.getAttribute("data-ielts-lesson"); state.lessonChecked = false; state.lessonAnswer = null; render();
-            window.scrollTo({top:0,behavior:"smooth"});
+            window.showIELTS(state.view, state.track, { type: "lesson", id: el.getAttribute("data-ielts-lesson") });
         } else if (el.hasAttribute("data-ielts-lesson-check")) {
             if (state.lessonAnswer !== null) {
                 state.lessonChecked = true;
@@ -830,9 +872,9 @@
         } else if (el.hasAttribute("data-ielts-lesson-retry")) {
             state.lessonChecked = false; state.lessonAnswer = null; render();
         } else if (el.hasAttribute("data-ielts-quiz-start")) {
-            state.quiz = true; state.quizSubmitted = false; state.answers = {}; render();
+            window.showIELTS(state.view, state.track, { type: "quiz" });
         } else if (el.hasAttribute("data-ielts-quiz-back")) {
-            state.quiz = false; state.quizSubmitted = false; state.answers = {}; render();
+            window.showIELTS(state.view);
         } else if (el.hasAttribute("data-ielts-quiz-submit")) {
             var missing = LISTENING_QUIZ.some(function (q) {
                 var a = state.answers[q.id]; return q.type === "single" ? typeof a !== "string" : !Array.isArray(a) || a.length !== 2;
@@ -844,9 +886,7 @@
         } else if (el.hasAttribute("data-ielts-quiz-retry")) {
             state.quizSubmitted = false; state.answers = {}; render();
         } else if (el.hasAttribute("data-ielts-practice")) {
-            state.practiceId = el.getAttribute("data-ielts-practice");
-            state.practiceAnswers = {}; state.practiceSubmitted = false; render();
-            window.scrollTo({top:0,behavior:"smooth"});
+            window.showIELTS(state.view, state.track, { type: "set", id: el.getAttribute("data-ielts-practice") });
         } else if (el.hasAttribute("data-ielts-practice-submit")) {
             var pset = findReadingSet(state.practiceId);
             if (pset) {
@@ -864,12 +904,11 @@
         } else if (el.hasAttribute("data-ielts-practice-retry")) {
             state.practiceAnswers = {}; state.practiceSubmitted = false; render();
         } else if (el.hasAttribute("data-ielts-practice-back")) {
-            state.practiceId = null; state.practiceAnswers = {}; state.practiceSubmitted = false; render();
+            window.showIELTS(state.view);
         } else if (el.hasAttribute("data-ielts-task")) {
-            state.taskId = el.getAttribute("data-ielts-task"); state.checks = {}; render();
-            window.scrollTo({top:0,behavior:"smooth"});
+            window.showIELTS(state.view, state.track, { type: "task", id: el.getAttribute("data-ielts-task") });
         } else if (el.hasAttribute("data-ielts-task-back")) {
-            state.taskId = null; state.checks = {}; render();
+            window.showIELTS(state.view);
         } else if (el.hasAttribute("data-ielts-task-complete")) {
             if (ns.progress) ns.progress.record(el.getAttribute("data-ielts-task-complete"), 100);
             render();
@@ -880,9 +919,7 @@
                 window.showIELTS(state.view, t);
             }
         } else if (el.hasAttribute("data-ielts-view")) {
-            var nextView = el.getAttribute("data-ielts-view");
-            if (nextView === "listening") { state.lessonId = null; state.lessonChecked = false; state.lessonAnswer = null; state.quiz = false; }
-            window.showIELTS(nextView);
+            window.showIELTS(el.getAttribute("data-ielts-view"));
         } else if (el.hasAttribute("data-ielts-courses")) {
             if (typeof window.showCourseHub === "function") window.showCourseHub();
         }

@@ -68,10 +68,11 @@
                     "Don't give one-word answers."
                 ],
                 example: "Q: 'Do you live in a house or an apartment?' Weak: 'An apartment.' Strong: 'I live in an apartment in the city centre. It's small, but I chose it because I can walk to work, which saves me a lot of time.'",
-                question: "The best Part 1 answer pattern is:",
-                options: ["One precise word", "Answer + reason + small detail", "A memorised paragraph"],
-                answer: 1,
-                feedback: "Answer + reason + detail gives the examiner fluency, vocabulary and grammar to score - in three sentences."
+                practice: "The examiner asks: 'Do you prefer mornings or evenings?'",
+                question: "Apply the pattern (answer + reason + small detail): which reply is strongest?",
+                options: ["Mornings, definitely. My head is clearest early in the day, so I study then - by ten o'clock I have usually done more than I manage all evening.", "Mornings.", "I prefer mornings because mornings are better for me in the morning."],
+                answer: 0,
+                feedback: "The first reply answers the question, gives a reason, and adds a concrete detail - three sentences with fluency, vocabulary and grammar the examiner can score. One word wastes the chance; the last reply says nothing twice."
             },
             {
                 id: "s-part2", session: 7, title: "Part 2: The Long Turn", type: "Core strategy",
@@ -99,10 +100,11 @@
                     "Don't write full sentences in the preparation minute."
                 ],
                 example: "Cue card: 'Describe a skill you learned.' Notes: 'cooking - grandmother - 15 - burned rice - patient - proud'. Six words carry two minutes of speaking.",
-                question: "In the one-minute preparation, you should write:",
-                options: ["Your full answer in sentences", "One or two key words per bullet point", "Nothing - speak from memory"],
-                answer: 1,
-                feedback: "Keywords per bullet point keep you on topic while leaving your speaking natural."
+                practice: "Cue card: 'Describe a teacher you remember. You should say: who the teacher was, what they taught, what made them memorable, and how they influenced you.' You have one minute to prepare.",
+                question: "Apply the lesson: which set of notes follows the advice?",
+                options: ["'Mrs Nadia - maths - jokes - believed in me'", "'I would like to talk about a teacher who had a very big influence on my life when I was young...'", "Blank paper - notes waste the minute"],
+                answer: 0,
+                feedback: "Four keywords - roughly one per bullet - keep you on track while your speaking stays natural. Writing full sentences eats the minute and tempts you to read instead of speak."
             },
             {
                 id: "s-part3", session: 8, title: "Part 3: The Discussion", type: "Core strategy",
@@ -129,10 +131,11 @@
                     "Don't abandon an answer halfway - finish the thought, even simply."
                 ],
                 example: "Q: 'How will technology change the way people learn skills?' Developed answer: 'I imagine online learning will make most practical skills more accessible, because video lessons let anyone repeat a demonstration. Cooking channels are a good example. That said, some skills, like surgery, will always need a human teacher.'",
-                question: "Part 3 answers should mostly be about:",
-                options: ["Your personal life", "Society and general trends", "The examiner's opinion"],
-                answer: 1,
-                feedback: "Part 3 tests abstract discussion: society, trends and reasons - with personal experience only as support."
+                practice: "The examiner asks: 'How do you think cities will change in the next twenty years?'",
+                question: "Apply the lesson: which opening best fits Part 3?",
+                options: ["In general, I expect cities to become greener, because many governments are already limiting cars in city centres.", "My city is very hot in summer, and I live near the river.", "Sorry, I don't know anything about the future."],
+                answer: 0,
+                feedback: "Part 3 wants a general, developed answer about society, with a reason attached. A personal fact alone belongs to Part 1, and giving up ends the discussion before it starts."
             }
         ],
 

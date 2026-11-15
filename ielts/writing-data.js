@@ -67,10 +67,11 @@
                     "Don't list ideas without explaining them."
                 ],
                 example: "Question: 'Is working from home a positive development?' Plan: Position - positive. Idea 1: saves commuting time (example: two hours daily becomes exercise or family time). Idea 2: companies save office costs (example: smaller premises). Now each paragraph writes itself.",
-                question: "In a Task 2 essay, each body paragraph should contain:",
-                options: ["As many ideas as possible", "One idea, explained with an example", "A summary of the introduction"],
+                practice: "Essay question: 'Do the advantages of studying abroad outweigh the disadvantages?' A student's plan: Position - the advantages outweigh. Body paragraph 1: independence. Body paragraph 2: career value.",
+                question: "Apply the lesson: which sentence is the best topic sentence for Body paragraph 1?",
+                options: ["Studying abroad has many advantages and also some disadvantages.", "Living abroad forces students to become independent in their daily lives.", "For example, my cousin learned to cook and manage money while studying in Malaysia."],
                 answer: 1,
-                feedback: "One idea per paragraph, explained and supported. Depth scores higher than lists."
+                feedback: "A topic sentence states the paragraph's ONE idea clearly. The first option just repeats the question; the third is an example - it belongs after the topic sentence, not in its place."
             },
             {
                 id: "w-task1", session: 5, title: "Task 1: Reports and Letters", type: "Question type",
@@ -98,10 +99,11 @@
                     "Don't explain WHY the chart changed; report WHAT it shows."
                 ],
                 example: "Chart shows electricity use rose from 320 to 410 kWh. Weak: 'It went up.' Strong: 'Household electricity use rose sharply, from 320 kWh in January to 410 kWh in March.'",
-                question: "In Academic Task 1, your first paragraph after the introduction should usually be:",
-                options: ["Your opinion of the data", "An overview of the main trend", "A list of every figure"],
+                practice: "A chart shows daily commutes in one city: bus trips fell from 48,000 in 2010 to 31,000 in 2020, while cycling trips rose from 2,000 to 9,000 over the same years.",
+                question: "Apply the lesson: which is the best overview sentence for this report?",
+                options: ["Bus trips were 48,000 in 2010 and 31,000 in 2020, and cycling trips were 2,000 and then 9,000.", "Overall, bus use fell sharply over the decade while cycling grew rapidly from a low base.", "Buses pollute more than bicycles, so the change is good for the city."],
                 answer: 1,
-                feedback: "The overview of the main trend is the heart of the report; opinions are not part of Task 1."
+                feedback: "The overview names the main trends without a data dump (first option) and without opinion (third option). Individual figures belong in the detail paragraphs."
             },
             {
                 id: "w-cohesion", session: 6, title: "Coherence and Cohesion", type: "Sub-skill",
@@ -128,10 +130,11 @@
                     "Don't use 'moreover' and 'furthermore' where 'also' sounds natural."
                 ],
                 example: "Weak: 'Moreover, cycling is cheap. Furthermore, it is healthy.' Natural: 'Cycling costs almost nothing, and it keeps riders fit at the same time.'",
-                question: "The best sign of a cohesive essay is:",
-                options: ["A connector in every sentence", "Paragraph first sentences that outline the whole answer", "Long, impressive words"],
+                practice: "Version A: 'Online shopping is convenient. Moreover, it is cheaper. Furthermore, delivery is fast.' Version B: 'Online shopping saves both money and time: prices are lower than in shops, and orders arrive within days.'",
+                question: "Apply the lesson: which version is more cohesive, and why?",
+                options: ["A - it uses more connectors", "B - the ideas are linked by meaning, not by connector glue", "Both are equally cohesive"],
                 answer: 1,
-                feedback: "If the first sentences alone trace your argument, the essay is genuinely cohesive - connectors are the polish, not the structure."
+                feedback: "Stacking Moreover and Furthermore glues separate sentences together; version B binds two ideas into one clear relationship. Real cohesion comes from how ideas connect, not from how many connectors you spend."
             }
         ],
 

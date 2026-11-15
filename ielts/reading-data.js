@@ -67,10 +67,11 @@
                     "Don't panic over unknown vocabulary - IELTS tests location and understanding, not dictionary knowledge."
                 ],
                 example: "A question asks: 'When did the library first open to the public?' You scan the text for numbers and spot '1889' beside the word 'opened' - you have found your answer area in seconds.",
-                question: "What is the main reason to skim a text before answering questions?",
-                options: ["To memorise every detail", "To build a map of where information lives", "To check your vocabulary level"],
+                practice: "The Riverton Market opened in 1952 as a row of six food stalls beside the railway station. It moved to its current halls in 1978, and today more than forty traders sell fruit, bread and spices there six days a week. On Sundays the halls host a craft fair instead.",
+                question: "Scan the text: in which year did the market move to its current halls?",
+                options: ["1952", "1978", "2018"],
                 answer: 1,
-                feedback: "Skimming gives you a mental map of the text's structure, so you know WHERE to read closely when a question points to a topic."
+                feedback: "Numbers and capitalised names jump off the page first. Your eyes should land on '1978' beside the word 'moved' in seconds - without reading every word. That is scanning."
             },
             {
                 id: "r-tfng", session: 3, title: "True / False / Not Given", type: "Question type",
@@ -97,10 +98,11 @@
                     "Don't choose False just because the information is missing - that is Not given."
                 ],
                 example: "Text: 'The museum is closed on Mondays.' Statement: 'The museum opens every day of the week.' The text directly contradicts the statement, so the answer is FALSE.",
-                question: "A statement says something the passage never mentions. The answer is:",
-                options: ["False", "True", "Not given"],
+                practice: "Text: 'The swimming pool is open from 6 a.m. to 9 p.m. on weekdays, with reduced hours at weekends. Membership fees were lowered in 2019.'",
+                question: "Statement: 'The pool was renovated in 2019.' Judged against the text only, this statement is:",
+                options: ["True", "False", "Not given"],
                 answer: 2,
-                feedback: "If the passage neither agrees nor disagrees, the answer is Not given. False requires the text to actually contradict the statement."
+                feedback: "The text says fees were lowered in 2019, but it never mentions renovation - it neither confirms nor contradicts the statement, so the answer is Not given. False would need the text to say the opposite."
             },
             {
                 id: "r-headings", session: 4, title: "Matching Headings", type: "Question type",
@@ -127,10 +129,11 @@
                     "Don't spend too long on one paragraph - mark two candidates and return."
                 ],
                 example: "A paragraph describes several problems with early city transport and ends by introducing one solution that changed everything. Heading (a) 'Difficulties of early transport' lists only problems; heading (b) 'The invention that transformed travel' fits the paragraph's real destination.",
-                question: "The safest way to match a heading is to:",
-                options: ["Find a word that appears in both", "Identify the paragraph's main idea", "Count how long the paragraph is"],
+                practice: "Early bicycles were heavy, expensive and uncomfortable, with an enormous front wheel that made simply getting on dangerous. When the 'safety bicycle' arrived in the 1880s with two equal wheels and a chain drive, everything changed: prices fell, and within a decade cycling had become transport for ordinary people rather than a hobby for daring young men.",
+                question: "Match the heading. Which one captures this paragraph's main idea?",
+                options: ["The dangers of early bicycles", "How one design brought cycling to everyone", "The invention of the chain drive"],
                 answer: 1,
-                feedback: "Headings summarise main ideas. Shared vocabulary is often a deliberate distractor."
+                feedback: "The paragraph starts with early problems but pivots to the safety bicycle and what it changed - that transformation is the main idea. The dangers are only the setup, and the chain drive is one detail. Shared words are bait; the main idea is the catch."
             },
             {
                 id: "r-gapfill", session: 4, title: "Completion Questions", type: "Question type",
@@ -157,10 +160,11 @@
                     "Don't paraphrase - completion answers must come from the text."
                 ],
                 example: "Text: 'The factory, which employed over two hundred local residents, closed in 1974.' Gap: 'The factory shut down in ______.' Answer: 1974 - one word, copied exactly.",
-                question: "The word limit says NO MORE THAN TWO WORDS. Your best answer is 'the old stone bridge' (4 words). You should:",
-                options: ["Write it anyway - meaning matters most", "Find the text's own shorter wording, e.g. 'stone bridge'", "Leave it blank"],
+                practice: "Text: 'The old railway bridge, built from local sandstone, carried trains for ninety years before it finally closed in 1962.' Gap (NO MORE THAN TWO WORDS): 'Trains stopped crossing the bridge in ______.'",
+                question: "Complete the gap using words from the text.",
+                options: ["the year 1962", "1962", "after ninety years"],
                 answer: 1,
-                feedback: "Over-limit answers score zero. The text almost always contains a shorter form that fits the limit."
+                feedback: "'1962' is one word and copied exactly from the text - perfect. 'The year 1962' breaks the two-word limit and scores zero; 'after ninety years' does not answer when it closed."
             }
         ],
 
