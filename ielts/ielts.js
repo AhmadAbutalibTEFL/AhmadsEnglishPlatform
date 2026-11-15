@@ -1054,7 +1054,7 @@
         var wk = t.track === 'both' ? 'essay' : t.track === 'general' ? 'letter' : 'report';
         html += disclosure('Model answer - compare after you write',
             t.modelAnswer.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') +
-            '<p class="ielts-note">One of many good answers \u00b7 original, written to a band 8-9 standard.</p>' +
+            '<p class="ielts-note">Sample answer for study, not an examiner-rated response.</p>' +
             '<h4 class="ielts-subheading">Why this model works</h4><ul class="ielts-lesson-list">' + (t.why || WHY[wk]).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>');
         html += criteriaChecklist(ns.writingData.criteria, 'writing-task:' + t.id, t.checklistHint);
         html += backRow('<button type="button" class="secondary-button" data-ielts-task-back>\u2190 Back to Writing</button>');
@@ -1204,7 +1204,7 @@
             html += '<section class="ielts-card"><p class="ielts-session-label">Step 2 \u00b7 speak for up to two minutes</p>' + cdButton(120, 'Start the 2-minute talk', 'Two minutes. Stop here.') + recorderHtml(item.id + '-talk') + '</section>';
             html += '<section class="ielts-card"><p class="ielts-session-label">Rounding-off question</p><p class="ielts-bubble"><strong>' + esc(item.rounding) + '</strong></p>' + clip(item.roundAudio, 'Hear the examiner') + '</section>';
             var sampleBody = item.sampleAnswer.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') + clip(item.sampleAudio, 'Hear this model answer') +
-                '<p class="ielts-note">Useful phrases: ' + item.samplePhrases.map(esc).join(' \u00b7 ') + '</p><p class="ielts-note">One of many good answers \u00b7 original, about 2 minutes, written to a band 8-9 standard.</p>';
+                '<p class="ielts-note">Useful phrases: ' + item.samplePhrases.map(esc).join(' \u00b7 ') + '</p><p class="ielts-note">Sample answer for study, not an examiner-rated response.</p>';
             html += disclosure('Model answer (open after you try)', sampleBody);
             html += '<h3 class="ielts-heading">Part 3: Discussion</h3><p class="ielts-note">The examiner now asks deeper questions on the same topic. Answers are longer: opinion, reason, example.</p>';
             item.part3.forEach(function (q, i) { html += qaCard(q, i + 1, item.id + '-p3-' + i, 45); });
