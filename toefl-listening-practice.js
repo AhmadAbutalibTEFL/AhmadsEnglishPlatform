@@ -160,4 +160,29 @@
             ])
         ]
     };
+
+    /* Spread the correct answer across A-D. The same fixed order is used every time (seeded by the
+       question text), so keys stay stable. Items whose options refer to each other are left alone. */
+    (function spreadKeys(bank) {
+        var skip = /all of the above|none of the above|\bboth\b|\bneither\b|\babove\b/i;
+        function rng(seed) {
+            var h = 2166136261;
+            for (var i = 0; i < seed.length; i++) { h ^= seed.charCodeAt(i); h = Math.imul(h, 16777619); }
+            return function () { h ^= h << 13; h ^= h >>> 17; h ^= h << 5; return ((h >>> 0) % 100000) / 100000; };
+        }
+        Object.keys(bank).forEach(function (k) {
+            bank[k].forEach(function (set) {
+                set.units.forEach(function (u) {
+                    u.qs.forEach(function (q) {
+                        if (q.opts.some(function (x) { return skip.test(x); })) return;
+                        var r = rng(u.id + "|" + q.q + "|" + q.opts[0]), idx = [0, 1, 2, 3];
+                        for (var i = 3; i > 0; i--) { var j = Math.floor(r() * (i + 1)); var t = idx[i]; idx[i] = idx[j]; idx[j] = t; }
+                        var right = q.opts[q.ans];
+                        q.opts = idx.map(function (n) { return q.opts[n]; });
+                        q.ans = q.opts.indexOf(right);
+                    });
+                });
+            });
+        });
+    })(window.toeflListeningBank);
 })();

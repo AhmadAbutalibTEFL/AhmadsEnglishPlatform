@@ -5,7 +5,7 @@
    - Static assets (css/js/icons/audio/images/json): stale-while-revalidate - instant loads,
      fresh copy fetched in the background for next time. Audio is cached as it is played.
    - Versioned cache; old PassMyEnglish caches are deleted on activate. Bump VERSION on deploys. */
-const VERSION = 'pme-v6';
+const VERSION = 'pme-v9';
 const PRECACHE = [
   'index.html',
   'manifest.webmanifest',

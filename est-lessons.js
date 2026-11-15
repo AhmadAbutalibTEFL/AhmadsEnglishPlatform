@@ -472,7 +472,7 @@
     function loadTests(done, fail) {
         if (window.estTests) { done(); return; }
         var sc = document.createElement("script");
-        sc.src = "est-tests.js?v=2";
+        sc.src = "est-tests.js?v=4";
         sc.onload = done;
         sc.onerror = fail;
         document.head.appendChild(sc);
