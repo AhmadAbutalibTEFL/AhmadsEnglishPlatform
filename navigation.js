@@ -65,8 +65,11 @@
         var track = m && Object.prototype.hasOwnProperty.call(IELTS_TRACKS, m[1]) ? m[1] : "";
         var p;
         try { p = stripQuery(route).split("/").map(decodeURIComponent); } catch (e) { return { kind: "hub" }; }
-        var view = (p.length === 2 && Object.prototype.hasOwnProperty.call(IELTS_VIEWS, p[1])) ? p[1] : "";
-        return { kind: "ielts", view: view, track: track };
+        var view = (p.length >= 2 && Object.prototype.hasOwnProperty.call(IELTS_VIEWS, p[1])) ? p[1] : "";
+        var sub = null;
+        if (view && p.length === 4 && (p[2] === "lesson" || p[2] === "set" || p[2] === "task") && p[3]) sub = { type: p[2], id: p[3] };
+        else if (view === "listening" && p.length === 3 && p[2] === "quiz") sub = { type: "quiz" };
+        return { kind: "ielts", view: view, track: track, sub: sub };
     }
 
     function parse(route) {
@@ -113,7 +116,7 @@
         switch (k.kind) {
             case "hub": return 0;
             case "est": case "toefl": return 1;
-            case "ielts": return k.view ? 2 : 1;
+            case "ielts": return k.view ? (k.sub ? 3 : 2) : 1;
             case "est2": case "estn": case "section": return 2;
             case "estlesson": case "esttest": return 3;
             case "estpractice": return 4;
@@ -131,7 +134,10 @@
         var k = parse(route);
         switch (k.kind) {
             case "est": return "est";
-            case "ielts": return "ielts" + (k.view ? "/" + k.view : "") + (k.track ? "?track=" + k.track : "");
+            case "ielts":
+                var ir = "ielts" + (k.view ? "/" + k.view : "");
+                if (k.view && k.sub) ir += k.sub.type === "quiz" ? "/quiz" : "/" + k.sub.type + "/" + encodeURIComponent(k.sub.id);
+                return ir + (k.track ? "?track=" + k.track : "");
             case "est2": return "est/session-2";
             case "estn": return "est/session-" + k.n;
             case "estlesson": return "est/session-" + k.n + "/lesson/" + k.id;
@@ -280,7 +286,7 @@
             case "toefl": call("showTOEFLCourse"); return "toefl";
             case "ielts":
                 if (!fn("showIELTS")) { call("showCourseHub"); return ""; }
-                call("showIELTS", k.view, k.track);     // IELTS.route() reports the track actually shown
+                call("showIELTS", k.view, k.track, k.sub);     // IELTS.route() reports the screen actually shown
                 return window.IELTS ? window.IELTS.route() : canonical(route);
             case "pos":
                 if (k.view === "learn")    { call("showLearnMode");    return route; }

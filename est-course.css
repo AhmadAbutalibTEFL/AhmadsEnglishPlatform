@@ -321,3 +321,7 @@
     .lx-stickybar { margin: 14px -4px 0; }
 }
 @media (prefers-reduced-motion: reduce) { .lx-progress span, .lx-meter-bar span { transition: none; } }
+
+/* "Test format at a glance" is always expanded (no collapse) */
+.est-format { margin: 0 0 22px; }
+.est-format-heading { font-weight: bold; font-size: 17px; margin: 0 0 12px; }

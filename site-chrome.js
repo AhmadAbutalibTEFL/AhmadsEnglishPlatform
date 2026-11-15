@@ -141,7 +141,7 @@
             '<nav class="sidebar-links" aria-label="Main navigation">' +
               navLink('href="./" data-side-action="home"', "Home", "home") +
               '<div class="sidebar-label">Courses</div>' +
-              navLink('href="#/ielts" data-side-action="ielts"', "IELTS", "headphones", "Preview") +
+              navLink('href="#/ielts" data-side-action="ielts"', "IELTS", "headphones") +
               navLink('href="#/toefl" data-side-action="toefl"', "TOEFL", "globe") +
               navLink('href="#/est" data-side-action="est"', "EST", "file") +
               '<div class="sidebar-divider"></div>' +
