@@ -55,9 +55,9 @@
         { id: "s2", label: "Session 2", skill: "Listening", title: "Listening question types and sub-skills",
           topics: ["Plan, map and diagram labelling", "Form, note, table and summary completion", "Sentence completion", "Short-answer questions", "Prediction: grammar form, synonyms, subject and function", "Paraphrasing: synonyms, word form, sentence structure, active/passive"], status: "available", hub: "listening" },
         { id: "s3-4", label: "Sessions 3\u20134", skill: "Reading", title: "Reading",
-          topics: ["Skimming and scanning", "True / False / Not Given", "Matching headings", "Completion questions", "Academic and General Training practice sets"], status: "available", hub: "reading" },
+          topics: ["Skimming and scanning", "All 11 question types: matching (headings, information, features, sentence endings), completion (sentence, summary and flow chart, diagram labels), True / False / Not Given, Yes / No / Not Given, multiple choice, short answer", "Academic and General Training practice sets"], status: "available", hub: "reading" },
         { id: "s5-6", label: "Sessions 5\u20136", skill: "Writing", title: "Writing Task 1 and Task 2",
-          topics: ["Task 2 essay structure", "Task 1 reports and letters", "Coherence and cohesion", "Practice tasks with model answers"], status: "available", hub: "writing" },
+          topics: ["Academic Task 1: line graph, bar chart, pie chart, table, process, map", "General Training Task 1: formal, semi-formal and informal letters", "Task 2: opinion, discussion, advantages and disadvantages, problem and solution, direct questions", "Coherence and cohesion", "Practice tasks with model answers"], status: "available", hub: "writing" },
         { id: "s7-8", label: "Sessions 7\u20138", skill: "Speaking", title: "Speaking Parts 1\u20133",
           topics: ["Part 1 interview", "Part 2 long turn", "Part 3 discussion", "Practice with sample answers"], status: "available", hub: "speaking" }
     ];
@@ -91,6 +91,50 @@
       {id:"prediction",session:2,title:"Prediction Before Listening",type:"Sub-skill",purpose:"Use the preview time to predict what kind of information is likely to fill a gap or answer a question. Prediction narrows your attention; it does not guarantee the answer.",before:["Grammar: predict the form (noun, verb, adjective, number, etc.).","Synonyms: think of alternative expressions for key words.","Subject: identify whether you need a name, phone number, address, price or other detail.","Function: identify whether the task is asking for a label, list item, reason, instruction or example."],during:["Listen for meaning and the predicted category, while staying open to a different wording.","Adjust your prediction when the recording provides evidence."],after:["Check whether the answer fits the grammar and task purpose."],dos:["Use context clues in the words around the gap.","Make a quick prediction, then verify it from what you hear."],donts:["Don't treat a prediction as a fact.","Don't ignore an answer just because its wording differs from your prediction."],example:"Please call us on ______ to confirm your booking.",question:"What type of information is most likely required?",options:["A phone number","A person's opinion","A place description"],answer:0,feedback:"The verb 'call' and phrase 'confirm your booking' strongly suggest a phone number."},
       {id:"paraphrasing",session:2,title:"Recognising Paraphrasing",type:"Sub-skill",purpose:"The question paper and recording often express the same idea differently. Your job is to recognise meaning, not wait for identical words.",before:["Synonyms: cost → price; increasing → rising (context matters).","Word form: develop → development; grow → growth.","Sentence structure: combine ideas with a relative clause or other structure.","Active/passive: 'A tornado destroyed the house' ↔ 'The house was destroyed by a tornado'."],during:["Listen for equivalent meaning and relationships, not just matching vocabulary.","Check whether the same people, actions, time and cause are preserved."],after:["Verify that the paraphrase keeps the original meaning; synonyms are not always interchangeable."],dos:["Build synonym awareness in context.","Use grammar and surrounding meaning together."],donts:["Don't assume every similar word means exactly the same thing.","Don't match a keyword while ignoring a changed meaning or contrast."],example:"Question wording: The cost of transport increased. Recording wording: Travel became more expensive.",question:"Which paraphrase keeps the same meaning?",options:["Travel became cheaper.","Travel became more expensive.","Travel was cancelled."],answer:1,feedback:"'Cost increased' and 'became more expensive' express the same change."}
     ];
+
+
+    /* Listening visuals: the map lesson needs real plans, and the completion lesson a form. */
+    var PLAN_LIBRARY = { kind: "scene", title: "Plan of a small library", alt: "Plan of a library. The entrance is at the bottom. Straight ahead in the entrance hall is a reception desk marked B, with a caf\u00e9 marked A to its left. A corridor leads up to a large room marked C at the far end. Rooms D and E are beside the corridor.",
+        panels: [{ h: 262, items: [
+            { t: "rect", x: 120, y: 178, w: 120, h: 62, fill: "#f3f4f6", stroke: "#d1d5db", label: "", rx: 4 },
+            { t: "text", x: 180, y: 232, s: "ENTRANCE", size: 10, anchor: "middle", weight: "bold" },
+            { t: "rect", x: 150, y: 190, w: 60, h: 20, fill: "#fde68a", stroke: "#f59e0b", label: "B", size: 13 },
+            { t: "rect", x: 24, y: 180, w: 88, h: 58, fill: "#fce7f3", stroke: "#f9a8d4", label: "A", size: 15 },
+            { t: "road", x1: 180, y1: 176, x2: 180, y2: 76, w: 40, color: "#e5e7eb" },
+            { t: "rect", x: 130, y: 32, w: 100, h: 44, fill: "#dbeafe", stroke: "#60a5fa", label: "C", size: 15 },
+            { t: "rect", x: 206, y: 100, w: 70, h: 44, fill: "#dcfce7", stroke: "#86efac", label: "D", size: 15 },
+            { t: "rect", x: 84, y: 100, w: 70, h: 44, fill: "#ede9fe", stroke: "#c4b5fd", label: "E", size: 15 }
+        ] }] };
+    var PLAN_LEISURE = { kind: "scene", title: "Plan of a leisure centre", alt: "Plan of a leisure centre. The main doors are at the bottom of a corridor. On the right near the doors is room A. On the left, opposite it, is room B. Room C is at the far end. Rooms D and E are further up the corridor.",
+        panels: [{ h: 262, items: [
+            { t: "road", x1: 180, y1: 236, x2: 180, y2: 70, w: 40, color: "#e5e7eb" },
+            { t: "text", x: 180, y: 252, s: "MAIN DOORS", size: 10, anchor: "middle", weight: "bold" },
+            { t: "rect", x: 204, y: 160, w: 90, h: 60, fill: "#fde68a", stroke: "#f59e0b", label: "A", size: 15 },
+            { t: "rect", x: 66, y: 160, w: 90, h: 60, fill: "#fce7f3", stroke: "#f9a8d4", label: "B", size: 15 },
+            { t: "rect", x: 204, y: 98, w: 90, h: 54, fill: "#dcfce7", stroke: "#86efac", label: "D", size: 15 },
+            { t: "rect", x: 66, y: 98, w: 90, h: 54, fill: "#ede9fe", stroke: "#c4b5fd", label: "E", size: 15 },
+            { t: "rect", x: 86, y: 28, w: 188, h: 62, fill: "#dbeafe", stroke: "#60a5fa", label: "C", size: 15 }
+        ] }] };
+    LISTENING_LESSONS.forEach(function (L) {
+        if (L.id === "map") {
+            L.visual = PLAN_LIBRARY;
+            L.example = "Enter through the main door. The reception desk is straight ahead; the caf\u00e9 is to its left. The library is beyond reception, at the end of the corridor. On the plan: reception is B, the caf\u00e9 is A, and the library is C.";
+            L.practice = "A guide says: 'Go through the main doors. The gym is the first room on your right. Opposite it, on the left, are the changing rooms. The pool is at the far end of the corridor.' Keep your position as you read.";
+            L.practiceVisual = PLAN_LEISURE;
+            L.question = "Look at the plan above. Which letter shows the changing rooms?";
+            L.options = ["Room A", "Room B", "Room C"]; L.answer = 1;
+            L.feedback = "Walking in, 'the first room on your right' is A (the gym). 'Opposite it, on the left' is B, the changing rooms. The pool at the far end is C.";
+        }
+        if (L.id === "completion") {
+            L.visual = { kind: "scene", title: "Workshop booking form", alt: "A form with lines: Event: science workshop. Day: Thursday. Start time: blank. Bring: notebook.", panels: [{ h: 130, compass: false, items: [
+                { t: "rect", x: 30, y: 36, w: 300, h: 84, fill: "#ffffff", stroke: "#9ca3af", rx: 6 },
+                { t: "text", x: 44, y: 58, s: "Event:  science workshop", size: 13, fill: "#1f2937" },
+                { t: "text", x: 44, y: 78, s: "Day:  Thursday", size: 13, fill: "#1f2937" },
+                { t: "text", x: 44, y: 98, s: "Start time:  ____________", size: 13, fill: "#1f2937" },
+                { t: "text", x: 44, y: 116, s: "Bring:  notebook", size: 13, fill: "#1f2937" }
+            ] }] };
+        }
+    });
 
     var VIEWS = { "": 1, course: 1, library: 1, listening: 1, reading: 1, writing: 1, speaking: 1 };
 
@@ -472,16 +516,88 @@
             '<article class="ielts-card"><p class="ielts-session-label">General Training</p><p>' + esc(D.trackDifferences.general) + '</p></article></div>';
     }
 
-    function lessonsGrid(lessons) {
-        var html = '<div class="ielts-grid">';
-        lessons.forEach(function (L) {
-            var checked = ns.progress && ns.progress.mastered("lesson:" + L.id);
-            html += '<article class="ielts-card"><p class="ielts-session-label">Session ' + L.session + ' \u00b7 ' + esc(L.type) + '</p>' +
-                '<h3>' + esc(L.title) + (checked ? ' \u2713' : '') + '</h3>' +
-                '<p>' + esc(L.purpose) + '</p>' +
-                '<button type="button" class="secondary-button" data-ielts-lesson="' + esc(L.id) + '">Open lesson \u2192</button></article>';
+
+    function trackOk(item) {
+        return !item.track || item.track === "both" || item.track === state.track;
+    }
+
+    function visibleLessons(skillId) {
+        return lessonsForSkill(skillId).filter(trackOk);
+    }
+
+    /* A lesson as the student sees it: the General Training version overrides the shared fields. */
+    function lessonView(L) {
+        var o = {};
+        Object.keys(L).forEach(function (k) { o[k] = L[k]; });
+        if (state.track === "general" && L.gt) Object.keys(L.gt).forEach(function (k) { o[k] = L.gt[k]; });
+        return o;
+    }
+
+    function normAnswer(v) {
+        return String(v == null ? "" : v).toLowerCase().replace(/[\u2019'`]/g, "").replace(/\s+/g, " ").replace(/\.$/, "").trim();
+    }
+
+    function isRight(q, val) {
+        if (q.type === "text") {
+            var v = normAnswer(val);
+            if (!v) return false;
+            return q.accept.some(function (a) { return normAnswer(a) === v; });
+        }
+        return Number(val) === q.answer;
+    }
+
+    function visualHtml(spec) {
+        return spec && ns.visuals ? ns.visuals.render(spec) : "";
+    }
+
+    function setsForTrack() {
+        return ((ns.readingData || {}).practiceSets || []).filter(function (s) { return s.track === state.track; });
+    }
+
+    function tasksForTrack() {
+        return ((ns.writingData || {}).tasks || []).filter(trackOk);
+    }
+
+    function typeRows(groups) {
+        var html = '';
+        groups.forEach(function (g) {
+            html += '<article class="ielts-card ielts-type-group"><h3>' + esc(g.group || g.name) + '</h3>' +
+                (g.note ? '<p class="ielts-note">' + esc(g.note) + '</p>' : (g.blurb ? '<p class="ielts-note">' + esc(g.blurb) + '</p>' : '')) +
+                '<ul class="ielts-type-rows">';
+            g.types.forEach(function (t) {
+                html += '<li class="ielts-type-row"><div><strong>' + esc(t.name) + '</strong>' +
+                    (t.note ? '<span class="ielts-type-sum">' + esc(t.note) + '</span>' : '') + '</div>' +
+                    '<button type="button" class="secondary-button" data-ielts-lesson="' + esc(t.lesson) + '">Open lesson \u2192</button></li>';
+            });
+            html += '</ul></article>';
         });
-        return html + '</div>';
+        return html;
+    }
+
+    function lessonCard(L) {
+        var checked = ns.progress && ns.progress.mastered("lesson:" + L.id);
+        return '<article class="ielts-card"><p class="ielts-session-label">' + esc(L.type) + '</p>' +
+            '<h3>' + esc(L.title) + (checked ? ' \u2713' : '') + '</h3>' +
+            '<p>' + esc(L.purpose) + '</p>' +
+            '<button type="button" class="secondary-button" data-ielts-lesson="' + esc(L.id) + '">Open lesson \u2192</button></article>';
+    }
+
+    function lessonsGrid(lessons) {
+        var hasFamilies = lessons.some(function (L) { return L.family; });
+        if (!hasFamilies) {
+            return '<div class="ielts-grid">' + lessons.map(lessonCard).join('') + '</div>';
+        }
+        var order = [], groups = {};
+        lessons.forEach(function (L) {
+            var f = L.family || "Lessons";
+            if (!groups[f]) { groups[f] = []; order.push(f); }
+            groups[f].push(L);
+        });
+        var html = '';
+        order.forEach(function (f) {
+            html += '<h4 class="ielts-subheading">' + esc(f) + '</h4><div class="ielts-grid">' + groups[f].map(lessonCard).join('') + '</div>';
+        });
+        return html;
     }
 
     function criteriaCards(criteria) {
@@ -505,11 +621,13 @@
         var found = findLessonAnywhere(state.lessonId);
         if (!found) { state.lessonId = null; return viewDashboard(); }
         var L = found.lesson, skillId = found.skill;
+        var P = lessonView(L);
         state.lessonSkill = skillId;
         var skillTitle = skillById(skillId).title;
         var phases = PHASE_LABELS[skillId] || PHASE_LABELS.listening;
-        var html = header('IELTS \u00b7 ' + skillTitle.toUpperCase() + ' \u00b7 SESSION ' + L.session, L.title, L.purpose);
-        html += '<div class="ielts-lesson-toolbar">' + status(L.type, 'open') + '<span class="ielts-note">Original lesson and example \u00b7 tap a section to open it</span></div>';
+        var html = header('IELTS \u00b7 ' + skillTitle.toUpperCase() + ' \u00b7 ' + (L.family ? L.family.toUpperCase() : 'SESSION ' + L.session), L.title, L.purpose);
+        var trackNote = (L.gt && skillId === 'reading') ? ' \u00b7 your practice uses ' + trackLabel() + ' style texts' : '';
+        html += '<div class="ielts-lesson-toolbar">' + status(L.type, 'open') + '<span class="ielts-note">Original lesson and example \u00b7 tap a section to open it' + esc(trackNote) + '</span></div>';
         html += disclosure(phases[0], '<ul class="ielts-lesson-list">' + L.before.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>');
         html += disclosure(phases[1], '<ul class="ielts-lesson-list">' + L.during.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>');
         if (L.after.length) html += disclosure(phases[2], '<ul class="ielts-lesson-list">' + L.after.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>');
@@ -518,30 +636,28 @@
         html += disclosure('Don\'t', '<ul class="ielts-lesson-list">' + L.donts.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>');
         html += '</div>';
         html += '<section class="ielts-card ielts-worked-example">';
-        if (L.practice) {
-            html += '<p class="ielts-session-label">Worked example \u00b7 original illustrative text</p><blockquote>' + esc(L.example) + '</blockquote>' +
-                '<h3>Your turn - apply the skill</h3><blockquote>' + esc(L.practice) + '</blockquote><p><strong>' + esc(L.question) + '</strong></p>';
-        } else {
-            html += '<p class="ielts-session-label">Practice material \u00b7 original</p><blockquote>' + esc(L.example) + '</blockquote>' +
-                '<h3>Your turn - apply the skill</h3><p><strong>' + esc(L.question) + '</strong></p>';
-        }
+        html += '<p class="ielts-session-label">Worked example \u00b7 original</p><blockquote>' + esc(P.example) + '</blockquote>' + visualHtml(P.visual);
+        html += '<h3>Your turn - apply the skill</h3>';
+        if (P.practice) html += '<blockquote>' + esc(P.practice) + '</blockquote>';
+        html += visualHtml(P.practiceVisual);
+        html += '<p><strong>' + esc(P.question) + '</strong></p>';
         html += '<div class="ielts-practice-options">';
-        L.options.forEach(function (opt, i) {
+        P.options.forEach(function (opt, i) {
             html += '<label class="ielts-option"><input type="radio" name="ielts-lesson-answer" value="' + i + '" data-ielts-lesson-answer ' + (String(state.lessonAnswer) === String(i) ? 'checked' : '') + (state.lessonChecked ? ' disabled' : '') + '><span>' + esc(opt) + '</span></label>';
         });
         html += '</div>';
         if (!state.lessonChecked) html += '<button type="button" class="start-button" data-ielts-lesson-check ' + (state.lessonAnswer === null ? 'disabled' : '') + '>Check answer</button>';
-        else html += '<p class="ielts-answer-feedback ' + (state.lessonAnswer === L.answer ? 'ielts-answer-correct' : 'ielts-answer-incorrect') + '"><strong>' + (state.lessonAnswer === L.answer ? 'Correct.' : 'Not quite.') + '</strong> ' + esc(L.feedback) + '</p><button type="button" class="secondary-button" data-ielts-lesson-retry>Try again</button>';
+        else html += '<p class="ielts-answer-feedback ' + (state.lessonAnswer === P.answer ? 'ielts-answer-correct' : 'ielts-answer-incorrect') + '"><strong>' + (state.lessonAnswer === P.answer ? 'Correct.' : 'Not quite.') + '</strong> ' + esc(P.feedback) + '</p><button type="button" class="secondary-button" data-ielts-lesson-retry>Try again</button>';
         html += '</section>';
         if (skillId === "listening" && ns.audioPractice && typeof ns.audioPractice.renderForLesson === "function") {
             html += ns.audioPractice.renderForLesson(L.id);
         }
-        var list = lessonsForSkill(skillId);
+        var list = visibleLessons(skillId);
         var li = list.indexOf(L);
         var nav = '';
         if (li > 0) nav += '<button type="button" class="secondary-button" data-ielts-lesson="' + esc(list[li - 1].id) + '">\u2190 Previous lesson</button>';
         nav += goButton('All ' + skillTitle + ' lessons', skillId, 'secondary-button');
-        if (li < list.length - 1) nav += '<button type="button" class="start-button" data-ielts-lesson="' + esc(list[li + 1].id) + '">Next lesson \u2192</button>';
+        if (li > -1 && li < list.length - 1) nav += '<button type="button" class="start-button" data-ielts-lesson="' + esc(list[li + 1].id) + '">Next lesson \u2192</button>';
         html += '<div class="ielts-back-row">' + nav + '</div>';
         return html;
     }
@@ -551,26 +667,28 @@
     function viewReading() {
         var D = ns.readingData;
         var html = header('IELTS \u00b7 READING \u00b7 ' + trackLabel().toUpperCase(), 'Reading',
-            'What the IELTS Reading test involves, with strategy lessons and original practice sets with full answer keys.');
+            'What the IELTS Reading test involves, with a strategy lesson for every question type and original practice sets with full answer keys.');
         if (!D) {
             return html + '<div class="ielts-banner">Reading information could not be loaded.</div>' +
                 backRow(goButton('\u2190 IELTS dashboard', '', 'secondary-button'));
         }
+        var sets = setsForTrack();
         html += '<div class="ielts-banner ielts-banner-preview">' + status('Learning module', 'open') +
-            ' Study the four strategy lessons, then take a practice set. Every set is original, auto-scored, and shows the answer key with the exact passage evidence after you submit.</div>';
+            ' Study the lessons for all ' + D.questionTypes.length + ' question types, then take a practice set. Every set is original, auto-scored, and shows the answer key with the exact evidence from the text after you submit.</div>';
         html += trackPicker();
         html += '<h3 class="ielts-heading">Reading at a glance</h3>' + factsBlock(D);
-        html += trackPair(D);
-        html += disclosure('The question types (' + D.questionTypes.length + ')',
-            '<ul class="ielts-type-list">' + D.questionTypes.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>');
+        html += '<article class="ielts-card ielts-track-card"><p class="ielts-session-label">' + esc(trackLabel()) + ' Reading</p><p>' + esc(D.trackDifferences[state.track]) + '</p>' +
+            '<p class="ielts-note">The question types are the same in both tests. Only the texts are different, so the lessons below use ' + esc(trackLabel()) + ' style examples and the practice sets show only ' + esc(trackLabel()) + ' texts.</p></article>';
+        html += '<h3 class="ielts-heading">The question types (' + D.questionTypes.length + ')</h3>' + typeRows(D.questionFamilies);
         html += sourceNote(D);
         html += '<h3 class="ielts-heading">Strategy lessons</h3>' + lessonsGrid(D.lessons);
-        html += '<h3 class="ielts-heading">Practice sets</h3><div class="ielts-grid">';
-        D.practiceSets.forEach(function (set) {
+        html += '<h3 class="ielts-heading">' + esc(trackLabel()) + ' practice sets (' + sets.length + ')</h3><div class="ielts-grid">';
+        sets.forEach(function (set) {
             var key = 'reading-set:' + set.id;
             var attempted = ns.progress && ns.progress.best(key) !== null;
             html += '<article class="ielts-card"><p class="ielts-session-label">' + (set.track === 'general' ? 'General Training' : 'Academic') + ' \u00b7 ' + set.questions.length + ' questions</p>' +
-                '<h3>' + esc(set.title) + '</h3><p>' + esc(set.intro) + '</p>' + bestLine(key) +
+                '<h3>' + esc(set.title) + '</h3><p>' + esc(set.intro) + '</p>' +
+                (set.types ? '<p class="ielts-note"><strong>Covers:</strong> ' + esc(set.types.join(', ')) + '</p>' : '') + bestLine(key) +
                 '<button type="button" class="start-button" data-ielts-practice="' + esc(set.id) + '">' + (attempted ? 'Retry set \u2192' : 'Start set \u2192') + '</button></article>';
         });
         html += '</div>';
@@ -584,26 +702,33 @@
         var html = header('IELTS \u00b7 READING \u00b7 PRACTICE', set.title, set.intro);
         if (state.practiceSubmitted) {
             var total = set.questions.length, correct = 0;
-            set.questions.forEach(function (q, i) { if (Number(state.practiceAnswers[i]) === q.answer) correct += 1; });
+            set.questions.forEach(function (q, i) { if (isRight(q, state.practiceAnswers[i])) correct += 1; });
             var pct = Math.round(correct / total * 100);
             html += '<div class="ielts-card ielts-quiz-result"><h3>Your result</h3><p class="ielts-quiz-score">' + correct + ' / ' + total + ' \u00b7 ' + pct + '%</p>' +
-                '<p>' + (pct >= (ns.progress ? ns.progress.masteryPct : 80) ? 'Mastered - great work.' : 'Review the answer key below - every answer shows its passage evidence - then try again.') + '</p>' + bestLine('reading-set:' + set.id) + '</div>';
+                '<p>' + (pct >= (ns.progress ? ns.progress.masteryPct : 80) ? 'Mastered - great work.' : 'Review the answer key below - every answer shows its evidence from the text - then try again.') + '</p>' + bestLine('reading-set:' + set.id) + '</div>';
         }
-        html += '<section class="ielts-card ielts-passage"><p class="ielts-session-label">Reading passage \u00b7 original text</p><h3>' + esc(set.passageTitle) + '</h3>' +
-            set.passage.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') + '</section>';
-        html += '<form class="ielts-quiz-form" data-ielts-practice-form>';
+        html += '<section class="ielts-card ielts-passage"><p class="ielts-session-label">Reading text \u00b7 original</p><h3>' + esc(set.passageTitle) + '</h3>' +
+            set.passage.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') + visualHtml(set.visual) + '</section>';
+        html += '<form class="ielts-quiz-form" data-ielts-practice-form onsubmit="return false">';
         set.questions.forEach(function (q, i) {
             var chosen = state.practiceAnswers[i];
-            var isCorrect = state.practiceSubmitted && Number(chosen) === q.answer;
-            html += '<fieldset class="ielts-card ielts-question' + (state.practiceSubmitted ? (isCorrect ? ' ielts-answer-correct' : ' ielts-answer-incorrect') : '') + '"><legend>Question ' + (i + 1) + '</legend>' +
+            var isCorrect = state.practiceSubmitted && isRight(q, chosen);
+            if (q.instruction) html += '<p class="ielts-instruction">' + esc(q.instruction) + '</p>';
+            html += '<fieldset class="ielts-card ielts-question' + (state.practiceSubmitted ? (isCorrect ? ' ielts-answer-correct' : ' ielts-answer-incorrect') : '') + '"><legend>Question ' + (i + 1) + (q.qtype ? ' \u00b7 ' + esc(q.qtype) : '') + '</legend>' +
                 '<p class="ielts-question-prompt">' + esc(q.prompt) + '</p>';
-            q.options.forEach(function (opt, j) {
-                html += '<label class="ielts-option"><input type="radio" name="pq' + i + '" value="' + j + '" data-ielts-practice-answer="' + i + '"' +
-                    (String(chosen) === String(j) ? ' checked' : '') + (state.practiceSubmitted ? ' disabled' : '') + '> <span>' + esc(opt) + '</span>' +
-                    (state.practiceSubmitted && q.answer === j ? '<strong class="ielts-correct-label">Correct answer</strong>' : '') + '</label>';
-            });
+            if (q.type === 'text') {
+                html += '<input type="text" class="ielts-ap-text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Your answer to question ' + (i + 1) + '" data-ielts-practice-text="' + i + '"' +
+                    (typeof chosen === 'string' ? ' value="' + esc(chosen) + '"' : '') + (state.practiceSubmitted ? ' disabled' : '') + '>';
+            } else {
+                q.options.forEach(function (opt, j) {
+                    html += '<label class="ielts-option"><input type="radio" name="pq' + i + '" value="' + j + '" data-ielts-practice-answer="' + i + '"' +
+                        (String(chosen) === String(j) ? ' checked' : '') + (state.practiceSubmitted ? ' disabled' : '') + '> <span>' + esc(opt) + '</span>' +
+                        (state.practiceSubmitted && q.answer === j ? '<strong class="ielts-correct-label">Correct answer</strong>' : '') + '</label>';
+                });
+            }
             if (state.practiceSubmitted) {
-                html += '<p class="ielts-answer-feedback"><strong>' + (isCorrect ? 'Correct' : 'Correct answer: ' + esc(q.options[q.answer])) + '</strong> \u2014 ' + esc(q.explanation) + '</p>';
+                var shown = q.type === 'text' ? (q.answerLabel || q.accept[0]) : q.options[q.answer];
+                html += '<p class="ielts-answer-feedback"><strong>' + (isCorrect ? 'Correct' : 'Correct answer: ' + esc(shown)) + '</strong> \u2014 ' + esc(q.explanation) + '</p>';
             }
             html += '</fieldset>';
         });
@@ -619,25 +744,28 @@
     function viewWriting() {
         var D = ns.writingData;
         var html = header('IELTS \u00b7 WRITING \u00b7 ' + trackLabel().toUpperCase(), 'Writing',
-            'What the IELTS Writing test involves, with strategy lessons and original practice tasks with model answers.');
+            'What the IELTS Writing test involves, with a strategy lesson for every task type and original practice tasks with model answers.');
         if (!D) {
             return html + '<div class="ielts-banner">Writing information could not be loaded.</div>' +
                 backRow(goButton('\u2190 IELTS dashboard', '', 'secondary-button'));
         }
+        var lessons = visibleLessons('writing'), tasks = tasksForTrack();
         html += '<div class="ielts-banner ielts-banner-preview">' + status('Learning module', 'open') +
-            ' Study the three lessons, then write a practice task in the built-in editor. Your draft saves on this device as you type, and each task has an original model answer and a self-check on the four official criteria.</div>';
+            ' Study the lessons for your test, then write a practice task in the built-in editor. Your draft saves on this device as you type, and each task has an original model answer and a self-check on the four official criteria.</div>';
         html += trackPicker();
         html += '<h3 class="ielts-heading">Writing at a glance</h3>' + factsBlock(D);
-        html += trackPair(D);
+        html += '<article class="ielts-card ielts-track-card"><p class="ielts-session-label">' + esc(trackLabel()) + ' Writing</p><p>' + esc(D.trackDifferences[state.track]) + '</p>' +
+            '<p class="ielts-note">Task 2 is the same essay task in both tests. Only Task 1 differs, so this page shows only the ' + esc(trackLabel()) + ' Task 1 lessons and tasks.</p></article>';
+        html += '<h3 class="ielts-heading">The task types</h3>' + typeRows((D.taskTypes || []).filter(trackOk));
         html += '<h3 class="ielts-heading">How Writing is marked</h3>' + criteriaCards(D.criteria);
         html += sourceNote(D);
-        html += '<h3 class="ielts-heading">Strategy lessons</h3>' + lessonsGrid(D.lessons);
-        html += '<h3 class="ielts-heading">Practice tasks</h3><div class="ielts-grid">';
-        D.tasks.forEach(function (t) {
+        html += '<h3 class="ielts-heading">Strategy lessons (' + lessons.length + ')</h3>' + lessonsGrid(lessons);
+        html += '<h3 class="ielts-heading">' + esc(trackLabel()) + ' practice tasks (' + tasks.length + ')</h3><div class="ielts-grid">';
+        tasks.forEach(function (t) {
             var key = 'writing-task:' + t.id;
             var done = ns.progress && ns.progress.best(key) !== null;
             html += '<article class="ielts-card"><p class="ielts-session-label">' +
-                (t.track === 'both' ? 'Both tracks' : t.track === 'general' ? 'General Training' : 'Academic') + ' \u00b7 ' + t.minWords + '+ words \u00b7 ~' + t.minutes + ' min</p>' +
+                (t.track === 'both' ? 'Task 2' : 'Task 1') + (t.kind ? ' \u00b7 ' + esc(t.kind) : '') + ' \u00b7 ' + t.minWords + '+ words \u00b7 ~' + t.minutes + ' min</p>' +
                 '<h3>' + esc(t.title) + (done ? ' \u2713' : '') + '</h3>' +
                 '<p>' + esc(t.instructions.slice(0, 110)) + '\u2026</p>' +
                 (done ? '<p class="ielts-note">Completed \u00b7 recorded in your progress</p>' : '') +
@@ -680,7 +808,7 @@
         var html = header('IELTS \u00b7 WRITING \u00b7 PRACTICE', t.title,
             'About ' + t.minutes + ' minutes \u00b7 write at least ' + t.minWords + ' words.');
         html += '<section class="ielts-card"><p class="ielts-session-label">The task \u00b7 original prompt</p><p><strong>' + esc(t.instructions) + '</strong></p>' +
-            dataTableHtml(t) + '</section>';
+            visualHtml(t.visual) + dataTableHtml(t) + '</section>';
         html += '<section class="ielts-card"><p class="ielts-session-label">Your answer</p>' +
             '<textarea class="ielts-editor" rows="12" data-ielts-draft="' + esc(t.id) + '" placeholder="Write your answer here\u2026">' + esc(draft) + '</textarea>' +
             '<p class="ielts-word-count">Words: <span data-ielts-wc>' + wordCount(draft) + '</span> / ' + t.minWords + ' minimum</p>' +
@@ -769,8 +897,8 @@
         }
         var groups = [
             { label: 'Listening', ids: ['listening-quiz'].concat(LISTENING_LESSONS.map(function (l) { return 'lesson:' + l.id; })) },
-            { label: 'Reading', ids: lessonsForSkill('reading').map(function (l) { return 'lesson:' + l.id; }).concat(((ns.readingData || {}).practiceSets || []).map(function (s) { return 'reading-set:' + s.id; })) },
-            { label: 'Writing', ids: lessonsForSkill('writing').map(function (l) { return 'lesson:' + l.id; }).concat(((ns.writingData || {}).tasks || []).map(function (t) { return 'writing-task:' + t.id; })) },
+            { label: 'Reading', ids: lessonsForSkill('reading').map(function (l) { return 'lesson:' + l.id; }).concat(setsForTrack().map(function (s) { return 'reading-set:' + s.id; })) },
+            { label: 'Writing', ids: visibleLessons('writing').map(function (l) { return 'lesson:' + l.id; }).concat(tasksForTrack().map(function (t) { return 'writing-task:' + t.id; })) },
             { label: 'Speaking', ids: lessonsForSkill('speaking').map(function (l) { return 'lesson:' + l.id; }).concat(((ns.speakingData || {}).practice || []).map(function (p) { return 'speaking-practice:' + p.id; })) }
         ];
         var summaries = ns.progress.summarize(groups);
@@ -866,7 +994,7 @@
             if (state.lessonAnswer !== null) {
                 state.lessonChecked = true;
                 var foundL = findLessonAnywhere(state.lessonId);
-                if (ns.progress && foundL && state.lessonAnswer === foundL.lesson.answer) ns.progress.record("lesson:" + foundL.lesson.id, 100);
+                if (ns.progress && foundL && state.lessonAnswer === lessonView(foundL.lesson).answer) ns.progress.record("lesson:" + foundL.lesson.id, 100);
                 render();
             }
         } else if (el.hasAttribute("data-ielts-lesson-retry")) {
@@ -890,12 +1018,12 @@
         } else if (el.hasAttribute("data-ielts-practice-submit")) {
             var pset = findReadingSet(state.practiceId);
             if (pset) {
-                var pmissing = pset.questions.some(function (q, i) { return typeof state.practiceAnswers[i] !== "string"; });
+                var pmissing = pset.questions.some(function (q, i) { var av = state.practiceAnswers[i]; return typeof av !== "string" || (q.type === 'text' && !av.trim()); });
                 if (pmissing) { window.alert("Please answer every question before submitting."); return; }
                 state.practiceSubmitted = true;
                 if (ns.progress) {
                     var pcorrect = 0;
-                    pset.questions.forEach(function (q, i) { if (Number(state.practiceAnswers[i]) === q.answer) pcorrect += 1; });
+                    pset.questions.forEach(function (q, i) { if (isRight(q, state.practiceAnswers[i])) pcorrect += 1; });
                     ns.progress.record("reading-set:" + pset.id, Math.round(pcorrect / pset.questions.length * 100));
                 }
                 render();
@@ -930,6 +1058,10 @@
         rootAtLoad.addEventListener("click", onClick);
         rootAtLoad.addEventListener("input", function (event) {
             var field = event.target;
+            if (field && field.hasAttribute && field.hasAttribute("data-ielts-practice-text") && !state.practiceSubmitted) {
+                state.practiceAnswers[field.getAttribute("data-ielts-practice-text")] = field.value;
+                return;
+            }
             if (!field || !field.hasAttribute || !field.hasAttribute("data-ielts-draft")) return;
             var draftId = field.getAttribute("data-ielts-draft");
             try { window.localStorage.setItem("ieltsDraft." + draftId, field.value); } catch (e) { /* ignore */ }

@@ -164,3 +164,17 @@
     .ielts-progress-grid { grid-template-columns: 1fr; }
     .ielts-data-table { font-size: 14px; }
 }
+
+/* ---------- Round 2: charts, maps, lesson groups ---------- */
+.ielts-visual { margin: 14px 0 18px; text-align: center; }
+.ielts-visual svg { width: 100%; max-width: 440px; height: auto; border: 1px solid #e5e7eb; border-radius: 12px; display: block; margin: 0 auto; }
+.ielts-visual figcaption { margin-top: 6px; }
+.ielts-worked-example blockquote { white-space: pre-line; }
+.ielts-subheading { margin: 22px 0 10px; font-size: 16px; color: #1e3a8a; }
+.ielts-type-group { margin: 0 0 14px; }
+.ielts-type-group .ielts-type-row .secondary-button { flex: 0 0 auto; }
+.ielts-track-card { margin: 14px 0 6px; background: #f8fbff; border-color: #bfdbfe; }
+.hero .ielts-root .ielts-instruction { margin: 18px 0 6px; font-weight: 700; color: #1e3a8a; font-size: 15px; }
+.ielts-passage p { white-space: pre-line; }
+.ielts-question .ielts-ap-text { max-width: 100%; box-sizing: border-box; }
+@media (max-width: 700px) { .ielts-type-group .ielts-type-row .secondary-button { width: 100%; } }

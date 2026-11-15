@@ -241,6 +241,49 @@
         }
     };
 
+
+    /* Map and plan exercises: the plans are drawn with the lettered places left unnamed,
+       so the student must follow the spoken directions to find each place. */
+    var LETTER_OPTIONS = ["A", "B", "C", "D", "E"];
+    UNITS["ielts-l2-campus-map"].visual = { kind: "scene", title: "Campus plan", alt: "Campus plan. The main entrance is at the bottom. A path leads up to a fountain. A second path leads left (west) from the fountain, crossing a stream by a small bridge. Buildings are marked A to F.",
+        panels: [{ h: 270, items: [
+            { t: "water", x: 78, y: 60, w: 14, h: 190 },
+            { t: "text", x: 98, y: 82, s: "stream", size: 10 },
+            { t: "road", x1: 180, y1: 236, x2: 180, y2: 160, w: 14 },
+            { t: "text", x: 180, y: 256, s: "MAIN ENTRANCE", size: 10, anchor: "middle", weight: "bold" },
+            { t: "road", x1: 180, y1: 160, x2: 24, y2: 160, w: 14 },
+            { t: "road", x1: 70, y1: 160, x2: 100, y2: 160, w: 20, color: "#fcd34d" },
+            { t: "text", x: 85, y: 186, s: "bridge", size: 10, anchor: "middle" },
+            { t: "circle", x: 180, y: 160, r: 15, fill: "#bae6fd", stroke: "#38bdf8" },
+            { t: "text", x: 180, y: 140, s: "fountain", size: 10, anchor: "middle" },
+            { t: "rect", x: 112, y: 114, w: 56, h: 34, fill: "#fde68a", stroke: "#f59e0b", label: "A", size: 14 },
+            { t: "rect", x: 24, y: 108, w: 46, h: 38, fill: "#dbeafe", stroke: "#60a5fa", label: "B", size: 14 },
+            { t: "rect", x: 24, y: 174, w: 46, h: 46, fill: "#dcfce7", stroke: "#86efac", label: "C", size: 14 },
+            { t: "rect", x: 24, y: 58, w: 46, h: 40, fill: "#e5e7eb", stroke: "#9ca3af", label: "D", size: 14 },
+            { t: "rect", x: 204, y: 176, w: 70, h: 44, fill: "#ede9fe", stroke: "#c4b5fd", label: "E", size: 14 },
+            { t: "rect", x: 204, y: 100, w: 70, h: 44, fill: "#fce7f3", stroke: "#f9a8d4", label: "F", size: 14 }
+        ] }] };
+    UNITS["ielts-l2-campus-map"].questions.push(
+        { kind: "single", prompt: "Look at the campus plan. Which letter is the student services office?", options: LETTER_OPTIONS, answer: 0,
+          explanation: "Turn left at the fountain: the first building on your right (the north side of the path) is A." },
+        { kind: "single", prompt: "Look at the campus plan. Which letter is the computer room?", options: LETTER_OPTIONS, answer: 1,
+          explanation: "Beyond student services, cross the bridge: the computer room is opposite the sports hall (C), beside the car park (D). That is B." });
+    UNITS["ielts-l2-directions"].visual = { kind: "scene", title: "Garden plan", alt: "Garden plan. The entrance is at the bottom, with a main path going straight up. Places are marked A to E: A and B on the right, C and D on the left, E at the top.",
+        panels: [{ h: 260, items: [
+            { t: "road", x1: 180, y1: 232, x2: 180, y2: 70, w: 16 },
+            { t: "text", x: 180, y: 252, s: "ENTRANCE", size: 10, anchor: "middle", weight: "bold" },
+            { t: "rect", x: 200, y: 150, w: 74, h: 54, fill: "#dcfce7", stroke: "#86efac", label: "A", size: 14 },
+            { t: "rect", x: 200, y: 92, w: 74, h: 28, fill: "#fde68a", stroke: "#f59e0b", label: "B", size: 14 },
+            { t: "rect", x: 86, y: 90, w: 74, h: 36, fill: "#e5e7eb", stroke: "#9ca3af", label: "C", size: 14 },
+            { t: "rect", x: 90, y: 150, w: 70, h: 50, fill: "#bae6fd", stroke: "#38bdf8", label: "D", size: 14 },
+            { t: "rect", x: 120, y: 30, w: 120, h: 30, fill: "#fce7f3", stroke: "#f9a8d4", label: "E", size: 14 }
+        ] }] };
+    UNITS["ielts-l2-directions"].questions.push(
+        { kind: "single", prompt: "Look at the garden plan. Which letter is the greenhouse?", options: LETTER_OPTIONS, answer: 0,
+          explanation: "Walking straight ahead along the main path, the greenhouse is on your right: A." },
+        { kind: "single", prompt: "Look at the garden plan. Which letter is the tool shed?", options: LETTER_OPTIONS, answer: 2,
+          explanation: "Past the greenhouse, the tool shed is on the left, opposite the benches (B): C." });
+
     /* Which units appear in which lesson. A recording can serve more
        than one lesson when it trains a different sub-skill. */
     var LESSON_UNITS = {
@@ -390,6 +433,7 @@
             '<p class="ielts-session-label">Audio practice · original recording, not an official IELTS test</p>' +
             '<h3>' + esc(unit.title) + '</h3>' +
             '<p class="ielts-note">' + esc(unit.context) + '</p>' +
+            (unit.visual && ns.visuals ? ns.visuals.render(unit.visual) : '') +
             '<audio class="ielts-ap-audio" controls preload="none" src="' + esc(src) + '"></audio>' +
             '<div class="ielts-ap-body" data-ielts-ap-body="' + esc(unitId) + '">' + renderBody(unitId) + '</div>' +
             '</section>';
