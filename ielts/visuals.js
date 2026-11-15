@@ -165,6 +165,14 @@
                 out += '<circle cx="' + it.x + '" cy="' + it.y + '" r="' + (it.r || 6) + '" fill="#86efac" stroke="#22c55e"/>';
             } else if (it.t === "water") {
                 out += '<rect x="' + it.x + '" y="' + it.y + '" width="' + it.w + '" height="' + it.h + '" fill="#bae6fd" stroke="#7dd3fc"/>';
+            } else if (it.t === "line") {
+                out += '<line x1="' + it.x1 + '" y1="' + it.y1 + '" x2="' + it.x2 + '" y2="' + it.y2 + '" stroke="' + (it.color || "#475569") + '" stroke-width="' + (it.w || 2) + '" stroke-linecap="round"' + (it.dash ? ' stroke-dasharray="4 3"' : '') + '/>';
+            } else if (it.t === "poly") {
+                out += '<polygon points="' + it.points + '" fill="' + (it.fill || "#e5e7eb") + '" stroke="' + (it.stroke || "#475569") + '" stroke-width="' + (it.w || 1.5) + '" stroke-linejoin="round"/>';
+            } else if (it.t === "path") {
+                out += '<path d="' + it.d + '" fill="' + (it.fill || "none") + '" stroke="' + (it.stroke || "#475569") + '" stroke-width="' + (it.w || 2) + '" stroke-linecap="round" stroke-linejoin="round"' + (it.dash ? ' stroke-dasharray="4 3"' : '') + '/>';
+            } else if (it.t === "marker") {
+                out += '<circle cx="' + it.x + '" cy="' + it.y + '" r="10" fill="#1e40af" stroke="#fff" stroke-width="1.5"/>' + text(it.x, it.y + 4, String(it.n), { anchor: "middle", size: 12, weight: "bold", fill: "#fff" });
             } else if (it.t === "arrow") {
                 out += '<line x1="' + it.x1 + '" y1="' + it.y1 + '" x2="' + it.x2 + '" y2="' + it.y2 + '" stroke="#dc2626" stroke-width="2" stroke-dasharray="5 4"/>';
             }

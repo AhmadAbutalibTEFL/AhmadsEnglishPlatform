@@ -178,3 +178,64 @@
 .ielts-passage p { white-space: pre-line; }
 .ielts-question .ielts-ap-text { max-width: 100%; box-sizing: border-box; }
 @media (max-width: 700px) { .ielts-type-group .ielts-type-row .secondary-button { width: 100%; } }
+
+/* ---------- Round 3: exam-style Reading ---------- */
+.ielts-para-label { display: inline-flex; align-items: center; justify-content: center; min-width: 26px; height: 26px; margin-right: 6px; border-radius: 8px; background: #1e40af; color: #fff; font-size: 14px; }
+.ielts-box { margin: 10px 0; padding: 12px 14px; border: 2px solid #1e3a8a; border-radius: 12px; background: #f8fbff; }
+.ielts-box-title { margin: 0 0 6px; font-weight: 800; color: #1e3a8a; }
+.ielts-box ul { margin: 0; padding-left: 0; list-style: none; }
+.ielts-box li { padding: 4px 0; line-height: 1.45; }
+.ielts-jump { display: inline-block; margin: 2px 0 8px; padding: 6px 12px; border: 1px solid #bfdbfe; border-radius: 999px; background: #fff; color: #1e40af; font-size: 14px; cursor: pointer; }
+.ielts-qgroup { padding: 8px 14px; }
+.ielts-qrow { padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
+.ielts-qrow:last-child { border-bottom: 0; }
+.ielts-qline { display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; font-weight: 600; }
+.ielts-qnum { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; min-width: 26px; height: 26px; padding: 0 4px; border-radius: 50%; background: #1e40af; color: #fff; font-size: 13px; }
+.ielts-qcontrol { margin: 8px 0 0 36px; }
+.ielts-gap-select { min-width: 96px; padding: 9px 10px; border: 1px solid #94a3b8; border-radius: 8px; font-size: 16px; background: #fff; }
+.ielts-gap-text { width: 100%; max-width: 100%; box-sizing: border-box; }
+.ielts-gap-select.ielts-ok, .ielts-gap-text.ielts-ok { border-color: #16a34a; background: #f0fdf4; }
+.ielts-gap-select.ielts-bad, .ielts-gap-text.ielts-bad { border-color: #dc2626; background: #fef2f2; }
+.ielts-gap { display: inline-flex; align-items: center; gap: 6px; margin: 3px 2px; vertical-align: middle; }
+.ielts-gap .ielts-gap-text { width: 130px; }
+.ielts-template { line-height: 2; }
+.ielts-flow { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+.ielts-flow-step { padding: 10px 12px; border: 2px solid #1e3a8a; border-radius: 10px; background: #f8fbff; text-align: center; line-height: 1.9; }
+.ielts-flow-arrow { text-align: center; color: #1e3a8a; font-size: 20px; line-height: 1.2; }
+.ielts-table-wrap { overflow-x: auto; }
+.ielts-table { width: 100%; border-collapse: collapse; line-height: 1.6; }
+.ielts-table th, .ielts-table td { border: 1px solid #cbd5e1; padding: 8px 10px; text-align: left; vertical-align: middle; }
+.ielts-table th { background: #eff6ff; color: #1e3a8a; }
+.ielts-note-head { margin: 4px 0; color: #1e3a8a; }
+.ielts-note-line { margin: 2px 0; }
+.ielts-feedback-row { display: flex; gap: 8px; align-items: flex-start; }
+.ielts-feedback-row .ielts-answer-feedback { margin: 0 0 10px; }
+.ielts-answers-list { margin-top: 10px; }
+.ielts-timer { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 12px 0; }
+.ielts-timer-display { font-weight: 800; color: #1e3a8a; font-variant-numeric: tabular-nums; }
+.ielts-vocab { margin: 6px 0 0; padding-left: 20px; line-height: 1.8; }
+.ielts-strategy { margin: 12px 0; }
+.ielts-qrow.ielts-answer-correct { border-left: 4px solid #16a34a; padding-left: 10px; }
+.ielts-qrow.ielts-answer-incorrect { border-left: 4px solid #dc2626; padding-left: 10px; }
+
+/* ---- Listening exam parts ---- */
+.ielts-audio-card audio { width: 100%; }
+.ielts-audio-card audio { width: 100%; }
+.ielts-transcript-line { margin: 6px 0; line-height: 1.5; }
+
+/* ---- Speaking and Writing exam practice ---- */
+.ielts-bubble { background: #eef2ff; border-radius: 14px; padding: 12px 14px; margin: 8px 0; line-height: 1.5; }
+.ielts-clip { margin: 8px 0; }
+.ielts-clip audio, .ielts-rec audio { width: 100%; margin-top: 4px; }
+.ielts-cd, .ielts-rec { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 10px 0; }
+.ielts-rec > div[data-ielts-rec-out] { flex-basis: 100%; }
+.ielts-cuecard { border: 2px solid #1e3a8a; background: #fffbea; }
+.ielts-progressbar { height: 8px; background: #e5e7eb; border-radius: 999px; overflow: hidden; margin: 6px 0 12px; }
+.ielts-progressbar span { display: block; height: 100%; background: #2563eb; }
+.ielts-rate-group { border: 1px solid #e5e7eb; border-radius: 12px; padding: 8px 10px; margin: 10px 0; }
+.ielts-rate-group legend { padding: 0 6px; }
+.ielts-estimate { background: #ecfdf5; }
+.ielts-qc { list-style: none; padding: 0; margin: 10px 0; }
+.ielts-qc li { padding: 8px 10px; border-radius: 10px; margin: 6px 0; line-height: 1.4; }
+.ielts-qc-ok { background: #ecfdf5; }
+.ielts-qc-no { background: #fff7ed; }
